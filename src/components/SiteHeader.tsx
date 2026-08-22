@@ -17,8 +17,8 @@ const navItems: NavItem[] = [
   {
     label: "UNSER ALLTAG",
     children: [
-      { to: "/tagesablauf", label: "Tagesablauf" },
       { to: "/paedagogik", label: "Pädagogik" },
+      { to: "/tagesablauf", label: "Tagesablauf" },
       { to: "/paedagogik/pflege", label: "Pflege" },
       { to: "/paedagogik/essen", label: "Essen" },
       { to: "/paedagogik/angebote", label: "Angebote" },
