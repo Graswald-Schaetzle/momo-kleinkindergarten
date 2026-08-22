@@ -99,14 +99,29 @@ function Index() {
             aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
             className="absolute left-8 top-16 z-20 inline-flex items-center transition-opacity hover:opacity-80 sm:left-12 sm:top-24 md:left-16 md:top-32"
           >
-            <img
-              src={muted ? soundOffIcon : soundOnIcon}
-              alt={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
-              loading="lazy"
-              width={32}
-              height={32}
-              className="h-8 w-8 object-contain sm:h-10 sm:w-10"
-            />
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-8 w-8 text-bordeaux sm:h-10 sm:w-10"
+              aria-hidden="true"
+            >
+              <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none" />
+              {muted ? (
+                <>
+                  <line x1="16" y1="9" x2="22" y2="15" />
+                  <line x1="22" y1="9" x2="16" y2="15" />
+                </>
+              ) : (
+                <>
+                  <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                  <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+                </>
+              )}
+            </svg>
           </button>
         </div>
 
