@@ -91,24 +91,24 @@ function Index() {
             <source src={heroVideo.url} type="video/mp4" />
           </video>
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
-        </div>
 
-        <button
-          type="button"
-          onClick={toggleSnore}
-          aria-pressed={!muted}
-          aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
-          className="relative z-10 mt-4 inline-flex items-center transition-opacity hover:opacity-80"
-        >
-          <img
-            src={muted ? soundOffIcon : soundOnIcon}
-            alt={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
-            loading="lazy"
-            width={32}
-            height={32}
-            className="h-8 w-8 object-contain sm:h-10 sm:w-10"
-          />
-        </button>
+          <button
+            type="button"
+            onClick={toggleSnore}
+            aria-pressed={!muted}
+            aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
+            className="absolute left-8 top-2 z-20 inline-flex items-center transition-opacity hover:opacity-80 sm:left-12 sm:top-4 md:left-16"
+          >
+            <img
+              src={muted ? soundOffIcon : soundOnIcon}
+              alt={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
+              loading="lazy"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain sm:h-10 sm:w-10"
+            />
+          </button>
+        </div>
 
         <p className="mt-4 font-display text-xl font-normal leading-tight tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
           1–3 Jahre
