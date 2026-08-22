@@ -37,48 +37,48 @@ const schedule: ScheduleItem[] = [
   {
     time: "07:45–09:15",
     title: "Ankommen & offenes Frühstück",
-    text: "Die Kinder werden in einer ruhigen, wertschätzenden Atmosphäre empfangen. Manche haben bereits zuhaus gefrühstückt, andere bringen noch Hunger mit. Deshalb ist das Frühstück offen und partizipativ gestaltet: Jedes Kind darf selbst entscheiden, ob es zunächst essen oder direkt ins Spiel kommen möchte. So gelingt ein sanftes Ankommen, bei dem jedes Kind seinen eigenen Rhythmus wahren darf. Um 9:15 Uhr endet die Bringzeit, die Gruppe wird geschlossen und wir gestalten den weiteren Tag gemeinsam.",
+    text: "In ruhiger, wertschätzender Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet — jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. So wahrt jedes Kind seinen eigenen Rhythmus. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich und der gemeinsame Tag beginnt.",
   },
   {
     time: "09:15–10:15",
     title: "Freispiel innen & außen",
-    text: "Die Kinder spielen nach Interesse drinnen oder im Garten. Kreative Angebote wie Kneten, Malen oder das Arbeiten mit Naturmaterialien stehen bereit.",
+    text: "Die Kinder spielen nach Interesse drinnen oder im Garten. Kreative Angebote wie Kneten, Malen oder das Gestalten mit Naturmaterialien stehen bereit.",
   },
   {
     time: "10:15",
     title: "Morgenkreis",
-    text: "Ein gemeinsamer Kreis mit Liedern, Fingerspielen und Ritualen markiert den Übergang in die nächste gemeinsame Aktivität.",
+    text: "Lieder, Fingerspiele und Rituale im gemeinsamen Kreis markieren den Übergang in die nächste Aktivität.",
   },
   {
     time: "10:25–11:30",
     title: "Gemeinsame Aktivität",
-    text: "Nach dem Morgenkreis erleben die Kinder je nach Tag unterschiedliche Schwerpunkte:",
+    text: "Je nach Tag erleben die Kinder unterschiedliche Schwerpunkte:",
     highlights: [
-      "Besuch einer Musikpädagogin mit Liedern, Instrumenten und Bewegung",
+      "Musikpädagogin mit Liedern, Instrumenten und Bewegung",
       "Spaziergänge in die nähere Umgebung",
       "Spielplatzbesuche oder Naturerkundungen",
-      "Künstlerisch-kreative Aktivitäten wie Malen, Basteln oder kleine handwerkliche Projekte mit Naturmaterialien",
+      "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
     ],
   },
   {
     time: "11:30",
     title: "Rückkehr & Übergangsrituale",
-    text: "Die Kinder ziehen sich in Ruhe um. Kleine Rituale wie eine Fuß- oder Handwäsche schaffen Bewusstsein und Entspannung.",
+    text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- oder Handwäsche schafft Bewusstsein und Entspannung.",
   },
   {
     time: "11:45–12:15",
     title: "Gemeinsames Mittagessen",
-    text: "Der Essbereich wird durch ein Vorhangsystem bewusst vom Spielraum abgetrennt. Dadurch entsteht eine klare, ruhige Atmosphäre, in der das Essen mit allen Sinnen erlebt werden kann. Die Kinder werden aktiv einbezogen: Sie schneiden Obst, waschen Gemüse und üben dabei ihre Feinmotorik. Der Tisch ist liebevoll gedeckt mit einer Blumendekoration, die sich an den Jahreszeiten orientiert, sowie kleinen, saisonalen Elementen aus der Natur. Zu den Ritualen gehören das gemeinsame Anzünden der Kerze und ein Lied. Auf diese Weise lernen die Kinder Achtsamkeit, Umgang mit möglichen Gefahren und die Bedeutung wiederkehrender Rituale kennen. Beim Essen nutzen wir Stofftücher anstelle von Wegwerfprodukten. Lätzchen, Handtücher und Waschtücher bestehen aus natürlichen Materialien. Dies vermittelt nicht nur Geborgenheit und Körperpflege, sondern fördert auch Umweltbewusstsein und Nachhaltigkeit. Gemäß § 22 Abs. 3 SGB VIII bieten wir eine gesunde, ausgewogene Ernährung, die frisch, regional und saisonal ist. Die Mahlzeiten werden kindgerecht zubereitet und ästhetisch angerichtet, sodass die Kinder Essen mit allen Sinnen erleben können. Wasser steht jederzeit frei zur Verfügung. Allergien und Unverträglichkeiten werden anhand eines individuellen Notfallblatts dokumentiert.",
+    text: "Ein Vorhang trennt den Essbereich vom Spielraum — so entsteht eine klare, ruhige Atmosphäre. Die Kinder helfen aktiv mit: Sie schneiden Obst, waschen Gemüse und üben ihre Feinmotorik. Der Tisch ist mit saisonaler Blumendekoration und Elementen aus der Natur gedeckt. Kerze anzünden und ein gemeinsames Lied gehören zu den Ritualen. Wir nutzen Stofftücher statt Wegwerfprodukte; Lätzchen und Handtücher bestehen aus natürlichen Materialien — Geborgenheit, Körperpflege und Nachhaltigkeit zugleich. Die Mahlzeiten sind frisch, regional und saisonal, kindgerecht zubereitet und ästhetisch angerichtet (§ 22 Abs. 3 SGB VIII). Wasser steht jederzeit frei zur Verfügung. Allergien und Unverträglichkeiten sind in einem individuellen Notfallblatt dokumentiert.",
   },
   {
     time: "12:30–Bedarf",
     title: "Schlafenszeit",
-    text: "Der Schlafraum ist durch Vorhänge gedämpft, Düfte und sanfte Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, eine sanfte Massage, Handauflegen oder einfach durch die beruhigende Nähe einer vertrauten Person. So findet jedes Kind die Unterstützung, die es braucht, um in den Schlaf zu kommen. Kinder, die trotz Ruhephase nicht einschlafen, werden von einer pädagogischen Fachkraft liebevoll begleitet und erhalten ein ruhiges alternatives Angebot. Schlafsicherheit ist ein weiterer Baustein unseres Gesundheitskonzepts: Wir sorgen für eine sichere Schlafumgebung, eine angenehme Raumtemperatur und regelmäßige Blick- und Atemkontrollen.",
+    text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet — durch Wiegen, eine sanfte Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot. Für eine sichere Schlafumgebung sorgen wir mit angenehmer Raumtemperatur und regelmäßigen Blick- und Atemkontrollen.",
   },
   {
     time: "13:45",
     title: "Abholzeit",
-    text: "Der Tag endet in ruhiger, gelöster Atmosphäre. Die Kinder werden einzeln verabschiedet, wodurch jedes Kind noch einmal bewusst gesehen wird. In dieser Zeit entstehen ganz natürlich wertvolle Tür- und Angelgespräche mit den Eltern.",
+    text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet und noch einmal bewusst gesehen — ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
   },
 ];
 
