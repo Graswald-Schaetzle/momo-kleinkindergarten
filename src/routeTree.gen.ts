@@ -14,6 +14,7 @@ import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as PaedagogikRouteImport } from './routes/paedagogik'
 import { Route as PreiseRouteImport } from './routes/preise'
 import { Route as RaeumeRouteImport } from './routes/raeume'
+import { Route as TagesablaufRouteImport } from './routes/tagesablauf'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
 import { Route as PaedagogikIndexRouteImport } from './routes/paedagogik/index'
@@ -44,6 +45,11 @@ const PreiseRoute = PreiseRouteImport.update({
 const RaeumeRoute = RaeumeRouteImport.update({
   id: '/raeume',
   path: '/raeume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TagesablaufRoute = TagesablaufRouteImport.update({
+  id: '/tagesablauf',
+  path: '/tagesablauf',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeamRoute = TeamRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
+  '/tagesablauf': typeof TagesablaufRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
+  '/tagesablauf': typeof TagesablaufRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
+  '/tagesablauf': typeof TagesablaufRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/paedagogik'
     | '/preise'
     | '/raeume'
+    | '/tagesablauf'
     | '/team'
     | '/ueber-uns'
     | '/paedagogik/angebote'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/preise'
     | '/raeume'
+    | '/tagesablauf'
     | '/team'
     | '/ueber-uns'
     | '/paedagogik/angebote'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/paedagogik'
     | '/preise'
     | '/raeume'
+    | '/tagesablauf'
     | '/team'
     | '/ueber-uns'
     | '/paedagogik/angebote'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   PaedagogikRoute: typeof PaedagogikRouteWithChildren
   PreiseRoute: typeof PreiseRoute
   RaeumeRoute: typeof RaeumeRoute
+  TagesablaufRoute: typeof TagesablaufRoute
   TeamRoute: typeof TeamRoute
   UeberUnsRoute: typeof UeberUnsRoute
 }
@@ -202,6 +215,13 @@ declare module '@tanstack/react-router' {
       path: '/raeume'
       fullPath: '/raeume'
       preLoaderRoute: typeof RaeumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tagesablauf': {
+      id: '/tagesablauf'
+      path: '/tagesablauf'
+      fullPath: '/tagesablauf'
+      preLoaderRoute: typeof TagesablaufRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/team': {
@@ -273,6 +293,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaedagogikRoute: PaedagogikRouteWithChildren,
   PreiseRoute: PreiseRoute,
   RaeumeRoute: RaeumeRoute,
+  TagesablaufRoute: TagesablaufRoute,
   TeamRoute: TeamRoute,
   UeberUnsRoute: UeberUnsRoute,
 }
