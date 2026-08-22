@@ -110,9 +110,6 @@ function Index() {
           </button>
         </div>
 
-        <p className="mt-4 font-display text-xl font-normal leading-tight tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
-          1–3 Jahre
-        </p>
         <p className="mt-8 px-6 font-display text-xl font-normal leading-tight text-bordeaux sm:mt-12 md:mt-16 sm:text-3xl md:text-4xl">Eröffnung Januar 2027</p>
       </div>
 
