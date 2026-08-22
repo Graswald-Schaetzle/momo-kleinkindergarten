@@ -121,7 +121,7 @@ export function SiteHeader({ showSlogan = false }: { showSlogan?: boolean }) {
             )}
           </nav>
           <footer className="pb-8 pt-4 text-center sm:pb-12">
-            <p className="font-display text-sm font-bold leading-relaxed text-bordeaux sm:text-lg">
+            <p className="font-display text-sm font-bold leading-relaxed text-menu-overlay-foreground sm:text-lg">
               Mo-Fr. 07.45 - 13.45 Uhr
               <br />
               <a
