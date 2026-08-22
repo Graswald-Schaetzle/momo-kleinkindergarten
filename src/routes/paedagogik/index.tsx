@@ -113,63 +113,6 @@ function PaedagogikIndex() {
           </p>
         </div>
       </section>
-
-      {/* Tagesablauf */}
-      <section className="mx-auto max-w-3xl px-6 pt-16 sm:px-10 md:max-w-4xl md:px-14 md:pt-24">
-        <h3 className="text-center font-display text-lg font-normal tracking-[0.08em] text-bordeaux sm:text-2xl md:text-3xl">
-          Unser Tagesablauf
-        </h3>
-
-        <p className="mx-auto mt-4 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-6 sm:text-sm md:text-base">
-          Der Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
-          gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
-          einzugehen (§ 22a Abs. 2 Satz 1 SGB VIII).
-        </p>
-
-        <div className="relative mt-10 sm:mt-14 md:mt-16">
-          {/* Vertical line */}
-          <div className="absolute left-[calc(50%-0.5px)] top-0 h-full w-px bg-bordeaux/20" />
-
-          {schedule.map((item, i) => {
-            const isLeft = i % 2 === 0;
-            return (
-              <div key={item.time} className="relative mb-8 sm:mb-12 md:mb-14">
-                <div className="grid grid-cols-1 items-start gap-1 md:grid-cols-2 md:gap-10">
-                  {/* Time */}
-                  <div className={`flex items-center gap-3 md:flex-col md:items-end md:gap-1 ${isLeft ? "md:order-1" : "md:order-2"}`}>
-                    <span className="absolute left-1/2 top-1.5 -translate-x-1/2 md:top-2">
-                      <span className="block h-2.5 w-2.5 rounded-full border-2 border-bordeaux bg-[#F3EFE3]" />
-                    </span>
-                    <span className={`font-display text-sm font-normal tracking-wide text-bordeaux sm:text-base md:text-lg ${isLeft ? "md:text-right" : "md:text-left md:order-2"}`}>
-                      {item.time}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className={`pl-6 md:pl-0 ${isLeft ? "md:order-2 md:pl-6" : "md:order-1 md:pr-6 md:text-right"}`}>
-                    <h4 className="font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg md:text-xl">
-                      {item.title}
-                    </h4>
-                    <p className={`mt-1.5 text-justify text-[11px] leading-snug text-foreground/85 sm:mt-2 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed ${!isLeft ? "md:ml-auto md:text-right" : ""}`}>
-                      {item.text}
-                    </p>
-                    {item.highlights && (
-                      <ul className={`mt-2 space-y-1 text-[11px] leading-snug text-foreground/85 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed ${!isLeft ? "md:ml-auto md:max-w-md md:text-right" : ""}`}>
-                        {item.highlights.map((h, j) => (
-                          <li key={j} className="flex gap-2 md:inline-block">
-                            <span className="text-bordeaux/50">·</span>
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
     </>
   );
 }
