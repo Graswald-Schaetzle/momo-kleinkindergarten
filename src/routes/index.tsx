@@ -97,7 +97,7 @@ function Index() {
             onClick={toggleSnore}
             aria-pressed={!muted}
             aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
-            className="absolute left-8 top-2 z-20 inline-flex items-center transition-opacity hover:opacity-80 sm:left-12 sm:top-4 md:left-16"
+            className="absolute left-8 top-16 z-20 inline-flex items-center transition-opacity hover:opacity-80 sm:left-12 sm:top-24 md:left-16 md:top-32"
           >
             <img
               src={muted ? soundOffIcon : soundOnIcon}
