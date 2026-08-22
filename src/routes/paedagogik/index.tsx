@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/paedagogik/")({
   head: () => ({
@@ -27,10 +26,7 @@ export const Route = createFileRoute("/paedagogik/")({
 
 function PaedagogikIndex() {
   return (
-    <main className="min-h-screen pb-32">
-      <SiteHeader />
-
-      <section className="mx-auto max-w-2xl px-6 pt-20 sm:px-10 md:px-14">
+    <section className="mx-auto max-w-2xl px-6 pt-20 sm:px-10 md:px-14">
         <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
           Pädagogik
         </h2>
@@ -67,6 +63,5 @@ function PaedagogikIndex() {
           </p>
         </div>
       </section>
-    </main>
   );
 }
