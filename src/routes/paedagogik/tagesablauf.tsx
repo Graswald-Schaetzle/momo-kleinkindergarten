@@ -87,8 +87,7 @@ function TagesablaufPage() {
       </p>
 
       <div className="relative mt-10 sm:mt-14 md:mt-16">
-        {/* Vertical line */}
-        <div className="absolute left-[calc(50%-0.5px)] top-0 h-full w-px bg-bordeaux/20" />
+        {/* Vertical line removed */}
 
         {schedule.map((item, i) => {
           const isLeft = i % 2 === 0;
@@ -97,9 +96,6 @@ function TagesablaufPage() {
               <div className="grid grid-cols-1 items-start gap-1 md:grid-cols-2 md:gap-10">
                 {/* Time */}
                 <div className={`flex items-center gap-3 md:flex-col md:items-end md:gap-1 ${isLeft ? "md:order-1" : "md:order-2"}`}>
-                  <span className="absolute left-1/2 top-1.5 -translate-x-1/2 md:top-2">
-                    <span className="block h-2.5 w-2.5 rounded-full border-2 border-bordeaux bg-[#F3EFE3]" />
-                  </span>
                   <span className={`font-display text-sm font-normal tracking-wide text-bordeaux sm:text-base md:text-lg ${isLeft ? "md:text-right" : "md:text-left md:order-2"}`}>
                     {item.time}
                   </span>
