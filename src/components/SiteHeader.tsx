@@ -28,7 +28,13 @@ const navItems: NavItem[] = [
   { to: "/kontakt", label: "KONTAKT" },
 ];
 
-export function SiteHeader({ showSlogan = false }: { showSlogan?: boolean }) {
+export function SiteHeader({
+  showSlogan = false,
+  logoColor = "text-bordeaux",
+}: {
+  showSlogan?: boolean;
+  logoColor?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -147,7 +153,7 @@ export function SiteHeader({ showSlogan = false }: { showSlogan?: boolean }) {
       </div>
 
 
-      <Link to="/" className="no-underline flex flex-col items-center text-bordeaux">
+      <Link to="/" className={`no-underline flex flex-col items-center ${logoColor}`}>
         <MomoLogo className="h-20 sm:h-32 md:h-40" />
       </Link>
 
