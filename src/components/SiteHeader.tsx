@@ -152,7 +152,7 @@ export function SiteHeader({ showSlogan = false }: { showSlogan?: boolean }) {
       </Link>
 
       {showSlogan && (
-        <p className="mt-8 max-w-lg px-4 font-display text-lg font-medium leading-relaxed text-bordeaux sm:mt-12 sm:text-2xl md:mt-16 md:text-3xl">
+        <p className="mt-8 max-w-xl px-4 font-display text-2xl font-medium leading-relaxed text-bordeaux sm:mt-12 sm:text-3xl md:mt-16 md:text-4xl">
           Neun Kinder, Drei Pädagoginnen, unendliche Geborgenheit.
         </p>
       )}
