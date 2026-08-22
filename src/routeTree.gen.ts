@@ -20,6 +20,7 @@ import { Route as PaedagogikIndexRouteImport } from './routes/paedagogik/index'
 import { Route as PaedagogikAngeboteRouteImport } from './routes/paedagogik/angebote'
 import { Route as PaedagogikEssenRouteImport } from './routes/paedagogik/essen'
 import { Route as PaedagogikPflegeRouteImport } from './routes/paedagogik/pflege'
+import { Route as PaedagogikTagesablaufRouteImport } from './routes/paedagogik/tagesablauf'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const PaedagogikPflegeRoute = PaedagogikPflegeRouteImport.update({
   path: '/pflege',
   getParentRoute: () => PaedagogikRoute,
 } as any)
+const PaedagogikTagesablaufRoute = PaedagogikTagesablaufRouteImport.update({
+  id: '/tagesablauf',
+  path: '/tagesablauf',
+  getParentRoute: () => PaedagogikRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
   '/paedagogik/essen': typeof PaedagogikEssenRoute
   '/paedagogik/pflege': typeof PaedagogikPflegeRoute
+  '/paedagogik/tagesablauf': typeof PaedagogikTagesablaufRoute
   '/paedagogik/': typeof PaedagogikIndexRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
   '/paedagogik/essen': typeof PaedagogikEssenRoute
   '/paedagogik/pflege': typeof PaedagogikPflegeRoute
+  '/paedagogik/tagesablauf': typeof PaedagogikTagesablaufRoute
   '/paedagogik': typeof PaedagogikIndexRoute
 }
 export interface FileRoutesById {
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
   '/paedagogik/essen': typeof PaedagogikEssenRoute
   '/paedagogik/pflege': typeof PaedagogikPflegeRoute
+  '/paedagogik/tagesablauf': typeof PaedagogikTagesablaufRoute
   '/paedagogik/': typeof PaedagogikIndexRoute
 }
 export interface FileRouteTypes {
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/paedagogik/angebote'
     | '/paedagogik/essen'
     | '/paedagogik/pflege'
+    | '/paedagogik/tagesablauf'
     | '/paedagogik/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/paedagogik/angebote'
     | '/paedagogik/essen'
     | '/paedagogik/pflege'
+    | '/paedagogik/tagesablauf'
     | '/paedagogik'
   id:
     | '__root__'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/paedagogik/angebote'
     | '/paedagogik/essen'
     | '/paedagogik/pflege'
+    | '/paedagogik/tagesablauf'
     | '/paedagogik/'
   fileRoutesById: FileRoutesById
 }
@@ -246,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaedagogikPflegeRouteImport
       parentRoute: typeof PaedagogikRoute
     }
+    '/paedagogik/tagesablauf': {
+      id: '/paedagogik/tagesablauf'
+      path: '/tagesablauf'
+      fullPath: '/paedagogik/tagesablauf'
+      preLoaderRoute: typeof PaedagogikTagesablaufRouteImport
+      parentRoute: typeof PaedagogikRoute
+    }
   }
 }
 
@@ -253,6 +272,7 @@ interface PaedagogikRouteChildren {
   PaedagogikAngeboteRoute: typeof PaedagogikAngeboteRoute
   PaedagogikEssenRoute: typeof PaedagogikEssenRoute
   PaedagogikPflegeRoute: typeof PaedagogikPflegeRoute
+  PaedagogikTagesablaufRoute: typeof PaedagogikTagesablaufRoute
   PaedagogikIndexRoute: typeof PaedagogikIndexRoute
 }
 
@@ -260,6 +280,7 @@ const PaedagogikRouteChildren: PaedagogikRouteChildren = {
   PaedagogikAngeboteRoute: PaedagogikAngeboteRoute,
   PaedagogikEssenRoute: PaedagogikEssenRoute,
   PaedagogikPflegeRoute: PaedagogikPflegeRoute,
+  PaedagogikTagesablaufRoute: PaedagogikTagesablaufRoute,
   PaedagogikIndexRoute: PaedagogikIndexRoute,
 }
 
