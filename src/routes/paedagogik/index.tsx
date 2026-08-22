@@ -63,6 +63,5 @@ function PaedagogikIndex() {
           </p>
         </div>
       </section>
-    </main>
   );
 }
