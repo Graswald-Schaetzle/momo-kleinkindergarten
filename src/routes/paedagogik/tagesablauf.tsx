@@ -168,12 +168,11 @@ function TagesablaufPage() {
             <circle cx={CX} cy={CY} r={rRing - 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
           </g>
 
-          {/* Stundenstriche auf dem Ziffernblatt */}
-          {Array.from({ length: 12 }).map((_, n) => {
-            const a = (-90 + n * 30) * (Math.PI / 180);
-            const isMajor = n % 3 === 0;
+          {/* Striche nur an den 8 Aktivitäts-Positionen */}
+          {schedule.map((_, n) => {
+            const a = (-90 + n * 45) * (Math.PI / 180);
             const rOuter = rRing - (isMobile ? 10 : 12);
-            const rInner = rRing - (isMajor ? (isMobile ? 22 : 28) : (isMobile ? 16 : 20));
+            const rInner = rRing - (isMobile ? 22 : 28);
             return (
               <line
                 key={n}
@@ -182,7 +181,7 @@ function TagesablaufPage() {
                 x2={CX + rInner * Math.cos(a)}
                 y2={CY + rInner * Math.sin(a)}
                 stroke="var(--ink)"
-                strokeWidth={isMajor ? 3 : 1.6}
+                strokeWidth={3}
                 strokeLinecap="round"
               />
             );
