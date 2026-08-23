@@ -39,6 +39,7 @@ type Section = {
   alt: string;
   text: string;
   imgMax?: string;
+  imgFill?: boolean;
 };
 
 const sections: Section[] = [
