@@ -236,8 +236,8 @@ function TagesablaufPage() {
           );
         })}
 
-        {/* Zentrum: Detail-Feld */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        {/* Zentrum: Detail-Feld (ab sm) */}
+        <div className="pointer-events-none absolute inset-0 hidden items-center justify-center sm:flex">
           <div className="pointer-events-auto flex max-h-[230px] w-[58%] max-w-[280px] flex-col items-center overflow-y-auto rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center backdrop-blur-sm">
             {open !== null ? (
               (() => {
