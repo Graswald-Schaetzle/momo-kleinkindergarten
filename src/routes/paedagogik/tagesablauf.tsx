@@ -143,14 +143,17 @@ function TagesablaufPage() {
 
         {schedule.map((item, i) => {
           const isLeft = i % 2 === 0;
+          const Icon = item.icon;
           return (
             <div key={item.time}>
               <div className="relative mb-8 pl-8 sm:mb-10 md:mb-0 md:pl-0">
-                {/* Punkt */}
+                {/* Symbol (mobil) */}
                 <span
                   aria-hidden="true"
-                  className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full bg-bordeaux md:hidden"
-                />
+                  className="absolute left-0 top-0.5 flex h-5 w-5 items-center justify-center text-bordeaux md:hidden"
+                >
+                  <Icon size={18} strokeWidth={1.5} />
+                </span>
 
                 <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-[1fr_auto_1fr] md:gap-6">
                   {/* Text-Spalte */}
@@ -178,12 +181,11 @@ function TagesablaufPage() {
                     )}
                   </div>
 
-                  {/* Punkt (Desktop) */}
+                  {/* Symbol (Desktop) */}
                   <div className="hidden md:order-2 md:flex md:justify-center">
-                    <span
-                      aria-hidden="true"
-                      className="h-4 w-4 rounded-full bg-bordeaux"
-                    />
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-bordeaux/30 bg-background/60 text-bordeaux">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
                   </div>
 
                   {/* leere Gegenspalte */}
