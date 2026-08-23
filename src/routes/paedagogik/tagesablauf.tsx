@@ -78,10 +78,10 @@ const schedule: { time: string; title: string; text: string; highlights?: string
 
 function Connector({ mirrored }: { mirrored: boolean }) {
   const d = mirrored
-    ? "M 50 0 C 78 30, 78 70, 50 100"
-    : "M 50 0 C 22 30, 22 70, 50 100";
+    ? "M 50 0 C 92 28, 92 72, 50 100"
+    : "M 50 0 C 8 28, 8 72, 50 100";
   return (
-    <div className="pointer-events-none hidden h-24 w-full md:block" aria-hidden="true">
+    <div className="pointer-events-none hidden h-28 w-full md:block" aria-hidden="true">
       <svg
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
