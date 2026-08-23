@@ -37,24 +37,24 @@ export const Route = createFileRoute("/paedagogik/tagesablauf")({
   component: TagesablaufPage,
 });
 
-const schedule: { time: string; title: string; text: string; highlights?: string[]; icon: LucideIcon }[] = [
+const schedule: { time: string; title: string; text: string; highlights?: string[]; icon: ChildIcon }[] = [
   {
     time: "07:45–09:15",
     title: "Ankommen & offenes Frühstück",
     text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet, jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
-    icon: Coffee,
+    icon: BreakfastIcon,
   },
   {
     time: "09:15–10:15",
     title: "Freispiel innen & außen",
     text: "Die Kinder spielen nach Interesse drinnen oder im Garten. Kreative Angebote wie Kneten, Malen oder das Gestalten mit Naturmaterialien stehen bereit.",
-    icon: Blocks,
+    icon: PlayIcon,
   },
   {
     time: "10:15",
     title: "Morgenkreis",
     text: "Lieder, Fingerspiele und Rituale im gemeinsamen Kreis markieren den Übergang in die nächste Aktivität.",
-    icon: Users,
+    icon: CircleIcon,
   },
   {
     time: "10:25–11:30",
@@ -69,31 +69,31 @@ const schedule: { time: string; title: string; text: string; highlights?: string
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
       "Backen und Kochen\u00a0",
     ],
-    icon: Palette,
+    icon: BrushIcon,
   },
   {
     time: "11:30",
     title: "Rückkehr & Übergangsrituale",
     text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- und Handwäsche schafft Bewusstsein und Entspannung.",
-    icon: Droplets,
+    icon: WashIcon,
   },
   {
     time: "11:45–12:15",
     title: "Gemeinsames Mittagessen",
     text: "Unser Tisch wird mit Blumendekoration geschmückt, und feste Rituale wie das gemeinsame Anzünden einer Kerze und ein Lied vor dem Essen schaffen einen vertrauten Rahmen. Statt Wegwerfprodukten verwenden wir Stoffservietten und Lätzchen für Nachhaltigkeit und Geborgenheit zugleich.",
-    icon: UtensilsCrossed,
+    icon: MealIcon,
   },
   {
     time: "12:30–Bedarf",
     title: "Schlafenszeit",
     text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot.",
-    icon: Moon,
+    icon: SleepIcon,
   },
   {
     time: "Bis 13:45",
     title: "Abholzeit",
     text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
-    icon: DoorOpen,
+    icon: HomeIcon,
   },
 ];
 
