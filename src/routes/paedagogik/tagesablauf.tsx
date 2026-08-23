@@ -306,7 +306,7 @@ function TagesablaufPage() {
 
         {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
-          const { x, y } = pos(i, isMobile ? 208 : 262);
+          const { x, y } = pos(i, isMobile ? 232 : 298);
           const leftPct = (x / 600) * 100;
           const topPct = (y / 600) * 100;
           const Icon = item.icon;
