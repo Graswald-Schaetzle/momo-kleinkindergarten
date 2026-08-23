@@ -197,14 +197,14 @@ function TagesablaufPage() {
 
         {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
-          const { x, y } = pos(i, R_ICON);
+          const { x, y } = pos(i, isMobile ? 200 : R_ICON);
           const leftPct = (x / 600) * 100;
           const topPct = (y / 600) * 100;
           const Icon = item.icon;
           const isOpen = open === i;
-          // Textausrichtung je nach Position
-          const isRight = leftPct > 62;
-          const isLeft = leftPct < 38;
+          // Textausrichtung je nach Position (mobil immer zentriert)
+          const isRight = !isMobile && leftPct > 62;
+          const isLeft = !isMobile && leftPct < 38;
           const align = isLeft ? "items-end text-right" : isRight ? "items-start text-left" : "items-center text-center";
           const translateX = isLeft ? "-100%" : isRight ? "0%" : "-50%";
           return (
@@ -220,7 +220,7 @@ function TagesablaufPage() {
               }}
               aria-expanded={isOpen}
             >
-              <span className={`flex max-w-[92px] flex-col sm:max-w-none ${align}`}>
+              <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center">
                   <Icon size={isMobile ? 34 : 60} />
                 </span>
