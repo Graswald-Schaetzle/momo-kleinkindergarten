@@ -220,12 +220,12 @@ function TagesablaufPage() {
               }}
               aria-expanded={isOpen}
             >
-              <span className={`flex flex-col ${align}`}>
+              <span className={`flex max-w-[92px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center">
-                  <Icon size={60} />
+                  <Icon size={isMobile ? 34 : 60} />
                 </span>
                 <span
-                  className={`mt-1 font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
+                  className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
                     isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
                   }`}
                 >
