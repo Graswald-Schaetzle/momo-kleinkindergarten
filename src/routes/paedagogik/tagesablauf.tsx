@@ -143,7 +143,7 @@ function TagesablaufPage() {
           <circle
             cx={CX}
             cy={CY}
-            r={R_TIME}
+            r={rTime}
             fill="none"
             stroke="currentColor"
             className="text-bordeaux/40"
@@ -153,10 +153,10 @@ function TagesablaufPage() {
           {/* Stunden-Markierungen */}
           {Array.from({ length: 8 }).map((_, i) => {
             const a = (-90 + i * 45) * (Math.PI / 180);
-            const x1 = CX + (R_TIME + 10) * Math.cos(a);
-            const y1 = CY + (R_TIME + 10) * Math.sin(a);
-            const x2 = CX + (R_TIME + 18) * Math.cos(a);
-            const y2 = CY + (R_TIME + 18) * Math.sin(a);
+            const x1 = CX + (rTime + 10) * Math.cos(a);
+            const y1 = CY + (rTime + 10) * Math.sin(a);
+            const x2 = CX + (rTime + 18) * Math.cos(a);
+            const y2 = CY + (rTime + 18) * Math.sin(a);
             return (
               <line
                 key={i}
@@ -173,7 +173,7 @@ function TagesablaufPage() {
           })}
           {/* Zeit-Labels direkt auf der Kreisbahn */}
           {schedule.map((item, i) => {
-            const { x, y } = pos(i, R_TIME);
+            const { x, y } = pos(i, rTime);
             return (
               <text
                 key={`time-${item.time}`}
