@@ -66,6 +66,9 @@
   --color-menu-overlay-foreground: var(--menu-overlay-foreground);
   --color-bordeaux: var(--bordeaux);
   --color-clock: var(--clock);
+  --color-clock-face: var(--clock-face);
+  --color-clock-eye: var(--clock-eye);
+  --color-clock-foot: var(--clock-foot);
   --color-ink: var(--ink);
 }
 
