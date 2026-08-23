@@ -1,4 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { LucideIcon } from "lucide-react";
+import {
+  Coffee,
+  Blocks,
+  Users,
+  Palette,
+  Droplets,
+  UtensilsCrossed,
+  Moon,
+  DoorOpen,
+} from "lucide-react";
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
   head: () => ({
@@ -24,21 +35,24 @@ export const Route = createFileRoute("/paedagogik/tagesablauf")({
   component: TagesablaufPage,
 });
 
-const schedule: { time: string; title: string; text: string; highlights?: string[] }[] = [
+const schedule: { time: string; title: string; text: string; highlights?: string[]; icon: LucideIcon }[] = [
   {
     time: "07:45–09:15",
     title: "Ankommen & offenes Frühstück",
     text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet, jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
+    icon: Coffee,
   },
   {
     time: "09:15–10:15",
     title: "Freispiel innen & außen",
     text: "Die Kinder spielen nach Interesse drinnen oder im Garten. Kreative Angebote wie Kneten, Malen oder das Gestalten mit Naturmaterialien stehen bereit.",
+    icon: Blocks,
   },
   {
     time: "10:15",
     title: "Morgenkreis",
     text: "Lieder, Fingerspiele und Rituale im gemeinsamen Kreis markieren den Übergang in die nächste Aktivität.",
+    icon: Users,
   },
   {
     time: "10:25–11:30",
@@ -53,26 +67,31 @@ const schedule: { time: string; title: string; text: string; highlights?: string
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
       "Backen und Kochen\u00a0",
     ],
+    icon: Palette,
   },
   {
     time: "11:30",
     title: "Rückkehr & Übergangsrituale",
     text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- und Handwäsche schafft Bewusstsein und Entspannung.",
+    icon: Droplets,
   },
   {
     time: "11:45–12:15",
     title: "Gemeinsames Mittagessen",
     text: "Unser Tisch wird mit Blumendekoration geschmückt, und feste Rituale wie das gemeinsame Anzünden einer Kerze und ein Lied vor dem Essen schaffen einen vertrauten Rahmen. Statt Wegwerfprodukten verwenden wir Stoffservietten und Lätzchen für Nachhaltigkeit und Geborgenheit zugleich.",
+    icon: UtensilsCrossed,
   },
   {
     time: "12:30–Bedarf",
     title: "Schlafenszeit",
     text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot.",
+    icon: Moon,
   },
   {
     time: "Bis 13:45",
     title: "Abholzeit",
     text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
+    icon: DoorOpen,
   },
 ];
 
@@ -124,14 +143,17 @@ function TagesablaufPage() {
 
         {schedule.map((item, i) => {
           const isLeft = i % 2 === 0;
+          const Icon = item.icon;
           return (
             <div key={item.time}>
               <div className="relative mb-8 pl-8 sm:mb-10 md:mb-0 md:pl-0">
-                {/* Punkt */}
+                {/* Symbol (mobil) */}
                 <span
                   aria-hidden="true"
-                  className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full bg-bordeaux md:hidden"
-                />
+                  className="absolute left-0 top-0.5 flex h-5 w-5 items-center justify-center text-bordeaux md:hidden"
+                >
+                  <Icon size={18} strokeWidth={1.5} />
+                </span>
 
                 <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-[1fr_auto_1fr] md:gap-6">
                   {/* Text-Spalte */}
@@ -159,12 +181,11 @@ function TagesablaufPage() {
                     )}
                   </div>
 
-                  {/* Punkt (Desktop) */}
+                  {/* Symbol (Desktop) */}
                   <div className="hidden md:order-2 md:flex md:justify-center">
-                    <span
-                      aria-hidden="true"
-                      className="h-4 w-4 rounded-full bg-bordeaux"
-                    />
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-bordeaux/30 bg-background/60 text-bordeaux">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </span>
                   </div>
 
                   {/* leere Gegenspalte */}
