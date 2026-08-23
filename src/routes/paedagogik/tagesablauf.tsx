@@ -146,8 +146,9 @@ function TagesablaufPage() {
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
       <div className="relative mx-auto mt-8 aspect-square w-full max-w-[640px] md:mt-14">
         <svg
+          key={shake}
           viewBox="0 0 600 600"
-          className="h-full w-full overflow-visible"
+          className={`h-full w-full overflow-visible ${open !== null ? "momo-clock-shake" : ""}`}
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
@@ -159,6 +160,20 @@ function TagesablaufPage() {
           </defs>
 
           <g filter="url(#wobble)">
+            {/* Glocken oben */}
+            <path
+              d={`M ${CX - rRing * 0.62} ${CY - rRing * 0.78} a 30 30 0 0 1 44 -14`}
+              fill="none" stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
+            />
+            <path
+              d={`M ${CX + rRing * 0.62} ${CY - rRing * 0.78} a 30 30 0 0 0 -44 -14`}
+              fill="none" stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
+            />
+            {/* Knopf oben */}
+            <line
+              x1={CX} y1={CY - rRing - 8} x2={CX} y2={CY - rRing - 30}
+              stroke="var(--clock)" strokeWidth={14} strokeLinecap="round"
+            />
             {/* Füße */}
             <line
               x1={CX - 58} y1={CY + rRing - 10} x2={CX - 74} y2={CY + rRing + 62}
@@ -193,59 +208,56 @@ function TagesablaufPage() {
             );
           })}
 
+          {/* Gesicht */}
+          <g filter="url(#wobble)">
+            {/* Augen */}
+            <ellipse
+              className="momo-eye-lid"
+              cx={CX - rRing * 0.3} cy={CY - rRing * 0.3}
+              rx={rRing * 0.075} ry={rRing * 0.1}
+              fill="var(--ink)"
+            />
+            <ellipse
+              className="momo-eye-lid momo-eye-lid-2"
+              cx={CX + rRing * 0.3} cy={CY - rRing * 0.3}
+              rx={rRing * 0.075} ry={rRing * 0.1}
+              fill="var(--ink)"
+            />
+            {/* Wangen */}
+            <circle cx={CX - rRing * 0.52} cy={CY - rRing * 0.08} r={rRing * 0.075} fill="var(--clock)" opacity={0.5} />
+            <circle cx={CX + rRing * 0.52} cy={CY - rRing * 0.08} r={rRing * 0.075} fill="var(--clock)" opacity={0.5} />
+            {/* Lächeln */}
+            <path
+              d={`M ${CX - rRing * 0.26} ${CY + rRing * 0.42} q ${rRing * 0.26} ${rRing * 0.26} ${rRing * 0.52} 0`}
+              fill="none" stroke="var(--ink)" strokeWidth={3} strokeLinecap="round"
+            />
+          </g>
 
-          {/* Zeiger + Männchen, das ihn von innen schiebt */}
+          {/* Zeiger: dreht sich dauerhaft, hält bei Auswahl an */}
           <g
-            style={{
-              transformOrigin: "300px 300px",
-              transform: `rotate(${open === null ? -45 : open * 45}deg)`,
-              transition: "transform 900ms cubic-bezier(.34,1.4,.5,1)",
-            }}
+            className={open === null ? "momo-hand-spin" : undefined}
+            style={
+              open !== null
+                ? {
+                    transformOrigin: "300px 300px",
+                    transform: `rotate(${open * 45}deg)`,
+                    transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                  }
+                : undefined
+            }
           >
-            {/* Zeiger nach oben */}
+            {/* kleiner Zeiger */}
             <line
-              x1={CX} y1={CY} x2={CX} y2={CY - (rRing - 52)}
+              x1={CX} y1={CY} x2={CX} y2={CY + (rRing - 78)}
+              stroke="var(--ink)" strokeWidth={5} strokeLinecap="round"
+            />
+            {/* großer Zeiger */}
+            <line
+              x1={CX} y1={CY} x2={CX} y2={CY - (rRing - 44)}
               stroke="var(--ink)" strokeWidth={5} strokeLinecap="round"
             />
             <circle cx={CX} cy={CY} r={7} fill="var(--ink)" />
-
-            {/* Männchen steht im Ziffernblatt und stemmt sich gegen den Zeiger */}
-            <g
-              transform={`translate(${CX - (isMobile ? 24 : 30)} ${CY - (rRing - (isMobile ? 78 : 96))})`}
-              filter="url(#wobble)"
-            >
-              {/* Kopf */}
-              <circle cx={0} cy={0} r={isMobile ? 7 : 9} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
-              <path
-                d={`M ${isMobile ? -7 : -9} -4 c -4 -6 4 -12 9 -8 c 5 -3 9 3 6 8`}
-                fill="var(--ink)"
-              />
-              {/* Körper */}
-              <path
-                d={`M 0 ${isMobile ? 7 : 9} L 2 ${isMobile ? 30 : 38}`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.4} strokeLinecap="round"
-              />
-              {/* Arme drücken gegen den Zeiger (rechts) */}
-              <path
-                d={`M 0 ${isMobile ? 13 : 16} C ${isMobile ? 12 : 15} ${isMobile ? 10 : 12}, ${isMobile ? 18 : 23} ${isMobile ? 8 : 10}, ${isMobile ? 23 : 29} ${isMobile ? 6 : 8}`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
-              />
-              <path
-                d={`M 1 ${isMobile ? 18 : 22} C ${isMobile ? 12 : 15} ${isMobile ? 18 : 22}, ${isMobile ? 18 : 23} ${isMobile ? 15 : 18}, ${isMobile ? 23 : 29} ${isMobile ? 12 : 15}`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
-              />
-              {/* Beine, gegen den Boden gestemmt */}
-              <path
-                d={`M 2 ${isMobile ? 30 : 38} C ${isMobile ? -8 : -10} ${isMobile ? 36 : 45}, ${isMobile ? -14 : -18} ${isMobile ? 38 : 48}, ${isMobile ? -20 : -25} ${isMobile ? 36 : 45}`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
-              />
-              <path
-                d={`M 2 ${isMobile ? 30 : 38} C ${isMobile ? 0 : 0} ${isMobile ? 38 : 48}, ${isMobile ? -6 : -8} ${isMobile ? 42 : 53}, ${isMobile ? -12 : -15} ${isMobile ? 43 : 54}`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
-              />
-            </g>
           </g>
-
         </svg>
 
         {/* Stationen um den Kreis */}
