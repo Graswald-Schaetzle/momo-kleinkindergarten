@@ -172,8 +172,6 @@ function TagesablaufPage() {
           {/* Zeit-Labels direkt auf der Kreisbahn */}
           {schedule.map((item, i) => {
             const { x, y } = pos(i, R_TIME);
-            const angle = -90 + i * 45;
-            // Text nicht drehen — kurze Labels bleiben waagerecht lesbar
             return (
               <text
                 key={`time-${item.time}`}
@@ -182,11 +180,14 @@ function TagesablaufPage() {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="font-display"
-                fontSize={item.time.length > 10 ? 10 : 11}
+                fontSize={item.time.length > 10 ? 9.5 : 11}
                 fill="currentColor"
+                stroke="#F3EFE3"
+                strokeWidth={3}
+                paintOrder="stroke"
                 style={{ letterSpacing: "0.02em" }}
               >
-                <tspan className="fill-bordeaux/80">{item.time}</tspan>
+                <tspan className="fill-bordeaux">{item.time}</tspan>
               </text>
             );
           })}
