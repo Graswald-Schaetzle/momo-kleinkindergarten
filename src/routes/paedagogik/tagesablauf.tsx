@@ -45,8 +45,8 @@ const schedule: { time: string; title: string; text: string; highlights?: string
     title: "Gemeinsame Aktivität",
     text: "Der Alltag ist geprägt von viel Freispiel ergänzt durch wechselnde Angebote, die je nach Tag unterschiedliche Schwerpunkte setzen:",
     highlights: [
-      "Besuch von Musikpädagogin mit Liedern, Instrumenten und Bewegung",
-      "Besuch von Kunsttherapeutin mit Bastelaktivitäten",
+      "Besuch von einer Musikpädagogin mit Liedern, Instrumenten und Bewegung",
+      "Besuch von einer Kunsttherapeutin mit Bastelaktivitäten",
       "Spaziergänge in die nähere Umgebung",
       "Spielplatzbesuche oder Naturerkundungen",
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
