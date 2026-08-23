@@ -121,7 +121,13 @@ function pos(i: number, radius: number) {
 }
 
 function TagesablaufPage() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
+  const [shake, setShake] = useState(0);
+
+  const select = (i: number) => {
+    setOpen((prev) => (prev === i ? null : i));
+    setShake((s) => s + 1);
+  };
   const isMobile = useIsMobile();
   const rRing = isMobile ? 128 : R_TIME;
 
