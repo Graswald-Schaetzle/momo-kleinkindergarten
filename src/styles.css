@@ -65,12 +65,16 @@
   --color-menu-overlay: var(--menu-overlay);
   --color-menu-overlay-foreground: var(--menu-overlay-foreground);
   --color-bordeaux: var(--bordeaux);
+  --color-clock: var(--clock);
+  --color-ink: var(--ink);
 }
 
 :root {
   --radius: 0.625rem;
   --background: #F3EFE3;
   --bordeaux: oklch(0.34 0.11 25);
+  --clock: #E98D5F;
+  --ink: #1B1917;
   --menu-overlay: #4C6379;
   --menu-overlay-foreground: #C8912F;
   --foreground: oklch(0.129 0.042 264.695);

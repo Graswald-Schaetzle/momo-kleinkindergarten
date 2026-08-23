@@ -123,7 +123,7 @@ function pos(i: number, radius: number) {
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(0);
   const isMobile = useIsMobile();
-  const rTime = isMobile ? 122 : R_TIME;
+  const rRing = isMobile ? 128 : R_TIME;
 
   return (
     <section className="mx-auto max-w-3xl px-3 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
@@ -137,63 +137,123 @@ function TagesablaufPage() {
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
-      {/* ===== Uhr-Kreis (alle Bildschirmgrößen) ===== */}
+      {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
       <div className="relative mx-auto mt-8 aspect-square w-full max-w-[640px] md:mt-14">
-        <svg viewBox="0 0 600 600" className="h-full w-full" role="img" aria-label="Tagesablauf als Uhr">
-          {/* gestrichelter Kreis */}
-          <circle
-            cx={CX}
-            cy={CY}
-            r={rTime}
-            fill="none"
-            stroke="currentColor"
-            className="text-bordeaux/40"
-            strokeWidth={1.2}
-            strokeDasharray="4 5"
-          />
-          {/* Stunden-Markierungen */}
-          {Array.from({ length: 8 }).map((_, i) => {
-            const a = (-90 + i * 45) * (Math.PI / 180);
-            const x1 = CX + (rTime + 10) * Math.cos(a);
-            const y1 = CY + (rTime + 10) * Math.sin(a);
-            const x2 = CX + (rTime + 18) * Math.cos(a);
-            const y2 = CY + (rTime + 18) * Math.sin(a);
-            return (
-              <line
-                key={i}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="currentColor"
-                className="text-bordeaux/40"
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-            );
-          })}
-          {/* Zeit-Labels direkt auf der Kreisbahn */}
-          {schedule.map((item, i) => {
-            const { x, y } = pos(i, rTime);
+        <svg
+          viewBox="0 0 600 600"
+          className="h-full w-full overflow-visible"
+          role="img"
+          aria-label="Tagesablauf als gezeichnete Uhr"
+        >
+          <defs>
+            <filter id="wobble">
+              <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves={2} seed={7} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={3.4} xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+
+          <g filter="url(#wobble)">
+            {/* Füße */}
+            <line
+              x1={CX - 58} y1={CY + rRing - 10} x2={CX - 74} y2={CY + rRing + 62}
+              stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
+            />
+            <line
+              x1={CX + 58} y1={CY + rRing - 10} x2={CX + 74} y2={CY + rRing + 62}
+              stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
+            />
+            {/* Gehäuse */}
+            <circle cx={CX} cy={CY} r={rRing} fill="none" stroke="var(--clock)" strokeWidth={26} />
+            <circle cx={CX} cy={CY} r={rRing + 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
+            <circle cx={CX} cy={CY} r={rRing - 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
+          </g>
+
+          {/* Ziffern 1–12 */}
+          {Array.from({ length: 12 }).map((_, n) => {
+            const a = (-90 + (n + 1) * 30) * (Math.PI / 180);
+            const rNum = rRing - 34;
             return (
               <text
-                key={`time-${item.time}`}
-                x={x}
-                y={y}
+                key={n}
+                x={CX + rNum * Math.cos(a)}
+                y={CY + rNum * Math.sin(a)}
                 textAnchor="middle"
-                dominantBaseline="middle"
+                dominantBaseline="central"
+                fontSize={isMobile ? 15 : 20}
+                fill="var(--ink)"
                 className="font-display"
-                fontSize={item.time.length > 10 ? 9.5 : 11}
-                fill="currentColor"
-                stroke="#F3EFE3"
-                strokeWidth={3}
-                paintOrder="stroke"
-                style={{ letterSpacing: "0.02em" }}
               >
-                <tspan className="fill-bordeaux">{item.time}</tspan>
+                {n + 1}
               </text>
             );
           })}
+
+          {/* Zeit-Label der aktiven Station in der Mitte */}
+          {open !== null && (
+            <text
+              x={CX}
+              y={CY + (isMobile ? 62 : 88)}
+              textAnchor="middle"
+              fontSize={isMobile ? 12 : 15}
+              className="font-display fill-bordeaux"
+            >
+              {schedule[open]!.time}
+            </text>
+          )}
+
+          {/* Zeiger + Männchen, das ihn schiebt */}
+          <g
+            style={{
+              transformOrigin: "300px 300px",
+              transform: `rotate(${open === null ? -45 : open * 45}deg)`,
+              transition: "transform 900ms cubic-bezier(.34,1.4,.5,1)",
+            }}
+          >
+            {/* Zeiger nach oben */}
+            <line
+              x1={CX} y1={CY} x2={CX} y2={CY - (rRing - 46)}
+              stroke="var(--ink)" strokeWidth={5} strokeLinecap="round"
+            />
+            <circle cx={CX} cy={CY} r={7} fill="var(--ink)" />
+
+            {/* Männchen liegt auf dem Rand und schiebt den Zeiger */}
+            <g transform={`translate(${CX} ${CY - rRing})`} filter="url(#wobble)">
+              {/* Körper über den Rand gelegt */}
+              <path
+                d={`M -58 12 C -34 -26, 26 -26, 52 4`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
+              />
+              <path
+                d={`M -52 26 C -30 -12, 30 -12, 62 14`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
+              />
+              {/* Streifen am Shirt */}
+              {[-30, -16, -2, 12, 26, 40].map((t) => (
+                <path
+                  key={t}
+                  d={`M ${t} ${-14 + Math.abs(t) * 0.12} l 4 22`}
+                  fill="none" stroke="var(--ink)" strokeWidth={1.4} strokeLinecap="round"
+                />
+              ))}
+              {/* Kopf */}
+              <circle cx={-66} cy={22} r={11} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
+              <path d="M -80 14 c -8 -8 -18 2 -12 12 c -8 4 -2 16 8 14" fill="var(--ink)" />
+              {/* Arm schiebt den Zeiger */}
+              <path
+                d={`M -46 26 C -40 ${rRing * 0.28}, -22 ${rRing * 0.4}, -6 ${rRing - 48}`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.4} strokeLinecap="round"
+              />
+              <path
+                d={`M -34 30 C -28 ${rRing * 0.3}, -14 ${rRing * 0.42}, 2 ${rRing - 46}`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.4} strokeLinecap="round"
+              />
+              {/* Hand am Zeiger */}
+              <circle cx={-2} cy={rRing - 47} r={6} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
+              {/* Beine */}
+              <path d="M 58 10 c 14 4 22 10 30 6" fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round" />
+              <path d="M 60 20 c 14 2 20 8 30 4" fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round" />
+            </g>
+          </g>
         </svg>
 
         {/* Stationen um den Kreis */}
@@ -236,44 +296,6 @@ function TagesablaufPage() {
             </button>
           );
         })}
-
-        {/* Zentrum: Detail-Feld (ab sm) */}
-        <div className="pointer-events-none absolute inset-0 hidden items-center justify-center sm:flex">
-          <div className="pointer-events-auto flex max-h-[230px] w-[58%] max-w-[280px] flex-col items-center overflow-y-auto rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center backdrop-blur-sm">
-            {open !== null ? (
-              (() => {
-                const item = schedule[open]!;
-                return (
-                  <>
-                    <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
-                      {item.time}
-                    </span>
-                    <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
-                      {item.title}
-                    </h4>
-                    <p className="mt-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-[12px]">
-                      {item.text}
-                    </p>
-                    {item.highlights && (
-                      <ul className="mt-1.5 space-y-0.5 text-left text-[10px] leading-snug text-foreground/80 md:text-[11px]">
-                        {item.highlights.map((h, j) => (
-                          <li key={j} className="flex gap-1.5">
-                            <span className="text-bordeaux/50">·</span>
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                );
-              })()
-            ) : (
-              <p className="text-[11px] font-light text-foreground/60 md:text-xs">
-                Tippe auf eine Station des Tages, um mehr zu erfahren.
-              </p>
-            )}
-          </div>
-        </div>
       </div>
 
       {/* ===== Mobil: Detail-Feld unter der Uhr ===== */}
