@@ -141,7 +141,11 @@ function UeberUns() {
                     loading="lazy"
                     width={900}
                     height={900}
-                    className={`w-full object-contain ${
+                    className={`${
+                      section.imgFill
+                        ? "h-full w-auto object-contain"
+                        : "w-full object-contain"
+                    } ${
                       section.imgMax ?? "max-w-[140px] sm:max-w-[260px] md:max-w-sm"
                     }`}
                   />
