@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -121,9 +122,11 @@ function pos(i: number, radius: number) {
 
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(0);
+  const isMobile = useIsMobile();
+  const rTime = isMobile ? 122 : R_TIME;
 
   return (
-    <section className="mx-auto max-w-3xl px-6 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
+    <section className="mx-auto max-w-3xl px-3 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
       <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
         Unser Tagesablauf
       </h2>
@@ -134,14 +137,14 @@ function TagesablaufPage() {
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
-      {/* ===== Desktop / Tablet: Uhr-Kreis ===== */}
-      <div className="relative mx-auto mt-10 hidden aspect-square w-full max-w-[640px] sm:block md:mt-14">
+      {/* ===== Uhr-Kreis (alle Bildschirmgrößen) ===== */}
+      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[640px] md:mt-14">
         <svg viewBox="0 0 600 600" className="h-full w-full" role="img" aria-label="Tagesablauf als Uhr">
           {/* gestrichelter Kreis */}
           <circle
             cx={CX}
             cy={CY}
-            r={R_TIME}
+            r={rTime}
             fill="none"
             stroke="currentColor"
             className="text-bordeaux/40"
@@ -151,10 +154,10 @@ function TagesablaufPage() {
           {/* Stunden-Markierungen */}
           {Array.from({ length: 8 }).map((_, i) => {
             const a = (-90 + i * 45) * (Math.PI / 180);
-            const x1 = CX + (R_TIME + 10) * Math.cos(a);
-            const y1 = CY + (R_TIME + 10) * Math.sin(a);
-            const x2 = CX + (R_TIME + 18) * Math.cos(a);
-            const y2 = CY + (R_TIME + 18) * Math.sin(a);
+            const x1 = CX + (rTime + 10) * Math.cos(a);
+            const y1 = CY + (rTime + 10) * Math.sin(a);
+            const x2 = CX + (rTime + 18) * Math.cos(a);
+            const y2 = CY + (rTime + 18) * Math.sin(a);
             return (
               <line
                 key={i}
@@ -171,7 +174,7 @@ function TagesablaufPage() {
           })}
           {/* Zeit-Labels direkt auf der Kreisbahn */}
           {schedule.map((item, i) => {
-            const { x, y } = pos(i, R_TIME);
+            const { x, y } = pos(i, rTime);
             return (
               <text
                 key={`time-${item.time}`}
@@ -195,14 +198,14 @@ function TagesablaufPage() {
 
         {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
-          const { x, y } = pos(i, R_ICON);
+          const { x, y } = pos(i, isMobile ? 200 : R_ICON);
           const leftPct = (x / 600) * 100;
           const topPct = (y / 600) * 100;
           const Icon = item.icon;
           const isOpen = open === i;
-          // Textausrichtung je nach Position
-          const isRight = leftPct > 62;
-          const isLeft = leftPct < 38;
+          // Textausrichtung je nach Position (mobil immer zentriert)
+          const isRight = !isMobile && leftPct > 62;
+          const isLeft = !isMobile && leftPct < 38;
           const align = isLeft ? "items-end text-right" : isRight ? "items-start text-left" : "items-center text-center";
           const translateX = isLeft ? "-100%" : isRight ? "0%" : "-50%";
           return (
@@ -218,12 +221,12 @@ function TagesablaufPage() {
               }}
               aria-expanded={isOpen}
             >
-              <span className={`flex flex-col ${align}`}>
+              <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center">
-                  <Icon size={60} />
+                  <Icon size={isMobile ? 34 : 60} />
                 </span>
                 <span
-                  className={`mt-1 font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
+                  className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
                     isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
                   }`}
                 >
@@ -234,8 +237,8 @@ function TagesablaufPage() {
           );
         })}
 
-        {/* Zentrum: Detail-Feld */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        {/* Zentrum: Detail-Feld (ab sm) */}
+        <div className="pointer-events-none absolute inset-0 hidden items-center justify-center sm:flex">
           <div className="pointer-events-auto flex max-h-[230px] w-[58%] max-w-[280px] flex-col items-center overflow-y-auto rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center backdrop-blur-sm">
             {open !== null ? (
               (() => {
@@ -273,54 +276,40 @@ function TagesablaufPage() {
         </div>
       </div>
 
-      {/* ===== Mobil: gestapelte Akkordeon-Liste ===== */}
-      <div className="mt-8 sm:hidden">
-        {schedule.map((item, i) => {
-          const Icon = item.icon;
-          const isOpen = open === i;
-          return (
-            <div key={item.time} className="border-b border-bordeaux/15">
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-center gap-3 py-3 text-left"
-                aria-expanded={isOpen}
-              >
-                <span className="shrink-0">
-                  <Icon size={40} />
+      {/* ===== Mobil: Detail-Feld unter der Uhr ===== */}
+      <div className="mt-6 rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center sm:hidden">
+        {open !== null ? (
+          (() => {
+            const item = schedule[open]!;
+            return (
+              <>
+                <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
+                  {item.time}
                 </span>
-                <span className="flex flex-1 flex-col">
-                  <span className="font-display text-[11px] font-normal tracking-wide text-bordeaux/70">
-                    {item.time}
-                  </span>
-                  <span className="font-display text-sm font-normal tracking-[0.03em] text-bordeaux">
-                    {item.title}
-                  </span>
-                </span>
-                <span className={`text-bordeaux/50 transition-transform ${isOpen ? "rotate-90" : ""}`}>
-                  ›
-                </span>
-              </button>
-              {isOpen && (
-                <div className="pb-4 pl-12 pr-2">
-                  <p className="text-[11px] leading-relaxed text-foreground/85">
-                    {item.text}
-                  </p>
-                  {item.highlights && (
-                    <ul className="mt-2 space-y-1 text-[11px] leading-snug text-foreground/80">
-                      {item.highlights.map((h, j) => (
-                        <li key={j} className="flex gap-1.5">
-                          <span className="text-bordeaux/50">·</span>
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              )}
-            </div>
-          );
-        })}
+                <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
+                  {item.title}
+                </h4>
+                <p className="mt-2 text-[12px] leading-relaxed text-foreground/85">
+                  {item.text}
+                </p>
+                {item.highlights && (
+                  <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/80">
+                    {item.highlights.map((h, j) => (
+                      <li key={j} className="flex gap-1.5">
+                        <span className="text-bordeaux/50">·</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            );
+          })()
+        ) : (
+          <p className="text-[12px] font-light text-foreground/60">
+            Tippe auf eine Station des Tages, um mehr zu erfahren.
+          </p>
+        )}
       </div>
     </section>
   );
