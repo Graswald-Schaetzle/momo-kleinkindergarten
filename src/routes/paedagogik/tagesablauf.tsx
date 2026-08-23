@@ -192,7 +192,7 @@ function TagesablaufPage() {
           {open !== null && (
             <text
               x={CX}
-              y={CY + (isMobile ? 46 : 58)}
+              y={CY + (isMobile ? 62 : 88)}
               textAnchor="middle"
               fontSize={isMobile ? 12 : 15}
               className="font-display fill-bordeaux"
