@@ -43,7 +43,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "10:25–11:30",
     title: "Gemeinsame Aktivität",
-    text: "Der Alltag ist geprägt von viel Freispiel, ergänzt durch wechselnde Angebote, die je nach Tag unterschiedliche Schwerpunkte setzen:",
+    text: "Der Alltag ist geprägt von viel Freispiel, ergänzt durch wechselnde Angebote, die unterschiedliche Schwerpunkte setzen:",
     highlights: [
       "Besuch von einer Musikpädagogin mit Liedern, Instrumenten und Bewegung",
       "Besuch von einer Kunsttherapeutin mit Bastelaktivitäten",
