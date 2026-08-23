@@ -125,13 +125,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const footerColor = location.pathname === "/ueber-uns" ? "text-black" : "text-bordeaux";
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
-        <SiteFooter />
+        <SiteFooter color={footerColor} />
       </div>
     </QueryClientProvider>
 
