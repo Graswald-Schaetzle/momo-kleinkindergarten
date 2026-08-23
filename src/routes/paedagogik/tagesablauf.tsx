@@ -56,7 +56,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "11:30",
     title: "Rückkehr & Übergangsrituale",
-    text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- oder Handwäsche schafft Bewusstsein und Entspannung.",
+    text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- und Handwäsche schafft Bewusstsein und Entspannung.",
   },
   {
     time: "11:45–12:15",
