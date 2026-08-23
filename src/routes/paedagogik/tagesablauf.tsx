@@ -188,18 +188,6 @@ function TagesablaufPage() {
             );
           })}
 
-          {/* Zeit-Label der aktiven Station in der Mitte */}
-          {open !== null && (
-            <text
-              x={CX}
-              y={CY + (isMobile ? 62 : 88)}
-              textAnchor="middle"
-              fontSize={isMobile ? 12 : 15}
-              className="font-display fill-bordeaux"
-            >
-              {schedule[open]!.time}
-            </text>
-          )}
 
           {/* Zeiger + Männchen, das ihn von innen schiebt */}
           <g
