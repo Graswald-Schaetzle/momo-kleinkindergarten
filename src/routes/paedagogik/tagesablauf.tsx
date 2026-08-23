@@ -183,7 +183,7 @@ function TagesablaufPage() {
           <g filter="url(#paperGrain)">
             {/* Knopf oben (Papierschnipsel) */}
             <polygon
-              points={`${CX - 16},${CY - rRing - 18} ${CX + 15},${CY - rRing - 20} ${CX + 12},${CY - rRing - 58} ${CX - 13},${CY - rRing - 55}`}
+              points={`${CX - 17},${CY - rRing - 26} ${CX + 16},${CY - rRing - 28} ${CX + 13},${CY - rRing - 74} ${CX - 14},${CY - rRing - 70}`}
               fill="var(--clock)"
             />
             {/* Füße */}
@@ -277,7 +277,7 @@ function TagesablaufPage() {
 
         {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
-          const { x, y } = pos(i, isMobile ? 200 : R_ICON);
+          const { x, y } = pos(i, isMobile ? 208 : 262);
           const leftPct = (x / 600) * 100;
           const topPct = (y / 600) * 100;
           const Icon = item.icon;
