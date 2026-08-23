@@ -123,6 +123,7 @@ function pos(i: number, radius: number) {
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(0);
   const isMobile = useIsMobile();
+  const rTime = isMobile ? 122 : R_TIME;
 
   return (
     <section className="mx-auto max-w-3xl px-3 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
