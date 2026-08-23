@@ -276,7 +276,7 @@ function TagesablaufPage() {
             <button
               key={item.time}
               type="button"
-              onClick={() => setOpen(isOpen ? null : i)}
+              onClick={() => select(i)}
               className="absolute flex flex-col"
               style={{
                 left: `${leftPct}%`,
