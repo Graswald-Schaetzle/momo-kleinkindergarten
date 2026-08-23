@@ -7,7 +7,7 @@ import ruheImg from "@/assets/ueberuns-ruhe-symbol.png";
 import ganzheitlichkeitImg from "@/assets/ueberuns-ganzheitlichkeit-2-clean2.png";
 import ganzheitlichkeitVideo from "@/assets/film-ganzheitlichkeit.mp4.asset.json";
 import naturImg from "@/assets/ueberuns-natur-recolored.png";
-import eigenstaendigkeitImg from "@/assets/ueberuns-eigenstaendigkeit-gouache.png";
+import eigenstaendigkeitImg from "@/assets/ueberuns-eigenstaendigkeit-portrait.png";
 
 export const Route = createFileRoute("/ueber-uns")({
   head: () => ({
@@ -39,6 +39,7 @@ type Section = {
   alt: string;
   text: string;
   imgMax?: string;
+  imgFill?: boolean;
 };
 
 const sections: Section[] = [
@@ -74,6 +75,7 @@ const sections: Section[] = [
     alt: "Aquarell-Zeichnung: Kind stapelt selbstständig Bauklötze zu einem kleinen Turm",
     text: "Bei uns gibt es feste Rituale und klare Regeln, die dem Alltag Halt geben. Innerhalb dieses verlässlichen Rahmens soll euer Kind aber mitbestimmen, zum Beispiel welches Lied im Morgenkreis gesungen wird oder womit im Freispiel gebaut und gestaltet wird. So erlebt es von Anfang an: Meine Meinung zählt, in einem Rahmen der mich sicher fühlen lässt.",
     imgMax: "max-w-full sm:max-w-full md:max-w-full",
+    imgFill: true,
   },
 ];
 
@@ -139,7 +141,11 @@ function UeberUns() {
                     loading="lazy"
                     width={900}
                     height={900}
-                    className={`w-full object-contain ${
+                    className={`${
+                      section.imgFill
+                        ? "h-full w-auto object-contain"
+                        : "w-full object-contain"
+                    } ${
                       section.imgMax ?? "max-w-[140px] sm:max-w-[260px] md:max-w-sm"
                     }`}
                   />
