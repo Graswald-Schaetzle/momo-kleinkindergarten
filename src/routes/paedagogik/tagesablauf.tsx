@@ -162,13 +162,14 @@ function TagesablaufPage() {
           <g filter="url(#wobble)">
             {/* Glocken oben */}
             <path
-              d={`M ${CX - rRing * 0.62} ${CY - rRing * 0.78} a 30 30 0 0 1 44 -14`}
+              d={`M ${CX - rRing * 0.94} ${CY - rRing * 0.58} A 46 46 0 0 1 ${CX - rRing * 0.4} ${CY - rRing * 1.03}`}
               fill="none" stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
             />
             <path
-              d={`M ${CX + rRing * 0.62} ${CY - rRing * 0.78} a 30 30 0 0 0 -44 -14`}
+              d={`M ${CX + rRing * 0.94} ${CY - rRing * 0.58} A 46 46 0 0 0 ${CX + rRing * 0.4} ${CY - rRing * 1.03}`}
               fill="none" stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
             />
+
             {/* Knopf oben */}
             <line
               x1={CX} y1={CY - rRing - 8} x2={CX} y2={CY - rRing - 30}
