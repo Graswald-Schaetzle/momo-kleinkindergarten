@@ -40,6 +40,8 @@ type Section = {
   text: string;
   imgMax?: string;
   imgFill?: boolean;
+  imgPosition?: string;
+  imgAlign?: string;
 };
 
 const sections: Section[] = [
@@ -74,8 +76,9 @@ const sections: Section[] = [
     image: eigenstaendigkeitImg,
     alt: "Aquarell-Zeichnung: Kind stapelt selbstständig Bauklötze zu einem kleinen Turm",
     text: "Bei uns gibt es feste Rituale und klare Regeln, die dem Alltag Halt geben. Innerhalb dieses verlässlichen Rahmens soll euer Kind aber mitbestimmen, zum Beispiel welches Lied im Morgenkreis gesungen wird oder womit im Freispiel gebaut und gestaltet wird. So erlebt es von Anfang an: Meine Meinung zählt, in einem Rahmen der mich sicher fühlen lässt.",
-    imgMax: "max-w-full sm:max-w-full md:max-w-full",
-    imgFill: true,
+    imgMax: "max-w-[220px] sm:max-w-[360px] md:max-w-[440px]",
+    imgPosition: "w-full object-contain",
+    imgAlign: "items-start",
   },
 ];
 
@@ -118,7 +121,7 @@ function UeberUns() {
               </div>
 
               <div
-                className={`${imageFirst ? "order-1" : "order-2"} flex h-full items-center justify-center`}
+                className={`${imageFirst ? "order-1" : "order-2"} flex h-full ${section.imgAlign ?? "items-center"} justify-center`}
               >
                 {section.video ? (
                   <video
@@ -144,7 +147,9 @@ function UeberUns() {
                     className={`${
                       section.imgFill
                         ? "h-full w-full object-cover object-bottom"
-                        : "w-full object-contain"
+                        : section.imgPosition
+                          ? section.imgPosition
+                          : "w-full object-contain"
                     } ${
                       section.imgMax ?? "max-w-[140px] sm:max-w-[260px] md:max-w-sm"
                     }`}
