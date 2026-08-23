@@ -152,9 +152,9 @@ function TagesablaufPage() {
                 {/* Symbol (mobil) */}
                 <span
                   aria-hidden="true"
-                  className="absolute left-0 top-0.5 flex h-5 w-5 items-center justify-center text-bordeaux md:hidden"
+                  className="absolute -left-1 top-0 flex items-center justify-center md:hidden"
                 >
-                  <Icon size={18} strokeWidth={1.5} />
+                  <Icon size={34} />
                 </span>
 
                 <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-[1fr_auto_1fr] md:gap-6">
@@ -185,8 +185,8 @@ function TagesablaufPage() {
 
                   {/* Symbol (Desktop) */}
                   <div className="hidden md:order-2 md:flex md:justify-center">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-bordeaux/30 bg-background/60 text-bordeaux">
-                      <Icon size={20} strokeWidth={1.5} />
+                    <span className="flex items-center justify-center">
+                      <Icon size={56} />
                     </span>
                   </div>
 
