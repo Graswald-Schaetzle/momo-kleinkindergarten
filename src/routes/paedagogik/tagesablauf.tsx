@@ -219,27 +219,32 @@ function TagesablaufPage() {
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="pointer-events-auto flex max-h-[230px] w-[58%] max-w-[280px] flex-col items-center overflow-y-auto rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center backdrop-blur-sm">
             {open !== null ? (
-              <>
-                <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
-                  {schedule[open].time}
-                </span>
-                <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
-                  {schedule[open].title}
-                </h4>
-                <p className="mt-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-[12px]">
-                  {schedule[open].text}
-                </p>
-                {schedule[open].highlights && (
-                  <ul className="mt-1.5 space-y-0.5 text-left text-[10px] leading-snug text-foreground/80 md:text-[11px]">
-                    {schedule[open].highlights!.map((h, j) => (
-                      <li key={j} className="flex gap-1.5">
-                        <span className="text-bordeaux/50">·</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </>
+              (() => {
+                const item = schedule[open]!;
+                return (
+                  <>
+                    <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
+                      {item.time}
+                    </span>
+                    <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
+                      {item.title}
+                    </h4>
+                    <p className="mt-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-[12px]">
+                      {item.text}
+                    </p>
+                    {item.highlights && (
+                      <ul className="mt-1.5 space-y-0.5 text-left text-[10px] leading-snug text-foreground/80 md:text-[11px]">
+                        {item.highlights.map((h, j) => (
+                          <li key={j} className="flex gap-1.5">
+                            <span className="text-bordeaux/50">·</span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                );
+              })()
             ) : (
               <p className="text-[11px] font-light text-foreground/60 md:text-xs">
                 Tippe auf eine Station des Tages, um mehr zu erfahren.
