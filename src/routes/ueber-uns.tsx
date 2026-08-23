@@ -143,7 +143,7 @@ function UeberUns() {
                     height={900}
                     className={`${
                       section.imgFill
-                        ? "h-full w-full object-cover object-top"
+                        ? "h-full w-full object-cover object-bottom"
                         : "w-full object-contain"
                     } ${
                       section.imgMax ?? "max-w-[140px] sm:max-w-[260px] md:max-w-sm"
