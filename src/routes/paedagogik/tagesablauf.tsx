@@ -70,7 +70,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
     text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot.",
   },
   {
-    time: "13:45",
+    time: "Bis 13:45",
     title: "Abholzeit",
     text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet — ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
   },
