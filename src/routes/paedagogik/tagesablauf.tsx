@@ -121,9 +121,10 @@ function pos(i: number, radius: number) {
 
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(0);
+  const isMobile = useIsMobile();
 
   return (
-    <section className="mx-auto max-w-3xl px-6 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
+    <section className="mx-auto max-w-3xl px-3 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
       <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
         Unser Tagesablauf
       </h2>
@@ -134,8 +135,8 @@ function TagesablaufPage() {
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
-      {/* ===== Desktop / Tablet: Uhr-Kreis ===== */}
-      <div className="relative mx-auto mt-10 hidden aspect-square w-full max-w-[640px] sm:block md:mt-14">
+      {/* ===== Uhr-Kreis (alle Bildschirmgrößen) ===== */}
+      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[640px] md:mt-14">
         <svg viewBox="0 0 600 600" className="h-full w-full" role="img" aria-label="Tagesablauf als Uhr">
           {/* gestrichelter Kreis */}
           <circle
