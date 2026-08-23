@@ -221,11 +221,8 @@ function TagesablaufPage() {
                 <span className="flex justify-center">
                   <Icon size={60} />
                 </span>
-                <span className="mt-1 font-display text-[11px] font-normal tracking-wide text-bordeaux md:text-xs">
-                  {item.time}
-                </span>
                 <span
-                  className={`font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
+                  className={`mt-1 font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
                     isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
                   }`}
                 >
