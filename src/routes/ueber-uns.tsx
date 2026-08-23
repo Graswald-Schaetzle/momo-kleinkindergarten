@@ -77,7 +77,8 @@ const sections: Section[] = [
     alt: "Aquarell-Zeichnung: Kind stapelt selbstständig Bauklötze zu einem kleinen Turm",
     text: "Bei uns gibt es feste Rituale und klare Regeln, die dem Alltag Halt geben. Innerhalb dieses verlässlichen Rahmens soll euer Kind aber mitbestimmen, zum Beispiel welches Lied im Morgenkreis gesungen wird oder womit im Freispiel gebaut und gestaltet wird. So erlebt es von Anfang an: Meine Meinung zählt, in einem Rahmen der mich sicher fühlen lässt.",
     imgMax: "max-w-[220px] sm:max-w-[360px] md:max-w-[440px]",
-    imgPosition: "h-full w-auto object-contain object-top",
+    imgPosition: "w-full object-contain",
+    imgAlign: "items-start",
   },
 ];
 
