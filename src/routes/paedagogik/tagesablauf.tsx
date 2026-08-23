@@ -154,111 +154,113 @@ function TagesablaufPage() {
         >
           <defs>
             <filter id="wobble">
-              <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves={2} seed={7} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={3.4} xChannelSelector="R" yChannelSelector="G" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves={2} seed={7} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={2.2} xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="paperGrain" x="-10%" y="-10%" width="120%" height="120%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={3} seed={11} result="g" />
+              <feColorMatrix in="g" type="saturate" values="0" result="gm" />
+              <feComponentTransfer in="gm" result="gc">
+                <feFuncA type="linear" slope="0.16" intercept="0" />
+              </feComponentTransfer>
+              <feComposite in="gc" in2="SourceGraphic" operator="in" result="grain" />
+              <feBlend in="SourceGraphic" in2="grain" mode="multiply" />
             </filter>
           </defs>
 
-          <g filter="url(#wobble)">
-            {/* Glocken oben */}
-            <path
-              d={`M ${CX - rRing * 0.94} ${CY - rRing * 0.58} A 46 46 0 0 1 ${CX - rRing * 0.4} ${CY - rRing * 1.03}`}
-              fill="none" stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
-            />
-            <path
-              d={`M ${CX + rRing * 0.94} ${CY - rRing * 0.58} A 46 46 0 0 0 ${CX + rRing * 0.4} ${CY - rRing * 1.03}`}
-              fill="none" stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
-            />
-
-            {/* Knopf oben */}
-            <line
-              x1={CX} y1={CY - rRing - 8} x2={CX} y2={CY - rRing - 30}
-              stroke="var(--clock)" strokeWidth={14} strokeLinecap="round"
+          <g filter="url(#paperGrain)">
+            {/* Knopf oben (Papierschnipsel) */}
+            <polygon
+              points={`${CX - 16},${CY - rRing - 18} ${CX + 15},${CY - rRing - 20} ${CX + 12},${CY - rRing - 58} ${CX - 13},${CY - rRing - 55}`}
+              fill="var(--clock)"
             />
             {/* Füße */}
-            <line
-              x1={CX - 58} y1={CY + rRing - 10} x2={CX - 74} y2={CY + rRing + 62}
-              stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
+            <polygon
+              points={`${CX - 118},${CY + rRing - 24} ${CX - 24},${CY + rRing - 6} ${CX - 34},${CY + rRing + 92} ${CX - 132},${CY + rRing + 74}`}
+              fill="var(--clock-foot)"
             />
-            <line
-              x1={CX + 58} y1={CY + rRing - 10} x2={CX + 74} y2={CY + rRing + 62}
-              stroke="var(--clock)" strokeWidth={15} strokeLinecap="round"
+            <polygon
+              points={`${CX + 118},${CY + rRing - 24} ${CX + 24},${CY + rRing - 6} ${CX + 34},${CY + rRing + 92} ${CX + 132},${CY + rRing + 74}`}
+              fill="var(--clock-foot)"
             />
-            {/* Gehäuse */}
-            <circle cx={CX} cy={CY} r={rRing} fill="none" stroke="var(--clock)" strokeWidth={26} />
-            <circle cx={CX} cy={CY} r={rRing + 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
-            <circle cx={CX} cy={CY} r={rRing - 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
-          </g>
 
-          {/* Striche nur an den 8 Aktivitäts-Positionen */}
-          {schedule.map((_, n) => {
-            const a = (-90 + n * 45) * (Math.PI / 180);
-            const rOuter = rRing - (isMobile ? 10 : 12);
-            const rInner = rRing - (isMobile ? 22 : 28);
-            return (
-              <line
-                key={n}
-                x1={CX + rOuter * Math.cos(a)}
-                y1={CY + rOuter * Math.sin(a)}
-                x2={CX + rInner * Math.cos(a)}
-                y2={CY + rInner * Math.sin(a)}
-                stroke="var(--ink)"
-                strokeWidth={3}
-                strokeLinecap="round"
+            {/* Gehäuse: geschnittenes Vieleck */}
+            <polygon points={ngon(CX, CY, rRing + 34, 15)} fill="var(--clock)" />
+            {/* Ziffernblatt */}
+            <polygon points={ngon(CX, CY, rRing, 14, 0.22)} fill="var(--clock-face)" />
+
+            {/* Striche nur an den 8 Aktivitäts-Positionen */}
+            {schedule.map((_, n) => {
+              const a = (-90 + n * 45) * (Math.PI / 180);
+              const rOuter = rRing - (isMobile ? 8 : 12);
+              const rInner = rRing - (isMobile ? 24 : 34);
+              return (
+                <line
+                  key={n}
+                  x1={CX + rOuter * Math.cos(a)}
+                  y1={CY + rOuter * Math.sin(a)}
+                  x2={CX + rInner * Math.cos(a)}
+                  y2={CY + rInner * Math.sin(a)}
+                  stroke="var(--clock)"
+                  strokeWidth={7}
+                  strokeLinecap="round"
+                />
+              );
+            })}
+
+            {/* Gesicht */}
+            <g filter="url(#wobble)">
+              {/* Augen: weißes Papier + blaue Pupille */}
+              <ellipse cx={CX - rRing * 0.34} cy={CY - rRing * 0.3} rx={rRing * 0.14} ry={rRing * 0.2} fill="#FBF7EC" />
+              <ellipse cx={CX + rRing * 0.34} cy={CY - rRing * 0.3} rx={rRing * 0.14} ry={rRing * 0.2} fill="#FBF7EC" />
+              <ellipse
+                className="momo-eye-lid"
+                cx={CX - rRing * 0.38} cy={CY - rRing * 0.3}
+                rx={rRing * 0.085} ry={rRing * 0.185}
+                fill="var(--clock-eye)"
               />
-            );
-          })}
+              <ellipse
+                className="momo-eye-lid momo-eye-lid-2"
+                cx={CX + rRing * 0.3} cy={CY - rRing * 0.3}
+                rx={rRing * 0.085} ry={rRing * 0.185}
+                fill="var(--clock-eye)"
+              />
+              {/* Lächeln */}
+              <path
+                d={`M ${CX - rRing * 0.42} ${CY + rRing * 0.28} q ${rRing * 0.42} ${rRing * 0.52} ${rRing * 0.84} 0`}
+                fill="none" stroke="var(--clock)" strokeWidth={8} strokeLinecap="round"
+              />
+            </g>
 
-          {/* Gesicht */}
-          <g filter="url(#wobble)">
-            {/* Augen */}
-            <ellipse
-              className="momo-eye-lid"
-              cx={CX - rRing * 0.3} cy={CY - rRing * 0.3}
-              rx={rRing * 0.075} ry={rRing * 0.1}
-              fill="var(--ink)"
-            />
-            <ellipse
-              className="momo-eye-lid momo-eye-lid-2"
-              cx={CX + rRing * 0.3} cy={CY - rRing * 0.3}
-              rx={rRing * 0.075} ry={rRing * 0.1}
-              fill="var(--ink)"
-            />
-            {/* Wangen */}
-            <circle cx={CX - rRing * 0.52} cy={CY - rRing * 0.08} r={rRing * 0.075} fill="var(--clock)" opacity={0.5} />
-            <circle cx={CX + rRing * 0.52} cy={CY - rRing * 0.08} r={rRing * 0.075} fill="var(--clock)" opacity={0.5} />
-            {/* Lächeln */}
-            <path
-              d={`M ${CX - rRing * 0.26} ${CY + rRing * 0.42} q ${rRing * 0.26} ${rRing * 0.26} ${rRing * 0.52} 0`}
-              fill="none" stroke="var(--ink)" strokeWidth={3} strokeLinecap="round"
-            />
+            {/* Zeiger: dreht sich dauerhaft, hält bei Auswahl an */}
+            <g
+              className={open === null ? "momo-hand-spin" : undefined}
+              style={
+                open !== null
+                  ? {
+                      transformOrigin: "300px 300px",
+                      transform: `rotate(${open * 45}deg)`,
+                      transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                    }
+                  : undefined
+              }
+            >
+              {/* kleiner Zeiger (Pfeil nach unten) */}
+              <polygon
+                points={`${CX - 13},${CY} ${CX + 13},${CY} ${CX + 13},${CY + rRing * 0.5} ${CX + 26},${CY + rRing * 0.5} ${CX},${CY + rRing * 0.72} ${CX - 26},${CY + rRing * 0.5} ${CX - 13},${CY + rRing * 0.5}`}
+                fill="var(--ink)"
+              />
+              {/* großer Zeiger (Pfeil schräg) */}
+              <g transform={`rotate(128 ${CX} ${CY})`}>
+                <polygon
+                  points={`${CX - 11},${CY} ${CX + 11},${CY} ${CX + 11},${CY + rRing * 0.62} ${CX + 24},${CY + rRing * 0.62} ${CX},${CY + rRing * 0.86} ${CX - 24},${CY + rRing * 0.62} ${CX - 11},${CY + rRing * 0.62}`}
+                  fill="var(--ink)"
+                />
+              </g>
+              <circle cx={CX} cy={CY} r={16} fill="var(--ink)" />
+            </g>
           </g>
 
-          {/* Zeiger: dreht sich dauerhaft, hält bei Auswahl an */}
-          <g
-            className={open === null ? "momo-hand-spin" : undefined}
-            style={
-              open !== null
-                ? {
-                    transformOrigin: "300px 300px",
-                    transform: `rotate(${open * 45}deg)`,
-                    transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
-                  }
-                : undefined
-            }
-          >
-            {/* kleiner Zeiger */}
-            <line
-              x1={CX} y1={CY} x2={CX} y2={CY + (rRing - 78)}
-              stroke="var(--ink)" strokeWidth={5} strokeLinecap="round"
-            />
-            {/* großer Zeiger */}
-            <line
-              x1={CX} y1={CY} x2={CX} y2={CY - (rRing - 44)}
-              stroke="var(--ink)" strokeWidth={5} strokeLinecap="round"
-            />
-            <circle cx={CX} cy={CY} r={7} fill="var(--ink)" />
-          </g>
         </svg>
 
         {/* Stationen um den Kreis */}
