@@ -62,7 +62,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "11:45–12:15",
     title: "Gemeinsames Mittagessen",
-    text: "Ein Vorhang trennt den Essbereich vom Spielraum. Die Kinder helfen mit: Obst schneiden, Gemüse waschen, Feinmotorik üben. Der Tisch ist mit saisonaler Blumendekoration gedeckt. Kerze und Lied gehören zu den Ritualen. Stofftücher statt Wegwerfprodukte — Nachhaltigkeit und Geborgenheit zugleich. Frische, regionale, saisonale Mahlzeiten (§ 22 Abs. 3 SGB VIII).",
+    text: "Ein Vorhang trennt den Essbereich vom Spielraum. Der Tisch ist mit saisonaler Blumendekoration gedeckt. Kerze und Lied gehören zu den Ritualen. Stofftücher statt Wegwerfprodukte. Nachhaltigkeit und Geborgenheit zugleich. Frische, regionale, saisonale Mahlzeiten.",
   },
   {
     time: "12:30–Bedarf",
