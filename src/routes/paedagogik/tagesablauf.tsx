@@ -28,7 +28,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "07:45–09:15",
     title: "Ankommen & offenes Frühstück",
-    text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet — jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
+    text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet, jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
   },
   {
     time: "09:15–10:15",
@@ -43,14 +43,14 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "10:25–11:30",
     title: "Gemeinsame Aktivität",
-    text: "Der Alltag ist geprägt von viel Freispiel – ergänzt durch wechselnde Angebote, die je nach Tag unterschiedliche Schwerpunkte setzen:",
+    text: "Der Alltag ist geprägt von viel Freispiel ergänzt durch wechselnde Angebote, die je nach Tag unterschiedliche Schwerpunkte setzen:",
     highlights: [
-      "Musikpädagogin mit Liedern, Instrumenten und Bewegung",
-      "Kunsttherapeutin mit Bastelaktivitäten",
+      "Besuch von Musikpädagogin mit Liedern, Instrumenten und Bewegung",
+      "Besuch von Kunsttherapeutin mit Bastelaktivitäten",
       "Spaziergänge in die nähere Umgebung",
       "Spielplatzbesuche oder Naturerkundungen",
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
-      "Backen",
+      "Backen und Kochen\u00a0",
     ],
   },
   {
