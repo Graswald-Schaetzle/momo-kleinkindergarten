@@ -41,6 +41,7 @@ type Section = {
   imgMax?: string;
   imgFill?: boolean;
   imgPosition?: string;
+  imgAlign?: string;
 };
 
 const sections: Section[] = [
