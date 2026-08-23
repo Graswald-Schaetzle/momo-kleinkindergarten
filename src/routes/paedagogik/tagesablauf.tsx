@@ -111,7 +111,19 @@ const CY = 300;
 const R_ICON = 240; // Radius der Icons (außerhalb des Kreises)
 const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 
+/* unregelmäßiges Vieleck – wirkt wie mit der Schere geschnitten */
+function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.03) {
+  const pts: string[] = [];
+  for (let i = 0; i < sides; i++) {
+    const a = (-90 + (360 / sides) * i) * (Math.PI / 180);
+    const rr = r * (1 + jitter * Math.sin(i * 2.7) * 0.5 + jitter * Math.cos(i * 1.3) * 0.5);
+    pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
+  }
+  return pts.join(" ");
+}
+
 function pos(i: number, radius: number) {
+
   // 8 Stationen, beginnend oben (12 Uhr), im Uhrzeigersinn
   const angle = (-90 + i * 45) * (Math.PI / 180);
   return {
