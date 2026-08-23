@@ -168,23 +168,23 @@ function TagesablaufPage() {
             <circle cx={CX} cy={CY} r={rRing - 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
           </g>
 
-          {/* Uhrzeiten der Aktivitäten auf dem Ziffernblatt */}
-          {schedule.map((item, n) => {
-            const a = (-90 + n * 45) * (Math.PI / 180);
-            const rNum = rRing - (isMobile ? 30 : 38);
+          {/* Stundenstriche auf dem Ziffernblatt */}
+          {Array.from({ length: 12 }).map((_, n) => {
+            const a = (-90 + n * 30) * (Math.PI / 180);
+            const isMajor = n % 3 === 0;
+            const rOuter = rRing - (isMobile ? 10 : 12);
+            const rInner = rRing - (isMajor ? (isMobile ? 22 : 28) : (isMobile ? 16 : 20));
             return (
-              <text
-                key={item.time}
-                x={CX + rNum * Math.cos(a)}
-                y={CY + rNum * Math.sin(a)}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize={isMobile ? 9 : 13}
-                fill={open === n ? "var(--clock)" : "var(--ink)"}
-                className="font-display"
-              >
-                {item.time}
-              </text>
+              <line
+                key={n}
+                x1={CX + rOuter * Math.cos(a)}
+                y1={CY + rOuter * Math.sin(a)}
+                x2={CX + rInner * Math.cos(a)}
+                y2={CY + rInner * Math.sin(a)}
+                stroke="var(--ink)"
+                strokeWidth={isMajor ? 3 : 1.6}
+                strokeLinecap="round"
+              />
             );
           })}
 
