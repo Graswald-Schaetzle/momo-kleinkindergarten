@@ -69,6 +69,18 @@ function Index() {
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div className="relative mx-auto w-full max-w-5xl overflow-hidden px-6 sm:px-10 md:px-14">
 
+          {/* Aufgeklebter Pappe-Stern — leicht schräg, mit Schatten wie ein Collage-Element */}
+          <img
+            src={sternAsset.url}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="pointer-events-none absolute left-1/2 top-0 z-20 w-28 -translate-x-1/2 -translate-y-1/4 rotate-12 select-none sm:w-36 md:w-44"
+            style={{
+              filter:
+                "drop-shadow(2px 6px 5px rgba(60,40,20,0.28)) drop-shadow(0 1px 1px rgba(60,40,20,0.18))",
+            }}
+          />
           <video
             autoPlay
             muted
@@ -76,7 +88,7 @@ function Index() {
             playsInline
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-            className="w-full scale-[1.06]"
+            className="relative w-full scale-[1.06]"
             style={{
               WebkitMaskImage:
                 "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%)",
