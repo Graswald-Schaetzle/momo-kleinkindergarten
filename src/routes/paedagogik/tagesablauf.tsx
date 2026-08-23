@@ -168,22 +168,22 @@ function TagesablaufPage() {
             <circle cx={CX} cy={CY} r={rRing - 13} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
           </g>
 
-          {/* Ziffern 1–12 */}
-          {Array.from({ length: 12 }).map((_, n) => {
-            const a = (-90 + (n + 1) * 30) * (Math.PI / 180);
-            const rNum = rRing - 34;
+          {/* Uhrzeiten der Aktivitäten auf dem Ziffernblatt */}
+          {schedule.map((item, n) => {
+            const a = (-90 + n * 45) * (Math.PI / 180);
+            const rNum = rRing - (isMobile ? 30 : 38);
             return (
               <text
-                key={n}
+                key={item.time}
                 x={CX + rNum * Math.cos(a)}
                 y={CY + rNum * Math.sin(a)}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={isMobile ? 15 : 20}
-                fill="var(--ink)"
+                fontSize={isMobile ? 9 : 13}
+                fill={open === n ? "var(--clock)" : "var(--ink)"}
                 className="font-display"
               >
-                {n + 1}
+                {item.time}
               </text>
             );
           })}
@@ -201,7 +201,7 @@ function TagesablaufPage() {
             </text>
           )}
 
-          {/* Zeiger + Männchen, das ihn schiebt */}
+          {/* Zeiger + Männchen, das ihn von innen schiebt */}
           <g
             style={{
               transformOrigin: "300px 300px",
@@ -211,49 +211,48 @@ function TagesablaufPage() {
           >
             {/* Zeiger nach oben */}
             <line
-              x1={CX} y1={CY} x2={CX} y2={CY - (rRing - 46)}
+              x1={CX} y1={CY} x2={CX} y2={CY - (rRing - 52)}
               stroke="var(--ink)" strokeWidth={5} strokeLinecap="round"
             />
             <circle cx={CX} cy={CY} r={7} fill="var(--ink)" />
 
-            {/* Männchen liegt auf dem Rand und schiebt den Zeiger */}
-            <g transform={`translate(${CX} ${CY - rRing})`} filter="url(#wobble)">
-              {/* Körper über den Rand gelegt */}
-              <path
-                d={`M -58 12 C -34 -26, 26 -26, 52 4`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
-              />
-              <path
-                d={`M -52 26 C -30 -12, 30 -12, 62 14`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
-              />
-              {/* Streifen am Shirt */}
-              {[-30, -16, -2, 12, 26, 40].map((t) => (
-                <path
-                  key={t}
-                  d={`M ${t} ${-14 + Math.abs(t) * 0.12} l 4 22`}
-                  fill="none" stroke="var(--ink)" strokeWidth={1.4} strokeLinecap="round"
-                />
-              ))}
+            {/* Männchen steht im Ziffernblatt und stemmt sich gegen den Zeiger */}
+            <g
+              transform={`translate(${CX - (isMobile ? 24 : 30)} ${CY - (rRing - (isMobile ? 78 : 96))})`}
+              filter="url(#wobble)"
+            >
               {/* Kopf */}
-              <circle cx={-66} cy={22} r={11} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
-              <path d="M -80 14 c -8 -8 -18 2 -12 12 c -8 4 -2 16 8 14" fill="var(--ink)" />
-              {/* Arm schiebt den Zeiger */}
+              <circle cx={0} cy={0} r={isMobile ? 7 : 9} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
               <path
-                d={`M -46 26 C -40 ${rRing * 0.28}, -22 ${rRing * 0.4}, -6 ${rRing - 48}`}
+                d={`M ${isMobile ? -7 : -9} -4 c -4 -6 4 -12 9 -8 c 5 -3 9 3 6 8`}
+                fill="var(--ink)"
+              />
+              {/* Körper */}
+              <path
+                d={`M 0 ${isMobile ? 7 : 9} L 2 ${isMobile ? 30 : 38}`}
                 fill="none" stroke="var(--ink)" strokeWidth={2.4} strokeLinecap="round"
               />
+              {/* Arme drücken gegen den Zeiger (rechts) */}
               <path
-                d={`M -34 30 C -28 ${rRing * 0.3}, -14 ${rRing * 0.42}, 2 ${rRing - 46}`}
-                fill="none" stroke="var(--ink)" strokeWidth={2.4} strokeLinecap="round"
+                d={`M 0 ${isMobile ? 13 : 16} C ${isMobile ? 12 : 15} ${isMobile ? 10 : 12}, ${isMobile ? 18 : 23} ${isMobile ? 8 : 10}, ${isMobile ? 23 : 29} ${isMobile ? 6 : 8}`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
               />
-              {/* Hand am Zeiger */}
-              <circle cx={-2} cy={rRing - 47} r={6} fill="none" stroke="var(--ink)" strokeWidth={2.2} />
-              {/* Beine */}
-              <path d="M 58 10 c 14 4 22 10 30 6" fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round" />
-              <path d="M 60 20 c 14 2 20 8 30 4" fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round" />
+              <path
+                d={`M 1 ${isMobile ? 18 : 22} C ${isMobile ? 12 : 15} ${isMobile ? 18 : 22}, ${isMobile ? 18 : 23} ${isMobile ? 15 : 18}, ${isMobile ? 23 : 29} ${isMobile ? 12 : 15}`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
+              />
+              {/* Beine, gegen den Boden gestemmt */}
+              <path
+                d={`M 2 ${isMobile ? 30 : 38} C ${isMobile ? -8 : -10} ${isMobile ? 36 : 45}, ${isMobile ? -14 : -18} ${isMobile ? 38 : 48}, ${isMobile ? -20 : -25} ${isMobile ? 36 : 45}`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
+              />
+              <path
+                d={`M 2 ${isMobile ? 30 : 38} C ${isMobile ? 0 : 0} ${isMobile ? 38 : 48}, ${isMobile ? -6 : -8} ${isMobile ? 42 : 53}, ${isMobile ? -12 : -15} ${isMobile ? 43 : 54}`}
+                fill="none" stroke="var(--ink)" strokeWidth={2.2} strokeLinecap="round"
+              />
             </g>
           </g>
+
         </svg>
 
         {/* Stationen um den Kreis */}
