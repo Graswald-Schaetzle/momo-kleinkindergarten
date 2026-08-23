@@ -75,7 +75,7 @@ function Index() {
             alt=""
             aria-hidden="true"
             loading="lazy"
-            className="pointer-events-none absolute left-1/2 top-0 z-20 w-28 -translate-x-1/2 -translate-y-1/4 rotate-12 select-none sm:w-36 md:w-44"
+            className="pointer-events-none absolute left-1/2 top-2 z-20 w-28 -translate-x-1/2 rotate-12 select-none sm:w-36 md:w-44"
             style={{
               filter:
                 "drop-shadow(2px 6px 5px rgba(60,40,20,0.28)) drop-shadow(0 1px 1px rgba(60,40,20,0.18))",
