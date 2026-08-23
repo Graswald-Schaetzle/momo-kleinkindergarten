@@ -275,54 +275,40 @@ function TagesablaufPage() {
         </div>
       </div>
 
-      {/* ===== Mobil: gestapelte Akkordeon-Liste ===== */}
-      <div className="mt-8 sm:hidden">
-        {schedule.map((item, i) => {
-          const Icon = item.icon;
-          const isOpen = open === i;
-          return (
-            <div key={item.time} className="border-b border-bordeaux/15">
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-center gap-3 py-3 text-left"
-                aria-expanded={isOpen}
-              >
-                <span className="shrink-0">
-                  <Icon size={40} />
+      {/* ===== Mobil: Detail-Feld unter der Uhr ===== */}
+      <div className="mt-6 rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center sm:hidden">
+        {open !== null ? (
+          (() => {
+            const item = schedule[open]!;
+            return (
+              <>
+                <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
+                  {item.time}
                 </span>
-                <span className="flex flex-1 flex-col">
-                  <span className="font-display text-[11px] font-normal tracking-wide text-bordeaux/70">
-                    {item.time}
-                  </span>
-                  <span className="font-display text-sm font-normal tracking-[0.03em] text-bordeaux">
-                    {item.title}
-                  </span>
-                </span>
-                <span className={`text-bordeaux/50 transition-transform ${isOpen ? "rotate-90" : ""}`}>
-                  ›
-                </span>
-              </button>
-              {isOpen && (
-                <div className="pb-4 pl-12 pr-2">
-                  <p className="text-[11px] leading-relaxed text-foreground/85">
-                    {item.text}
-                  </p>
-                  {item.highlights && (
-                    <ul className="mt-2 space-y-1 text-[11px] leading-snug text-foreground/80">
-                      {item.highlights.map((h, j) => (
-                        <li key={j} className="flex gap-1.5">
-                          <span className="text-bordeaux/50">·</span>
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              )}
-            </div>
-          );
-        })}
+                <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
+                  {item.title}
+                </h4>
+                <p className="mt-2 text-[12px] leading-relaxed text-foreground/85">
+                  {item.text}
+                </p>
+                {item.highlights && (
+                  <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/80">
+                    {item.highlights.map((h, j) => (
+                      <li key={j} className="flex gap-1.5">
+                        <span className="text-bordeaux/50">·</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            );
+          })()
+        ) : (
+          <p className="text-[12px] font-light text-foreground/60">
+            Tippe auf eine Station des Tages, um mehr zu erfahren.
+          </p>
+        )}
       </div>
     </section>
   );
