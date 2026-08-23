@@ -1,5 +1,6 @@
-// Bunte, kindlich gekritzelte Symbole — wackelige Striche, schiefe Formen,
-// über den Rand gemalte Farbflächen, wie mit Wachsmalstiften gezeichnet.
+// Bunte, kindlich gekritzelte Symbole im Wachsmalstift-Stil:
+// gesättigte Primärfarben, wackelige organische Formen, kleine
+// Punkt-Strich-Gesichter, wachsige Textur — wie aus einem Kinder-Malbuch.
 
 type IconProps = {
   size?: number;
@@ -7,18 +8,41 @@ type IconProps = {
   className?: string;
 };
 
+/* helle, gesättigte Kinderfarben */
 const C = {
-  red: "#D2553F",
-  orange: "#E2903C",
-  yellow: "#EFC24B",
-  green: "#7A9B5C",
-  teal: "#5E9A96",
-  blue: "#5B7FA6",
-  purple: "#8B6BA0",
-  pink: "#DC8C9B",
-  brown: "#8A6242",
-  ink: "#4A3B33",
+  red: "#E8412F",
+  orange: "#F2931E",
+  yellow: "#F7D046",
+  yellowDeep: "#E8B421",
+  green: "#5BAE52",
+  greenDeep: "#3E8B3A",
+  teal: "#3FA9A0",
+  blue: "#2E6FD6",
+  sky: "#7EC4F0",
+  purple: "#8E54A8",
+  pink: "#F08FB0",
+  pinkDeep: "#D8638C",
+  brown: "#8B5A2B",
+  ink: "#3A2A22",
+  cream: "#FFF7E8",
 };
+
+/** gemeinsamer Wachsmalstift-Filter: körnige, wachsige Textur */
+const grainId = "child-grain";
+const crayonDefs = (
+  <defs>
+    <filter id={grainId} x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n" />
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0" result="g" />
+      <feComposite in="SourceGraphic" in2="g" operator="over" />
+    </filter>
+    <filter id={`${grainId}-soft`} x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="7" result="n" />
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.22 0" result="g" />
+      <feComposite in="SourceGraphic" in2="g" operator="over" />
+    </filter>
+  </defs>
+);
 
 const base = (
   size: number,
@@ -29,7 +53,7 @@ const base = (
   <svg
     width={size}
     height={size}
-    viewBox="0 0 32 32"
+    viewBox="0 0 40 40"
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -37,198 +61,311 @@ const base = (
     style={{ transform: `rotate(${rotate}deg)`, overflow: "visible" }}
     xmlns="http://www.w3.org/2000/svg"
   >
-    {children}
+    {crayonDefs}
+    <g filter={`url(#${grainId})`}>{children}</g>
   </svg>
 );
 
-// 1. Ankommen & Frühstück — schiefe Tasse mit Dampf
-export const BreakfastIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+/* kleines Gesicht: zwei Punktaugen + Lächeln */
+const Face = ({
+  cx,
+  cy,
+  r = 0.5,
+  spread = 1.6,
+  smile = 2.2,
+}: {
+  cx: number;
+  cy: number;
+  r?: number;
+  spread?: number;
+  smile?: number;
+}) => (
+  <>
+    <circle cx={cx - spread} cy={cy} r={r} fill={C.ink} />
+    <circle cx={cx + spread} cy={cy} r={r} fill={C.ink} />
+    <path
+      d={`M ${cx - smile} ${cy + 1.6} q ${smile} ${1.6} ${smile * 2} 0`}
+      stroke={C.ink}
+      strokeWidth={0.7}
+      fill="none"
+    />
+  </>
+);
+
+// 1. Ankommen & Frühstück — schiefes Tässchen mit Dampf & Gesicht
+export const BreakfastIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
+      {/* Dampf */}
+      <path d="M15 7 c-1.6 -2 1 -3 -0.4 -5" stroke={C.sky} strokeWidth={1.4} />
+      <path d="M20 7.5 c-1.7 -2.2 1 -3.2 -0.3 -5.3" stroke={C.sky} strokeWidth={1.4} />
+      {/* Tasse */}
       <path
-        d="M8.6 13.8 c4 -0.8 8.4 -0.6 11.6 0.2 c0.3 3.6 -0.4 6.4 -1.6 8 c-2.6 1.9 -6 1.7 -8.2 -0.3 c-1.3 -1.8 -1.9 -4.6 -1.8 -7.9 z"
+        d="M10 16 c5 -1.4 11 -1.2 15.4 0.6 c0.4 5 -0.6 8.6 -2.2 11 c-3.4 2.6 -8 2.4 -11.2 -0.4 c-1.8 -2.4 -2.4 -6.2 -2 -11.2 z"
         fill={C.pink}
-        opacity="0.85"
       />
       <path
-        d="M8.4 13.6 c4.2 -1 8.6 -0.8 12 0.2 c0.2 4 -0.5 6.9 -1.8 8.5 c-2.7 2 -6.3 1.8 -8.6 -0.4 c-1.3 -1.9 -1.8 -4.9 -1.6 -8.3 z"
-        stroke={C.red}
-        strokeWidth={strokeWidth}
+        d="M10 16 c5 -1.4 11 -1.2 15.4 0.6 c0.4 5 -0.6 8.6 -2.2 11 c-3.4 2.6 -8 2.4 -11.2 -0.4 c-1.8 -2.4 -2.4 -6.2 -2 -11.2 z"
+        stroke={C.pinkDeep}
+        strokeWidth={1.6}
       />
+      {/* Henkel */}
       <path
-        d="M20.2 15.4 c2.4 -0.6 4.2 0.6 4 2.4 c-0.2 1.7 -2 2.6 -3.8 2.2"
-        stroke={C.red}
-        strokeWidth={strokeWidth}
+        d="M25.4 18 c3.4 -0.8 5.6 0.8 5.4 3.4 c-0.2 2.4 -2.6 3.6 -5 3"
+        stroke={C.pinkDeep}
+        strokeWidth={1.6}
+        fill="none"
       />
-      <path d="M12.4 9.6 c-1.2 -1.4 0.8 -2.4 -0.2 -3.8" stroke={C.orange} strokeWidth={strokeWidth} />
-      <path d="M16.4 9.8 c-1.3 -1.5 0.7 -2.6 -0.3 -4" stroke={C.yellow} strokeWidth={strokeWidth} />
+      {/* Gesicht */}
+      <Face cx={17.7} cy={21} spread={1.8} smile={1.7} />
+      {/* Untertasse */}
+      <path d="M8 27.5 c5 1.4 12 1.4 17 -0.2" stroke={C.brown} strokeWidth={1.6} />
     </>,
     -6,
     className
   );
 
-// 2. Freispiel — bunter Ball
-export const PlayIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 2. Freispiel — bunter Ball mit Gesicht
+export const PlayIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
       <path
-        d="M16.4 7.2 c5.2 -0.3 9.2 3.8 8.6 8.9 c-0.6 5.1 -4.6 8.4 -9.4 8 c-4.7 -0.4 -8 -4.3 -7.5 -9.2 c0.5 -4.4 3.7 -7.5 8.3 -7.7 z"
+        d="M20 8 c6.6 -0.4 11.6 4.8 10.8 11.4 c-0.8 6.4 -5.8 10.6 -11.8 10 c-6 -0.5 -10.2 -5.4 -9.4 -11.6 c0.6 -5.6 4.6 -9.5 10.4 -9.8 z"
         fill={C.yellow}
-        opacity="0.8"
       />
       <path
-        d="M16.4 7.2 c5.2 -0.3 9.2 3.8 8.6 8.9 c-0.6 5.1 -4.6 8.4 -9.4 8 c-4.7 -0.4 -8 -4.3 -7.5 -9.2 c0.5 -4.4 3.7 -7.5 8.3 -7.7 z"
-        stroke={C.blue}
-        strokeWidth={strokeWidth}
+        d="M20 8 c6.6 -0.4 11.6 4.8 10.8 11.4 c-0.8 6.4 -5.8 10.6 -11.8 10 c-6 -0.5 -10.2 -5.4 -9.4 -11.6 c0.6 -5.6 4.6 -9.5 10.4 -9.8 z"
+        stroke={C.yellowDeep}
+        strokeWidth={1.6}
       />
-      <path d="M8.4 14.2 c3.4 1.3 5.9 1.1 8.8 -0.4" stroke={C.red} strokeWidth={strokeWidth} />
-      <path d="M9.6 21 c3.2 -1.8 6.4 -1.4 9.4 0.8" stroke={C.green} strokeWidth={strokeWidth} />
-      <path d="M16.2 7.4 c1.8 3.4 1.4 6.6 -0.4 9.6" stroke={C.purple} strokeWidth={strokeWidth} />
+      {/* Segmente */}
+      <path d="M10 17 c4.6 1.6 8 1.4 11.6 -0.6" stroke={C.red} strokeWidth={1.5} />
+      <path d="M11.4 25 c4 -2.2 8 -1.8 11.8 1" stroke={C.blue} strokeWidth={1.5} />
+      <path d="M20 8 c2.4 4.2 1.8 8.4 -0.6 12.4" stroke={C.green} strokeWidth={1.5} />
+      <Face cx={20} cy={18} spread={2} smile={2} />
     </>,
     5,
     className
   );
 
-// 3. Morgenkreis — Sonne mit wackeligen Strahlen
-export const CircleIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 3. Morgenkreis — Sonne mit Gesicht & Strahlen
+export const CircleIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
+      {/* Strahlen */}
+      {[
+        [20, 5, 20, 9],
+        [20, 35, 20, 31],
+        [5, 20, 9, 20],
+        [35, 20, 31, 20],
+        [9, 9, 12, 12],
+        [31, 31, 28, 28],
+        [31, 9, 28, 12],
+        [9, 31, 12, 28],
+      ].map(([x1, y1, x2, y2], i) => (
+        <path
+          key={i}
+          d={`M ${x1} ${y1} L ${x2} ${y2}`}
+          stroke={i % 2 ? C.orange : C.yellowDeep}
+          strokeWidth={1.6}
+        />
+      ))}
+      {/* Sonne */}
       <path
-        d="M16.2 10.4 c3.4 -0.2 6 2.4 5.8 5.8 c-0.2 3.2 -2.8 5.4 -6 5.1 c-3.1 -0.3 -5.2 -2.7 -4.9 -5.9 c0.3 -2.9 2.3 -4.8 5.1 -5 z"
+        d="M20 11 c4.4 -0.2 7.6 3 7.4 7.2 c-0.2 4 -3.6 6.8 -7.6 6.4 c-4 -0.4 -6.6 -3.4 -6.2 -7.4 c0.4 -3.6 2.8 -6 6.4 -6.2 z"
         fill={C.yellow}
       />
       <path
-        d="M16.2 10.4 c3.4 -0.2 6 2.4 5.8 5.8 c-0.2 3.2 -2.8 5.4 -6 5.1 c-3.1 -0.3 -5.2 -2.7 -4.9 -5.9 c0.3 -2.9 2.3 -4.8 5.1 -5 z"
+        d="M20 11 c4.4 -0.2 7.6 3 7.4 7.2 c-0.2 4 -3.6 6.8 -7.6 6.4 c-4 -0.4 -6.6 -3.4 -6.2 -7.4 c0.4 -3.6 2.8 -6 6.4 -6.2 z"
         stroke={C.orange}
-        strokeWidth={strokeWidth}
+        strokeWidth={1.6}
       />
-      <path d="M16 4.4 c0.4 1.4 0.2 2.4 -0.2 3.4" stroke={C.orange} strokeWidth={strokeWidth} />
-      <path d="M16.4 24.4 c-0.5 1.2 -0.2 2.3 0.2 3.3" stroke={C.red} strokeWidth={strokeWidth} />
-      <path d="M4.4 15.6 c1.4 0.5 2.4 0.2 3.4 -0.2" stroke={C.orange} strokeWidth={strokeWidth} />
-      <path d="M24.6 16.4 c1.2 -0.5 2.4 -0.2 3.2 0.3" stroke={C.red} strokeWidth={strokeWidth} />
-      <path d="M7.8 7.6 c1.2 0.6 2 1.6 2.6 2.6" stroke={C.yellow} strokeWidth={strokeWidth} />
-      <path d="M21.8 21.8 c1 0.7 1.8 1.6 2.4 2.6" stroke={C.orange} strokeWidth={strokeWidth} />
-      <path d="M24.4 7.6 c-1.1 0.7 -2 1.6 -2.6 2.7" stroke={C.red} strokeWidth={strokeWidth} />
-      <path d="M10.2 21.8 c-1 0.8 -1.9 1.7 -2.4 2.7" stroke={C.yellow} strokeWidth={strokeWidth} />
+      <Face cx={20} cy={18} spread={2.2} smile={2} />
     </>,
     -4,
     className
   );
 
-// 4. Gemeinsame Aktivität — Pinsel mit Farbklecks
-export const BrushIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 4. Gemeinsame Aktivität — Pinsel mit Farbklecksen
+export const BrushIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
+      {/* Farbkleckse */}
+      <ellipse cx={9} cy={12} rx={2.6} ry={2} fill={C.green} opacity={0.85} />
+      <ellipse cx={31} cy={9} rx={2.4} ry={1.8} fill={C.red} opacity={0.85} />
+      <ellipse cx={32} cy={28} rx={2.2} ry={1.8} fill={C.purple} opacity={0.85} />
+      {/* Stiel */}
+      <path d="M14 28 c3.4 -3.2 6.8 -6.2 10 -9.2" stroke={C.brown} strokeWidth={2} />
+      {/* Pinselhaar */}
       <path
-        d="M9.6 21.6 c-2.2 1.4 -3 3.4 -1.8 5.4 c2.2 1 4.4 -0.2 5.4 -2.4 c-1.4 -0.9 -2.6 -1.9 -3.6 -3 z"
-        fill={C.pink}
-        opacity="0.9"
+        d="M11.6 30 c-2.8 1.8 -3.8 4.4 -2.2 7 c2.8 1.2 5.6 -0.2 6.8 -3 c-1.6 -1.2 -3 -2.6 -4.6 -4 z"
+        fill={C.blue}
       />
       <path
-        d="M9.6 21.6 c-2.2 1.4 -3 3.4 -1.8 5.4 c2.2 1 4.4 -0.2 5.4 -2.4"
-        stroke={C.purple}
-        strokeWidth={strokeWidth}
-      />
-      <path d="M12.2 19.4 c2.6 -2.4 5.1 -4.9 7.4 -7.2" stroke={C.brown} strokeWidth={strokeWidth + 0.6} />
-      <path
-        d="M19.4 12.2 c1 -1.2 2 -2.2 3 -3 c0.6 0.4 1 0.9 1.2 1.5 c-0.9 1 -1.9 2 -2.9 2.9"
-        fill={C.teal}
+        d="M11.6 30 c-2.8 1.8 -3.8 4.4 -2.2 7 c2.8 1.2 5.6 -0.2 6.8 -3"
         stroke={C.teal}
-        strokeWidth={strokeWidth}
+        strokeWidth={1.4}
       />
-      <path d="M6.8 9.4 c1.6 1 3.2 0.4 4.2 -1.2" stroke={C.green} strokeWidth={strokeWidth} />
-      <path d="M24.4 6.6 c-1.1 1.6 -0.5 3.2 1.2 4.2" stroke={C.red} strokeWidth={strokeWidth} />
+      {/* Metallring */}
+      <path d="M16 27 c1 -1 2 -1.8 3 -2.6" stroke={C.ink} strokeWidth={1.4} />
+      {/* Pinselgriff */}
+      <path
+        d="M24 19 c1.4 -1.6 3 -3 4.6 -4.2 c0.8 0.6 1.4 1.4 1.6 2.2 c-1.4 1.4 -2.8 2.6 -4.2 3.8"
+        fill={C.red}
+      />
+      <path
+        d="M24 19 c1.4 -1.6 3 -3 4.6 -4.2 c0.8 0.6 1.4 1.4 1.6 2.2 c-1.4 1.4 -2.8 2.6 -4.2 3.8"
+        stroke={C.red}
+        strokeWidth={1.4}
+      />
     </>,
     6,
     className
   );
 
-// 5. Übergangsrituale — Hand mit Wassertropfen
-export const WashIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 5. Übergangsrituale — Hände & Wassertropfen
+export const WashIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
+      {/* Wassertropfen */}
+      <path d="M28 7 c2 2.4 2.4 4 1 5 c-1.4 0.8 -2.6 -0.4 -2.4 -1.8 c0.2 -1 0.6 -1.8 1.4 -3.2 z" fill={C.blue} />
+      <path d="M32 13 c1.6 1.8 1.8 3 0.6 3.6 c-1.2 0.4 -1.8 -0.4 -1.6 -1.4 c0.1 -0.7 0.4 -1.2 1 -2.2 z" fill={C.sky} />
+      {/* Hand */}
       <path
-        d="M9.6 16.4 c1.6 -0.6 3 0.4 4 1.6 c0.4 -3.6 0.5 -6.6 0.4 -9 c1.2 -1.2 2.4 -0.9 2.6 0.6 c0.4 -1.4 2 -1.4 2.4 0.2 c0.5 -1.2 2 -1 2.3 0.5 c0.3 2.5 0.3 5 0 7.4 c-0.4 3.4 -2.6 5.4 -6 5.4 c-2.8 0 -4.6 -1.6 -5.8 -4 c-0.6 -1.1 -0.6 -2 0.1 -2.7 z"
+        d="M12 19 c2 -0.8 3.8 0.6 5 2 c0.6 -4.6 0.8 -8.4 0.6 -11.4 c1.6 -1.4 3 -1 3.2 0.8 c0.6 -1.8 2.6 -1.6 3 0.4 c0.6 -1.6 2.6 -1.2 2.8 0.8 c0.4 3.2 0.4 6.4 0 9.4 c-0.6 4.4 -3.4 7 -7.6 6.8 c-3.6 -0.2 -5.8 -2.2 -7.2 -5.2 l-2.4 -4.2 c-0.6 -1.4 1.4 -2.6 2.6 -1 z"
         fill={C.orange}
-        opacity="0.55"
       />
-      <path d="M11.2 9.2 c0.2 -1.6 2.2 -1.5 2.2 0.2 v6.2" stroke={C.brown} strokeWidth={strokeWidth} />
-      <path d="M13.4 15.4 v-4.2 c0 -1.5 2.1 -1.4 2.1 0.1 v4" stroke={C.brown} strokeWidth={strokeWidth} />
-      <path d="M15.5 15.2 v-3 c0 -1.4 2.1 -1.4 2.1 0.1 v2.9" stroke={C.brown} strokeWidth={strokeWidth} />
       <path
-        d="M17.6 15.2 v-2.1 c0 -1.4 2.2 -1.3 2.2 0.2 v5.1 c0 3.1 -2.2 5.2 -5.3 5.1 c-2.6 -0.1 -4.2 -1.7 -5.2 -3.7 l-1.9 -3.3 c-0.5 -1.2 1.1 -2.2 2.1 -0.9 l2 2.5"
+        d="M14 11 c0.2 -2 2.8 -1.8 2.8 0.4 v8"
         stroke={C.brown}
-        strokeWidth={strokeWidth}
+        strokeWidth={1.4}
       />
-      <path d="M22.6 6.4 c1.6 1.8 1.9 3 0.8 3.7 c-1.1 0.6 -2 -0.2 -1.8 -1.4 c0.1 -0.7 0.4 -1.4 1 -2.3 z" fill={C.teal} />
-      <path d="M26 12 c1.1 1.3 1.3 2.2 0.5 2.6 c-0.8 0.4 -1.4 -0.1 -1.3 -1 c0.1 -0.5 0.3 -1 0.8 -1.6 z" fill={C.blue} />
+      <path
+        d="M16.8 18.5 v-5.4 c0 -1.8 2.6 -1.6 2.6 0.2 v5"
+        stroke={C.brown}
+        strokeWidth={1.4}
+      />
+      <path
+        d="M19.4 18.2 v-3.8 c0 -1.8 2.6 -1.6 2.6 0.2 v3.6"
+        stroke={C.brown}
+        strokeWidth={1.4}
+      />
+      <path
+        d="M22 18.2 v-2.6 c0 -1.8 2.8 -1.6 2.8 0.4 v6.6 c0 4 -2.8 6.6 -6.8 6.4 c-3.4 -0.2 -5.4 -2.2 -6.6 -4.8 l-2.4 -4.2 c-0.6 -1.6 1.4 -2.8 2.6 -1.2 l2.6 3.2"
+        stroke={C.brown}
+        strokeWidth={1.4}
+      />
     </>,
     -5,
     className
   );
 
-// 6. Mittagessen — Teller mit Gabel & Löffel
-export const MealIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 6. Mittagessen — Teller mit Gesicht, Gabel & Löffel
+export const MealIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
+      {/* Gabel */}
+      <path d="M10 8 v6" stroke={C.blue} strokeWidth={1.6} />
+      <path d="M8.4 8 v4" stroke={C.blue} strokeWidth={1.6} />
+      <path d="M11.6 8 v3.8" stroke={C.blue} strokeWidth={1.6} />
+      <path d="M10 13.5 v9" stroke={C.blue} strokeWidth={1.6} />
+      {/* Löffel */}
       <path
-        d="M16.2 10.6 c4.4 -0.3 7.6 2.9 7.3 7 c-0.3 3.9 -3.4 6.6 -7.4 6.3 c-4 -0.3 -6.7 -3.3 -6.4 -7.3 c0.3 -3.5 2.8 -5.8 6.5 -6 z"
-        fill={C.green}
-        opacity="0.5"
+        d="M28 8 c-2 0.4 -2.8 2.2 -2.4 4.2 c0.2 1.2 0.8 2 1.6 2.4 v8"
+        stroke={C.purple}
+        strokeWidth={1.6}
+      />
+      {/* Teller */}
+      <path
+        d="M20 13 c5.6 -0.4 9.6 3.6 9.2 8.8 c-0.4 4.8 -4.2 8.2 -9.2 8 c-5 -0.2 -8.4 -4 -8 -8.6 c0.4 -4.4 3.4 -7.2 8 -8.2 z"
+        fill={C.cream}
       />
       <path
-        d="M16.2 10.6 c4.4 -0.3 7.6 2.9 7.3 7 c-0.3 3.9 -3.4 6.6 -7.4 6.3 c-4 -0.3 -6.7 -3.3 -6.4 -7.3 c0.3 -3.5 2.8 -5.8 6.5 -6 z"
-        stroke={C.green}
-        strokeWidth={strokeWidth}
+        d="M20 13 c5.6 -0.4 9.6 3.6 9.2 8.8 c-0.4 4.8 -4.2 8.2 -9.2 8 c-5 -0.2 -8.4 -4 -8 -8.6 c0.4 -4.4 3.4 -7.2 8 -8.2 z"
+        stroke={C.greenDeep}
+        strokeWidth={1.6}
       />
-      <path d="M13.4 15.8 c1.8 -1.2 3.8 -1.2 5.6 0.2" stroke={C.red} strokeWidth={strokeWidth} />
-      <path d="M9.8 8.6 v5.6" stroke={C.blue} strokeWidth={strokeWidth} />
-      <path d="M8.2 8.6 v3.6" stroke={C.blue} strokeWidth={strokeWidth} />
-      <path d="M11.4 8.8 v3.4" stroke={C.blue} strokeWidth={strokeWidth} />
-      <path d="M22.2 8.6 c-1.6 0.2 -2.2 1.6 -2 3.2 c0.2 1.5 1.1 2.3 2.2 2.3 v4" stroke={C.purple} strokeWidth={strokeWidth} />
+      {/* Essen im Teller */}
+      <ellipse cx={20} cy={20.5} rx={4.2} ry={3} fill={C.red} opacity={0.8} />
+      <ellipse cx={22.5} cy={19.5} rx={1.8} ry={1.3} fill={C.green} opacity={0.8} />
+      <Face cx={18} cy={20.5} spread={1.4} smile={1.5} />
     </>,
     4,
     className
   );
 
-// 7. Schlafenszeit — Mond mit Sternchen
-export const SleepIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 7. Schlafenszeit — Mond mit Schlafmütze & Sterne
+export const SleepIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
+      {/* Sterne */}
       <path
-        d="M21.4 5.8 c-4.8 0.8 -8 4.4 -7.6 8.9 c0.4 4.6 4.3 7.6 9 7 c-1.9 3.2 -6 4.6 -9.6 3.2 c-4 -1.6 -6.2 -5.8 -5.2 -10 c1 -4.2 5 -7 9.4 -6.6 c1.4 0.1 2.6 0.5 4 -2.5 z"
+        d="M11 7 l0.8 1.6 l1.6 0.8 l-1.6 0.8 l-0.8 1.6 l-0.8 -1.6 l-1.6 -0.8 l1.6 -0.8 z"
+        fill={C.yellow}
+      />
+      <path
+        d="M31 18 l0.6 1.2 l1.2 0.6 l-1.2 0.6 l-0.6 1.2 l-0.6 -1.2 l-1.2 -0.6 l1.2 -0.6 z"
+        fill={C.pink}
+      />
+      {/* Mond */}
+      <path
+        d="M26 7 c-6 1 -10 5.6 -9.6 11.4 c0.4 5.8 5.4 9.6 11.2 8.8 c-2.4 4 -7.6 5.8 -12 4 c-5 -2 -7.6 -7.4 -6.4 -12.6 c1.2 -5.2 6.2 -8.8 11.6 -8.4 c1.8 0.2 3.2 0.6 5.2 -3.2 z"
         fill={C.blue}
-        opacity="0.65"
       />
       <path
-        d="M20.8 6 c-4.4 0.9 -7.2 4.4 -6.8 8.6 c0.4 4.3 3.9 7.2 8.4 6.9 c-1.9 3.3 -6.1 4.7 -9.7 3.2 c-4 -1.7 -6.1 -5.9 -5 -10.1 c1.1 -4.1 5 -6.9 9.3 -6.4"
+        d="M25.4 7.4 c-5.6 1.2 -9 5.6 -8.6 11 c0.4 5.4 4.8 9.2 10.4 8.8 c-2.4 4.2 -7.6 6 -12.2 4 c-5 -2.2 -7.6 -7.6 -6.2 -12.8 c1.4 -5.2 6.2 -8.8 11.6 -8.2"
         stroke={C.purple}
-        strokeWidth={strokeWidth}
+        strokeWidth={1.5}
       />
-      <path d="M11.4 6.6 l1 2 l2 1 l-2 1 l-1 2 l-1 -2 l-2 -1 l2 -1 z" fill={C.yellow} stroke={C.yellow} strokeWidth="1" />
-      <path d="M25.4 15.6 l0.7 1.4 l1.4 0.7 l-1.4 0.7 l-0.7 1.4 l-0.7 -1.4 l-1.4 -0.7 l1.4 -0.7 z" fill={C.pink} stroke={C.pink} strokeWidth="1" />
+      {/* Schlafmütze */}
+      <path d="M19 9 c1.4 -2 3 -2.6 4.6 -2.2" stroke={C.red} strokeWidth={1.5} />
+      {/* geschlossene Augen */}
+      <path d="M19.5 14.5 c0.8 0.6 1.6 0.6 2.4 0" stroke={C.ink} strokeWidth={0.9} />
+      <path d="M22.5 14.5 c0.8 0.6 1.6 0.6 2.4 0" stroke={C.ink} strokeWidth={0.9} />
+      {/* Zzz */}
+      <path d="M30 8 c0 1 -0.6 1.2 -1.2 1.2 h1.2" stroke={C.purple} strokeWidth={0.8} fill="none" />
     </>,
     -7,
     className
   );
 
-// 8. Abholzeit — kleines schiefes Haus
-export const HomeIcon = ({ size = 18, strokeWidth = 2, className }: IconProps) =>
+// 8. Abholzeit — schiefes Häuschen mit Gesicht
+export const HomeIcon = ({ size = 18, className }: IconProps) =>
   base(
     size,
     <>
-      <path d="M6 15.4 l10 -8.2 l10.2 8 l-2 0.6 l-16.4 0.2 z" fill={C.red} opacity="0.75" />
-      <path d="M8.2 14.6 c-0.4 4 -0.4 8 0 11.8 c5.3 0.3 10.5 0.3 15.6 0 c0.3 -3.9 0.3 -7.9 0 -11.8 z" fill={C.yellow} opacity="0.6" />
-      <path d="M5.8 15.6 c3.4 -3 6.8 -5.8 10.2 -8.4 c3.5 2.6 6.9 5.4 10.2 8.2" stroke={C.red} strokeWidth={strokeWidth} />
-      <path d="M8.2 14.4 c-0.3 4.1 -0.3 8.1 0 12 c5.3 0.3 10.6 0.3 15.8 0 c0.3 -4 0.3 -8 0 -12" stroke={C.brown} strokeWidth={strokeWidth} />
-      <path d="M13.8 26.2 c-0.2 -2.2 -0.2 -4.3 0 -6.2 c1.5 -0.2 2.9 -0.2 4.3 0 c0.2 2 0.2 4.1 0 6.2" stroke={C.teal} strokeWidth={strokeWidth} />
+      {/* Dach */}
+      <path
+        d="M7 17 L20 7.5 L33 16.5 L31 17.5 L9 17.5 z"
+        fill={C.red}
+      />
+      <path d="M7 17 c4.4 -3.6 8.6 -6.8 13 -9.5 c4.4 2.6 8.6 5.8 13 9" stroke={C.red} strokeWidth={1.6} />
+      {/* Wand */}
+      <path
+        d="M10 16.5 c-0.4 5 -0.4 10 0 14.8 c6.6 0.4 13.4 0.4 20 0 c0.4 -5 0.4 -9.8 0 -14.8 z"
+        fill={C.yellow}
+      />
+      <path
+        d="M10 16.5 c-0.4 5 -0.4 10 0 14.8 c6.6 0.4 13.4 0.4 20 0 c0.4 -5 0.4 -9.8 0 -14.8"
+        stroke={C.brown}
+        strokeWidth={1.6}
+      />
+      {/* Tür */}
+      <path
+        d="M17 31.4 c-0.2 -3 -0.2 -5.8 0 -8 c2 -0.2 4 -0.2 6 0 c0.2 2.2 0.2 5 0 8"
+        fill={C.teal}
+        stroke={C.greenDeep}
+        strokeWidth={1.4}
+      />
+      {/* Fenster = Gesicht */}
+      <Face cx={20} cy={22} spread={2.4} smile={1.6} />
     </>,
     3,
     className
