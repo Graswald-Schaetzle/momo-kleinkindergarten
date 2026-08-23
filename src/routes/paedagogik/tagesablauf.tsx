@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
+import { useState } from "react";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -11,7 +12,7 @@ import {
   HomeIcon,
 } from "@/components/ChildIcons";
 
-type ChildIcon = ComponentType<{ size?: number; strokeWidth?: number }>;
+type ChildIcon = ComponentType<{ size?: number; className?: string }>;
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
   head: () => ({
@@ -37,10 +38,16 @@ export const Route = createFileRoute("/paedagogik/tagesablauf")({
   component: TagesablaufPage,
 });
 
-const schedule: { time: string; title: string; text: string; highlights?: string[]; icon: ChildIcon }[] = [
+const schedule: {
+  time: string;
+  title: string;
+  text: string;
+  highlights?: string[];
+  icon: ChildIcon;
+}[] = [
   {
     time: "07:45–09:15",
-    title: "Ankommen & offenes Frühstück",
+    title: "Ankommen & Frühstück",
     text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet, jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
     icon: BreakfastIcon,
   },
@@ -73,13 +80,13 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   },
   {
     time: "11:30",
-    title: "Rückkehr & Übergangsrituale",
+    title: "Übergangsrituale",
     text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- und Handwäsche schafft Bewusstsein und Entspannung.",
     icon: WashIcon,
   },
   {
     time: "11:45–12:15",
-    title: "Gemeinsames Mittagessen",
+    title: "Mittagessen",
     text: "Unser Tisch wird mit Blumendekoration geschmückt, und feste Rituale wie das gemeinsame Anzünden einer Kerze und ein Lied vor dem Essen schaffen einen vertrauten Rahmen. Statt Wegwerfprodukten verwenden wir Stoffservietten und Lätzchen für Nachhaltigkeit und Geborgenheit zugleich.",
     icon: MealIcon,
   },
@@ -92,40 +99,31 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "Bis 13:45",
     title: "Abholzeit",
-    text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
+    text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet, ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
     icon: HomeIcon,
   },
 ];
 
-function Connector({ mirrored }: { mirrored: boolean }) {
-  const d = mirrored
-    ? "M 50 0 C 92 28, 92 72, 50 100"
-    : "M 50 0 C 8 28, 8 72, 50 100";
-  return (
-    <div className="pointer-events-none hidden h-28 w-full md:block" aria-hidden="true">
-      <svg
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className="h-full w-full"
-      >
-        <path
-          d={d}
-          fill="none"
-          stroke="currentColor"
-          className="text-bordeaux/60"
-          strokeWidth="0.7"
-          strokeLinecap="round"
-          strokeDasharray="2.2 3.2"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-    </div>
-  );
+/* Kreis-Geometrie */
+const CX = 300;
+const CY = 300;
+const R_ICON = 232; // Radius der Icons
+const R_LABEL = 232;
+
+function pos(i: number, radius: number) {
+  // 8 Stationen, beginnend oben (12 Uhr), im Uhrzeigersinn
+  const angle = (-90 + i * 45) * (Math.PI / 180);
+  return {
+    x: CX + radius * Math.cos(angle),
+    y: CY + radius * Math.sin(angle),
+  };
 }
 
 function TagesablaufPage() {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <section className="mx-auto max-w-3xl px-6 pt-20 sm:px-10 md:max-w-4xl md:px-14 md:pt-24">
+    <section className="mx-auto max-w-3xl px-6 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
       <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
         Unser Tagesablauf
       </h2>
@@ -133,69 +131,169 @@ function TagesablaufPage() {
       <p className="mx-auto mt-4 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-6 sm:text-sm md:text-base">
         Der Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
-        einzugehen.
+        einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
-      <div className="relative mt-10 sm:mt-14 md:mt-16">
-        {/* Gestrichelter Pfad (mobil: senkrecht) */}
-        <div
-          aria-hidden="true"
-          className="absolute left-[7px] top-2 bottom-8 w-px border-l border-dashed border-bordeaux/50 md:hidden"
-        />
+      {/* ===== Desktop / Tablet: Uhr-Kreis ===== */}
+      <div className="relative mx-auto mt-10 hidden aspect-square w-full max-w-[640px] sm:block md:mt-14">
+        <svg viewBox="0 0 600 600" className="h-full w-full" role="img" aria-label="Tagesablauf als Uhr">
+          {/* gestrichelter Kreis */}
+          <circle
+            cx={CX}
+            cy={CY}
+            r={R_ICON - 34}
+            fill="none"
+            stroke="currentColor"
+            className="text-bordeaux/40"
+            strokeWidth={1.2}
+            strokeDasharray="4 5"
+          />
+          {/* Stunden-Markierungen */}
+          {Array.from({ length: 8 }).map((_, i) => {
+            const a = (-90 + i * 45) * (Math.PI / 180);
+            const x1 = CX + (R_ICON - 48) * Math.cos(a);
+            const y1 = CY + (R_ICON - 48) * Math.sin(a);
+            const x2 = CX + (R_ICON - 40) * Math.cos(a);
+            const y2 = CY + (R_ICON - 40) * Math.sin(a);
+            return (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="currentColor"
+                className="text-bordeaux/40"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+            );
+          })}
+        </svg>
 
+        {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
-          const isLeft = i % 2 === 0;
+          const { x, y } = pos(i, R_ICON);
+          const leftPct = (x / 600) * 100;
+          const topPct = (y / 600) * 100;
           const Icon = item.icon;
+          const isOpen = open === i;
+          // Textausrichtung je nach Position
+          const isRight = leftPct > 62;
+          const isLeft = leftPct < 38;
+          const align = isLeft ? "items-end text-right" : isRight ? "items-start text-left" : "items-center text-center";
+          const translateX = isLeft ? "-100%" : isRight ? "0%" : "-50%";
           return (
-            <div key={item.time}>
-              <div className="relative mb-8 pl-8 sm:mb-10 md:mb-0 md:pl-0">
-                {/* Symbol (mobil) */}
-                <span
-                  aria-hidden="true"
-                  className="absolute -left-1 top-0 flex items-center justify-center md:hidden"
-                >
-                  <Icon size={34} />
+            <button
+              key={item.time}
+              type="button"
+              onClick={() => setOpen(isOpen ? null : i)}
+              className="absolute flex flex-col"
+              style={{
+                left: `${leftPct}%`,
+                top: `${topPct}%`,
+                transform: `translate(${translateX}, -50%)`,
+              }}
+              aria-expanded={isOpen}
+            >
+              <span className={`flex flex-col ${align}`}>
+                <span className="flex justify-center">
+                  <Icon size={60} />
                 </span>
+                <span className="mt-1 font-display text-[11px] font-normal tracking-wide text-bordeaux md:text-xs">
+                  {item.time}
+                </span>
+                <span
+                  className={`font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
+                    isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
+                  }`}
+                >
+                  {item.title}
+                </span>
+              </span>
+            </button>
+          );
+        })}
 
-                <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-[1fr_auto_1fr] md:gap-6">
-                  {/* Text-Spalte */}
-                  <div
-                    className={`${isLeft ? "md:order-1 md:text-right" : "md:order-3 md:text-left"}`}
-                  >
-                    <span className="font-display text-sm font-normal tracking-wide text-bordeaux sm:text-base md:text-lg">
-                      {item.time}
-                    </span>
-                    <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg md:text-xl">
-                      {item.title}
-                    </h4>
-                    <p className="mt-1.5 text-[11px] leading-snug text-foreground/85 sm:mt-2 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed">
-                      {item.text}
-                    </p>
-                    {item.highlights && (
-                      <ul className="mt-2 space-y-1 text-[11px] leading-snug text-foreground/85 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed">
-                        {item.highlights.map((h, j) => (
-                          <li key={j} className="flex gap-2 md:block">
-                            <span className="text-bordeaux/50 md:hidden">·</span>
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
+        {/* Zentrum: Detail-Feld */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="pointer-events-auto flex max-h-[230px] w-[58%] max-w-[280px] flex-col items-center overflow-y-auto rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center backdrop-blur-sm">
+            {open !== null ? (
+              <>
+                <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
+                  {schedule[open].time}
+                </span>
+                <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
+                  {schedule[open].title}
+                </h4>
+                <p className="mt-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-[12px]">
+                  {schedule[open].text}
+                </p>
+                {schedule[open].highlights && (
+                  <ul className="mt-1.5 space-y-0.5 text-left text-[10px] leading-snug text-foreground/80 md:text-[11px]">
+                    {schedule[open].highlights!.map((h, j) => (
+                      <li key={j} className="flex gap-1.5">
+                        <span className="text-bordeaux/50">·</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            ) : (
+              <p className="text-[11px] font-light text-foreground/60 md:text-xs">
+                Tippe auf eine Station des Tages, um mehr zu erfahren.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
 
-                  {/* Symbol (Desktop) */}
-                  <div className="hidden md:order-2 md:flex md:justify-center">
-                    <span className="flex items-center justify-center">
-                      <Icon size={56} />
-                    </span>
-                  </div>
-
-                  {/* leere Gegenspalte */}
-                  <div className={`hidden md:block ${isLeft ? "md:order-3" : "md:order-1"}`} />
+      {/* ===== Mobil: gestapelte Akkordeon-Liste ===== */}
+      <div className="mt-8 sm:hidden">
+        {schedule.map((item, i) => {
+          const Icon = item.icon;
+          const isOpen = open === i;
+          return (
+            <div key={item.time} className="border-b border-bordeaux/15">
+              <button
+                type="button"
+                onClick={() => setOpen(isOpen ? null : i)}
+                className="flex w-full items-center gap-3 py-3 text-left"
+                aria-expanded={isOpen}
+              >
+                <span className="shrink-0">
+                  <Icon size={40} />
+                </span>
+                <span className="flex flex-1 flex-col">
+                  <span className="font-display text-[11px] font-normal tracking-wide text-bordeaux/70">
+                    {item.time}
+                  </span>
+                  <span className="font-display text-sm font-normal tracking-[0.03em] text-bordeaux">
+                    {item.title}
+                  </span>
+                </span>
+                <span className={`text-bordeaux/50 transition-transform ${isOpen ? "rotate-90" : ""}`}>
+                  ›
+                </span>
+              </button>
+              {isOpen && (
+                <div className="pb-4 pl-12 pr-2">
+                  <p className="text-[11px] leading-relaxed text-foreground/85">
+                    {item.text}
+                  </p>
+                  {item.highlights && (
+                    <ul className="mt-2 space-y-1 text-[11px] leading-snug text-foreground/80">
+                      {item.highlights.map((h, j) => (
+                        <li key={j} className="flex gap-1.5">
+                          <span className="text-bordeaux/50">·</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-              </div>
-
-              {i < schedule.length - 1 && <Connector mirrored={!isLeft} />}
+              )}
             </div>
           );
         })}
@@ -203,4 +301,3 @@ function TagesablaufPage() {
     </section>
   );
 }
-
