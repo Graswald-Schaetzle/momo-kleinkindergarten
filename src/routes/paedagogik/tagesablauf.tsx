@@ -291,6 +291,9 @@ function TagesablaufPage() {
                 >
                   {item.title}
                 </span>
+                <span className="mt-0.5 font-display text-[8px] font-light leading-tight text-bordeaux/60 sm:text-[10px] md:text-xs">
+                  {item.time}
+                </span>
               </span>
             </button>
           );
