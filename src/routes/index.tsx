@@ -5,6 +5,7 @@ import heroVideo from "@/assets/momo-hund3.mp4.asset.json";
 import heroVideoWebm from "@/assets/momo-hund3.webm.asset.json";
 import heroPoster from "@/assets/momo-hund3-poster.jpg.asset.json";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
+import sternAsset from "@/assets/stern-pappe.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
