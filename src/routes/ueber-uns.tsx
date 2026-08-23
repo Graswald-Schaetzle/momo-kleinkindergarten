@@ -40,6 +40,7 @@ type Section = {
   text: string;
   imgMax?: string;
   imgFill?: boolean;
+  imgPosition?: string;
 };
 
 const sections: Section[] = [
