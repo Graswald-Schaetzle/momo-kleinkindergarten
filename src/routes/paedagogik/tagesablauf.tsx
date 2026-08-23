@@ -76,6 +76,32 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   },
 ];
 
+function Connector({ mirrored }: { mirrored: boolean }) {
+  const d = mirrored
+    ? "M 50 0 C 92 28, 92 72, 50 100"
+    : "M 50 0 C 8 28, 8 72, 50 100";
+  return (
+    <div className="pointer-events-none hidden h-28 w-full md:block" aria-hidden="true">
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="h-full w-full"
+      >
+        <path
+          d={d}
+          fill="none"
+          stroke="currentColor"
+          className="text-bordeaux/60"
+          strokeWidth="0.7"
+          strokeLinecap="round"
+          strokeDasharray="2.2 3.2"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </div>
+  );
+}
+
 function TagesablaufPage() {
   return (
     <section className="mx-auto max-w-3xl px-6 pt-20 sm:px-10 md:max-w-4xl md:px-14 md:pt-24">
@@ -90,40 +116,63 @@ function TagesablaufPage() {
       </p>
 
       <div className="relative mt-10 sm:mt-14 md:mt-16">
-        {/* Vertical line removed */}
+        {/* Gestrichelter Pfad (mobil: senkrecht) */}
+        <div
+          aria-hidden="true"
+          className="absolute left-[7px] top-2 bottom-8 w-px border-l border-dashed border-bordeaux/50 md:hidden"
+        />
 
         {schedule.map((item, i) => {
           const isLeft = i % 2 === 0;
           return (
-            <div key={item.time} className="relative mb-8 sm:mb-12 md:mb-14">
-              <div className="grid grid-cols-1 items-start gap-1 md:grid-cols-2 md:gap-10">
-                {/* Time */}
-                <div className={`flex items-center gap-3 md:flex-col md:items-end md:gap-1 ${isLeft ? "md:order-1" : "md:order-2"}`}>
-                  <span className={`font-display text-sm font-normal tracking-wide text-bordeaux sm:text-base md:text-lg ${isLeft ? "md:text-right" : "md:text-left md:order-2"}`}>
-                    {item.time}
-                  </span>
-                </div>
+            <div key={item.time}>
+              <div className="relative mb-8 pl-8 sm:mb-10 md:mb-0 md:pl-0">
+                {/* Punkt */}
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full bg-bordeaux md:hidden"
+                />
 
-                {/* Content */}
-                <div className={`pl-6 md:pl-0 ${isLeft ? "md:order-2 md:pl-6" : "md:order-1 md:pr-6 md:text-right"}`}>
-                  <h4 className="font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg md:text-xl">
-                    {item.title}
-                  </h4>
-                  <p className={`mt-1.5 text-justify text-[11px] leading-snug text-foreground/85 sm:mt-2 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed ${!isLeft ? "md:ml-auto md:text-right" : ""}`}>
-                    {item.text}
-                  </p>
-                  {item.highlights && (
-                    <ul className={`mt-2 space-y-1 text-[11px] leading-snug text-foreground/85 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed ${!isLeft ? "md:ml-auto md:max-w-md md:text-right" : ""}`}>
-                      {item.highlights.map((h, j) => (
-                        <li key={j} className="flex gap-2 md:inline-block">
-                          <span className="text-bordeaux/50">·</span>
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-[1fr_auto_1fr] md:gap-6">
+                  {/* Text-Spalte */}
+                  <div
+                    className={`${isLeft ? "md:order-1 md:text-right" : "md:order-3 md:text-left"}`}
+                  >
+                    <span className="font-display text-sm font-normal tracking-wide text-bordeaux sm:text-base md:text-lg">
+                      {item.time}
+                    </span>
+                    <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg md:text-xl">
+                      {item.title}
+                    </h4>
+                    <p className="mt-1.5 text-[11px] leading-snug text-foreground/85 sm:mt-2 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed">
+                      {item.text}
+                    </p>
+                    {item.highlights && (
+                      <ul className="mt-2 space-y-1 text-[11px] leading-snug text-foreground/85 sm:text-sm sm:leading-relaxed md:text-[15px] md:leading-relaxed">
+                        {item.highlights.map((h, j) => (
+                          <li key={j} className="flex gap-2 md:block">
+                            <span className="text-bordeaux/50 md:hidden">·</span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {/* Punkt (Desktop) */}
+                  <div className="hidden md:order-2 md:flex md:justify-center">
+                    <span
+                      aria-hidden="true"
+                      className="h-4 w-4 rounded-full bg-bordeaux"
+                    />
+                  </div>
+
+                  {/* leere Gegenspalte */}
+                  <div className={`hidden md:block ${isLeft ? "md:order-3" : "md:order-1"}`} />
                 </div>
               </div>
+
+              {i < schedule.length - 1 && <Connector mirrored={!isLeft} />}
             </div>
           );
         })}
@@ -131,3 +180,4 @@ function TagesablaufPage() {
     </section>
   );
 }
+
