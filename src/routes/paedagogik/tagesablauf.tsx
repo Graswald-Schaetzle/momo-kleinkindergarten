@@ -107,8 +107,8 @@ const schedule: {
 /* Kreis-Geometrie */
 const CX = 300;
 const CY = 300;
-const R_ICON = 232; // Radius der Icons
-const R_LABEL = 232;
+const R_ICON = 240; // Radius der Icons (außerhalb des Kreises)
+const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 
 function pos(i: number, radius: number) {
   // 8 Stationen, beginnend oben (12 Uhr), im Uhrzeigersinn
@@ -141,7 +141,7 @@ function TagesablaufPage() {
           <circle
             cx={CX}
             cy={CY}
-            r={R_ICON - 34}
+            r={R_TIME}
             fill="none"
             stroke="currentColor"
             className="text-bordeaux/40"
@@ -151,10 +151,10 @@ function TagesablaufPage() {
           {/* Stunden-Markierungen */}
           {Array.from({ length: 8 }).map((_, i) => {
             const a = (-90 + i * 45) * (Math.PI / 180);
-            const x1 = CX + (R_ICON - 48) * Math.cos(a);
-            const y1 = CY + (R_ICON - 48) * Math.sin(a);
-            const x2 = CX + (R_ICON - 40) * Math.cos(a);
-            const y2 = CY + (R_ICON - 40) * Math.sin(a);
+            const x1 = CX + (R_TIME + 10) * Math.cos(a);
+            const y1 = CY + (R_TIME + 10) * Math.sin(a);
+            const x2 = CX + (R_TIME + 18) * Math.cos(a);
+            const y2 = CY + (R_TIME + 18) * Math.sin(a);
             return (
               <line
                 key={i}
@@ -167,6 +167,28 @@ function TagesablaufPage() {
                 strokeWidth={2}
                 strokeLinecap="round"
               />
+            );
+          })}
+          {/* Zeit-Labels direkt auf der Kreisbahn */}
+          {schedule.map((item, i) => {
+            const { x, y } = pos(i, R_TIME);
+            return (
+              <text
+                key={`time-${item.time}`}
+                x={x}
+                y={y}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="font-display"
+                fontSize={item.time.length > 10 ? 9.5 : 11}
+                fill="currentColor"
+                stroke="#F3EFE3"
+                strokeWidth={3}
+                paintOrder="stroke"
+                style={{ letterSpacing: "0.02em" }}
+              >
+                <tspan className="fill-bordeaux">{item.time}</tspan>
+              </text>
             );
           })}
         </svg>
@@ -200,11 +222,8 @@ function TagesablaufPage() {
                 <span className="flex justify-center">
                   <Icon size={60} />
                 </span>
-                <span className="mt-1 font-display text-[11px] font-normal tracking-wide text-bordeaux md:text-xs">
-                  {item.time}
-                </span>
                 <span
-                  className={`font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
+                  className={`mt-1 font-display text-[12px] font-normal leading-tight tracking-[0.03em] text-bordeaux md:text-sm ${
                     isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
                   }`}
                 >
