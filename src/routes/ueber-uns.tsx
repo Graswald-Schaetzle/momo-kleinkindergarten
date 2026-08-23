@@ -121,7 +121,7 @@ function UeberUns() {
               </div>
 
               <div
-                className={`${imageFirst ? "order-1" : "order-2"} flex h-full items-center justify-center`}
+                className={`${imageFirst ? "order-1" : "order-2"} flex h-full ${section.imgAlign ?? "items-center"} justify-center`}
               >
                 {section.video ? (
                   <video
