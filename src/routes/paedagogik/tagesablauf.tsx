@@ -72,7 +72,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "Bis 13:45",
     title: "Abholzeit",
-    text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet — ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
+    text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
   },
 ];
 
