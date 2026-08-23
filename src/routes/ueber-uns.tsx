@@ -7,7 +7,7 @@ import ruheImg from "@/assets/ueberuns-ruhe-symbol.png";
 import ganzheitlichkeitImg from "@/assets/ueberuns-ganzheitlichkeit-2-clean2.png";
 import ganzheitlichkeitVideo from "@/assets/film-ganzheitlichkeit.mp4.asset.json";
 import naturImg from "@/assets/ueberuns-natur-recolored.png";
-import eigenstaendigkeitImg from "@/assets/ueberuns-eigenstaendigkeit-watercolor.png";
+import eigenstaendigkeitImg from "@/assets/ueberuns-eigenstaendigkeit-ink.png";
 
 export const Route = createFileRoute("/ueber-uns")({
   head: () => ({
