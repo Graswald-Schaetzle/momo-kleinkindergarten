@@ -141,7 +141,7 @@ function TagesablaufPage() {
           <circle
             cx={CX}
             cy={CY}
-            r={R_ICON - 34}
+            r={R_TIME}
             fill="none"
             stroke="currentColor"
             className="text-bordeaux/40"
@@ -151,10 +151,10 @@ function TagesablaufPage() {
           {/* Stunden-Markierungen */}
           {Array.from({ length: 8 }).map((_, i) => {
             const a = (-90 + i * 45) * (Math.PI / 180);
-            const x1 = CX + (R_ICON - 48) * Math.cos(a);
-            const y1 = CY + (R_ICON - 48) * Math.sin(a);
-            const x2 = CX + (R_ICON - 40) * Math.cos(a);
-            const y2 = CY + (R_ICON - 40) * Math.sin(a);
+            const x1 = CX + (R_TIME + 10) * Math.cos(a);
+            const y1 = CY + (R_TIME + 10) * Math.sin(a);
+            const x2 = CX + (R_TIME + 18) * Math.cos(a);
+            const y2 = CY + (R_TIME + 18) * Math.sin(a);
             return (
               <line
                 key={i}
@@ -167,6 +167,27 @@ function TagesablaufPage() {
                 strokeWidth={2}
                 strokeLinecap="round"
               />
+            );
+          })}
+          {/* Zeit-Labels direkt auf der Kreisbahn */}
+          {schedule.map((item, i) => {
+            const { x, y } = pos(i, R_TIME);
+            const angle = -90 + i * 45;
+            // Text nicht drehen — kurze Labels bleiben waagerecht lesbar
+            return (
+              <text
+                key={`time-${item.time}`}
+                x={x}
+                y={y}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="font-display"
+                fontSize={item.time.length > 10 ? 10 : 11}
+                fill="currentColor"
+                style={{ letterSpacing: "0.02em" }}
+              >
+                <tspan className="fill-bordeaux/80">{item.time}</tspan>
+              </text>
             );
           })}
         </svg>
