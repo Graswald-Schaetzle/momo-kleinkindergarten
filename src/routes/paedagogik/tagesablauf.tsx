@@ -107,8 +107,8 @@ const schedule: {
 /* Kreis-Geometrie */
 const CX = 300;
 const CY = 300;
-const R_ICON = 232; // Radius der Icons
-const R_LABEL = 232;
+const R_ICON = 240; // Radius der Icons (außerhalb des Kreises)
+const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 
 function pos(i: number, radius: number) {
   // 8 Stationen, beginnend oben (12 Uhr), im Uhrzeigersinn
