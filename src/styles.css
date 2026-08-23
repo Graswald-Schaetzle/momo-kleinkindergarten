@@ -73,8 +73,11 @@
   --radius: 0.625rem;
   --background: #F3EFE3;
   --bordeaux: oklch(0.34 0.11 25);
-  --clock: #E98D5F;
-  --ink: #1B1917;
+  --clock: #EE3B44;
+  --clock-face: #ECE79E;
+  --clock-eye: #2E7FB2;
+  --clock-foot: #E5482A;
+  --ink: #2B1B26;
   --menu-overlay: #4C6379;
   --menu-overlay-foreground: #C8912F;
   --foreground: oklch(0.129 0.042 264.695);
