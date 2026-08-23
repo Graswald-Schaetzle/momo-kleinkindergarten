@@ -43,12 +43,14 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "10:25–11:30",
     title: "Gemeinsame Aktivität",
-    text: "Je nach Tag erleben die Kinder unterschiedliche Schwerpunkte:",
+    text: "Der Alltag ist geprägt von viel Freispiel – ergänzt durch wechselnde Angebote, die je nach Tag unterschiedliche Schwerpunkte setzen:",
     highlights: [
       "Musikpädagogin mit Liedern, Instrumenten und Bewegung",
+      "Kunsttherapeutin mit Bastelaktivitäten",
       "Spaziergänge in die nähere Umgebung",
       "Spielplatzbesuche oder Naturerkundungen",
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
+      "Backen",
     ],
   },
   {
