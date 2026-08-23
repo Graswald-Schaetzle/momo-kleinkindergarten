@@ -272,6 +272,7 @@ function TagesablaufPage() {
 
             {/* Zeiger: dreht sich dauerhaft, hält bei Auswahl an */}
             <g
+              filter="url(#cutEdge)"
               className={open === null ? "momo-hand-spin" : undefined}
               style={
                 open !== null
@@ -297,6 +298,7 @@ function TagesablaufPage() {
               </g>
 
               <circle cx={CX} cy={CY} r={16} fill="var(--ink)" />
+              <circle cx={CX - 4} cy={CY - 5} r={5} fill="#5A4652" opacity={0.7} />
             </g>
           </g>
 
