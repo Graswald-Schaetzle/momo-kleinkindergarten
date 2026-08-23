@@ -1,15 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
 import {
-  Coffee,
-  Blocks,
-  Users,
-  Palette,
-  Droplets,
-  UtensilsCrossed,
-  Moon,
-  DoorOpen,
-} from "lucide-react";
+  BreakfastIcon,
+  PlayIcon,
+  CircleIcon,
+  BrushIcon,
+  WashIcon,
+  MealIcon,
+  SleepIcon,
+  HomeIcon,
+} from "@/components/ChildIcons";
+
+type ChildIcon = ComponentType<{ size?: number; strokeWidth?: number }>;
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
   head: () => ({
