@@ -62,7 +62,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
   {
     time: "11:45–12:15",
     title: "Gemeinsames Mittagessen",
-    text: "Ein Vorhang trennt den Essbereich liebevoll vom Spielraum ab. Gedeckt wird der Tisch mit saisonaler Blumendekoration, und feste Rituale wie das gemeinsame Anzünden einer Kerze und ein Lied vor dem Essen schaffen einen vertrauten Rahmen. Statt Wegwerfprodukten verwenden wir Stoffservietten für Nachhaltigkeit und Geborgenheit zugleich.\u00a0",
+    text: "Unser Tisch wird mit Blumendekoration geschmückt, und feste Rituale wie das gemeinsame Anzünden einer Kerze und ein Lied vor dem Essen schaffen einen vertrauten Rahmen. Statt Wegwerfprodukten verwenden wir Stoffservietten für Nachhaltigkeit und Geborgenheit zugleich.",
   },
   {
     time: "12:30–Bedarf",
