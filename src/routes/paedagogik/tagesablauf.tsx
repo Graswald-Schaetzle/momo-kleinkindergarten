@@ -47,7 +47,7 @@ const schedule: { time: string; title: string; text: string; highlights?: string
     highlights: [
       "Besuch von einer Musikpädagogin mit Liedern, Instrumenten und Bewegung",
       "Besuch von einer Kunsttherapeutin mit Bastelaktivitäten",
-      "Besuch von einer Yogalehrerin und Tanzpädgogin",
+      "Besuch von einer Yogalehrerin und Tanzpädagogin",
       "Spaziergänge in die nähere Umgebung",
       "Spielplatzbesuche oder Naturerkundungen",
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
