@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   BreakfastIcon,
   PlayIcon,
