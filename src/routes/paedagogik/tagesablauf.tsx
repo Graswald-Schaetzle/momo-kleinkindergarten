@@ -110,6 +110,8 @@ const CX = 300;
 const CY = 300;
 const R_ICON = 240; // Radius der Icons (außerhalb des Kreises)
 const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
+const KNOB = 74; // Überstand des Knopfs oben
+const FOOT = 92; // Überstand der Füße unten
 
 /* unregelmäßiges Vieleck – wirkt wie mit der Schere geschnitten */
 function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.03) {
@@ -141,7 +143,10 @@ function TagesablaufPage() {
     setShake((s) => s + 1);
   };
   const isMobile = useIsMobile();
-  const rRing = isMobile ? 128 : R_TIME;
+  const rRing = isMobile ? 96 : R_TIME;
+  const knobExt = isMobile ? KNOB * 0.3 : KNOB;
+  const footExt = isMobile ? FOOT * 0.3 : FOOT;
+  const stationR = isMobile ? 242 : 298;
 
   return (
     <section className="mx-auto max-w-3xl px-3 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
@@ -182,7 +187,7 @@ function TagesablaufPage() {
               </feComponentTransfer>
               <feComposite in="gc" in2="SourceGraphic" operator="in" result="grain" />
               <feBlend in="SourceGraphic" in2="grain" mode="multiply" result="textured" />
-              <feDropShadow dx="4" dy="7" stdDeviation="6" floodColor="#3A2A1C" floodOpacity="0.28" />
+              <feDropShadow dx="3" dy="5" stdDeviation="4" floodColor="#3A2A1C" floodOpacity="0.22" />
             </filter>
             {/* weiche Papierwölbung auf dem Ziffernblatt */}
             <radialGradient id="faceShade" cx="38%" cy="30%" r="78%">
@@ -195,18 +200,18 @@ function TagesablaufPage() {
           <g filter="url(#paperGrain)">
             {/* Knopf oben (Papierschnipsel) */}
             <polygon
-              points={`${CX - 17},${CY - rRing - 26} ${CX + 16},${CY - rRing - 28} ${CX + 13},${CY - rRing - 74} ${CX - 14},${CY - rRing - 70}`}
+              points={`${CX - 17},${CY - rRing - 26} ${CX + 16},${CY - rRing - 28} ${CX + 13},${CY - rRing - knobExt} ${CX - 14},${CY - rRing - knobExt + 4}`}
               fill="var(--clock)"
               filter="url(#cutEdge)"
             />
-            {/* Füße */}
+            {/* Füße – schmal, unter dem Gehäuse */}
             <g filter="url(#cutEdge)">
               <polygon
-                points={`${CX - 118},${CY + rRing - 24} ${CX - 24},${CY + rRing - 6} ${CX - 34},${CY + rRing + 92} ${CX - 132},${CY + rRing + 74}`}
+                points={`${CX - 70},${CY + rRing - 18} ${CX - 18},${CY + rRing - 4} ${CX - 26},${CY + rRing + footExt} ${CX - 80},${CY + rRing + footExt - 16}`}
                 fill="var(--clock-foot)"
               />
               <polygon
-                points={`${CX + 118},${CY + rRing - 24} ${CX + 24},${CY + rRing - 6} ${CX + 34},${CY + rRing + 92} ${CX + 132},${CY + rRing + 74}`}
+                points={`${CX + 70},${CY + rRing - 18} ${CX + 18},${CY + rRing - 4} ${CX + 26},${CY + rRing + footExt} ${CX + 80},${CY + rRing + footExt - 16}`}
                 fill="var(--clock-foot)"
               />
             </g>
@@ -306,14 +311,19 @@ function TagesablaufPage() {
 
         {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
-          const { x, y } = pos(i, isMobile ? 232 : 298);
+          const { x, y } = pos(i, stationR);
           const leftPct = (x / 600) * 100;
           const topPct = (y / 600) * 100;
           const Icon = item.icon;
           const isOpen = open === i;
-          // Textausrichtung je nach Position (mobil immer zentriert)
-          const isRight = !isMobile && leftPct > 62;
-          const isLeft = !isMobile && leftPct < 38;
+          // Diagonal-Stationen außenbündig (Text wächst vom Zentrum weg),
+          // achsiale Stationen zentriert – so gibt es keine Kollision mit dem Ziffernblatt.
+          // Auf Desktop sind auch die Seitenstationen außenbündig (Platz genug).
+          const axial = i % 2 === 0;
+          const onRight = leftPct > 50;
+          const sideOnDesktop = axial && !isMobile && (leftPct > 62 || leftPct < 38);
+          const isLeft = (!axial && !onRight) || (sideOnDesktop && !onRight);
+          const isRight = (!axial && onRight) || (sideOnDesktop && onRight);
           const align = isLeft ? "items-end text-right" : isRight ? "items-start text-left" : "items-center text-center";
           const translateX = isLeft ? "-100%" : isRight ? "0%" : "-50%";
           return (
@@ -331,7 +341,7 @@ function TagesablaufPage() {
             >
               <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center">
-                  <Icon size={isMobile ? 34 : 60} />
+                  <Icon size={isMobile ? 30 : 60} />
                 </span>
                 <span
                   className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
