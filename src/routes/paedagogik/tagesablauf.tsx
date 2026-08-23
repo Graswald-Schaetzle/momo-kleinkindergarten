@@ -306,7 +306,7 @@ function TagesablaufPage() {
       </div>
 
       {/* ===== Mobil: Detail-Feld unter der Uhr ===== */}
-      <div className="mt-6 rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center sm:hidden">
+      <div className="mx-auto mt-6 max-w-2xl rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center sm:px-8 sm:py-6">
         {open !== null ? (
           (() => {
             const item = schedule[open]!;
