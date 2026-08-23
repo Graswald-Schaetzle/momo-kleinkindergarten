@@ -257,18 +257,19 @@ function TagesablaufPage() {
                   : undefined
               }
             >
-              {/* kleiner Zeiger (Pfeil nach unten) */}
+              {/* großer Zeiger: zeigt nach oben und damit auf die gewählte Station */}
               <polygon
-                points={`${CX - 13},${CY} ${CX + 13},${CY} ${CX + 13},${CY + rRing * 0.5} ${CX + 26},${CY + rRing * 0.5} ${CX},${CY + rRing * 0.72} ${CX - 26},${CY + rRing * 0.5} ${CX - 13},${CY + rRing * 0.5}`}
+                points={`${CX - 12},${CY} ${CX + 12},${CY} ${CX + 12},${CY - rRing * 0.6} ${CX + 25},${CY - rRing * 0.6} ${CX},${CY - rRing * 0.85} ${CX - 25},${CY - rRing * 0.6} ${CX - 12},${CY - rRing * 0.6}`}
                 fill="var(--ink)"
               />
-              {/* großer Zeiger (Pfeil schräg) */}
-              <g transform={`rotate(128 ${CX} ${CY})`}>
+              {/* kleiner Zeiger: fester Winkel dazu */}
+              <g transform={`rotate(125 ${CX} ${CY})`}>
                 <polygon
-                  points={`${CX - 11},${CY} ${CX + 11},${CY} ${CX + 11},${CY + rRing * 0.62} ${CX + 24},${CY + rRing * 0.62} ${CX},${CY + rRing * 0.86} ${CX - 24},${CY + rRing * 0.62} ${CX - 11},${CY + rRing * 0.62}`}
+                  points={`${CX - 14},${CY} ${CX + 14},${CY} ${CX + 14},${CY - rRing * 0.34} ${CX + 27},${CY - rRing * 0.34} ${CX},${CY - rRing * 0.56} ${CX - 27},${CY - rRing * 0.34} ${CX - 14},${CY - rRing * 0.34}`}
                   fill="var(--ink)"
                 />
               </g>
+
               <circle cx={CX} cy={CY} r={16} fill="var(--ink)" />
             </g>
           </g>
