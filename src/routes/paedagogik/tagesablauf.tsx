@@ -198,11 +198,14 @@ function TagesablaufPage() {
         <svg
           key={shake}
           viewBox="0 0 600 600"
-          className={`h-full w-full overflow-visible ${open !== null ? "momo-clock-shake" : ""}`}
+          className={`h-full w-full overflow-visible transition-opacity duration-300 ${
+            open !== null ? "momo-clock-shake opacity-30" : ""
+          }`}
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
           {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund (geometrisch, keine Pixel-Unruhe) */}
+
           <g>
             <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
             <polygon
