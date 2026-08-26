@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { WaggingDog } from "@/components/WaggingDog";
+
 import lillydooAsset from "@/assets/lillydoo.png.asset.json";
 import weledaAsset from "@/assets/weleda.png.asset.json";
 import hauschkaAsset from "@/assets/dr-hauschka.png.asset.json";
@@ -83,11 +83,6 @@ function Pflege() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-14 md:px-14">
-        <div className="flex justify-center sm:mt-2">
-          <WaggingDog size={200} />
-        </div>
-      </section>
     </>
   );
 }
