@@ -26,7 +26,7 @@ export const Route = createFileRoute("/paedagogik")({
 
 function PaedagogikLayout() {
   return (
-    <main className="min-h-screen pb-32">
+    <main className="min-h-screen pb-4">
       <SiteHeader />
       <div className="text-bordeaux">
         <Outlet />
