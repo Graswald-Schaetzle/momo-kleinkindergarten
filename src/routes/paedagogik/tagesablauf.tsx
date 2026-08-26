@@ -185,7 +185,7 @@ function TagesablaufPage() {
     setShake((s) => s + 1);
   };
   const isMobile = useIsMobile();
-  const rRing = isMobile ? 120 : R_TIME;
+  const rRing = isMobile ? 185 : R_TIME;
   const knobExt = isMobile ? KNOB * 0.3 : KNOB;
   const footExt = isMobile ? FOOT * 0.3 : FOOT;
   const stationR = isMobile ? 242 : 298;
