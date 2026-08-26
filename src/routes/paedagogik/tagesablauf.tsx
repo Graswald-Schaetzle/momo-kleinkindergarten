@@ -552,10 +552,6 @@ function TagesablaufPage() {
           })()
         )}
       </div>
-
-      <div className="mt-24 sm:mt-32 md:mt-40">
-        <SiteFooter />
-      </div>
     </section>
   );
 }
