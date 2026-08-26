@@ -394,7 +394,7 @@ function TagesablaufPage() {
   const select = useCallback((i: number) => {
     if (open !== null || pending !== null) return;
     setShake((s) => s + 1);
-    playAnimalSound();
+    playNatureSound();
     setPending(i);
     setTimeout(() => {
       setOpen(i);
