@@ -1,5 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WaggingDog } from "@/components/WaggingDog";
+import lillydooAsset from "@/assets/lillydoo.png.asset.json";
+import weledaAsset from "@/assets/weleda.png.asset.json";
+import hauschkaAsset from "@/assets/dr-hauschka.png.asset.json";
+
+const brands = [
+  { src: lillydooAsset.url, alt: "LILLYDOO" },
+  { src: weledaAsset.url, alt: "WELEDA" },
+  { src: hauschkaAsset.url, alt: "Dr. Hauschka" },
+];
 
 export const Route = createFileRoute("/paedagogik/pflege")({
   head: () => ({
@@ -57,6 +66,20 @@ function Pflege() {
             Haut kleiner Kinder abgestimmt sind. So verbinden wir liebevolle Zuwendung mit
             hochwertiger, bewusst ausgewählter Pflege, die eurem Kind guttut.
           </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-2xl px-6 pt-12 sm:px-10 sm:pt-16 md:px-14">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+          {brands.map((b) => (
+            <img
+              key={b.alt}
+              src={b.src}
+              alt={b.alt}
+              loading="lazy"
+              className="h-6 w-auto opacity-80 mix-blend-multiply sm:h-8"
+            />
+          ))}
         </div>
       </section>
 
