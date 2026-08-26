@@ -12,18 +12,33 @@ const wobbleId = "scribble-wobble";
 
 const scribbleDefs = (
   <defs>
-    <filter id={wobbleId} x="-25%" y="-25%" width="150%" height="150%">
+    <filter id={wobbleId} x="-30%" y="-30%" width="160%" height="160%">
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="0.045"
-        numOctaves="3"
+        baseFrequency="0.025"
+        numOctaves="2"
         seed="9"
         result="noise"
       />
       <feDisplacementMap
         in="SourceGraphic"
         in2="noise"
-        scale="1.4"
+        scale="4.5"
+        xChannelSelector="R"
+        yChannelSelector="G"
+        result="wob1"
+      />
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.14"
+        numOctaves="2"
+        seed="3"
+        result="noise2"
+      />
+      <feDisplacementMap
+        in="wob1"
+        in2="noise2"
+        scale="2.2"
         xChannelSelector="R"
         yChannelSelector="G"
       />
