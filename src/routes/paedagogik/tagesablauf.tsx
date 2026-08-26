@@ -281,7 +281,7 @@ function TagesablaufPage() {
                 stopped
                   ? {
                       transformOrigin: "300px 300px",
-                      transform: `rotate(${(pending ?? open) * 45}deg)`,
+                      transform: `rotate(${(pending ?? open ?? 0) * 45}deg)`,
                       transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
                     }
                   : undefined
