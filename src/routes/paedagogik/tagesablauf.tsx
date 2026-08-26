@@ -80,7 +80,6 @@ function playNatureSound() {
 }
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
-import { WaggingDog } from "@/components/WaggingDog";
 import {
   BreakfastIcon,
   PlayIcon,
