@@ -5,9 +5,9 @@ import weledaAsset from "@/assets/weleda.png.asset.json";
 import hauschkaAsset from "@/assets/dr-hauschka.png.asset.json";
 
 const brands = [
-  { src: lillydooAsset.url, alt: "LILLYDOO" },
   { src: weledaAsset.url, alt: "WELEDA" },
   { src: hauschkaAsset.url, alt: "Dr. Hauschka" },
+  { src: lillydooAsset.url, alt: "LILLYDOO" },
 ];
 
 export const Route = createFileRoute("/paedagogik/pflege")({
@@ -77,7 +77,7 @@ function Pflege() {
               src={b.src}
               alt={b.alt}
               loading="lazy"
-              className="h-16 w-auto opacity-80 mix-blend-multiply sm:h-20"
+              className="h-14 w-auto opacity-80 mix-blend-multiply sm:h-14 md:h-14 object-contain"
             />
           ))}
         </div>
