@@ -172,7 +172,9 @@ function pos(i: number, radius: number) {
 
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(null);
+  const [pending, setPending] = useState<number | null>(null);
   const [shake, setShake] = useState(0);
+  const stopped = open !== null || pending !== null;
 
   useEffect(() => {
     if (open !== null) document.body.setAttribute("data-overlay-open", "true");
@@ -181,8 +183,13 @@ function TagesablaufPage() {
   }, [open]);
 
   const select = (i: number) => {
-    setOpen((prev) => (prev === i ? null : i));
+    if (open !== null || pending !== null) return;
     setShake((s) => s + 1);
+    setPending(i);
+    setTimeout(() => {
+      setOpen(i);
+      setPending(null);
+    }, 450);
   };
   const isMobile = useIsMobile();
   const rRing = isMobile ? 168 : R_TIME;
