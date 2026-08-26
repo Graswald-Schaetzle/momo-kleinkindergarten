@@ -272,7 +272,7 @@ function TagesablaufPage() {
   const rRing = isMobile ? 168 : R_TIME;
   const knobExt = isMobile ? KNOB * 0.3 : KNOB;
   const footExt = isMobile ? FOOT * 0.3 : FOOT;
-  const stationR = isMobile ? 242 : 298;
+  const stationR = isMobile ? 265 : 350;
 
   return (
     <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-5xl md:px-14 md:pt-16">
