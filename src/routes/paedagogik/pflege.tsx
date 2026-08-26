@@ -70,7 +70,7 @@ function Pflege() {
       </section>
 
       <section className="mx-auto max-w-2xl px-6 pt-12 sm:px-10 sm:pt-16 md:px-14">
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-14">
+        <div className="flex flex-nowrap items-center justify-center gap-x-8 sm:gap-x-14">
           {brands.map((b) => (
             <img
               key={b.alt}
