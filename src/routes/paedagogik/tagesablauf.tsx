@@ -371,6 +371,9 @@ function TagesablaufPage() {
                   <ArrowLeft size={18} strokeWidth={1.5} />
                   <span>zurück</span>
                 </button>
+                <Link to="/" className="mb-8 flex justify-center no-underline text-bordeaux">
+                  <MomoLogo className="h-16 sm:h-20 md:h-24" />
+                </Link>
                 <span className="block font-display text-xs font-normal tracking-[0.15em] text-bordeaux/70 sm:text-sm">
                   {item.time}
                 </span>
