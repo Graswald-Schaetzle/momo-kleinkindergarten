@@ -294,7 +294,7 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-14 aspect-square w-full max-w-[300px] sm:mt-16 sm:max-w-[480px] md:max-w-[760px]">
+      <div className="relative mx-auto mt-24 aspect-square w-full max-w-[340px] sm:mt-32 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
         <svg
           key={shake}
           viewBox="0 0 600 600"
