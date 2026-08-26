@@ -212,15 +212,16 @@ function TagesablaufPage() {
     return () => document.body.removeAttribute("data-overlay-open");
   }, [open]);
 
-  const select = (i: number) => {
+  const select = useCallback((i: number) => {
     if (open !== null || pending !== null) return;
     setShake((s) => s + 1);
+    playCuckoo();
     setPending(i);
     setTimeout(() => {
       setOpen(i);
       setPending(null);
     }, 450);
-  };
+  }, [open, pending]);
   const isMobile = useIsMobile();
   const rRing = isMobile ? 168 : R_TIME;
   const knobExt = isMobile ? KNOB * 0.3 : KNOB;
