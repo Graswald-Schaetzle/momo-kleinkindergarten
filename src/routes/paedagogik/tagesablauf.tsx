@@ -191,7 +191,7 @@ function TagesablaufPage() {
   const stationR = isMobile ? 242 : 298;
 
   return (
-    <section className="mx-auto max-w-3xl px-3 pt-20 sm:px-10 md:max-w-5xl md:px-14 md:pt-24">
+    <section className="mx-auto max-w-3xl px-3 pt-8 sm:px-10 md:max-w-5xl md:px-14 md:pt-12">
       <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
         Unser Tagesablauf
       </h2>
