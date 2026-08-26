@@ -128,10 +128,17 @@ function RootComponent() {
   const location = useLocation();
   const footerColor = location.pathname === "/ueber-uns" ? "text-black" : "text-bordeaux";
   const isHome = location.pathname === "/";
+  const isPaedagogik = location.pathname.startsWith("/paedagogik");
+
+  const bgClass = isHome
+    ? "bg-mustard"
+    : isPaedagogik
+      ? "bg-altrosa"
+      : "";
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`flex min-h-screen flex-col ${isHome ? "bg-mustard" : ""}`}>
+      <div className={`flex min-h-screen flex-col ${bgClass}`}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <SiteFooter color={footerColor} />
