@@ -80,7 +80,6 @@ function playNatureSound() {
 }
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
-import { WaggingDog } from "@/components/WaggingDog";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -549,10 +548,6 @@ function TagesablaufPage() {
             );
           })()
         )}
-      </div>
-
-      <div className="mt-6 flex justify-center sm:mt-10">
-        <WaggingDog size={200} className="text-bordeaux" />
       </div>
     </section>
   );

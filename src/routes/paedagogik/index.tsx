@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { WaggingDog } from "@/components/WaggingDog";
 
 export const Route = createFileRoute("/paedagogik/")({
   head: () => ({
@@ -62,6 +63,10 @@ function PaedagogikIndex() {
             Wohl eurer Kinder, die bei uns nicht nur behütet, sondern mit Liebe und Verständnis für
             ihre individuelle Entwicklung begleitet werden.
           </p>
+        </div>
+
+        <div className="mt-10 flex justify-center sm:mt-14">
+          <WaggingDog size={200} />
         </div>
       </section>
     </>
