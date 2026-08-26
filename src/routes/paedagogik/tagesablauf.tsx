@@ -198,19 +198,19 @@ function TagesablaufPage() {
   const stationR = isMobile ? 242 : 298;
 
   return (
-    <section className="mx-auto max-w-3xl px-3 pt-8 sm:px-10 md:max-w-5xl md:px-14 md:pt-12">
+    <section className="mx-auto max-w-3xl px-3 pt-4 sm:px-10 md:max-w-5xl md:px-14 md:pt-6">
       <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
         Unser Tagesablauf
       </h2>
 
-      <p className="mx-auto mt-4 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-6 sm:text-sm md:text-base">
+      <p className="mx-auto mt-2 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-3 sm:text-sm md:text-base">
         Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
+      <div className="relative mx-auto mt-4 aspect-square w-full max-w-[760px] md:mt-6">
         <svg
           key={shake}
           viewBox="0 0 600 600"
