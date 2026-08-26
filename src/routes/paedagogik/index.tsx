@@ -28,12 +28,12 @@ export const Route = createFileRoute("/paedagogik/")({
 function PaedagogikIndex() {
   return (
     <>
-      <section className="mx-auto max-w-2xl px-6 pt-20 sm:px-10 md:px-14">
+      <section className="mx-auto max-w-2xl px-6 pt-6 sm:px-10 sm:pt-10 md:px-14">
         <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
           Pädagogik
         </h2>
 
-        <div className="mt-10 space-y-6 sm:mt-14 sm:space-y-8">
+        <div className="mt-6 space-y-6 sm:mt-8 sm:space-y-8">
           <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
             Unsere Pädagogik ist waldorforientiert geprägt von wiederkehrenden Ritualen, einem
             achtsamen Umgang mit der Natur und dem tiefen Vertrauen in die eigene Entwicklung eures
