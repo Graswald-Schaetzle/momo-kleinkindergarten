@@ -277,7 +277,7 @@ function TagesablaufPage() {
     const cardinal = i % 2 === 0;
     return isMobile
       ? cardinal ? 265 : 250
-      : cardinal ? 400 : 372;
+      : cardinal ? 385 : 372;
   };
 
   return (
@@ -293,7 +293,7 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-24 mb-20 aspect-square w-full max-w-[340px] sm:mt-32 sm:mb-28 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
+      <div className="relative mx-auto mt-24 mb-32 aspect-square w-full max-w-[340px] sm:mt-32 sm:mb-40 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
         <svg
           key={shake}
           viewBox="0 0 600 600"
