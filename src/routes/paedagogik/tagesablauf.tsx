@@ -188,7 +188,7 @@ function TagesablaufPage() {
       </h2>
 
       <p className="mx-auto mt-4 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-6 sm:text-sm md:text-base">
-        Der Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
+        Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
