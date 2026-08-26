@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { WaggingDog } from "@/components/WaggingDog";
 
 export const Route = createFileRoute("/paedagogik/")({
   head: () => ({
