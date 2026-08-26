@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideo from "@/assets/momo-hund-senf.mp4.asset.json";
-import heroVideoWebm from "@/assets/momo-hund-senf.webm.asset.json";
-import heroPoster from "@/assets/momo-hund-senf-poster.jpg.asset.json";
+import heroVideo from "@/assets/momo-hund-senf2.mp4.asset.json";
+import heroVideoWebm from "@/assets/momo-hund-senf2.webm.asset.json";
+import heroPoster from "@/assets/momo-hund-senf2-poster.jpg.asset.json";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
 
 
@@ -46,6 +46,13 @@ function Index() {
     void audio.play().then(() => setMuted(false)).catch(() => {
       setMuted(true);
     });
+
+    // Stop the snoring reliably when leaving the homepage — some browsers
+    // keep playing a removed audio element unless it is paused explicitly.
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
   }, []);
 
   const toggleSnore = () => {
@@ -77,6 +84,14 @@ function Index() {
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
             className="relative w-full"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
+              maskComposite: "intersect",
+            }}
           >
             <source src={heroVideoWebm.url} type="video/webm" />
             <source src={heroVideo.url} type="video/mp4" />
