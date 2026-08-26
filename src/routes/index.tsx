@@ -127,7 +127,7 @@ function Index() {
         <p className="mt-8 px-6 font-display text-xl font-normal leading-tight text-bordeaux sm:mt-12 md:mt-16 sm:text-3xl md:text-4xl">Eröffnung Januar 2027</p>
       </div>
 
-      <p className="fixed right-4 top-5 z-[60] font-display text-sm font-normal tracking-[0.08em] text-bordeaux sm:right-6 sm:top-7 sm:text-base">
+      <p className="fixed right-4 top-6 z-[60] font-display text-xs font-normal tracking-[0.08em] text-bordeaux sm:right-6 sm:top-8 sm:text-sm">
         1–3 Jahre
       </p>
 
