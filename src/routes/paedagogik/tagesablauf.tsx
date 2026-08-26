@@ -131,7 +131,7 @@ const animalSounds: Array<() => void> = [
 
 function playAnimalSound() {
   try {
-    const fn = animalSounds[soundIndex % animalSounds.length];
+    const fn = animalSounds[soundIndex % animalSounds.length]!;
     soundIndex++;
     fn();
   } catch {
