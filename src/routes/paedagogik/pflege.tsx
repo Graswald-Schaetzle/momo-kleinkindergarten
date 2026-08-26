@@ -36,7 +36,7 @@ function Pflege() {
             Pflege ist für uns eine Handlung im Tagesablauf, die zu einem besonders zarten,
             intimen Moment der Begegnung wird. Jedes Kind wird von uns mit Respekt und
             Achtsamkeit begleitet, sein Körper wird liebevoll wahrgenommen. Wir wickeln nach
-            Bedarf des Kindes, nicht nach starrem Zeitplan – so nehmen wir jedes Kind in seinem
+            Bedarf des Kindes, nicht nach starrem Zeitplan so nehmen wir jedes Kind in seinem
             eigenen Rhythmus ernst.
           </p>
 
