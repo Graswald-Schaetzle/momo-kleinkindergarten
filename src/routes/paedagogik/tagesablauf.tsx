@@ -113,9 +113,9 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
-/* handgezeichneter Kritzel-Kreis: wenige sanfte Sinus-Wellen
-   -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen) */
-function wobbleCircle(cx: number, cy: number, r: number, sides = 90, amp = 0.022, waves = 7) {
+/* handgezeichneter Kritzel-Kreis: wenige niedrige Sinus-Wellen, genug Stützstellen
+   -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen, keine Spitzen) */
+function wobbleCircle(cx: number, cy: number, r: number, sides = 120, amp = 0.02, waves = 6) {
   const pts: string[] = [];
   for (let i = 0; i < sides; i++) {
     const a = (i / sides) * Math.PI * 2;
@@ -123,8 +123,7 @@ function wobbleCircle(cx: number, cy: number, r: number, sides = 90, amp = 0.022
       r *
       (1 +
         amp * Math.sin(waves * a + 0.3) +
-        amp * 0.55 * Math.cos(waves * 1.6 * a + 1.1) +
-        amp * 0.3 * Math.sin((waves + 9) * a));
+        amp * 0.5 * Math.cos((waves + 2) * a + 1.1));
     pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
   }
   return pts.join(" ");
