@@ -94,7 +94,7 @@ function Index() {
             }}
           >
             <source src={heroVideoWebm.url} type="video/webm" />
-            <source src={heroVideo.url} type="video/mp4" />
+            <source src={heroVideoMp4.url} type="video/mp4" />
           </video>
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
 
