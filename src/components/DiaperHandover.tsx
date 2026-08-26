@@ -1,7 +1,6 @@
 /* Zwei Hände im Wasserfarben-Stil: Die linke Hand kommt mit einer Windel
    herein, die rechte nimmt sie auf der Mitte entgegen und verschwindet
-   wieder mit der Windel. Stil wie die Werte-Zeichnungen (Wasserfarbe & Tinte
-   auf weißem Papier, per mix-blend-multiply in den Altrosa-Grund geblendet). */
+   wieder mit der Windel. Transparente PNGs, damit sie nahtlos im Altrosa-Grund liegen. */
 
 import handLeft from "@/assets/pflege-hand-links.png";
 import handRight from "@/assets/pflege-hand-rechts.png";
@@ -33,7 +32,7 @@ export function DiaperHandover({ className = "" }: { className?: string }) {
           loading="lazy"
           width={1152}
           height={576}
-          className="dh-right absolute right-0 top-1/2 w-[52%] -translate-y-1/2 mix-blend-multiply"
+          className="dh-right absolute right-0 top-1/2 w-[52%] -translate-y-1/2"
         />
         {/* Windel – wandert von der linken in die rechte Hand und geht mit ihr ab */}
         <img
@@ -43,7 +42,7 @@ export function DiaperHandover({ className = "" }: { className?: string }) {
           loading="lazy"
           width={816}
           height={816}
-          className="dh-diaper absolute left-[34%] top-[30%] w-[15%] mix-blend-multiply"
+          className="dh-diaper absolute left-[34%] top-[30%] w-[15%]"
         />
       </div>
 
