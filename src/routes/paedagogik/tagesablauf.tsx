@@ -1,7 +1,37 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ComponentType } from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
+
+/* Sanftes Kuckucks-Uhrgeräusch via Web Audio API (kein Asset nötig) */
+let cuckooCtx: AudioContext | null = null;
+function playCuckoo() {
+  try {
+    if (!cuckooCtx) cuckooCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const ctx = cuckooCtx;
+    if (ctx.state === "suspended") void ctx.resume();
+    const now = ctx.currentTime;
+
+    const tone = (start: number, freq: number, dur: number, gain: number) => {
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, start);
+      env.gain.setValueAtTime(0, start);
+      env.gain.linearRampToValueAtTime(gain, start + 0.02);
+      env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+      osc.connect(env).connect(ctx.destination);
+      osc.start(start);
+      osc.stop(start + dur + 0.02);
+    };
+
+    // Zwei weiche Töne: hoch -> tief (wie eine Kuckucksuhr)
+    tone(now, 659.25, 0.18, 0.16); // E5
+    tone(now + 0.22, 523.25, 0.26, 0.18); // C5
+  } catch {
+    /* AudioContext nicht verfügbar — geräuschlos weiter */
+  }
+}
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
 import { SiteFooter } from "@/components/SiteFooter";
