@@ -172,7 +172,9 @@ function pos(i: number, radius: number) {
 
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(null);
+  const [pending, setPending] = useState<number | null>(null);
   const [shake, setShake] = useState(0);
+  const stopped = open !== null || pending !== null;
 
   useEffect(() => {
     if (open !== null) document.body.setAttribute("data-overlay-open", "true");
@@ -181,8 +183,13 @@ function TagesablaufPage() {
   }, [open]);
 
   const select = (i: number) => {
-    setOpen((prev) => (prev === i ? null : i));
+    if (open !== null || pending !== null) return;
     setShake((s) => s + 1);
+    setPending(i);
+    setTimeout(() => {
+      setOpen(i);
+      setPending(null);
+    }, 450);
   };
   const isMobile = useIsMobile();
   const rRing = isMobile ? 168 : R_TIME;
@@ -208,7 +215,7 @@ function TagesablaufPage() {
           key={shake}
           viewBox="0 0 600 600"
           className={`h-full w-full overflow-visible transition-opacity duration-300 ${
-            open !== null ? "momo-clock-shake opacity-30" : ""
+            stopped ? "momo-clock-shake opacity-30" : ""
           }`}
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
@@ -269,12 +276,12 @@ function TagesablaufPage() {
 
             {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
             <g
-              className={open === null ? "momo-hand-spin" : undefined}
+            className={stopped ? undefined : "momo-hand-spin"}
               style={
-                open !== null
+                stopped
                   ? {
                       transformOrigin: "300px 300px",
-                      transform: `rotate(${open * 45}deg)`,
+                      transform: `rotate(${(pending ?? open ?? 0) * 45}deg)`,
                       transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
                     }
                   : undefined
