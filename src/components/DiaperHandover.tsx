@@ -23,7 +23,7 @@ export function DiaperHandover({ className = "" }: { className?: string }) {
           loading="lazy"
           width={1152}
           height={576}
-          className="dh-left absolute left-0 top-1/2 w-[52%] -translate-y-1/2 mix-blend-multiply"
+          className="dh-left absolute left-0 top-1/2 w-[52%] -translate-y-1/2"
         />
         {/* rechte Hand – kommt von rechts herein, nimmt die Windel und verschwindet nach rechts */}
         <img
