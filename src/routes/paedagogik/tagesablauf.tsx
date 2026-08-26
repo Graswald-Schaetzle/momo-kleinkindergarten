@@ -3,7 +3,7 @@ import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-/* Gong-Klänge via Web Audio API – verschiedene Gong-Variationen, beruhigend */
+/* Xylophon-Töne via Web Audio API – pro Klick ein Ton, die Tonleiter aufsteigend */
 let audioCtx: AudioContext | null = null;
 let soundIndex = 0;
 
@@ -13,113 +13,67 @@ function actx() {
   return audioCtx;
 }
 
-/* Rausch-Puffer für metallischen Schlaganteil */
-let noiseBuffer: AudioBuffer | null = null;
-function noiseSource(c: AudioContext) {
-  if (!noiseBuffer) {
-    const len = c.sampleRate * 2;
-    noiseBuffer = c.createBuffer(1, len, c.sampleRate);
-    const data = noiseBuffer.getChannelData(0);
-    for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
-  }
-  const src = c.createBufferSource();
-  src.buffer = noiseBuffer;
-  src.loop = true;
-  return src;
-}
+/* C-Dur-Tonleiter über zwei Oktaven, aufsteigend */
+const xyloScale = [
+  261.63, // C4
+  293.66, // D4
+  329.63, // E4
+  349.23, // F4
+  392.0,  // G4
+  440.0,  // A4
+  493.88, // B4 (H)
+  523.25, // C5
+];
 
-/* Universeller Gong: Grundton + Obertöne + metallischer Schlag.
-   harmonics: Liste von [Multiplikator, Gain-Anteil].
-   attack: Einschwingzeit, dur: Gesamtdauer, gain: Lautstärke.
-   noiseGain / noiseFreq: metallischer Anteil (Schlaggeräusch). */
-function gong(
-  c: AudioContext,
-  start: number,
-  freq: number,
-  dur: number,
-  gain: number,
-  harmonics: Array<[number, number]>,
-  attack: number,
-  noiseGain = 0,
-  noiseFreq = 4000,
-) {
-  harmonics.forEach(([h, hg]) => {
+/* Xylophon-Synthese: kurzer hölzerner Schlag mit Obertönen.
+   Xylophonstangen haben inharmonische Partiellen – typ. 1 : 3 : 9.2.
+   Dazu ein kurzes Rauschen für den Mallet-Anschlag. */
+function xylophone(c: AudioContext, start: number, freq: number) {
+  const dur = 0.6;
+  const partials: Array<[number, number]> = [
+    [1, 1],       // Grundton
+    [3, 0.35],    // erste Oktave + Quinte
+    [9.2, 0.12],  // typische Xylophon-Inharmonizität
+  ];
+
+  partials.forEach(([mult, g]) => {
     const o = c.createOscillator();
     const env = c.createGain();
-    o.type = "sine";
-    o.frequency.setValueAtTime(freq * h, start);
+    o.type = "triangle";
+    o.frequency.setValueAtTime(freq * mult, start);
     env.gain.setValueAtTime(0, start);
-    env.gain.linearRampToValueAtTime(gain * hg, start + attack);
+    env.gain.linearRampToValueAtTime(0.22 * g, start + 0.004);
     env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
     o.connect(env).connect(c.destination);
     o.start(start);
-    o.stop(start + dur + 0.05);
+    o.stop(start + dur + 0.02);
   });
-  // metallischer Schlaganteil (kurzes Rauschen)
-  if (noiseGain > 0) {
-    const src = noiseSource(c);
-    const filt = c.createBiquadFilter();
-    const env = c.createGain();
-    filt.type = "bandpass";
-    filt.frequency.setValueAtTime(noiseFreq, start);
-    filt.Q.setValueAtTime(0.7, start);
-    env.gain.setValueAtTime(0, start);
-    env.gain.linearRampToValueAtTime(noiseGain, start + 0.005);
-    env.gain.exponentialRampToValueAtTime(0.0001, start + 0.25);
-    src.connect(filt).connect(env).connect(c.destination);
-    src.start(start);
-    src.stop(start + 0.3);
-  }
-}
 
-const natureSounds: Array<() => void> = [
-  // 1. Tiefer Tam-Tam-Gong – dunkel, voll, mit Schlag
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 110.0, 2.0, 0.18, [[1, 1], [1.5, 0.4], [2.0, 0.25], [2.76, 0.15]], 0.04, 0.06, 2000);
-  },
-  // 2. Tibetische Klangschale – warm, mitteltief, lang ausklingend
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 220.0, 1.8, 0.14, [[1, 1], [2.01, 0.35], [2.76, 0.2], [4.02, 0.1]], 0.2, 0, 0);
-  },
-  // 3. Helle Feng-Glocke – klar, hoch, kristallin
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 523.25, 1.2, 0.1, [[1, 1], [2.0, 0.3], [3.0, 0.15]], 0.015, 0.02, 6000);
-  },
-  // 4. Windgong – heller Schlag mit schwebendem Nachklang
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 392.0, 1.5, 0.12, [[1, 1], [1.41, 0.45], [2.0, 0.3], [2.83, 0.12]], 0.02, 0.05, 5000);
-  },
-  // 5. Großer Tempelgong – sehr tief, majestätisch
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 82.4, 2.5, 0.2, [[1, 1], [1.5, 0.5], [2.0, 0.3], [3.0, 0.15], [4.0, 0.08]], 0.05, 0.08, 1500);
-  },
-  // 6. Japanese Rin-Gong – hell, zart, kurz
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 659.25, 0.9, 0.09, [[1, 1], [2.0, 0.25], [2.76, 0.12]], 0.01, 0.02, 7000);
-  },
-  // 7. Klangschale mittig – beruhigend, ausgewogen
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 261.63, 1.6, 0.13, [[1, 1], [2.01, 0.38], [2.76, 0.22], [4.02, 0.1]], 0.15, 0, 0);
-  },
-  // 8. Glasharmonika-Gong – glasig, schwebend, hell
-  () => {
-    const c = actx(); const t = c.currentTime;
-    gong(c, t, 440.0, 1.4, 0.1, [[1, 1], [2.0, 0.4], [3.0, 0.2], [4.0, 0.1]], 0.03, 0.01, 8000);
-  },
-];
+  // Mallet-Anschlag: sehr kurzes bandgefiltertes Rauschen
+  const noiseBuf = c.createBuffer(1, c.sampleRate * 0.05, c.sampleRate);
+  const nd = noiseBuf.getChannelData(0);
+  for (let i = 0; i < nd.length; i++) nd[i] = (Math.random() * 2 - 1) * (1 - i / nd.length);
+  const noise = c.createBufferSource();
+  noise.buffer = noiseBuf;
+  const nf = c.createBiquadFilter();
+  nf.type = "bandpass";
+  nf.frequency.setValueAtTime(freq * 4, start);
+  nf.Q.setValueAtTime(1.2, start);
+  const nenv = c.createGain();
+  nenv.gain.setValueAtTime(0.12, start);
+  nenv.gain.exponentialRampToValueAtTime(0.0001, start + 0.05);
+  noise.connect(nf).connect(nenv).connect(c.destination);
+  noise.start(start);
+  noise.stop(start + 0.06);
+}
 
 function playNatureSound() {
   try {
-    const fn = natureSounds[soundIndex % natureSounds.length]!;
+    const c = actx();
+    const t = c.currentTime;
+    const freq = xyloScale[soundIndex % xyloScale.length]!;
     soundIndex++;
-    fn();
+    xylophone(c, t, freq);
   } catch {
     /* AudioContext nicht verfügbar – geräuschlos weiter */
   }
