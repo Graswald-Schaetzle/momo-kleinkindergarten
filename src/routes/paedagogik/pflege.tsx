@@ -70,14 +70,14 @@ function Pflege() {
       </section>
 
       <section className="mx-auto max-w-2xl px-6 pt-12 sm:px-10 sm:pt-16 md:px-14">
-        <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 sm:gap-x-24">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-14">
           {brands.map((b) => (
             <img
               key={b.alt}
               src={b.src}
               alt={b.alt}
               loading="lazy"
-              className="h-12 w-auto opacity-80 mix-blend-multiply sm:h-16"
+              className="h-16 w-auto opacity-80 mix-blend-multiply sm:h-20"
             />
           ))}
         </div>
