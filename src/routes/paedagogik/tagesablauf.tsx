@@ -3,7 +3,7 @@ import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-/* Natur-Wellnessklänge via Web Audio API – meditativ, lang ausklingend, beruhigend */
+/* Gong-Klänge via Web Audio API – verschiedene Gong-Variationen, beruhigend */
 let audioCtx: AudioContext | null = null;
 let soundIndex = 0;
 
@@ -13,7 +13,7 @@ function actx() {
   return audioCtx;
 }
 
-/* Rausch-Puffer (weißes Rauschen) für atmosphärische Klänge */
+/* Rausch-Puffer für metallischen Schlaganteil */
 let noiseBuffer: AudioBuffer | null = null;
 function noiseSource(c: AudioContext) {
   if (!noiseBuffer) {
@@ -28,167 +28,90 @@ function noiseSource(c: AudioContext) {
   return src;
 }
 
-/* Klangschale: Ton mit Obertönen und sanftem Attack, kurz ausklingend. */
-function singingBowl(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
-  const harmonics = [1, 2.01, 2.76, 4.02];
-  const gains = [1, 0.4, 0.25, 0.12];
-  harmonics.forEach((h, idx) => {
+/* Universeller Gong: Grundton + Obertöne + metallischer Schlag.
+   harmonics: Liste von [Multiplikator, Gain-Anteil].
+   attack: Einschwingzeit, dur: Gesamtdauer, gain: Lautstärke.
+   noiseGain / noiseFreq: metallischer Anteil (Schlaggeräusch). */
+function gong(
+  c: AudioContext,
+  start: number,
+  freq: number,
+  dur: number,
+  gain: number,
+  harmonics: Array<[number, number]>,
+  attack: number,
+  noiseGain = 0,
+  noiseFreq = 4000,
+) {
+  harmonics.forEach(([h, hg]) => {
     const o = c.createOscillator();
     const env = c.createGain();
     o.type = "sine";
     o.frequency.setValueAtTime(freq * h, start);
     env.gain.setValueAtTime(0, start);
-    env.gain.linearRampToValueAtTime(gain * gains[idx]!, start + 0.25);
+    env.gain.linearRampToValueAtTime(gain * hg, start + attack);
     env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
     o.connect(env).connect(c.destination);
     o.start(start);
     o.stop(start + dur + 0.05);
   });
-}
-
-/* Sanfter Glockenton: kurzer, klarer Sinus mit kurzem Ausklingen (Windspiel) */
-function chime(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
-  const o1 = c.createOscillator();
-  const o2 = c.createOscillator();
-  const env = c.createGain();
-  o1.type = "sine";
-  o2.type = "sine";
-  o1.frequency.setValueAtTime(freq, start);
-  o2.frequency.setValueAtTime(freq * 1.005, start);
-  env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.03);
-  env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
-  o1.connect(env);
-  o2.connect(env);
-  env.connect(c.destination);
-  o1.start(start); o2.start(start);
-  o1.stop(start + dur + 0.05); o2.stop(start + dur + 0.05);
-}
-
-/* Hilfsfunktion: gefiltertes Rauschen mit schneller Ein- und Ausblendung */
-function filteredNoise(c: AudioContext, start: number, dur: number, gain: number, filterType: BiquadFilterType, freq: number, q = 1) {
-  const src = noiseSource(c);
-  const filt = c.createBiquadFilter();
-  const env = c.createGain();
-  filt.type = filterType;
-  filt.frequency.setValueAtTime(freq, start);
-  filt.Q.setValueAtTime(q, start);
-  env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.15);
-  env.gain.setValueAtTime(gain, start + dur - 0.2);
-  env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
-  src.connect(filt).connect(env).connect(c.destination);
-  src.start(start);
-  src.stop(start + dur + 0.05);
+  // metallischer Schlaganteil (kurzes Rauschen)
+  if (noiseGain > 0) {
+    const src = noiseSource(c);
+    const filt = c.createBiquadFilter();
+    const env = c.createGain();
+    filt.type = "bandpass";
+    filt.frequency.setValueAtTime(noiseFreq, start);
+    filt.Q.setValueAtTime(0.7, start);
+    env.gain.setValueAtTime(0, start);
+    env.gain.linearRampToValueAtTime(noiseGain, start + 0.005);
+    env.gain.exponentialRampToValueAtTime(0.0001, start + 0.25);
+    src.connect(filt).connect(env).connect(c.destination);
+    src.start(start);
+    src.stop(start + 0.3);
+  }
 }
 
 const natureSounds: Array<() => void> = [
-  // 1. Klangschale – tief, kurz ausklingend, meditativ (G3 mit Obertönen)
+  // 1. Tiefer Tam-Tam-Gong – dunkel, voll, mit Schlag
   () => {
     const c = actx(); const t = c.currentTime;
-    singingBowl(c, t, 196.0, 1.4, 0.16); // G3
+    gong(c, t, 110.0, 2.0, 0.18, [[1, 1], [1.5, 0.4], [2.0, 0.25], [2.76, 0.15]], 0.04, 0.06, 2000);
   },
-  // 2. Windspiel – sanfte, zufällige Glockentöne im Pentatonik
+  // 2. Tibetische Klangschale – warm, mitteltief, lang ausklingend
   () => {
     const c = actx(); const t = c.currentTime;
-    const scale = [523.25, 587.33, 659.25, 783.99, 880.0]; // C5 D5 E5 G5 A5
-    for (let i = 0; i < 4; i++) {
-      const f = scale[Math.floor(Math.random() * scale.length)]!;
-      chime(c, t + i * 0.22 + Math.random() * 0.06, f, 0.6, 0.08);
-    }
+    gong(c, t, 220.0, 1.8, 0.14, [[1, 1], [2.01, 0.35], [2.76, 0.2], [4.02, 0.1]], 0.2, 0, 0);
   },
-  // 3. Sanfter Regen – seidiges, hochpassgefiltertes Rauschen, kurz
+  // 3. Helle Feng-Glocke – klar, hoch, kristallin
   () => {
     const c = actx(); const t = c.currentTime;
-    const src = noiseSource(c);
-    const filt = c.createBiquadFilter();
-    const env = c.createGain();
-    filt.type = "highpass";
-    filt.frequency.setValueAtTime(1200, t);
-    env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.07, t + 0.2);
-    env.gain.setValueAtTime(0.07, t + 0.8);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
-    src.connect(filt).connect(env).connect(c.destination);
-    src.start(t);
-    src.stop(t + 1.3);
+    gong(c, t, 523.25, 1.2, 0.1, [[1, 1], [2.0, 0.3], [3.0, 0.15]], 0.015, 0.02, 6000);
   },
-  // 4. Ozeanwellen – kurzes, tiefpassgefiltertes Rauschen mit LFO
+  // 4. Windgong – heller Schlag mit schwebendem Nachklang
   () => {
     const c = actx(); const t = c.currentTime;
-    const src = noiseSource(c);
-    const filt = c.createBiquadFilter();
-    const lfo = c.createOscillator();
-    const lfoGain = c.createGain();
-    const env = c.createGain();
-    filt.type = "lowpass";
-    filt.frequency.setValueAtTime(500, t);
-    filt.Q.setValueAtTime(0.6, t);
-    lfo.frequency.setValueAtTime(0.5, t);
-    lfoGain.gain.setValueAtTime(0.05, t);
-    lfo.connect(lfoGain).connect(env.gain);
-    env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.1, t + 0.3);
-    env.gain.setValueAtTime(0.1, t + 0.9);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
-    src.connect(filt).connect(env).connect(c.destination);
-    src.start(t); lfo.start(t);
-    src.stop(t + 1.5); lfo.stop(t + 1.5);
+    gong(c, t, 392.0, 1.5, 0.12, [[1, 1], [1.41, 0.45], [2.0, 0.3], [2.83, 0.12]], 0.02, 0.05, 5000);
   },
-  // 5. Bergbach – sanft plätscherndes, tiefpassgefiltertes Rauschen mit Bläschen
+  // 5. Großer Tempelgong – sehr tief, majestätisch
   () => {
     const c = actx(); const t = c.currentTime;
-    const src = noiseSource(c);
-    const filt = c.createBiquadFilter();
-    const env = c.createGain();
-    filt.type = "lowpass";
-    filt.frequency.setValueAtTime(900, t);
-    env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.08, t + 0.2);
-    env.gain.setValueAtTime(0.08, t + 0.9);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
-    src.connect(filt).connect(env).connect(c.destination);
-    src.start(t);
-    src.stop(t + 1.3);
-    // vereinzelte Bläschen
-    for (let i = 0; i < 4; i++) {
-      chime(c, t + 0.2 + i * 0.18 + Math.random() * 0.06, 700 + Math.random() * 300, 0.15, 0.025);
-    }
+    gong(c, t, 82.4, 2.5, 0.2, [[1, 1], [1.5, 0.5], [2.0, 0.3], [3.0, 0.15], [4.0, 0.08]], 0.05, 0.08, 1500);
   },
-  // 6. Waldstille – tiefe Klangschale mit feinem Blätterrascheln
+  // 6. Japanese Rin-Gong – hell, zart, kurz
   () => {
     const c = actx(); const t = c.currentTime;
-    singingBowl(c, t, 130.81, 1.4, 0.12); // C3
-    for (let i = 0; i < 3; i++) {
-      filteredNoise(c, t + i * 0.35, 0.4, 0.03, "bandpass", 3000 + Math.random() * 1000, 0.6);
-    }
+    gong(c, t, 659.25, 0.9, 0.09, [[1, 1], [2.0, 0.25], [2.76, 0.12]], 0.01, 0.02, 7000);
   },
-  // 7. Morgennebel – sehr weiches, tiefes Rauschen mit langsamer Modulation
+  // 7. Klangschale mittig – beruhigend, ausgewogen
   () => {
     const c = actx(); const t = c.currentTime;
-    const src = noiseSource(c);
-    const filt = c.createBiquadFilter();
-    const lfo = c.createOscillator();
-    const lfoGain = c.createGain();
-    const env = c.createGain();
-    filt.type = "lowpass";
-    filt.frequency.setValueAtTime(350, t);
-    lfo.frequency.setValueAtTime(0.5, t);
-    lfoGain.gain.setValueAtTime(100, t);
-    lfo.connect(lfoGain).connect(filt.frequency);
-    env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.09, t + 0.3);
-    env.gain.setValueAtTime(0.09, t + 1.0);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
-    src.connect(filt).connect(env).connect(c.destination);
-    src.start(t); lfo.start(t);
-    src.stop(t + 1.5); lfo.stop(t + 1.5);
+    gong(c, t, 261.63, 1.6, 0.13, [[1, 1], [2.01, 0.38], [2.76, 0.22], [4.02, 0.1]], 0.15, 0, 0);
   },
-  // 8. Harmonie-Glocken – sanfte, aufsteigende Pentatonik-Klangschalen
+  // 8. Glasharmonika-Gong – glasig, schwebend, hell
   () => {
     const c = actx(); const t = c.currentTime;
-    const notes = [261.63, 329.63, 392.0, 523.25]; // C4 E4 G4 C5
-    notes.forEach((f, i) => singingBowl(c, t + i * 0.2, f, 1.0, 0.1));
+    gong(c, t, 440.0, 1.4, 0.1, [[1, 1], [2.0, 0.4], [3.0, 0.2], [4.0, 0.1]], 0.03, 0.01, 8000);
   },
 ];
 
