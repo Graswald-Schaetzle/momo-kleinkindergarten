@@ -194,20 +194,21 @@ function TagesablaufPage() {
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
+      {/* Vollbild-Overlay: Seite dahinter verschwindet, nur Uhr + Text bleiben */}
+      {open !== null && (
+        <div
+          className="fixed inset-0 z-30 animate-fade-in"
+          style={{ background: "var(--background)" }}
+          aria-hidden
+        />
+      )}
+
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative z-30 mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
-        {/* Vollbild-Overlay: Seite dahinter verschwindet, nur Uhr + Text bleiben */}
-        {open !== null && (
-          <div
-            className="fixed inset-0 z-0 animate-fade-in"
-            style={{ background: "var(--background)" }}
-            aria-hidden
-          />
-        )}
+      <div className="relative z-40 mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
         <svg
           key={shake}
           viewBox="0 0 600 600"
-          className="relative z-10 h-full w-full overflow-visible"
+          className="h-full w-full overflow-visible"
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
