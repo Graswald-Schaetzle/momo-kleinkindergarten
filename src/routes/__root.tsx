@@ -127,10 +127,11 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
   const footerColor = location.pathname === "/ueber-uns" ? "text-black" : "text-bordeaux";
+  const isHome = location.pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
+      <div className={`flex min-h-screen flex-col ${isHome ? "bg-mustard" : ""}`}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <SiteFooter color={footerColor} />
