@@ -118,7 +118,6 @@ export const BreakfastIcon = ({ size = 40, strokeWidth = 1.6, className }: IconP
       <path d="M14 9.5 q2 -2 0 -4" />
       <path d="M20 8.5 q2 -2.4 0 -4.5" />
       <path d="M26 9.5 q2 -2 0 -4" />
-      <Face cx={18.5} cy={21} />
     </>,
     -2,
     className
