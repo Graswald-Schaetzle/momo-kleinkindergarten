@@ -426,11 +426,18 @@ function TagesablaufPage() {
                 <button
                   type="button"
                   onClick={() => setOpen(null)}
-                  className="flex justify-center"
+                  className="mt-8 flex justify-center sm:mt-10"
                   aria-label="Zurück zur Uhr"
                 >
                   <Icon size={isMobile ? 110 : 170} className="text-menu-overlay-foreground" />
                 </button>
+
+                <div className="flex-1" />
+
+                {/* Footer ganz unten */}
+                <div className="w-full">
+                  <SiteFooter color="text-menu-overlay-foreground" />
+                </div>
               </div>
             );
           })()
