@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   BreakfastIcon,
@@ -198,11 +199,14 @@ function TagesablaufPage() {
         <svg
           key={shake}
           viewBox="0 0 600 600"
-          className={`h-full w-full overflow-visible ${open !== null ? "momo-clock-shake" : ""}`}
+          className={`h-full w-full overflow-visible transition-opacity duration-300 ${
+            open !== null ? "momo-clock-shake opacity-30" : ""
+          }`}
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
           {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund (geometrisch, keine Pixel-Unruhe) */}
+
           <g>
             <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
             <polygon
@@ -357,43 +361,49 @@ function TagesablaufPage() {
             </button>
           );
         })}
-      </div>
 
-      {/* ===== Mobil: Detail-Feld unter der Uhr ===== */}
-      <div className="mx-auto mt-6 max-w-2xl rounded-2xl border border-bordeaux/20 bg-background/80 px-5 py-4 text-center sm:px-8 sm:py-6">
-        {open !== null ? (
+        {/* ===== Detail-Popup in der Mitte der Uhr ===== */}
+        {open !== null && (
           (() => {
             const item = schedule[open]!;
             return (
-              <>
-                <span className="font-display text-xs font-normal tracking-wide text-bordeaux/70">
-                  {item.time}
-                </span>
-                <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux">
-                  {item.title}
-                </h4>
-                <p className="mt-2 text-[12px] leading-relaxed text-foreground/85">
-                  {item.text}
-                </p>
-                {item.highlights && (
-                  <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/80">
-                    {item.highlights.map((h, j) => (
-                      <li key={j} className="flex gap-1.5">
-                        <span className="text-bordeaux/50">·</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </>
+              <div className="absolute left-1/2 top-1/2 z-10 w-[86%] max-w-lg -translate-x-1/2 -translate-y-1/2 animate-scale-in">
+                <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-bordeaux/25 bg-background/95 px-5 py-4 text-center shadow-lg backdrop-blur-sm sm:px-8 sm:py-6">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(null)}
+                    aria-label="Zurück zur Uhr"
+                    className="float-left -ml-1 flex items-center gap-1 font-display text-[11px] font-light text-bordeaux/80 transition-opacity hover:opacity-70 sm:text-xs"
+                  >
+                    <ArrowLeft size={16} strokeWidth={1.5} />
+                    <span>zurück</span>
+                  </button>
+                  <span className="block pt-6 font-display text-xs font-normal tracking-wide text-bordeaux/70">
+                    {item.time}
+                  </span>
+                  <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg">
+                    {item.title}
+                  </h4>
+                  <p className="mt-2 text-[12px] leading-relaxed text-foreground/85 sm:text-sm">
+                    {item.text}
+                  </p>
+                  {item.highlights && (
+                    <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/80 sm:text-[13px]">
+                      {item.highlights.map((h, j) => (
+                        <li key={j} className="flex gap-1.5">
+                          <span className="text-bordeaux/50">·</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
             );
           })()
-        ) : (
-          <p className="text-[12px] font-light text-foreground/60">
-            Tippe auf eine Station des Tages, um mehr zu erfahren.
-          </p>
         )}
       </div>
+
     </section>
   );
 }
