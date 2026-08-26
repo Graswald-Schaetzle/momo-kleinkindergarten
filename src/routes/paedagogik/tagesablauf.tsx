@@ -205,8 +205,8 @@ function TagesablaufPage() {
                   x2={CX + rInner * Math.cos(a)}
                   y2={CY + rInner * Math.sin(a)}
                   stroke="var(--ink)"
-                  strokeWidth={isSel ? 11 : 8}
-                  strokeOpacity={isSel ? 1 : 0.8}
+                  strokeWidth={isSel ? 10 : 7}
+                  strokeOpacity={isSel ? 1 : 0.85}
                   strokeLinecap="round"
                 />
               );
