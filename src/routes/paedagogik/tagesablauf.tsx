@@ -113,15 +113,50 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
-/* unregelmäßiges Vieleck – wirkt wie mit der Schere geschnitten */
-function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.03) {
+/* handgezeichneter Kritzel-Kreis: viele Punkte, zwei Jitter-Skalen
+   -> wackelige, aber durchgehend geschlossene Linie (kein Pixel-Rauschen) */
+function wobbleCircle(cx: number, cy: number, r: number, sides = 150, amp = 0.05, amp2 = 0.014) {
   const pts: string[] = [];
   for (let i = 0; i < sides; i++) {
-    const a = (-90 + (360 / sides) * i) * (Math.PI / 180);
-    const rr = r * (1 + jitter * Math.sin(i * 2.7) * 0.5 + jitter * Math.cos(i * 1.3) * 0.5);
+    const a = (i / sides) * Math.PI * 2;
+    const rr =
+      r *
+      (1 +
+        amp * Math.sin(i * 2.7 + 0.3) +
+        amp * 0.7 * Math.cos(i * 1.31) +
+        amp2 * Math.sin(i * 13.1) +
+        amp2 * 1.3 * Math.cos(i * 17.7));
     pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
   }
   return pts.join(" ");
+}
+
+/* handgezeichneter Strich: gerade Linie als Polyline mit senkrechtem Jitter */
+function wobbleSeg(x1: number, y1: number, x2: number, y2: number, segs = 6, amp = 5, seed = 0) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const nx = -dy / len;
+  const ny = dx / len;
+  const pts: string[] = [];
+  for (let i = 0; i <= segs; i++) {
+    const t = i / segs;
+    let off = 0;
+    if (i !== 0 && i !== segs) {
+      off =
+        amp * Math.sin(i * 3.7 + seed) * Math.cos(i * 2.1 + seed * 1.7) +
+        amp * 0.4 * Math.sin(i * 11.3 + seed);
+    }
+    pts.push(`${(x1 + dx * t + nx * off).toFixed(1)},${(y1 + dy * t + ny * off).toFixed(1)}`);
+  }
+  return pts.join(" ");
+}
+
+/* leicht gezittertes Dreieck für Pfeilspitzen */
+function wobbleTri(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, amp = 2.5, seed = 0) {
+  const j = (x: number, y: number, s: number) =>
+    `${(x + amp * Math.sin(s * 1.7 + seed)).toFixed(1)},${(y + amp * Math.cos(s * 2.3 + seed)).toFixed(1)}`;
+  return `${j(x1, y1, 1)} ${j(x2, y2, 2)} ${j(x3, y3, 3)}`;
 }
 
 function pos(i: number, radius: number) {
