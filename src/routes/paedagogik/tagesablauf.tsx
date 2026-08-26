@@ -113,12 +113,17 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
-/* unregelmäßiges Vieleck – wirkt wie mit der Schere geschnitten */
-function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.03) {
+/* unregelmäßiges Vieleck – wirkt wie freihand gekritzelt */
+function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.04) {
   const pts: string[] = [];
   for (let i = 0; i < sides; i++) {
     const a = (-90 + (360 / sides) * i) * (Math.PI / 180);
-    const rr = r * (1 + jitter * Math.sin(i * 2.7) * 0.5 + jitter * Math.cos(i * 1.3) * 0.5);
+    const rr =
+      r *
+      (1 +
+        jitter * Math.sin(i * 5.3) * 0.6 +
+        jitter * Math.cos(i * 2.1) * 0.4 +
+        jitter * Math.sin(i * 11.7) * 0.3);
     pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
   }
   return pts.join(" ");
