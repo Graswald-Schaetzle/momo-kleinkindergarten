@@ -276,7 +276,7 @@ function TagesablaufPage() {
 
             {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
             <g
-              className={open === null ? "momo-hand-spin" : undefined}
+            className={stopped ? undefined : "momo-hand-spin"}
               style={
                 open !== null
                   ? {
