@@ -278,10 +278,10 @@ function TagesablaufPage() {
             <g
             className={stopped ? undefined : "momo-hand-spin"}
               style={
-                open !== null
+                stopped
                   ? {
                       transformOrigin: "300px 300px",
-                      transform: `rotate(${open * 45}deg)`,
+                      transform: `rotate(${(pending ?? open) * 45}deg)`,
                       transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
                     }
                   : undefined
