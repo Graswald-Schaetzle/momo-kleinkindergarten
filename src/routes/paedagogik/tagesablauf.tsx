@@ -214,8 +214,8 @@ function TagesablaufPage() {
         <svg
           key={shake}
           viewBox="0 0 600 600"
-          className={`h-full w-full overflow-visible transition-opacity duration-300 ${
-            stopped ? "momo-clock-shake opacity-30" : ""
+          className={`h-full w-full overflow-visible transition-transform duration-300 ${
+            stopped ? "momo-clock-shake" : ""
           }`}
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
