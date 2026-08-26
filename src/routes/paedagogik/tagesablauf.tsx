@@ -379,7 +379,7 @@ function TagesablaufPage() {
                   {item.text}
                 </p>
                 {item.highlights && (
-                  <ul className="mx-auto mt-6 max-w-probe space-y-2 text-left text-[13px] leading-snug text-foreground/85 sm:text-base">
+                  <ul className="mx-auto mt-6 max-w-prose space-y-2 text-left text-[13px] leading-snug text-foreground/85 sm:text-base">
                     {item.highlights.map((h, j) => (
                       <li key={j} className="flex gap-2">
                         <span className="text-bordeaux/50">·</span>
