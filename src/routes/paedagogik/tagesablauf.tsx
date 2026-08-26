@@ -374,7 +374,7 @@ function TagesablaufPage() {
           (() => {
             const item = schedule[open]!;
             return (
-              <div className="absolute left-1/2 top-1/2 z-40 w-[80%] max-w-md -translate-x-1/2 -translate-y-1/2 animate-scale-in">
+              <div className="absolute left-1/2 top-1/2 z-50 w-[80%] max-w-md -translate-x-1/2 -translate-y-1/2 animate-scale-in">
                 <div className="max-h-[68vh] overflow-y-auto px-2 py-2 text-center sm:px-4">
                   <button
                     type="button"
