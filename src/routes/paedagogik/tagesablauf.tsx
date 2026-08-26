@@ -195,13 +195,19 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
+      <div className="relative z-30 mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
+        {/* Vollbild-Overlay: Seite dahinter verschwindet, nur Uhr + Text bleiben */}
+        {open !== null && (
+          <div
+            className="fixed inset-0 z-20 animate-fade-in"
+            style={{ background: "var(--background)" }}
+            aria-hidden
+          />
+        )}
         <svg
           key={shake}
           viewBox="0 0 600 600"
-          className={`h-full w-full overflow-visible transition-opacity duration-300 ${
-            open !== null ? "momo-clock-shake opacity-30" : ""
-          }`}
+          className="h-full w-full overflow-visible"
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
