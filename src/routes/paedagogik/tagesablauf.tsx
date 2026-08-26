@@ -386,14 +386,13 @@ function TagesablaufPage() {
             return (
               <div className="fixed inset-0 z-30 flex flex-col items-center overflow-y-auto px-5 pb-2 pt-4 sm:px-8 sm:pt-8">
                 {/* MOMO-Logo oben – wie auf den anderen Seiten */}
-                <button
-                  type="button"
-                  onClick={() => setOpen(null)}
+                <Link
+                  to="/"
                   className="flex w-full justify-center"
-                  aria-label="Zurück zur Uhr"
+                  aria-label="Zur Startseite"
                 >
                   <MomoLogo className="h-20 w-auto text-menu-overlay-foreground sm:h-32 md:h-40" />
-                </button>
+                </Link>
 
                 <div className="flex-1" />
 
