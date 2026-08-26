@@ -170,71 +170,51 @@ function TagesablaufPage() {
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
           <defs>
-            <filter id="wobble">
-              <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves={2} seed={7} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={2.2} xChannelSelector="R" yChannelSelector="G" />
+            {/* leichte Handzeichnungs-Unruhe */}
+            <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves={2} seed={7} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={3} xChannelSelector="R" yChannelSelector="G" />
             </filter>
-            {/* gerissene / geschnittene Papierkante */}
-            <filter id="cutEdge" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.055" numOctaves={3} seed={19} result="cn" />
-              <feDisplacementMap in="SourceGraphic" in2="cn" scale={5} xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-            <filter id="paperGrain" x="-25%" y="-25%" width="150%" height="150%">
-              <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves={4} seed={11} result="g" />
+            <filter id="paperGrain" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves={4} seed={11} result="g" />
               <feColorMatrix in="g" type="saturate" values="0" result="gm" />
               <feComponentTransfer in="gm" result="gc">
-                <feFuncA type="linear" slope="0.34" intercept="0" />
+                <feFuncA type="linear" slope="0.12" intercept="0" />
               </feComponentTransfer>
               <feComposite in="gc" in2="SourceGraphic" operator="in" result="grain" />
-              <feBlend in="SourceGraphic" in2="grain" mode="multiply" result="textured" />
-              <feDropShadow dx="3" dy="5" stdDeviation="4" floodColor="#3A2A1C" floodOpacity="0.22" />
+              <feBlend in="SourceGraphic" in2="grain" mode="multiply" />
             </filter>
-            {/* weiche Papierwölbung auf dem Ziffernblatt */}
-            <radialGradient id="faceShade" cx="38%" cy="30%" r="78%">
-              <stop offset="0%" stopColor="#FFFBD0" stopOpacity="0.9" />
-              <stop offset="60%" stopColor="#ECE79E" stopOpacity="0" />
-              <stop offset="100%" stopColor="#8E7C2E" stopOpacity="0.3" />
-            </radialGradient>
           </defs>
 
           <g filter="url(#paperGrain)">
-            {/* Knopf oben (Papierschnipsel) */}
-            <polygon
-              points={`${CX - 17},${CY - rRing - 26} ${CX + 16},${CY - rRing - 28} ${CX + 13},${CY - rRing - knobExt} ${CX - 14},${CY - rRing - knobExt + 4}`}
-              fill="var(--clock)"
-              filter="url(#cutEdge)"
-            />
-            {/* Füße – schmal, unter dem Gehäuse */}
-            <g filter="url(#cutEdge)">
+            {/* Ziffernblatt: cremiges Papier mit gezeichneter Kontur */}
+            <g filter="url(#wobble)">
+              <polygon points={ngon(CX, CY, rRing, 42, 0.012)} fill="#F7F1E0" />
               <polygon
-                points={`${CX - 70},${CY + rRing - 18} ${CX - 18},${CY + rRing - 4} ${CX - 26},${CY + rRing + footExt} ${CX - 80},${CY + rRing + footExt - 16}`}
-                fill="var(--clock-foot)"
+                points={ngon(CX, CY, rRing, 42, 0.012)}
+                fill="none"
+                stroke="var(--ink)"
+                strokeWidth={6}
+                strokeLinejoin="round"
               />
+              {/* zweiter, leicht versetzter Strich – wie nachgezogen */}
               <polygon
-                points={`${CX + 70},${CY + rRing - 18} ${CX + 18},${CY + rRing - 4} ${CX + 26},${CY + rRing + footExt} ${CX + 80},${CY + rRing + footExt - 16}`}
-                fill="var(--clock-foot)"
+                points={ngon(CX, CY, rRing - 3, 42, 0.016)}
+                fill="none"
+                stroke="var(--ink)"
+                strokeWidth={2}
+                strokeOpacity={0.45}
+                strokeLinejoin="round"
               />
             </g>
 
-            {/* Gehäuse: gelber Versatz (Fehldruck) + geschnittenes Vieleck */}
-            <g filter="url(#cutEdge)">
-              <polygon
-                points={ngon(CX, CY, rRing + 38, 15)}
-                fill="#F0CE3C"
-                transform="translate(-5,-6)"
-              />
-              <polygon points={ngon(CX, CY, rRing + 34, 15)} fill="var(--clock)" />
-              {/* Ziffernblatt */}
-              <polygon points={ngon(CX, CY, rRing, 14, 0.22)} fill="var(--clock-face)" />
-              <polygon points={ngon(CX, CY, rRing, 14, 0.22)} fill="url(#faceShade)" />
-            </g>
-
-            {/* Striche nur an den 8 Aktivitäts-Positionen */}
+            {/* Striche statt Zahlen – an den 8 Stationen */}
             <g filter="url(#wobble)">
               {schedule.map((_, n) => {
                 const a = (-90 + n * 45) * (Math.PI / 180);
-                const rOuter = rRing - (isMobile ? 8 : 12);
-                const rInner = rRing - (isMobile ? 24 : 34);
+                const rOuter = rRing - (isMobile ? 12 : 18);
+                const rInner = rRing - (isMobile ? 30 : 44);
+                const isSel = open === n;
                 return (
                   <line
                     key={n}
@@ -242,42 +222,18 @@ function TagesablaufPage() {
                     y1={CY + rOuter * Math.sin(a)}
                     x2={CX + rInner * Math.cos(a)}
                     y2={CY + rInner * Math.sin(a)}
-                    stroke="var(--clock)"
-                    strokeWidth={7}
+                    stroke="var(--ink)"
+                    strokeWidth={isSel ? 7 : 5}
+                    strokeOpacity={isSel ? 1 : 0.8}
                     strokeLinecap="round"
                   />
                 );
               })}
             </g>
 
-            {/* Gesicht */}
-            <g filter="url(#cutEdge)">
-              {/* Augen: weißes Papier + blaue Pupille */}
-              <ellipse cx={CX - rRing * 0.34} cy={CY - rRing * 0.3} rx={rRing * 0.145} ry={rRing * 0.205} fill="#FBF7EC" />
-              <ellipse cx={CX + rRing * 0.34} cy={CY - rRing * 0.3} rx={rRing * 0.145} ry={rRing * 0.205} fill="#FBF7EC" />
-              <ellipse
-                className="momo-eye-lid"
-                cx={CX - rRing * 0.38} cy={CY - rRing * 0.3}
-                rx={rRing * 0.085} ry={rRing * 0.185}
-                fill="var(--clock-eye)"
-              />
-              <ellipse
-                className="momo-eye-lid momo-eye-lid-2"
-                cx={CX + rRing * 0.3} cy={CY - rRing * 0.3}
-                rx={rRing * 0.085} ry={rRing * 0.185}
-                fill="var(--clock-eye)"
-              />
-              {/* Lächeln */}
-              <path
-                d={`M ${CX - rRing * 0.42} ${CY + rRing * 0.28} q ${rRing * 0.42} ${rRing * 0.52} ${rRing * 0.84} 0`}
-                fill="none" stroke="var(--clock)" strokeWidth={8} strokeLinecap="round"
-              />
-            </g>
-
-
-            {/* Zeiger: dreht sich dauerhaft, hält bei Auswahl an */}
+            {/* Zeiger: dünn, mit Tusche gezeichnet */}
             <g
-              filter="url(#cutEdge)"
+              filter="url(#wobble)"
               className={open === null ? "momo-hand-spin" : undefined}
               style={
                 open !== null
@@ -289,23 +245,32 @@ function TagesablaufPage() {
                   : undefined
               }
             >
-              {/* großer Zeiger: zeigt nach oben und damit auf die gewählte Station */}
-              <polygon
-                points={`${CX - 12},${CY} ${CX + 12},${CY} ${CX + 12},${CY - rRing * 0.6} ${CX + 25},${CY - rRing * 0.6} ${CX},${CY - rRing * 0.85} ${CX - 25},${CY - rRing * 0.6} ${CX - 12},${CY - rRing * 0.6}`}
-                fill="var(--ink)"
+              {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
+              <line
+                x1={CX}
+                y1={CY + rRing * 0.06}
+                x2={CX}
+                y2={CY - rRing * 0.72}
+                stroke="var(--ink)"
+                strokeWidth={7}
+                strokeLinecap="round"
               />
-              {/* kleiner Zeiger: fester Winkel dazu */}
+              {/* kurzer Zeiger im festen Winkel */}
               <g transform={`rotate(125 ${CX} ${CY})`}>
-                <polygon
-                  points={`${CX - 14},${CY} ${CX + 14},${CY} ${CX + 14},${CY - rRing * 0.34} ${CX + 27},${CY - rRing * 0.34} ${CX},${CY - rRing * 0.56} ${CX - 27},${CY - rRing * 0.34} ${CX - 14},${CY - rRing * 0.34}`}
-                  fill="var(--ink)"
+                <line
+                  x1={CX}
+                  y1={CY + rRing * 0.05}
+                  x2={CX}
+                  y2={CY - rRing * 0.46}
+                  stroke="var(--ink)"
+                  strokeWidth={8}
+                  strokeLinecap="round"
                 />
               </g>
-
-              <circle cx={CX} cy={CY} r={16} fill="var(--ink)" />
-              <circle cx={CX - 4} cy={CY - 5} r={5} fill="#5A4652" opacity={0.7} />
+              <circle cx={CX} cy={CY} r={5} fill="var(--ink)" />
             </g>
           </g>
+
 
         </svg>
 
