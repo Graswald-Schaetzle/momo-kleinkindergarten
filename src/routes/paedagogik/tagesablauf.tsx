@@ -373,8 +373,8 @@ function TagesablaufPage() {
           (() => {
             const item = schedule[open]!;
             return (
-              <div className="absolute left-1/2 top-1/2 z-10 w-[86%] max-w-lg -translate-x-1/2 -translate-y-1/2 animate-scale-in">
-                <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-bordeaux/25 bg-background/95 px-5 py-4 text-center shadow-lg backdrop-blur-sm sm:px-8 sm:py-6">
+              <div className="absolute left-1/2 top-1/2 z-40 w-[80%] max-w-md -translate-x-1/2 -translate-y-1/2 animate-scale-in">
+                <div className="max-h-[68vh] overflow-y-auto px-2 py-2 text-center sm:px-4">
                   <button
                     type="button"
                     onClick={() => setOpen(null)}
@@ -390,11 +390,11 @@ function TagesablaufPage() {
                   <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg">
                     {item.title}
                   </h4>
-                  <p className="mt-2 text-[12px] leading-relaxed text-foreground/85 sm:text-sm">
+                  <p className="mt-2 text-[12px] leading-relaxed text-foreground/90 sm:text-sm">
                     {item.text}
                   </p>
                   {item.highlights && (
-                    <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/80 sm:text-[13px]">
+                    <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/85 sm:text-[13px]">
                       {item.highlights.map((h, j) => (
                         <li key={j} className="flex gap-1.5">
                           <span className="text-bordeaux/50">·</span>
