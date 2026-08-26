@@ -170,10 +170,12 @@ function TagesablaufPage() {
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
           <defs>
-            {/* kritzelkratzelige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
-            <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves={3} seed={9} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={7} xChannelSelector="R" yChannelSelector="G" />
+            {/* gleicher dreistufiger Kritzel-Filter wie die Icons (Filzstift auf Papier) */}
+            <filter id="wobble" x="-35%" y="-35%" width="170%" height="170%">
+              <feTurbulence type="turbulence" baseFrequency="0.004" numOctaves="1" seed="9" result="n1" />
+              <feDisplacementMap in="SourceGraphic" in2="n1" scale="9" xChannelSelector="R" yChannelSelector="G" result="w1" />
+              <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="3" result="n2" />
+              <feDisplacementMap in="w1" in2="n2" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
 
