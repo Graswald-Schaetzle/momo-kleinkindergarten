@@ -550,6 +550,10 @@ function TagesablaufPage() {
           })()
         )}
       </div>
+
+      <div className="mt-6 flex justify-center sm:mt-10">
+        <WaggingDog size={200} className="text-bordeaux" />
+      </div>
     </section>
   );
 }
