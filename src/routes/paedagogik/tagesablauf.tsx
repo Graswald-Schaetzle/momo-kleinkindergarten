@@ -213,110 +213,122 @@ function TagesablaufPage() {
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
-          {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund (geometrisch, keine Pixel-Unruhe) */}
+          <defs>
+            <filter id="clock-scribble" x="-15%" y="-15%" width="130%" height="130%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="9" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="6.5" xChannelSelector="R" yChannelSelector="G" result="wob1" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="2" seed="3" result="noise2" />
+              <feDisplacementMap in="wob1" in2="noise2" scale="3.5" xChannelSelector="R" yChannelSelector="G" result="wob2" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" seed="7" result="noise3" />
+              <feDisplacementMap in="wob2" in2="noise3" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
 
-          <g>
-            <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
-            <polygon
-              points={wobbleCircle(CX, CY, rRing)}
-              fill="none"
-              stroke="var(--ink)"
-              strokeWidth={5.5}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-            />
-          </g>
-
-          {/* Striche statt Zahlen – an den 8 Stationen */}
-          <g>
-            {schedule.map((_, n) => {
-              const a = (-90 + n * 45) * (Math.PI / 180);
-              const rOuter = rRing - (isMobile ? 10 : 16);
-              const rInner = rRing - (isMobile ? 32 : 48);
-              const isSel = open === n;
-              return (
-                <polyline
-                  key={n}
-                  points={wobbleSeg(
-                    CX + rOuter * Math.cos(a),
-                    CY + rOuter * Math.sin(a),
-                    CX + rInner * Math.cos(a),
-                    CY + rInner * Math.sin(a),
-                    3,
-                    2,
-                    n * 1.7
-                  )}
-                  fill="none"
-                  stroke="var(--ink)"
-                  strokeWidth={isSel ? 9 : 6.5}
-                  strokeOpacity={isSel ? 1 : 0.85}
-                  strokeLinecap="round"
-                />
-              );
-            })}
-          </g>
-
-          {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
-          <g
-            className={open === null ? "momo-hand-spin" : undefined}
-            style={
-              open !== null
-                ? {
-                    transformOrigin: "300px 300px",
-                    transform: `rotate(${open * 45}deg)`,
-                    transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
-                  }
-                : undefined
-            }
-          >
-            {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
-            <polyline
-              points={wobbleSeg(CX, CY + rRing * 0.06, CX, CY - rRing * 0.74, 7, 4.5, 1.3)}
-              fill="none"
-              stroke="var(--ink)"
-              strokeWidth={8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Pfeilspitze langer Zeiger */}
-            <polygon
-              points={wobbleTri(
-                CX - 9,
-                CY - rRing * 0.66,
-                CX + 9,
-                CY - rRing * 0.66,
-                CX,
-                CY - rRing * 0.78,
-                2,
-                0.4
-              )}
-              fill="var(--ink)"
-            />
-            {/* kurzer Zeiger im festen Winkel */}
-            <g transform={`rotate(125 ${CX} ${CY})`}>
-              <polyline
-                points={wobbleSeg(CX, CY + rRing * 0.05, CX, CY - rRing * 0.46, 6, 4, 2.1)}
+          <g filter="url(#clock-scribble)">
+            {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund */}
+            <g>
+              <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
+              <polygon
+                points={wobbleCircle(CX, CY, rRing)}
                 fill="none"
-                stroke="var(--ink)"
-                strokeWidth={9}
+                stroke="var(--bordeaux)"
+                strokeWidth={5.5}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
+            </g>
+
+            {/* Striche statt Zahlen – an den 8 Stationen */}
+            <g>
+              {schedule.map((_, n) => {
+                const a = (-90 + n * 45) * (Math.PI / 180);
+                const rOuter = rRing - (isMobile ? 10 : 16);
+                const rInner = rRing - (isMobile ? 32 : 48);
+                const isSel = open === n;
+                return (
+                  <polyline
+                    key={n}
+                    points={wobbleSeg(
+                      CX + rOuter * Math.cos(a),
+                      CY + rOuter * Math.sin(a),
+                      CX + rInner * Math.cos(a),
+                      CY + rInner * Math.sin(a),
+                      3,
+                      2,
+                      n * 1.7
+                    )}
+                    fill="none"
+                    stroke="var(--bordeaux)"
+                    strokeWidth={isSel ? 9 : 6.5}
+                    strokeOpacity={isSel ? 1 : 0.85}
+                    strokeLinecap="round"
+                  />
+                );
+              })}
+            </g>
+
+            {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
+            <g
+              className={open === null ? "momo-hand-spin" : undefined}
+              style={
+                open !== null
+                  ? {
+                      transformOrigin: "300px 300px",
+                      transform: `rotate(${open * 45}deg)`,
+                      transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                    }
+                  : undefined
+              }
+            >
+              {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
+              <polyline
+                points={wobbleSeg(CX, CY + rRing * 0.06, CX, CY - rRing * 0.74, 7, 4.5, 1.3)}
+                fill="none"
+                stroke="var(--bordeaux)"
+                strokeWidth={8}
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
+              {/* Pfeilspitze langer Zeiger */}
               <polygon
                 points={wobbleTri(
-                  CX - 8,
-                  CY - rRing * 0.4,
-                  CX + 8,
-                  CY - rRing * 0.4,
+                  CX - 9,
+                  CY - rRing * 0.66,
+                  CX + 9,
+                  CY - rRing * 0.66,
                   CX,
-                  CY - rRing * 0.5,
+                  CY - rRing * 0.78,
                   2,
-                  0.7
+                  0.4
                 )}
-                fill="var(--ink)"
+                fill="var(--bordeaux)"
               />
+              {/* kurzer Zeiger im festen Winkel */}
+              <g transform={`rotate(125 ${CX} ${CY})`}>
+                <polyline
+                  points={wobbleSeg(CX, CY + rRing * 0.05, CX, CY - rRing * 0.46, 6, 4, 2.1)}
+                  fill="none"
+                  stroke="var(--bordeaux)"
+                  strokeWidth={9}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <polygon
+                  points={wobbleTri(
+                    CX - 8,
+                    CY - rRing * 0.4,
+                    CX + 8,
+                    CY - rRing * 0.4,
+                    CX,
+                    CY - rRing * 0.5,
+                    2,
+                    0.7
+                  )}
+                  fill="var(--bordeaux)"
+                />
+              </g>
+              <circle cx={CX} cy={CY} r={8} fill="var(--bordeaux)" />
             </g>
-            <circle cx={CX} cy={CY} r={8} fill="var(--ink)" />
           </g>
 
         </svg>
