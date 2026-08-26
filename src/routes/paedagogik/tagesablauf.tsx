@@ -199,7 +199,7 @@ function TagesablaufPage() {
         {/* Vollbild-Overlay: Seite dahinter verschwindet, nur Uhr + Text bleiben */}
         {open !== null && (
           <div
-            className="fixed inset-0 z-20 animate-fade-in"
+            className="fixed inset-0 z-0 animate-fade-in"
             style={{ background: "var(--background)" }}
             aria-hidden
           />
@@ -207,7 +207,7 @@ function TagesablaufPage() {
         <svg
           key={shake}
           viewBox="0 0 600 600"
-          className="h-full w-full overflow-visible"
+          className="relative z-10 h-full w-full overflow-visible"
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
