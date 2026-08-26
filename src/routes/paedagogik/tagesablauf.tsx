@@ -215,7 +215,7 @@ function TagesablaufPage() {
           key={shake}
           viewBox="0 0 600 600"
           className={`h-full w-full overflow-visible transition-opacity duration-300 ${
-            open !== null ? "momo-clock-shake opacity-30" : ""
+            stopped ? "momo-clock-shake opacity-30" : ""
           }`}
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
