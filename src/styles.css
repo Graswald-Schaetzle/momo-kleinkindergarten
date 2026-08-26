@@ -64,6 +64,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-menu-overlay: var(--menu-overlay);
   --color-menu-overlay-foreground: var(--menu-overlay-foreground);
+  --color-mustard: var(--mustard);
   --color-bordeaux: var(--bordeaux);
   --color-clock: var(--clock);
   --color-clock-face: var(--clock-face);
@@ -83,6 +84,7 @@
   --ink: #2B1B26;
   --menu-overlay: #4C6379;
   --menu-overlay-foreground: #C8912F;
+  --mustard: #C8912F;
   --foreground: oklch(0.129 0.042 264.695);
 
   --card: oklch(1 0 0);
