@@ -28,7 +28,9 @@ function PaedagogikLayout() {
   return (
     <main className="min-h-screen pb-32">
       <SiteHeader />
-      <Outlet />
+      <div className="text-bordeaux">
+        <Outlet />
+      </div>
     </main>
   );
 }
