@@ -170,107 +170,96 @@ function TagesablaufPage() {
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
           <defs>
-            {/* leichte Handzeichnungs-Unruhe */}
+            {/* kräftige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
             <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves={2} seed={7} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={3} xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-            <filter id="paperGrain" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves={4} seed={11} result="g" />
-              <feColorMatrix in="g" type="saturate" values="0" result="gm" />
-              <feComponentTransfer in="gm" result="gc">
-                <feFuncA type="linear" slope="0.12" intercept="0" />
-              </feComponentTransfer>
-              <feComposite in="gc" in2="SourceGraphic" operator="in" result="grain" />
-              <feBlend in="SourceGraphic" in2="grain" mode="multiply" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves={2} seed={9} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={5} xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
 
-          <g filter="url(#paperGrain)">
-            {/* Ziffernblatt: cremiges Papier mit gezeichneter Kontur */}
-            <g filter="url(#wobble)">
-              <polygon points={ngon(CX, CY, rRing, 42, 0.012)} fill="#F7F1E0" />
-              <polygon
-                points={ngon(CX, CY, rRing, 42, 0.012)}
-                fill="none"
-                stroke="var(--ink)"
-                strokeWidth={6}
-                strokeLinejoin="round"
-              />
-              {/* zweiter, leicht versetzter Strich – wie nachgezogen */}
-              <polygon
-                points={ngon(CX, CY, rRing - 3, 42, 0.016)}
-                fill="none"
-                stroke="var(--ink)"
-                strokeWidth={2}
-                strokeOpacity={0.45}
-                strokeLinejoin="round"
-              />
-            </g>
-
-            {/* Striche statt Zahlen – an den 8 Stationen */}
-            <g filter="url(#wobble)">
-              {schedule.map((_, n) => {
-                const a = (-90 + n * 45) * (Math.PI / 180);
-                const rOuter = rRing - (isMobile ? 12 : 18);
-                const rInner = rRing - (isMobile ? 30 : 44);
-                const isSel = open === n;
-                return (
-                  <line
-                    key={n}
-                    x1={CX + rOuter * Math.cos(a)}
-                    y1={CY + rOuter * Math.sin(a)}
-                    x2={CX + rInner * Math.cos(a)}
-                    y2={CY + rInner * Math.sin(a)}
-                    stroke="var(--ink)"
-                    strokeWidth={isSel ? 7 : 5}
-                    strokeOpacity={isSel ? 1 : 0.8}
-                    strokeLinecap="round"
-                  />
-                );
-              })}
-            </g>
-
-            {/* Zeiger: dünn, mit Tusche gezeichnet */}
-            <g
-              filter="url(#wobble)"
-              className={open === null ? "momo-hand-spin" : undefined}
-              style={
-                open !== null
-                  ? {
-                      transformOrigin: "300px 300px",
-                      transform: `rotate(${open * 45}deg)`,
-                      transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
-                    }
-                  : undefined
-              }
-            >
-              {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
-              <line
-                x1={CX}
-                y1={CY + rRing * 0.06}
-                x2={CX}
-                y2={CY - rRing * 0.72}
-                stroke="var(--ink)"
-                strokeWidth={7}
-                strokeLinecap="round"
-              />
-              {/* kurzer Zeiger im festen Winkel */}
-              <g transform={`rotate(125 ${CX} ${CY})`}>
-                <line
-                  x1={CX}
-                  y1={CY + rRing * 0.05}
-                  x2={CX}
-                  y2={CY - rRing * 0.46}
-                  stroke="var(--ink)"
-                  strokeWidth={8}
-                  strokeLinecap="round"
-                />
-              </g>
-              <circle cx={CX} cy={CY} r={5} fill="var(--ink)" />
-            </g>
+          {/* Ziffernblatt: einzelner dicker Filzstrich auf weißem Papier */}
+          <g filter="url(#wobble)">
+            <polygon points={ngon(CX, CY, rRing, 48, 0.018)} fill="#FFFDF8" />
+            <polygon
+              points={ngon(CX, CY, rRing, 48, 0.018)}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={11}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
           </g>
 
+          {/* Striche statt Zahlen – an den 8 Stationen */}
+          <g filter="url(#wobble)">
+            {schedule.map((_, n) => {
+              const a = (-90 + n * 45) * (Math.PI / 180);
+              const rOuter = rRing - (isMobile ? 10 : 16);
+              const rInner = rRing - (isMobile ? 32 : 48);
+              const isSel = open === n;
+              return (
+                <line
+                  key={n}
+                  x1={CX + rOuter * Math.cos(a)}
+                  y1={CY + rOuter * Math.sin(a)}
+                  x2={CX + rInner * Math.cos(a)}
+                  y2={CY + rInner * Math.sin(a)}
+                  stroke="var(--ink)"
+                  strokeWidth={isSel ? 10 : 7}
+                  strokeOpacity={isSel ? 1 : 0.85}
+                  strokeLinecap="round"
+                />
+              );
+            })}
+          </g>
+
+          {/* Zeiger: kräftige Tuschestriche mit Pfeilspitzen */}
+          <g
+            filter="url(#wobble)"
+            className={open === null ? "momo-hand-spin" : undefined}
+            style={
+              open !== null
+                ? {
+                    transformOrigin: "300px 300px",
+                    transform: `rotate(${open * 45}deg)`,
+                    transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                  }
+                : undefined
+            }
+          >
+            {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
+            <line
+              x1={CX}
+              y1={CY + rRing * 0.06}
+              x2={CX}
+              y2={CY - rRing * 0.74}
+              stroke="var(--ink)"
+              strokeWidth={9}
+              strokeLinecap="round"
+            />
+            {/* Pfeilspitze langer Zeiger */}
+            <polygon
+              points={`${CX - 9},${CY - rRing * 0.66} ${CX + 9},${CY - rRing * 0.66} ${CX},${CY - rRing * 0.78}`}
+              fill="var(--ink)"
+            />
+            {/* kurzer Zeiger im festen Winkel */}
+            <g transform={`rotate(125 ${CX} ${CY})`}>
+              <line
+                x1={CX}
+                y1={CY + rRing * 0.05}
+                x2={CX}
+                y2={CY - rRing * 0.46}
+                stroke="var(--ink)"
+                strokeWidth={10}
+                strokeLinecap="round"
+              />
+              <polygon
+                points={`${CX - 8},${CY - rRing * 0.4} ${CX + 8},${CY - rRing * 0.4} ${CX},${CY - rRing * 0.5}`}
+                fill="var(--ink)"
+              />
+            </g>
+            <circle cx={CX} cy={CY} r={8} fill="var(--ink)" />
+          </g>
 
         </svg>
 
