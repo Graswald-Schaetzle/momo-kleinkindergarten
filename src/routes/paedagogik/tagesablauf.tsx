@@ -3,33 +3,139 @@ import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-/* Sanftes Kuckucks-Uhrgeräusch via Web Audio API (kein Asset nötig) */
-let cuckooCtx: AudioContext | null = null;
-function playCuckoo() {
+/* Tiergeräusche via Web Audio API – bei jedem Klick ein anderes, angenehmes Tier */
+let audioCtx: AudioContext | null = null;
+let soundIndex = 0;
+
+function ctx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+  if (audioCtx.state === "suspended") void audioCtx.resume();
+  return audioCtx;
+}
+
+/* Hilfsfunktion: ein einzelner Ton mit weicher Hüllkurve */
+function tone(ctx: AudioContext, start: number, freq: number, dur: number, gain: number, type: OscillatorType = "triangle") {
+  const osc = ctx.createOscillator();
+  const env = ctx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, start);
+  env.gain.setValueAtTime(0, start);
+  env.gain.linearRampToValueAtTime(gain, start + 0.02);
+  env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  osc.connect(env).connect(ctx.destination);
+  osc.start(start);
+  osc.stop(start + dur + 0.02);
+  return { osc, env };
+}
+
+const animalSounds: Array<() => void> = [
+  // 1. Kuckuck – zwei weiche Töne hoch -> tief
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    tone(c, t, 659.25, 0.18, 0.16);
+    tone(c, t + 0.22, 523.25, 0.26, 0.18);
+  },
+  // 2. Vogelzwitschern – schnelle hohe Triller
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    for (let i = 0; i < 4; i++) {
+      const s = t + i * 0.11;
+      const o = c.createOscillator(); const g = c.createGain();
+      o.type = "sine";
+      o.frequency.setValueAtTime(1800 + i * 120, s);
+      o.frequency.exponentialRampToValueAtTime(2600, s + 0.06);
+      g.gain.setValueAtTime(0, s);
+      g.gain.linearRampToValueAtTime(0.1, s + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, s + 0.09);
+      o.connect(g).connect(c.destination);
+      o.start(s); o.stop(s + 0.1);
+    }
+  },
+  // 3. Katze – sanftes Miau (Gleitton abwärts)
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    const o = c.createOscillator(); const g = c.createGain();
+    o.type = "triangle";
+    o.frequency.setValueAtTime(700, t);
+    o.frequency.exponentialRampToValueAtTime(380, t + 0.35);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.12, t + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
+    o.connect(g).connect(c.destination);
+    o.start(t); o.stop(t + 0.5);
+  },
+  // 4. Frosch – tiefes Quak
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    const o = c.createOscillator(); const g = c.createGain();
+    o.type = "sawtooth";
+    o.frequency.setValueAtTime(220, t);
+    o.frequency.exponentialRampToValueAtTime(110, t + 0.18);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.13, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
+    o.connect(g).connect(c.destination);
+    o.start(t); o.stop(t + 0.25);
+  },
+  // 5. Ente – kurzes nasales Quack
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    const o = c.createOscillator(); const g = c.createGain();
+    o.type = "square";
+    o.frequency.setValueAtTime(440, t);
+    o.frequency.exponentialRampToValueAtTime(300, t + 0.12);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.1, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
+    o.connect(g).connect(c.destination);
+    o.start(t); o.stop(t + 0.18);
+  },
+  // 6. Eule – sanftes Uhu (zwei tiefe Töne)
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    tone(c, t, 293.66, 0.3, 0.14, "sine"); // D4
+    tone(c, t + 0.34, 246.94, 0.4, 0.15, "sine"); // B3
+  },
+  // 7. Kuh – tiefes Muh (langsamer Gleitton)
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    const o = c.createOscillator(); const g = c.createGain();
+    o.type = "triangle";
+    o.frequency.setValueAtTime(170, t);
+    o.frequency.linearRampToValueAtTime(150, t + 0.3);
+    o.frequency.linearRampToValueAtTime(130, t + 0.6);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.16, t + 0.08);
+    g.gain.setValueAtTime(0.16, t + 0.5);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
+    o.connect(g).connect(c.destination);
+    o.start(t); o.stop(t + 0.75);
+  },
+  // 8. Huhn – sanftes Gackern
+  () => {
+    const c = ctx(); const t = c.currentTime;
+    for (let i = 0; i < 3; i++) {
+      const s = t + i * 0.13;
+      const o = c.createOscillator(); const g = c.createGain();
+      o.type = "square";
+      o.frequency.setValueAtTime(520, s);
+      o.frequency.exponentialRampToValueAtTime(400, s + 0.08);
+      g.gain.setValueAtTime(0, s);
+      g.gain.linearRampToValueAtTime(0.09, s + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, s + 0.1);
+      o.connect(g).connect(c.destination);
+      o.start(s); o.stop(s + 0.12);
+    }
+  },
+];
+
+function playAnimalSound() {
   try {
-    if (!cuckooCtx) cuckooCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const ctx = cuckooCtx;
-    if (ctx.state === "suspended") void ctx.resume();
-    const now = ctx.currentTime;
-
-    const tone = (start: number, freq: number, dur: number, gain: number) => {
-      const osc = ctx.createOscillator();
-      const env = ctx.createGain();
-      osc.type = "triangle";
-      osc.frequency.setValueAtTime(freq, start);
-      env.gain.setValueAtTime(0, start);
-      env.gain.linearRampToValueAtTime(gain, start + 0.02);
-      env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
-      osc.connect(env).connect(ctx.destination);
-      osc.start(start);
-      osc.stop(start + dur + 0.02);
-    };
-
-    // Zwei weiche Töne: hoch -> tief (wie eine Kuckucksuhr)
-    tone(now, 659.25, 0.18, 0.16); // E5
-    tone(now + 0.22, 523.25, 0.26, 0.18); // C5
+    const fn = animalSounds[soundIndex % animalSounds.length]!;
+    soundIndex++;
+    fn();
   } catch {
-    /* AudioContext nicht verfügbar — geräuschlos weiter */
+    /* AudioContext nicht verfügbar – geräuschlos weiter */
   }
 }
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -215,7 +321,7 @@ function TagesablaufPage() {
   const select = useCallback((i: number) => {
     if (open !== null || pending !== null) return;
     setShake((s) => s + 1);
-    playCuckoo();
+    playAnimalSound();
     setPending(i);
     setTimeout(() => {
       setOpen(i);
