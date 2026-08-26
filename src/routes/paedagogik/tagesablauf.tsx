@@ -3,129 +3,114 @@ import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-/* Tiergeräusche via Web Audio API – bei jedem Klick ein anderes, angenehmes Tier */
+/* Tiergeräusche via Web Audio API – sanft, kindlich & musikalisch (Spieldosen-Stil) */
 let audioCtx: AudioContext | null = null;
 let soundIndex = 0;
 
-function ctx() {
+function actx() {
   if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
   if (audioCtx.state === "suspended") void audioCtx.resume();
   return audioCtx;
 }
 
-/* Hilfsfunktion: ein einzelner Ton mit weicher Hüllkurve */
-function tone(ctx: AudioContext, start: number, freq: number, dur: number, gain: number, type: OscillatorType = "triangle") {
-  const osc = ctx.createOscillator();
-  const env = ctx.createGain();
-  osc.type = type;
-  osc.frequency.setValueAtTime(freq, start);
+/* Sanfter Ton wie eine Spieluhr: Sine, warmer Attack, sanftes Ausklingen.
+   Ein zweiter leicht verstimmter Oszillator erzeugt eine weiche Chor-Tiefe. */
+function bell(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
+  const o1 = c.createOscillator();
+  const o2 = c.createOscillator();
+  const env = c.createGain();
+  o1.type = "sine";
+  o2.type = "sine";
+  o1.frequency.setValueAtTime(freq, start);
+  o2.frequency.setValueAtTime(freq * 1.005, start); // leichte Verstimmung = Wärme
   env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.02);
+  env.gain.linearRampToValueAtTime(gain, start + 0.03);
   env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
-  osc.connect(env).connect(ctx.destination);
-  osc.start(start);
-  osc.stop(start + dur + 0.02);
-  return { osc, env };
+  o1.connect(env);
+  o2.connect(env);
+  env.connect(c.destination);
+  o1.start(start); o2.start(start);
+  o1.stop(start + dur + 0.05); o2.stop(start + dur + 0.05);
 }
 
 const animalSounds: Array<() => void> = [
-  // 1. Kuckuck – zwei weiche Töne hoch -> tief
+  // 1. Kuckuck – zwei liebliche Glockentöne (C5 -> G4)
   () => {
-    const c = ctx(); const t = c.currentTime;
-    tone(c, t, 659.25, 0.18, 0.16);
-    tone(c, t + 0.22, 523.25, 0.26, 0.18);
+    const c = actx(); const t = c.currentTime;
+    bell(c, t, 523.25, 0.4, 0.18);       // C5
+    bell(c, t + 0.25, 392.0, 0.5, 0.16);  // G4
   },
-  // 2. Vogelzwitschern – schnelle hohe Triller
+  // 2. Vogelzwitschern – kleine aufsteigende Glocken-Triller
   () => {
-    const c = ctx(); const t = c.currentTime;
-    for (let i = 0; i < 4; i++) {
-      const s = t + i * 0.11;
-      const o = c.createOscillator(); const g = c.createGain();
-      o.type = "sine";
-      o.frequency.setValueAtTime(1800 + i * 120, s);
-      o.frequency.exponentialRampToValueAtTime(2600, s + 0.06);
-      g.gain.setValueAtTime(0, s);
-      g.gain.linearRampToValueAtTime(0.1, s + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001, s + 0.09);
-      o.connect(g).connect(c.destination);
-      o.start(s); o.stop(s + 0.1);
-    }
+    const c = actx(); const t = c.currentTime;
+    const notes = [783.99, 880.0, 987.77, 1046.5]; // G5 A5 B5 C6
+    notes.forEach((f, i) => bell(c, t + i * 0.12, f, 0.18, 0.12));
   },
-  // 3. Katze – sanftes Miau (Gleitton abwärts)
+  // 3. Katze – sanftes, warmes Miau (Gleitton, Sine)
   () => {
-    const c = ctx(); const t = c.currentTime;
+    const c = actx(); const t = c.currentTime;
     const o = c.createOscillator(); const g = c.createGain();
-    o.type = "triangle";
-    o.frequency.setValueAtTime(700, t);
-    o.frequency.exponentialRampToValueAtTime(380, t + 0.35);
+    o.type = "sine";
+    o.frequency.setValueAtTime(523, t);       // C5
+    o.frequency.exponentialRampToValueAtTime(349, t + 0.4); // F4
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.12, t + 0.05);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
+    g.gain.linearRampToValueAtTime(0.14, t + 0.06);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
     o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.5);
+    o.start(t); o.stop(t + 0.55);
   },
-  // 4. Frosch – tiefes Quak
+  // 4. Frosch – weiches, tiefes Quak (Sine, kurzer Tiefgang)
   () => {
-    const c = ctx(); const t = c.currentTime;
+    const c = actx(); const t = c.currentTime;
     const o = c.createOscillator(); const g = c.createGain();
-    o.type = "sawtooth";
-    o.frequency.setValueAtTime(220, t);
-    o.frequency.exponentialRampToValueAtTime(110, t + 0.18);
+    o.type = "sine";
+    o.frequency.setValueAtTime(261.63, t); // C4
+    o.frequency.exponentialRampToValueAtTime(146.83, t + 0.2); // D3
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.13, t + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
+    g.gain.linearRampToValueAtTime(0.14, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
     o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.25);
+    o.start(t); o.stop(t + 0.3);
   },
-  // 5. Ente – kurzes nasales Quack
+  // 5. Ente – freundliches Quack (Sine, kurzer heller Ton)
   () => {
-    const c = ctx(); const t = c.currentTime;
+    const c = actx(); const t = c.currentTime;
     const o = c.createOscillator(); const g = c.createGain();
-    o.type = "square";
-    o.frequency.setValueAtTime(440, t);
-    o.frequency.exponentialRampToValueAtTime(300, t + 0.12);
+    o.type = "sine";
+    o.frequency.setValueAtTime(440, t); // A4
+    o.frequency.exponentialRampToValueAtTime(349, t + 0.15); // F4
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.1, t + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
+    g.gain.linearRampToValueAtTime(0.12, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
     o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.18);
+    o.start(t); o.stop(t + 0.22);
   },
-  // 6. Eule – sanftes Uhu (zwei tiefe Töne)
+  // 6. Eule – warmes, tiefes Uhu (zwei Sine-Töne)
   () => {
-    const c = ctx(); const t = c.currentTime;
-    tone(c, t, 293.66, 0.3, 0.14, "sine"); // D4
-    tone(c, t + 0.34, 246.94, 0.4, 0.15, "sine"); // B3
+    const c = actx(); const t = c.currentTime;
+    bell(c, t, 261.63, 0.45, 0.15);        // C4
+    bell(c, t + 0.5, 220.0, 0.55, 0.14);   // A3
   },
-  // 7. Kuh – tiefes Muh (langsamer Gleitton)
+  // 7. Kuh – sanftes Muh (langsamer, warmer Gleitton)
   () => {
-    const c = ctx(); const t = c.currentTime;
+    const c = actx(); const t = c.currentTime;
     const o = c.createOscillator(); const g = c.createGain();
-    o.type = "triangle";
-    o.frequency.setValueAtTime(170, t);
-    o.frequency.linearRampToValueAtTime(150, t + 0.3);
-    o.frequency.linearRampToValueAtTime(130, t + 0.6);
+    o.type = "sine";
+    o.frequency.setValueAtTime(196, t); // G3
+    o.frequency.linearRampToValueAtTime(174.61, t + 0.4); // F3
+    o.frequency.linearRampToValueAtTime(146.83, t + 0.8); // D3
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.16, t + 0.08);
-    g.gain.setValueAtTime(0.16, t + 0.5);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
+    g.gain.linearRampToValueAtTime(0.15, t + 0.1);
+    g.gain.setValueAtTime(0.15, t + 0.6);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.85);
     o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.75);
+    o.start(t); o.stop(t + 0.9);
   },
-  // 8. Huhn – sanftes Gackern
+  // 8. Huhn – fröhliches, weiches Gackern (kurze Sine-Tupfen)
   () => {
-    const c = ctx(); const t = c.currentTime;
-    for (let i = 0; i < 3; i++) {
-      const s = t + i * 0.13;
-      const o = c.createOscillator(); const g = c.createGain();
-      o.type = "square";
-      o.frequency.setValueAtTime(520, s);
-      o.frequency.exponentialRampToValueAtTime(400, s + 0.08);
-      g.gain.setValueAtTime(0, s);
-      g.gain.linearRampToValueAtTime(0.09, s + 0.015);
-      g.gain.exponentialRampToValueAtTime(0.0001, s + 0.1);
-      o.connect(g).connect(c.destination);
-      o.start(s); o.stop(s + 0.12);
-    }
+    const c = actx(); const t = c.currentTime;
+    const notes = [440, 392, 440]; // A4 G4 A4
+    notes.forEach((f, i) => bell(c, t + i * 0.14, f, 0.13, 0.11));
   },
 ];
 
