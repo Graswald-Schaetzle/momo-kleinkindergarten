@@ -289,7 +289,10 @@ function TagesablaufPage() {
       <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-4 sm:text-sm md:text-base">
         Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
-        einzugehen. <span className="italic">{"\n"}</span>
+        einzugehen.
+        <span className="mt-1 block text-[10px] italic sm:text-xs md:text-sm">
+          Tippe auf eine Station, um mehr zu erfahren.
+        </span>
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
@@ -546,10 +549,6 @@ function TagesablaufPage() {
           })()
         )}
       </div>
-
-      <p className="mx-auto mt-6 max-w-md text-center font-display text-sm italic font-light leading-relaxed text-bordeaux/80 sm:mt-8 sm:text-base">
-        Tippe auf eine Station, um mehr zu erfahren.
-      </p>
     </section>
   );
 }
