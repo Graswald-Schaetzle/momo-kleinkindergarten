@@ -12,10 +12,10 @@ const wobbleId = "scribble-wobble";
 
 const scribbleDefs = (
   <defs>
-    <filter id={wobbleId} x="-30%" y="-30%" width="160%" height="160%">
+    <filter id={wobbleId} x="-35%" y="-35%" width="170%" height="170%">
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="0.025"
+        baseFrequency="0.018"
         numOctaves="2"
         seed="9"
         result="noise"
@@ -23,14 +23,14 @@ const scribbleDefs = (
       <feDisplacementMap
         in="SourceGraphic"
         in2="noise"
-        scale="4.5"
+        scale="6.5"
         xChannelSelector="R"
         yChannelSelector="G"
         result="wob1"
       />
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="0.14"
+        baseFrequency="0.22"
         numOctaves="2"
         seed="3"
         result="noise2"
@@ -38,7 +38,22 @@ const scribbleDefs = (
       <feDisplacementMap
         in="wob1"
         in2="noise2"
-        scale="2.2"
+        scale="3.5"
+        xChannelSelector="R"
+        yChannelSelector="G"
+        result="wob2"
+      />
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.6"
+        numOctaves="2"
+        seed="7"
+        result="noise3"
+      />
+      <feDisplacementMap
+        in="wob2"
+        in2="noise3"
+        scale="1.2"
         xChannelSelector="R"
         yChannelSelector="G"
       />
@@ -58,7 +73,7 @@ const base = (
     height={size}
     viewBox="0 0 40 40"
     fill="none"
-    stroke="currentColor"
+    stroke="var(--ink)"
     strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
