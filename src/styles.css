@@ -157,6 +157,13 @@
     border-color: var(--color-border);
   }
 
+  html,
+  body {
+    /* kein horizontales Scrollen – nur vertikal */
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: var(--color-background);
