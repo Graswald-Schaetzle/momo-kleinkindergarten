@@ -362,13 +362,21 @@ function TagesablaufPage() {
           );
         })}
 
+        {/* ===== Blauer Vollbild-Hintergrund (wie Hamburger-Menü) ===== */}
+        <div
+          className={`fixed inset-0 z-20 bg-menu-overlay transition-opacity duration-300 ${
+            open !== null ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
+          onClick={() => setOpen(null)}
+        />
+
         {/* ===== Detail-Popup in der Mitte der Uhr ===== */}
         {open !== null && (
           (() => {
             const item = schedule[open]!;
             return (
-              <div className="absolute left-1/2 top-1/2 z-10 w-[86%] max-w-lg -translate-x-1/2 -translate-y-1/2 animate-scale-in">
-                <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-bordeaux/25 bg-background/95 px-5 py-4 text-center shadow-lg backdrop-blur-sm sm:px-8 sm:py-6">
+              <div className="fixed left-1/2 top-1/2 z-30 w-[86%] max-w-lg -translate-x-1/2 -translate-y-1/2 animate-scale-in">
+                <div className="max-h-[80vh] overflow-y-auto rounded-2xl border border-menu-overlay-foreground/40 bg-background px-5 py-4 text-center shadow-2xl sm:px-8 sm:py-6">
                   <button
                     type="button"
                     onClick={() => setOpen(null)}
