@@ -420,14 +420,14 @@ function TagesablaufPage() {
                   )}
                 </div>
 
-                {/* Gezeichnetes Symbol unten */}
+                {/* Gezeichnetes Symbol */}
                 <button
                   type="button"
                   onClick={() => setOpen(null)}
                   className="flex justify-center"
                   aria-label="Zurück zur Uhr"
                 >
-                  <Icon size={isMobile ? 64 : 110} className="text-menu-overlay-foreground" />
+                  <Icon size={isMobile ? 110 : 170} className="text-menu-overlay-foreground" />
                 </button>
               </div>
             );
