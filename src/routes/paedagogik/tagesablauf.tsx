@@ -272,7 +272,14 @@ function TagesablaufPage() {
   const rRing = isMobile ? 168 : R_TIME;
   const knobExt = isMobile ? KNOB * 0.3 : KNOB;
   const footExt = isMobile ? FOOT * 0.3 : FOOT;
-  const stationR = isMobile ? 265 : 350;
+  // Cardinal-Stationen (12/3/6/9 Uhr) weiter außen als die diagonalen,
+  // damit Schrift und Uhrzeit genug Abstand zur Uhr bekommen.
+  const stationRFor = (i: number) => {
+    const cardinal = i % 2 === 0;
+    return isMobile
+      ? cardinal ? 300 : 280
+      : cardinal ? 400 : 372;
+  };
 
   return (
     <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-5xl md:px-14 md:pt-16">
