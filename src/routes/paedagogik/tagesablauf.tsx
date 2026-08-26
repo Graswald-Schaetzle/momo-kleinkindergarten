@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { MomoLogo } from "@/components/MomoLogo";
 import {
   BreakfastIcon,
   PlayIcon,
