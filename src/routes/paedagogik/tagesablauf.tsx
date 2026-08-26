@@ -272,7 +272,7 @@ function TagesablaufPage() {
   const rRing = isMobile ? 168 : R_TIME;
   const knobExt = isMobile ? KNOB * 0.3 : KNOB;
   const footExt = isMobile ? FOOT * 0.3 : FOOT;
-  const stationR = isMobile ? 242 : 298;
+  const stationR = isMobile ? 265 : 350;
 
   return (
     <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-5xl md:px-14 md:pt-16">
@@ -451,7 +451,7 @@ function TagesablaufPage() {
             >
               <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center text-bordeaux">
-                  <Icon size={isMobile ? 38 : 72} />
+                  <Icon size={isMobile ? 56 : 142} />
                 </span>
                 <span
                   className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
