@@ -546,6 +546,10 @@ function TagesablaufPage() {
           })()
         )}
       </div>
+
+      <p className="mx-auto mt-6 max-w-md text-center font-display text-sm italic font-light leading-relaxed text-bordeaux/80 sm:mt-8 sm:text-base">
+        Tippe auf eine Station, um mehr zu erfahren.
+      </p>
     </section>
   );
 }
