@@ -113,15 +113,48 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
-/* unregelmäßiges Vieleck – wirkt wie mit der Schere geschnitten */
-function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.03) {
+/* handgezeichneter Kritzel-Kreis: wenige niedrige Sinus-Wellen, genug Stützstellen
+   -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen, keine Spitzen) */
+function wobbleCircle(cx: number, cy: number, r: number, sides = 120, amp = 0.02, waves = 6) {
   const pts: string[] = [];
   for (let i = 0; i < sides; i++) {
-    const a = (-90 + (360 / sides) * i) * (Math.PI / 180);
-    const rr = r * (1 + jitter * Math.sin(i * 2.7) * 0.5 + jitter * Math.cos(i * 1.3) * 0.5);
+    const a = (i / sides) * Math.PI * 2;
+    const rr =
+      r *
+      (1 +
+        amp * Math.sin(waves * a + 0.3) +
+        amp * 0.5 * Math.cos((waves + 2) * a + 1.1));
     pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
   }
   return pts.join(" ");
+}
+
+/* handgezeichneter Strich: gerade Linie als Polyline mit senkrechtem Jitter */
+function wobbleSeg(x1: number, y1: number, x2: number, y2: number, segs = 6, amp = 5, seed = 0) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const nx = -dy / len;
+  const ny = dx / len;
+  const pts: string[] = [];
+  for (let i = 0; i <= segs; i++) {
+    const t = i / segs;
+    let off = 0;
+    if (i !== 0 && i !== segs) {
+      off =
+        amp * Math.sin(i * 3.7 + seed) * Math.cos(i * 2.1 + seed * 1.7) +
+        amp * 0.4 * Math.sin(i * 11.3 + seed);
+    }
+    pts.push(`${(x1 + dx * t + nx * off).toFixed(1)},${(y1 + dy * t + ny * off).toFixed(1)}`);
+  }
+  return pts.join(" ");
+}
+
+/* leicht gezittertes Dreieck für Pfeilspitzen */
+function wobbleTri(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, amp = 2.5, seed = 0) {
+  const j = (x: number, y: number, s: number) =>
+    `${(x + amp * Math.sin(s * 1.7 + seed)).toFixed(1)},${(y + amp * Math.cos(s * 2.3 + seed)).toFixed(1)}`;
+  return `${j(x1, y1, 1)} ${j(x2, y2, 2)} ${j(x3, y3, 3)}`;
 }
 
 function pos(i: number, radius: number) {
@@ -169,43 +202,41 @@ function TagesablaufPage() {
           role="img"
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
-          <defs>
-            {/* kritzelkratzelige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
-            <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves={3} seed={9} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={7} xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-          </defs>
-
-          {/* Ziffernblatt: dünner kritzeliger Strich auf Seiten-Hintergrund */}
-          <g filter="url(#wobble)">
-            <polygon points={ngon(CX, CY, rRing, 48, 0.018)} fill="var(--background)" />
+          {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund (geometrisch, keine Pixel-Unruhe) */}
+          <g>
+            <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
             <polygon
-              points={ngon(CX, CY, rRing, 48, 0.018)}
+              points={wobbleCircle(CX, CY, rRing)}
               fill="none"
               stroke="var(--ink)"
-              strokeWidth={6}
+              strokeWidth={5.5}
               strokeLinejoin="round"
               strokeLinecap="round"
             />
           </g>
 
           {/* Striche statt Zahlen – an den 8 Stationen */}
-          <g filter="url(#wobble)">
+          <g>
             {schedule.map((_, n) => {
               const a = (-90 + n * 45) * (Math.PI / 180);
               const rOuter = rRing - (isMobile ? 10 : 16);
               const rInner = rRing - (isMobile ? 32 : 48);
               const isSel = open === n;
               return (
-                <line
+                <polyline
                   key={n}
-                  x1={CX + rOuter * Math.cos(a)}
-                  y1={CY + rOuter * Math.sin(a)}
-                  x2={CX + rInner * Math.cos(a)}
-                  y2={CY + rInner * Math.sin(a)}
+                  points={wobbleSeg(
+                    CX + rOuter * Math.cos(a),
+                    CY + rOuter * Math.sin(a),
+                    CX + rInner * Math.cos(a),
+                    CY + rInner * Math.sin(a),
+                    3,
+                    2,
+                    n * 1.7
+                  )}
+                  fill="none"
                   stroke="var(--ink)"
-                  strokeWidth={isSel ? 10 : 7}
+                  strokeWidth={isSel ? 9 : 6.5}
                   strokeOpacity={isSel ? 1 : 0.85}
                   strokeLinecap="round"
                 />
@@ -213,9 +244,8 @@ function TagesablaufPage() {
             })}
           </g>
 
-          {/* Zeiger: kräftige Tuschestriche mit Pfeilspitzen */}
+          {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
           <g
-            filter="url(#wobble)"
             className={open === null ? "momo-hand-spin" : undefined}
             style={
               open !== null
@@ -228,33 +258,49 @@ function TagesablaufPage() {
             }
           >
             {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
-            <line
-              x1={CX}
-              y1={CY + rRing * 0.06}
-              x2={CX}
-              y2={CY - rRing * 0.74}
+            <polyline
+              points={wobbleSeg(CX, CY + rRing * 0.06, CX, CY - rRing * 0.74, 7, 4.5, 1.3)}
+              fill="none"
               stroke="var(--ink)"
-              strokeWidth={9}
+              strokeWidth={8}
               strokeLinecap="round"
+              strokeLinejoin="round"
             />
             {/* Pfeilspitze langer Zeiger */}
             <polygon
-              points={`${CX - 9},${CY - rRing * 0.66} ${CX + 9},${CY - rRing * 0.66} ${CX},${CY - rRing * 0.78}`}
+              points={wobbleTri(
+                CX - 9,
+                CY - rRing * 0.66,
+                CX + 9,
+                CY - rRing * 0.66,
+                CX,
+                CY - rRing * 0.78,
+                2,
+                0.4
+              )}
               fill="var(--ink)"
             />
             {/* kurzer Zeiger im festen Winkel */}
             <g transform={`rotate(125 ${CX} ${CY})`}>
-              <line
-                x1={CX}
-                y1={CY + rRing * 0.05}
-                x2={CX}
-                y2={CY - rRing * 0.46}
+              <polyline
+                points={wobbleSeg(CX, CY + rRing * 0.05, CX, CY - rRing * 0.46, 6, 4, 2.1)}
+                fill="none"
                 stroke="var(--ink)"
-                strokeWidth={10}
+                strokeWidth={9}
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <polygon
-                points={`${CX - 8},${CY - rRing * 0.4} ${CX + 8},${CY - rRing * 0.4} ${CX},${CY - rRing * 0.5}`}
+                points={wobbleTri(
+                  CX - 8,
+                  CY - rRing * 0.4,
+                  CX + 8,
+                  CY - rRing * 0.4,
+                  CX,
+                  CY - rRing * 0.5,
+                  2,
+                  0.7
+                )}
                 fill="var(--ink)"
               />
             </g>
