@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "@tanstack/react-router";
-import { MomoLogo } from "@/components/MomoLogo";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   BreakfastIcon,
@@ -196,208 +194,215 @@ function TagesablaufPage() {
         einzugehen. Tippe auf eine Station, um mehr zu erfahren.
       </p>
 
-      {/* Vollbild-Overlay: Seite dahinter verschwindet, nur Uhr + Text bleiben */}
-      {open !== null && (
-        <div
-          className="fixed inset-0 z-30 animate-fade-in"
-          style={{ background: "var(--background)" }}
-          aria-hidden
-        />
-      )}
+      {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
+      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
+        <svg
+          key={shake}
+          viewBox="0 0 600 600"
+          className={`h-full w-full overflow-visible transition-opacity duration-300 ${
+            open !== null ? "momo-clock-shake opacity-30" : ""
+          }`}
+          role="img"
+          aria-label="Tagesablauf als gezeichnete Uhr"
+        >
+          {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund (geometrisch, keine Pixel-Unruhe) */}
 
-      {/* ===== Uhr-Illustration – nur im geschlossenen Zustand ===== */}
-      {open === null && (
-        <div className="relative z-40 mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
-          <svg
-            key={shake}
-            viewBox="0 0 600 600"
-            className="h-full w-full overflow-visible"
-            role="img"
-            aria-label="Tagesablauf als gezeichnete Uhr"
+          <g>
+            <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
+            <polygon
+              points={wobbleCircle(CX, CY, rRing)}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={5.5}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+          </g>
+
+          {/* Striche statt Zahlen – an den 8 Stationen */}
+          <g>
+            {schedule.map((_, n) => {
+              const a = (-90 + n * 45) * (Math.PI / 180);
+              const rOuter = rRing - (isMobile ? 10 : 16);
+              const rInner = rRing - (isMobile ? 32 : 48);
+              const isSel = open === n;
+              return (
+                <polyline
+                  key={n}
+                  points={wobbleSeg(
+                    CX + rOuter * Math.cos(a),
+                    CY + rOuter * Math.sin(a),
+                    CX + rInner * Math.cos(a),
+                    CY + rInner * Math.sin(a),
+                    3,
+                    2,
+                    n * 1.7
+                  )}
+                  fill="none"
+                  stroke="var(--ink)"
+                  strokeWidth={isSel ? 9 : 6.5}
+                  strokeOpacity={isSel ? 1 : 0.85}
+                  strokeLinecap="round"
+                />
+              );
+            })}
+          </g>
+
+          {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
+          <g
+            className={open === null ? "momo-hand-spin" : undefined}
+            style={
+              open !== null
+                ? {
+                    transformOrigin: "300px 300px",
+                    transform: `rotate(${open * 45}deg)`,
+                    transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                  }
+                : undefined
+            }
           >
-            {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund (geometrisch, keine Pixel-Unruhe) */}
-
-            <g>
-              <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
-              <polygon
-                points={wobbleCircle(CX, CY, rRing)}
-                fill="none"
-                stroke="var(--ink)"
-                strokeWidth={5.5}
-                strokeLinejoin="round"
-                strokeLinecap="round"
-              />
-            </g>
-
-            {/* Striche statt Zahlen – an den 8 Stationen */}
-            <g>
-              {schedule.map((_, n) => {
-                const a = (-90 + n * 45) * (Math.PI / 180);
-                const rOuter = rRing - (isMobile ? 10 : 16);
-                const rInner = rRing - (isMobile ? 32 : 48);
-                return (
-                  <polyline
-                    key={n}
-                    points={wobbleSeg(
-                      CX + rOuter * Math.cos(a),
-                      CY + rOuter * Math.sin(a),
-                      CX + rInner * Math.cos(a),
-                      CY + rInner * Math.sin(a),
-                      3,
-                      2,
-                      n * 1.7
-                    )}
-                    fill="none"
-                    stroke="var(--ink)"
-                    strokeWidth={6.5}
-                    strokeOpacity={0.85}
-                    strokeLinecap="round"
-                  />
-                );
-              })}
-            </g>
-
-            {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
-            <g className="momo-hand-spin">
-              {/* langer Zeiger nach oben */}
+            {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
+            <polyline
+              points={wobbleSeg(CX, CY + rRing * 0.06, CX, CY - rRing * 0.74, 7, 4.5, 1.3)}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={8}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Pfeilspitze langer Zeiger */}
+            <polygon
+              points={wobbleTri(
+                CX - 9,
+                CY - rRing * 0.66,
+                CX + 9,
+                CY - rRing * 0.66,
+                CX,
+                CY - rRing * 0.78,
+                2,
+                0.4
+              )}
+              fill="var(--ink)"
+            />
+            {/* kurzer Zeiger im festen Winkel */}
+            <g transform={`rotate(125 ${CX} ${CY})`}>
               <polyline
-                points={wobbleSeg(CX, CY + rRing * 0.06, CX, CY - rRing * 0.74, 7, 4.5, 1.3)}
+                points={wobbleSeg(CX, CY + rRing * 0.05, CX, CY - rRing * 0.46, 6, 4, 2.1)}
                 fill="none"
                 stroke="var(--ink)"
-                strokeWidth={8}
+                strokeWidth={9}
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              {/* Pfeilspitze langer Zeiger */}
               <polygon
                 points={wobbleTri(
-                  CX - 9,
-                  CY - rRing * 0.66,
-                  CX + 9,
-                  CY - rRing * 0.66,
+                  CX - 8,
+                  CY - rRing * 0.4,
+                  CX + 8,
+                  CY - rRing * 0.4,
                   CX,
-                  CY - rRing * 0.78,
+                  CY - rRing * 0.5,
                   2,
-                  0.4
+                  0.7
                 )}
                 fill="var(--ink)"
               />
-              {/* kurzer Zeiger im festen Winkel */}
-              <g transform={`rotate(125 ${CX} ${CY})`}>
-                <polyline
-                  points={wobbleSeg(CX, CY + rRing * 0.05, CX, CY - rRing * 0.46, 6, 4, 2.1)}
-                  fill="none"
-                  stroke="var(--ink)"
-                  strokeWidth={9}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <polygon
-                  points={wobbleTri(
-                    CX - 8,
-                    CY - rRing * 0.4,
-                    CX + 8,
-                    CY - rRing * 0.4,
-                    CX,
-                    CY - rRing * 0.5,
-                    2,
-                    0.7
-                  )}
-                  fill="var(--ink)"
-                />
-              </g>
-              <circle cx={CX} cy={CY} r={8} fill="var(--ink)" />
             </g>
-          </svg>
+            <circle cx={CX} cy={CY} r={8} fill="var(--ink)" />
+          </g>
 
-          {/* Stationen um den Kreis */}
-          {schedule.map((item, i) => {
-            const { x, y } = pos(i, stationR);
-            const leftPct = (x / 600) * 100;
-            const topPct = (y / 600) * 100;
-            const Icon = item.icon;
-            // Diagonal-Stationen außenbündig (Text wächst vom Zentrum weg),
-            // achsiale Stationen zentriert – so gibt es keine Kollision mit dem Ziffernblatt.
-            // Auf Desktop sind auch die Seitenstationen außenbündig (Platz genug).
-            const axial = i % 2 === 0;
-            const onRight = leftPct > 50;
-            const sideOnDesktop = axial && !isMobile && (leftPct > 62 || leftPct < 38);
-            const isLeft = (!axial && !onRight) || (sideOnDesktop && !onRight);
-            const isRight = (!axial && onRight) || (sideOnDesktop && onRight);
-            const align = isLeft ? "items-end text-right" : isRight ? "items-start text-left" : "items-center text-center";
-            const translateX = isLeft ? "-100%" : isRight ? "0%" : "-50%";
-            return (
-              <button
-                key={item.time}
-                type="button"
-                onClick={() => select(i)}
-                className="absolute z-10 flex flex-col"
-                style={{
-                  left: `${leftPct}%`,
-                  top: `${topPct}%`,
-                  transform: `translate(${translateX}, -50%)`,
-                }}
-              >
-                <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
-                  <span className="flex justify-center">
-                    <Icon size={isMobile ? 30 : 60} />
-                  </span>
-                  <span className="mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm">
-                    {item.title}
-                  </span>
-                  <span className="mt-0.5 font-display text-[8px] font-light leading-tight text-bordeaux/60 sm:text-[10px] md:text-xs">
-                    {item.time}
-                  </span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      )}
+        </svg>
 
-      {/* ===== Detail-Ansicht: nur Text + Logo, Uhr verschwindet ===== */}
-      {open !== null && (
-        (() => {
-          const item = schedule[open]!;
+        {/* Stationen um den Kreis */}
+        {schedule.map((item, i) => {
+          const { x, y } = pos(i, stationR);
+          const leftPct = (x / 600) * 100;
+          const topPct = (y / 600) * 100;
+          const Icon = item.icon;
+          const isOpen = open === i;
+          // Diagonal-Stationen außenbündig (Text wächst vom Zentrum weg),
+          // achsiale Stationen zentriert – so gibt es keine Kollision mit dem Ziffernblatt.
+          // Auf Desktop sind auch die Seitenstationen außenbündig (Platz genug).
+          const axial = i % 2 === 0;
+          const onRight = leftPct > 50;
+          const sideOnDesktop = axial && !isMobile && (leftPct > 62 || leftPct < 38);
+          const isLeft = (!axial && !onRight) || (sideOnDesktop && !onRight);
+          const isRight = (!axial && onRight) || (sideOnDesktop && onRight);
+          const align = isLeft ? "items-end text-right" : isRight ? "items-start text-left" : "items-center text-center";
+          const translateX = isLeft ? "-100%" : isRight ? "0%" : "-50%";
           return (
-            <div className="fixed inset-0 z-40 flex animate-fade-in items-center justify-center px-6">
-              <div className="w-full max-w-lg py-10 text-center">
-                <button
-                  type="button"
-                  onClick={() => setOpen(null)}
-                  aria-label="Zurück zur Uhr"
-                  className="absolute left-4 top-4 flex items-center gap-1 font-display text-xs font-light text-bordeaux/80 transition-opacity hover:opacity-70 sm:left-8 sm:text-sm"
+            <button
+              key={item.time}
+              type="button"
+              onClick={() => select(i)}
+              className="absolute flex flex-col"
+              style={{
+                left: `${leftPct}%`,
+                top: `${topPct}%`,
+                transform: `translate(${translateX}, -50%)`,
+              }}
+              aria-expanded={isOpen}
+            >
+              <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
+                <span className="flex justify-center">
+                  <Icon size={isMobile ? 30 : 60} />
+                </span>
+                <span
+                  className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
+                    isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
+                  }`}
                 >
-                  <ArrowLeft size={18} strokeWidth={1.5} />
-                  <span>zurück</span>
-                </button>
-                <Link to="/" className="mb-8 flex justify-center no-underline text-bordeaux">
-                  <MomoLogo className="h-16 sm:h-20 md:h-24" />
-                </Link>
-                <span className="block font-display text-xs font-normal tracking-[0.15em] text-bordeaux/70 sm:text-sm">
+                  {item.title}
+                </span>
+                <span className="mt-0.5 font-display text-[8px] font-light leading-tight text-bordeaux/60 sm:text-[10px] md:text-xs">
                   {item.time}
                 </span>
-                <h4 className="mt-2 font-display text-2xl font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-4xl md:text-5xl">
-                  {item.title}
-                </h4>
-                <p className="mx-auto mt-5 max-w-prose text-sm leading-relaxed text-foreground/90 sm:text-base md:text-lg">
-                  {item.text}
-                </p>
-                {item.highlights && (
-                  <ul className="mx-auto mt-6 max-w-prose space-y-2 text-left text-[13px] leading-snug text-foreground/85 sm:text-base">
-                    {item.highlights.map((h, j) => (
-                      <li key={j} className="flex gap-2">
-                        <span className="text-bordeaux/50">·</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
+              </span>
+            </button>
           );
-        })()
-      )}
+        })}
+
+        {/* ===== Detail-Popup in der Mitte der Uhr ===== */}
+        {open !== null && (
+          (() => {
+            const item = schedule[open]!;
+            return (
+              <div className="absolute left-1/2 top-1/2 z-10 w-[86%] max-w-lg -translate-x-1/2 -translate-y-1/2 animate-scale-in">
+                <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-bordeaux/25 bg-background/95 px-5 py-4 text-center shadow-lg backdrop-blur-sm sm:px-8 sm:py-6">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(null)}
+                    aria-label="Zurück zur Uhr"
+                    className="float-left -ml-1 flex items-center gap-1 font-display text-[11px] font-light text-bordeaux/80 transition-opacity hover:opacity-70 sm:text-xs"
+                  >
+                    <ArrowLeft size={16} strokeWidth={1.5} />
+                    <span>zurück</span>
+                  </button>
+                  <span className="block pt-6 font-display text-xs font-normal tracking-wide text-bordeaux/70">
+                    {item.time}
+                  </span>
+                  <h4 className="mt-0.5 font-display text-base font-normal leading-tight tracking-[0.04em] text-bordeaux sm:text-lg">
+                    {item.title}
+                  </h4>
+                  <p className="mt-2 text-[12px] leading-relaxed text-foreground/85 sm:text-sm">
+                    {item.text}
+                  </p>
+                  {item.highlights && (
+                    <ul className="mt-2 space-y-1 text-left text-[11px] leading-snug text-foreground/80 sm:text-[13px]">
+                      {item.highlights.map((h, j) => (
+                        <li key={j} className="flex gap-1.5">
+                          <span className="text-bordeaux/50">·</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            );
+          })()
+        )}
+      </div>
 
     </section>
   );
