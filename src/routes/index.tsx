@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideo from "@/assets/momo-hund3.mp4.asset.json";
-import heroVideoWebm from "@/assets/momo-hund3.webm.asset.json";
-import heroPoster from "@/assets/momo-hund3-poster.jpg.asset.json";
+import heroVideo from "@/assets/momo-hund-senf.mp4.asset.json";
+import heroVideoWebm from "@/assets/momo-hund-senf.webm.asset.json";
+import heroPoster from "@/assets/momo-hund-senf-poster.jpg.asset.json";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
 
 
@@ -76,16 +76,7 @@ function Index() {
             playsInline
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-            className="relative w-full scale-[1.06]"
-            style={{
-              mixBlendMode: "multiply",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%)",
-              maskImage:
-                "linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-              maskComposite: "intersect",
-            }}
+            className="relative w-full"
           >
             <source src={heroVideoWebm.url} type="video/webm" />
             <source src={heroVideo.url} type="video/mp4" />
