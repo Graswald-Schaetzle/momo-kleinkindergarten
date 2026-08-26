@@ -60,6 +60,20 @@ function Pflege() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-2xl px-6 pt-12 sm:px-10 sm:pt-16 md:px-14">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+          {brands.map((b) => (
+            <img
+              key={b.alt}
+              src={b.src}
+              alt={b.alt}
+              loading="lazy"
+              className="h-6 w-auto opacity-80 mix-blend-multiply sm:h-8"
+            />
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-14 md:px-14">
         <div className="flex justify-center sm:mt-2">
           <WaggingDog size={200} />
