@@ -341,7 +341,7 @@ function TagesablaufPage() {
               key={item.time}
               type="button"
               onClick={() => select(i)}
-              className="absolute flex flex-col"
+              className="absolute z-10 flex flex-col"
               style={{
                 left: `${leftPct}%`,
                 top: `${topPct}%`,
