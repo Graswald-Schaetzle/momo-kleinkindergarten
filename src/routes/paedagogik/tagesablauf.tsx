@@ -161,7 +161,7 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[640px] md:mt-14">
+      <div className="relative mx-auto mt-8 aspect-square w-full max-w-[760px] md:mt-14">
         <svg
           key={shake}
           viewBox="0 0 600 600"
@@ -170,21 +170,21 @@ function TagesablaufPage() {
           aria-label="Tagesablauf als gezeichnete Uhr"
         >
           <defs>
-            {/* kräftige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
+            {/* kritzelkratzelige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
             <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves={2} seed={9} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={5} xChannelSelector="R" yChannelSelector="G" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves={3} seed={9} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={7} xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
 
-          {/* Ziffernblatt: einzelner dicker Filzstrich auf weißem Papier */}
+          {/* Ziffernblatt: dünner kritzeliger Strich auf Seiten-Hintergrund */}
           <g filter="url(#wobble)">
-            <polygon points={ngon(CX, CY, rRing, 48, 0.018)} fill="#FFFDF8" />
+            <polygon points={ngon(CX, CY, rRing, 48, 0.018)} fill="var(--background)" />
             <polygon
               points={ngon(CX, CY, rRing, 48, 0.018)}
               fill="none"
               stroke="var(--ink)"
-              strokeWidth={11}
+              strokeWidth={6}
               strokeLinejoin="round"
               strokeLinecap="round"
             />
