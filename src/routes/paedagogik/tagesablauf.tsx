@@ -3,7 +3,7 @@ import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-/* Naturgeräusche via Web Audio API – sanft, kindlich & atmosphärisch */
+/* Natur-Wellnessklänge via Web Audio API – meditativ, lang ausklingend, beruhigend */
 let audioCtx: AudioContext | null = null;
 let soundIndex = 0;
 
@@ -13,7 +13,7 @@ function actx() {
   return audioCtx;
 }
 
-/* Rausch-Puffer (weißes Rauschen) für Regen, Wind, Bach etc. */
+/* Rausch-Puffer (weißes Rauschen) für atmosphärische Klänge */
 let noiseBuffer: AudioBuffer | null = null;
 function noiseSource(c: AudioContext) {
   if (!noiseBuffer) {
@@ -28,8 +28,27 @@ function noiseSource(c: AudioContext) {
   return src;
 }
 
-/* Sanfter Ton wie eine Spieluhr: Sine, warmer Attack, sanftes Ausklingen. */
-function bell(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
+/* Klangschale: lang ausklingender Ton mit Obertönen und sanftem Attack.
+  Mehrere leicht verstimmte Sine-Oszillatoren erzeugen eine warme, schwebende Tiefe. */
+function singingBowl(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
+  const harmonics = [1, 2.01, 2.76, 4.02];
+  const gains = [1, 0.4, 0.25, 0.12];
+  harmonics.forEach((h, idx) => {
+    const o = c.createOscillator();
+    const env = c.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(freq * h, start);
+    env.gain.setValueAtTime(0, start);
+    env.gain.linearRampToValueAtTime(gain * gains[idx]!, start + 0.6);
+    env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+    o.connect(env).connect(c.destination);
+    o.start(start);
+    o.stop(start + dur + 0.05);
+  });
+}
+
+/* Sanfter Glockenton: kurzer, klarer Sinus mit langsamen Ausklingen (Windspiel) */
+function chime(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
   const o1 = c.createOscillator();
   const o2 = c.createOscillator();
   const env = c.createGain();
@@ -38,7 +57,7 @@ function bell(c: AudioContext, start: number, freq: number, dur: number, gain: n
   o1.frequency.setValueAtTime(freq, start);
   o2.frequency.setValueAtTime(freq * 1.005, start);
   env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.03);
+  env.gain.linearRampToValueAtTime(gain, start + 0.05);
   env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
   o1.connect(env);
   o2.connect(env);
@@ -47,7 +66,7 @@ function bell(c: AudioContext, start: number, freq: number, dur: number, gain: n
   o1.stop(start + dur + 0.05); o2.stop(start + dur + 0.05);
 }
 
-/* Hilfsfunktion: gefiltertes Rauschen mit Ein- und Ausblendung */
+/* Hilfsfunktion: gefiltertes Rauschen mit weicher Ein- und Ausblendung */
 function filteredNoise(c: AudioContext, start: number, dur: number, gain: number, filterType: BiquadFilterType, freq: number, q = 1) {
   const src = noiseSource(c);
   const filt = c.createBiquadFilter();
@@ -56,8 +75,8 @@ function filteredNoise(c: AudioContext, start: number, dur: number, gain: number
   filt.frequency.setValueAtTime(freq, start);
   filt.Q.setValueAtTime(q, start);
   env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.15);
-  env.gain.setValueAtTime(gain, start + dur - 0.3);
+  env.gain.linearRampToValueAtTime(gain, start + 0.4);
+  env.gain.setValueAtTime(gain, start + dur - 0.6);
   env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
   src.connect(filt).connect(env).connect(c.destination);
   src.start(start);
@@ -65,28 +84,37 @@ function filteredNoise(c: AudioContext, start: number, dur: number, gain: number
 }
 
 const natureSounds: Array<() => void> = [
-  // 1. Sanfter Regen – hochpassgefiltertes Rauschen mit leiser Modulation
+  // 1. Klangschale – tief, lang ausklingend, meditativ (G3 mit Obertönen)
+  () => {
+    const c = actx(); const t = c.currentTime;
+    singingBowl(c, t, 196.0, 3.2, 0.16); // G3
+  },
+  // 2. Windspiel – sanfte, zufällige Glockentöne im Pentatonik
+  () => {
+    const c = actx(); const t = c.currentTime;
+    const scale = [523.25, 587.33, 659.25, 783.99, 880.0]; // C5 D5 E5 G5 A5
+    for (let i = 0; i < 5; i++) {
+      const f = scale[Math.floor(Math.random() * scale.length)]!;
+      chime(c, t + i * 0.35 + Math.random() * 0.1, f, 1.4, 0.08);
+    }
+  },
+  // 3. Sanfter Regen – seidiges, hochpassgefiltertes Rauschen, ganz gleichmäßig
   () => {
     const c = actx(); const t = c.currentTime;
     const src = noiseSource(c);
     const filt = c.createBiquadFilter();
-    const lfo = c.createOscillator();
-    const lfoGain = c.createGain();
     const env = c.createGain();
     filt.type = "highpass";
-    filt.frequency.setValueAtTime(800, t);
-    lfo.frequency.setValueAtTime(0.7, t);
-    lfoGain.gain.setValueAtTime(300, t);
-    lfo.connect(lfoGain).connect(filt.frequency);
+    filt.frequency.setValueAtTime(1200, t);
     env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.1, t + 0.2);
-    env.gain.setValueAtTime(0.1, t + 1.2);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+    env.gain.linearRampToValueAtTime(0.07, t + 0.6);
+    env.gain.setValueAtTime(0.07, t + 2.0);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.8);
     src.connect(filt).connect(env).connect(c.destination);
-    src.start(t); lfo.start(t);
-    src.stop(t + 1.9); lfo.stop(t + 1.9);
+    src.start(t);
+    src.stop(t + 2.9);
   },
-  // 2. Wind in den Bäumen – tiefes bandpassgefiltertes Rauschen, langsam schwankend
+  // 4. Ozeanwellen – langsam anschwellendes, tiefpassgefiltertes Rauschen mit LFO
   () => {
     const c = actx(); const t = c.currentTime;
     const src = noiseSource(c);
@@ -94,111 +122,74 @@ const natureSounds: Array<() => void> = [
     const lfo = c.createOscillator();
     const lfoGain = c.createGain();
     const env = c.createGain();
-    filt.type = "bandpass";
+    filt.type = "lowpass";
     filt.frequency.setValueAtTime(500, t);
-    filt.Q.setValueAtTime(0.8, t);
-    lfo.frequency.setValueAtTime(0.4, t);
-    lfoGain.gain.setValueAtTime(200, t);
-    lfo.connect(lfoGain).connect(filt.frequency);
+    filt.Q.setValueAtTime(0.6, t);
+    lfo.frequency.setValueAtTime(0.25, t);
+    lfoGain.gain.setValueAtTime(0.05, t);
+    lfo.connect(lfoGain).connect(env.gain);
     env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.12, t + 0.4);
-    env.gain.setValueAtTime(0.12, t + 1.0);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.0);
+    env.gain.linearRampToValueAtTime(0.1, t + 0.8);
+    env.gain.setValueAtTime(0.1, t + 2.0);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 3.2);
     src.connect(filt).connect(env).connect(c.destination);
     src.start(t); lfo.start(t);
-    src.stop(t + 2.1); lfo.stop(t + 2.1);
+    src.stop(t + 3.3); lfo.stop(t + 3.3);
   },
-  // 3. Plätschernder Bach – kurze Blubber-Impulse aus tiefpassgefiltertem Rauschen
-  () => {
-    const c = actx(); const t = c.currentTime;
-    for (let i = 0; i < 9; i++) {
-      const start = t + i * 0.18 + Math.random() * 0.06;
-      const src = noiseSource(c);
-      const filt = c.createBiquadFilter();
-      const env = c.createGain();
-      filt.type = "lowpass";
-      filt.frequency.setValueAtTime(600 + Math.random() * 400, start);
-      env.gain.setValueAtTime(0, start);
-      env.gain.linearRampToValueAtTime(0.08, start + 0.02);
-      env.gain.exponentialRampToValueAtTime(0.0001, start + 0.12);
-      src.connect(filt).connect(env).connect(c.destination);
-      src.start(start);
-      src.stop(start + 0.15);
-    }
-  },
-  // 4. Meerwellen – langsam anschwellendes und abklingendes tiefpassgefiltertes Rauschen
+  // 5. Bergbach – sanft plätscherndes, tiefpassgefiltertes Rauschen mit Bläschen
   () => {
     const c = actx(); const t = c.currentTime;
     const src = noiseSource(c);
     const filt = c.createBiquadFilter();
     const env = c.createGain();
     filt.type = "lowpass";
-    filt.frequency.setValueAtTime(400, t);
-    filt.Q.setValueAtTime(0.5, t);
+    filt.frequency.setValueAtTime(900, t);
     env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.14, t + 0.6);
-    env.gain.linearRampToValueAtTime(0.14, t + 1.1);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+    env.gain.linearRampToValueAtTime(0.08, t + 0.4);
+    env.gain.setValueAtTime(0.08, t + 1.8);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.4);
     src.connect(filt).connect(env).connect(c.destination);
     src.start(t);
-    src.stop(t + 2.3);
-  },
-  // 5. Waldvögel – vereinzelte, sanfte Glockentöne in zufälligem Abstand
-  () => {
-    const c = actx(); const t = c.currentTime;
-    const calls = [
-      [880, 988],
-      [784, 880, 988],
-      [1046, 880],
-      [988, 1046, 1175],
-    ];
-    const pick = calls[Math.floor(Math.random() * calls.length)]!;
-    pick.forEach((f, i) => bell(c, t + i * 0.14 + Math.random() * 0.05, f, 0.2, 0.1));
-  },
-  // 6. Blätterrascheln – kurze trockene Rauschstöße mit Bandpass
-  () => {
-    const c = actx(); const t = c.currentTime;
-    for (let i = 0; i < 7; i++) {
-      const start = t + i * 0.13;
-      filteredNoise(c, start, 0.15, 0.06, "bandpass", 2500 + Math.random() * 1500, 0.7);
+    src.stop(t + 2.5);
+    // vereinzelte Bläschen
+    for (let i = 0; i < 6; i++) {
+      chime(c, t + 0.5 + i * 0.28 + Math.random() * 0.1, 700 + Math.random() * 300, 0.25, 0.025);
     }
   },
-  // 7. Sommerwiese (Grillen) – sanft pulsierende hohe Sinustöne
+  // 6. Waldstille – tiefe, tragende Klangschale mit feinem Blätterrascheln
   () => {
     const c = actx(); const t = c.currentTime;
-    const o = c.createOscillator();
-    const g = c.createGain();
+    singingBowl(c, t, 130.81, 3.0, 0.12); // C3
+    for (let i = 0; i < 4; i++) {
+      filteredNoise(c, t + i * 0.6, 0.8, 0.03, "bandpass", 3000 + Math.random() * 1000, 0.6);
+    }
+  },
+  // 7. Morgennebel – sehr weiches, tiefes Rauschen mit langsamer Modulation
+  () => {
+    const c = actx(); const t = c.currentTime;
+    const src = noiseSource(c);
+    const filt = c.createBiquadFilter();
     const lfo = c.createOscillator();
     const lfoGain = c.createGain();
-    o.type = "sine";
-    o.frequency.setValueAtTime(4400, t);
-    lfo.frequency.setValueAtTime(9, t);
-    lfoGain.gain.setValueAtTime(0.04, t);
-    lfo.connect(lfoGain).connect(g.gain);
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.05, t + 0.2);
-    g.gain.setValueAtTime(0.05, t + 1.0);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 1.6);
-    o.connect(g).connect(c.destination);
-    o.start(t); lfo.start(t);
-    o.stop(t + 1.7); lfo.stop(t + 1.7);
-  },
-  // 8. Ferner Donner – tiefes, langsam abklingendes Rauschen mit Tiefpass
-  () => {
-    const c = actx(); const t = c.currentTime;
-    const src = noiseSource(c);
-    const filt = c.createBiquadFilter();
     const env = c.createGain();
     filt.type = "lowpass";
-    filt.frequency.setValueAtTime(180, t);
-    filt.frequency.exponentialRampToValueAtTime(60, t + 1.5);
+    filt.frequency.setValueAtTime(350, t);
+    lfo.frequency.setValueAtTime(0.2, t);
+    lfoGain.gain.setValueAtTime(100, t);
+    lfo.connect(lfoGain).connect(filt.frequency);
     env.gain.setValueAtTime(0, t);
-    env.gain.linearRampToValueAtTime(0.13, t + 0.3);
-    env.gain.setValueAtTime(0.13, t + 0.8);
-    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+    env.gain.linearRampToValueAtTime(0.09, t + 0.8);
+    env.gain.setValueAtTime(0.09, t + 2.2);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 3.0);
     src.connect(filt).connect(env).connect(c.destination);
-    src.start(t);
-    src.stop(t + 2.3);
+    src.start(t); lfo.start(t);
+    src.stop(t + 3.1); lfo.stop(t + 3.1);
+  },
+  // 8. Harmonie-Glocken – sanfte, aufsteigende Pentatonik-Klangschalen
+  () => {
+    const c = actx(); const t = c.currentTime;
+    const notes = [261.63, 329.63, 392.0, 523.25]; // C4 E4 G4 C5
+    notes.forEach((f, i) => singingBowl(c, t + i * 0.5, f, 2.4, 0.1));
   },
 ];
 
