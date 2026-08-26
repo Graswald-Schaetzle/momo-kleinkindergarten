@@ -371,13 +371,25 @@ function TagesablaufPage() {
           onClick={() => setOpen(null)}
         />
 
-        {/* ===== Detail-Popup in der Mitte der Uhr ===== */}
+        {/* ===== Detail-Ansicht: Logo oben, Karte mittig, Symbol unten ===== */}
         {open !== null && (
           (() => {
             const item = schedule[open]!;
+            const Icon = item.icon;
             return (
-              <div className="fixed left-1/2 top-1/2 z-30 w-[86%] max-w-lg -translate-x-1/2 -translate-y-1/2 animate-scale-in">
-                <div className="max-h-[80vh] overflow-y-auto rounded-2xl border border-menu-overlay-foreground/40 bg-background px-5 py-4 text-center shadow-2xl sm:px-8 sm:py-6">
+              <div className="fixed inset-0 z-30 flex flex-col items-center justify-between px-5 py-6 sm:px-8 sm:py-10">
+                {/* MOMO-Logo oben */}
+                <button
+                  type="button"
+                  onClick={() => setOpen(null)}
+                  className="flex w-full justify-center"
+                  aria-label="Zurück zur Uhr"
+                >
+                  <MomoLogo className="h-10 w-auto text-menu-overlay-foreground sm:h-14" />
+                </button>
+
+                {/* Detail-Karte mittig */}
+                <div className="w-[88%] max-w-lg animate-scale-in rounded-2xl border border-menu-overlay-foreground/40 bg-background px-5 py-5 text-center shadow-2xl sm:px-8 sm:py-7">
                   <button
                     type="button"
                     onClick={() => setOpen(null)}
@@ -407,6 +419,16 @@ function TagesablaufPage() {
                     </ul>
                   )}
                 </div>
+
+                {/* Gezeichnetes Symbol unten */}
+                <button
+                  type="button"
+                  onClick={() => setOpen(null)}
+                  className="flex justify-center"
+                  aria-label="Zurück zur Uhr"
+                >
+                  <Icon size={isMobile ? 64 : 110} className="text-menu-overlay-foreground" />
+                </button>
               </div>
             );
           })()
