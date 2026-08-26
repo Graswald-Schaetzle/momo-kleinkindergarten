@@ -3,7 +3,7 @@ import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-/* Tiergeräusche via Web Audio API – sanft, kindlich & musikalisch (Spieldosen-Stil) */
+/* Naturgeräusche via Web Audio API – sanft, kindlich & atmosphärisch */
 let audioCtx: AudioContext | null = null;
 let soundIndex = 0;
 
@@ -13,8 +13,22 @@ function actx() {
   return audioCtx;
 }
 
-/* Sanfter Ton wie eine Spieluhr: Sine, warmer Attack, sanftes Ausklingen.
-   Ein zweiter leicht verstimmter Oszillator erzeugt eine weiche Chor-Tiefe. */
+/* Rausch-Puffer (weißes Rauschen) für Regen, Wind, Bach etc. */
+let noiseBuffer: AudioBuffer | null = null;
+function noiseSource(c: AudioContext) {
+  if (!noiseBuffer) {
+    const len = c.sampleRate * 2;
+    noiseBuffer = c.createBuffer(1, len, c.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+  }
+  const src = c.createBufferSource();
+  src.buffer = noiseBuffer;
+  src.loop = true;
+  return src;
+}
+
+/* Sanfter Ton wie eine Spieluhr: Sine, warmer Attack, sanftes Ausklingen. */
 function bell(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
   const o1 = c.createOscillator();
   const o2 = c.createOscillator();
@@ -22,7 +36,7 @@ function bell(c: AudioContext, start: number, freq: number, dur: number, gain: n
   o1.type = "sine";
   o2.type = "sine";
   o1.frequency.setValueAtTime(freq, start);
-  o2.frequency.setValueAtTime(freq * 1.005, start); // leichte Verstimmung = Wärme
+  o2.frequency.setValueAtTime(freq * 1.005, start);
   env.gain.setValueAtTime(0, start);
   env.gain.linearRampToValueAtTime(gain, start + 0.03);
   env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
@@ -33,90 +47,164 @@ function bell(c: AudioContext, start: number, freq: number, dur: number, gain: n
   o1.stop(start + dur + 0.05); o2.stop(start + dur + 0.05);
 }
 
-const animalSounds: Array<() => void> = [
-  // 1. Kuckuck – zwei liebliche Glockentöne (C5 -> G4)
+/* Hilfsfunktion: gefiltertes Rauschen mit Ein- und Ausblendung */
+function filteredNoise(c: AudioContext, start: number, dur: number, gain: number, filterType: BiquadFilterType, freq: number, q = 1) {
+  const src = noiseSource(c);
+  const filt = c.createBiquadFilter();
+  const env = c.createGain();
+  filt.type = filterType;
+  filt.frequency.setValueAtTime(freq, start);
+  filt.Q.setValueAtTime(q, start);
+  env.gain.setValueAtTime(0, start);
+  env.gain.linearRampToValueAtTime(gain, start + 0.15);
+  env.gain.setValueAtTime(gain, start + dur - 0.3);
+  env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  src.connect(filt).connect(env).connect(c.destination);
+  src.start(start);
+  src.stop(start + dur + 0.05);
+}
+
+const natureSounds: Array<() => void> = [
+  // 1. Sanfter Regen – hochpassgefiltertes Rauschen mit leiser Modulation
   () => {
     const c = actx(); const t = c.currentTime;
-    bell(c, t, 523.25, 0.4, 0.18);       // C5
-    bell(c, t + 0.25, 392.0, 0.5, 0.16);  // G4
+    const src = noiseSource(c);
+    const filt = c.createBiquadFilter();
+    const lfo = c.createOscillator();
+    const lfoGain = c.createGain();
+    const env = c.createGain();
+    filt.type = "highpass";
+    filt.frequency.setValueAtTime(800, t);
+    lfo.frequency.setValueAtTime(0.7, t);
+    lfoGain.gain.setValueAtTime(300, t);
+    lfo.connect(lfoGain).connect(filt.frequency);
+    env.gain.setValueAtTime(0, t);
+    env.gain.linearRampToValueAtTime(0.1, t + 0.2);
+    env.gain.setValueAtTime(0.1, t + 1.2);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+    src.connect(filt).connect(env).connect(c.destination);
+    src.start(t); lfo.start(t);
+    src.stop(t + 1.9); lfo.stop(t + 1.9);
   },
-  // 2. Vogelzwitschern – kleine aufsteigende Glocken-Triller
+  // 2. Wind in den Bäumen – tiefes bandpassgefiltertes Rauschen, langsam schwankend
   () => {
     const c = actx(); const t = c.currentTime;
-    const notes = [783.99, 880.0, 987.77, 1046.5]; // G5 A5 B5 C6
-    notes.forEach((f, i) => bell(c, t + i * 0.12, f, 0.18, 0.12));
+    const src = noiseSource(c);
+    const filt = c.createBiquadFilter();
+    const lfo = c.createOscillator();
+    const lfoGain = c.createGain();
+    const env = c.createGain();
+    filt.type = "bandpass";
+    filt.frequency.setValueAtTime(500, t);
+    filt.Q.setValueAtTime(0.8, t);
+    lfo.frequency.setValueAtTime(0.4, t);
+    lfoGain.gain.setValueAtTime(200, t);
+    lfo.connect(lfoGain).connect(filt.frequency);
+    env.gain.setValueAtTime(0, t);
+    env.gain.linearRampToValueAtTime(0.12, t + 0.4);
+    env.gain.setValueAtTime(0.12, t + 1.0);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.0);
+    src.connect(filt).connect(env).connect(c.destination);
+    src.start(t); lfo.start(t);
+    src.stop(t + 2.1); lfo.stop(t + 2.1);
   },
-  // 3. Katze – sanftes, warmes Miau (Gleitton, Sine)
+  // 3. Plätschernder Bach – kurze Blubber-Impulse aus tiefpassgefiltertem Rauschen
   () => {
     const c = actx(); const t = c.currentTime;
-    const o = c.createOscillator(); const g = c.createGain();
+    for (let i = 0; i < 9; i++) {
+      const start = t + i * 0.18 + Math.random() * 0.06;
+      const src = noiseSource(c);
+      const filt = c.createBiquadFilter();
+      const env = c.createGain();
+      filt.type = "lowpass";
+      filt.frequency.setValueAtTime(600 + Math.random() * 400, start);
+      env.gain.setValueAtTime(0, start);
+      env.gain.linearRampToValueAtTime(0.08, start + 0.02);
+      env.gain.exponentialRampToValueAtTime(0.0001, start + 0.12);
+      src.connect(filt).connect(env).connect(c.destination);
+      src.start(start);
+      src.stop(start + 0.15);
+    }
+  },
+  // 4. Meerwellen – langsam anschwellendes und abklingendes tiefpassgefiltertes Rauschen
+  () => {
+    const c = actx(); const t = c.currentTime;
+    const src = noiseSource(c);
+    const filt = c.createBiquadFilter();
+    const env = c.createGain();
+    filt.type = "lowpass";
+    filt.frequency.setValueAtTime(400, t);
+    filt.Q.setValueAtTime(0.5, t);
+    env.gain.setValueAtTime(0, t);
+    env.gain.linearRampToValueAtTime(0.14, t + 0.6);
+    env.gain.linearRampToValueAtTime(0.14, t + 1.1);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+    src.connect(filt).connect(env).connect(c.destination);
+    src.start(t);
+    src.stop(t + 2.3);
+  },
+  // 5. Waldvögel – vereinzelte, sanfte Glockentöne in zufälligem Abstand
+  () => {
+    const c = actx(); const t = c.currentTime;
+    const calls = [
+      [880, 988],
+      [784, 880, 988],
+      [1046, 880],
+      [988, 1046, 1175],
+    ];
+    const pick = calls[Math.floor(Math.random() * calls.length)]!;
+    pick.forEach((f, i) => bell(c, t + i * 0.14 + Math.random() * 0.05, f, 0.2, 0.1));
+  },
+  // 6. Blätterrascheln – kurze trockene Rauschstöße mit Bandpass
+  () => {
+    const c = actx(); const t = c.currentTime;
+    for (let i = 0; i < 7; i++) {
+      const start = t + i * 0.13;
+      filteredNoise(c, start, 0.15, 0.06, "bandpass", 2500 + Math.random() * 1500, 0.7);
+    }
+  },
+  // 7. Sommerwiese (Grillen) – sanft pulsierende hohe Sinustöne
+  () => {
+    const c = actx(); const t = c.currentTime;
+    const o = c.createOscillator();
+    const g = c.createGain();
+    const lfo = c.createOscillator();
+    const lfoGain = c.createGain();
     o.type = "sine";
-    o.frequency.setValueAtTime(523, t);       // C5
-    o.frequency.exponentialRampToValueAtTime(349, t + 0.4); // F4
+    o.frequency.setValueAtTime(4400, t);
+    lfo.frequency.setValueAtTime(9, t);
+    lfoGain.gain.setValueAtTime(0.04, t);
+    lfo.connect(lfoGain).connect(g.gain);
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.14, t + 0.06);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+    g.gain.linearRampToValueAtTime(0.05, t + 0.2);
+    g.gain.setValueAtTime(0.05, t + 1.0);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 1.6);
     o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.55);
+    o.start(t); lfo.start(t);
+    o.stop(t + 1.7); lfo.stop(t + 1.7);
   },
-  // 4. Frosch – weiches, tiefes Quak (Sine, kurzer Tiefgang)
+  // 8. Ferner Donner – tiefes, langsam abklingendes Rauschen mit Tiefpass
   () => {
     const c = actx(); const t = c.currentTime;
-    const o = c.createOscillator(); const g = c.createGain();
-    o.type = "sine";
-    o.frequency.setValueAtTime(261.63, t); // C4
-    o.frequency.exponentialRampToValueAtTime(146.83, t + 0.2); // D3
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.14, t + 0.03);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
-    o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.3);
-  },
-  // 5. Ente – freundliches Quack (Sine, kurzer heller Ton)
-  () => {
-    const c = actx(); const t = c.currentTime;
-    const o = c.createOscillator(); const g = c.createGain();
-    o.type = "sine";
-    o.frequency.setValueAtTime(440, t); // A4
-    o.frequency.exponentialRampToValueAtTime(349, t + 0.15); // F4
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.12, t + 0.03);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
-    o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.22);
-  },
-  // 6. Eule – warmes, tiefes Uhu (zwei Sine-Töne)
-  () => {
-    const c = actx(); const t = c.currentTime;
-    bell(c, t, 261.63, 0.45, 0.15);        // C4
-    bell(c, t + 0.5, 220.0, 0.55, 0.14);   // A3
-  },
-  // 7. Kuh – sanftes Muh (langsamer, warmer Gleitton)
-  () => {
-    const c = actx(); const t = c.currentTime;
-    const o = c.createOscillator(); const g = c.createGain();
-    o.type = "sine";
-    o.frequency.setValueAtTime(196, t); // G3
-    o.frequency.linearRampToValueAtTime(174.61, t + 0.4); // F3
-    o.frequency.linearRampToValueAtTime(146.83, t + 0.8); // D3
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.15, t + 0.1);
-    g.gain.setValueAtTime(0.15, t + 0.6);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.85);
-    o.connect(g).connect(c.destination);
-    o.start(t); o.stop(t + 0.9);
-  },
-  // 8. Huhn – fröhliches, weiches Gackern (kurze Sine-Tupfen)
-  () => {
-    const c = actx(); const t = c.currentTime;
-    const notes = [440, 392, 440]; // A4 G4 A4
-    notes.forEach((f, i) => bell(c, t + i * 0.14, f, 0.13, 0.11));
+    const src = noiseSource(c);
+    const filt = c.createBiquadFilter();
+    const env = c.createGain();
+    filt.type = "lowpass";
+    filt.frequency.setValueAtTime(180, t);
+    filt.frequency.exponentialRampToValueAtTime(60, t + 1.5);
+    env.gain.setValueAtTime(0, t);
+    env.gain.linearRampToValueAtTime(0.13, t + 0.3);
+    env.gain.setValueAtTime(0.13, t + 0.8);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+    src.connect(filt).connect(env).connect(c.destination);
+    src.start(t);
+    src.stop(t + 2.3);
   },
 ];
 
 function playAnimalSound() {
   try {
-    const fn = animalSounds[soundIndex % animalSounds.length]!;
+    const fn = natureSounds[soundIndex % natureSounds.length]!;
     soundIndex++;
     fn();
   } catch {
