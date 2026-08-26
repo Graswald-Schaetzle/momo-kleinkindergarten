@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideo from "@/assets/momo-hund-senf3.mp4.asset.json";
-import heroVideoWebm from "@/assets/momo-hund-senf3.webm.asset.json";
-import heroPoster from "@/assets/momo-hund-senf3-poster.jpg.asset.json";
+import heroVideoWebm from "@/assets/momo-hund-alpha.webm.asset.json";
+import heroVideoMp4 from "@/assets/momo-hund-senf3.mp4.asset.json";
+import heroPoster from "@/assets/momo-hund-alpha-poster.jpg.asset.json";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
 
 
