@@ -202,7 +202,7 @@ const natureSounds: Array<() => void> = [
   },
 ];
 
-function playAnimalSound() {
+function playNatureSound() {
   try {
     const fn = natureSounds[soundIndex % natureSounds.length]!;
     soundIndex++;
