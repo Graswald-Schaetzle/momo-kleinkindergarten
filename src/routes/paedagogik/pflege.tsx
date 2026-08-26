@@ -69,10 +69,6 @@ function Pflege() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-14 md:px-14">
-        <DiaperHandover />
-      </section>
-
       <section className="mx-auto max-w-2xl px-6 pt-12 sm:px-10 sm:pt-16 md:px-14">
         <div className="flex flex-nowrap items-center justify-center gap-x-8 sm:gap-x-14">
           {brands.map((b) => (
