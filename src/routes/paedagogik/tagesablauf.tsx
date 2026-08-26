@@ -280,10 +280,10 @@ function TagesablaufPage() {
         Unser Tagesablauf
       </h2>
 
-      <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light italic leading-relaxed text-foreground/70 sm:mt-4 sm:text-sm md:text-base">
+      <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-4 sm:text-sm md:text-base">
         Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
-        einzugehen. Tippe auf eine Station, um mehr zu erfahren.
+        einzugehen. <span className="italic">Tippe auf eine Station, um mehr zu erfahren.</span>
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
