@@ -76,7 +76,7 @@ const sections: Section[] = [
     image: eigenstaendigkeitImg,
     alt: "Aquarell-Zeichnung: Kind stapelt selbstständig Bauklötze zu einem kleinen Turm",
     text: "Bei uns gibt es feste Rituale und klare Regeln, die dem Alltag Halt geben. Innerhalb dieses verlässlichen Rahmens soll euer Kind aber mitbestimmen. So erlebt es von Anfang an: Meine Meinung zählt, in einem Rahmen der mich sicher fühlen lässt.",
-    imgMax: "max-w-[220px] sm:max-w-[360px] md:max-w-[440px]",
+    imgMax: "max-w-[170px] sm:max-w-[280px] md:max-w-[340px]",
     imgPosition: "w-full object-contain",
     imgAlign: "items-start",
   },
