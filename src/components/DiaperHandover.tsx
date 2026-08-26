@@ -21,8 +21,8 @@ export function DiaperHandover({ className = "" }: { className?: string }) {
           alt=""
           aria-hidden
           loading="lazy"
-          width={1152}
-          height={576}
+          width={1340}
+          height={655}
           className="dh-left absolute left-0 top-1/2 w-[52%] -translate-y-1/2"
         />
         {/* rechte Hand – kommt von rechts herein, nimmt die Tube und verschwindet nach rechts */}
@@ -31,8 +31,8 @@ export function DiaperHandover({ className = "" }: { className?: string }) {
           alt=""
           aria-hidden
           loading="lazy"
-          width={1152}
-          height={576}
+          width={1347}
+          height={713}
           className="dh-right absolute right-0 top-1/2 w-[52%] -translate-y-1/2"
         />
         {/* WELEDA-Tube – wandert von der linken in die rechte Hand und geht mit ihr ab */}
