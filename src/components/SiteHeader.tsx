@@ -63,11 +63,11 @@ export function SiteHeader({
             className={`absolute left-0 block h-[2px] w-7 transition-all duration-300 ease-out ${
               open
                 ? "top-1/2 rotate-45 bg-menu-overlay-foreground"
-                : "top-0 bg-bordeaux"
+                : "top-0 bg-bordeaux burger-bar"
             }`}
           />
           <span
-            className={`absolute left-0 top-1/2 block h-[2px] w-7 -translate-y-1/2 bg-bordeaux transition-all duration-200 ${
+            className={`absolute left-0 top-1/2 block h-[2px] w-7 -translate-y-1/2 bg-bordeaux burger-bar transition-all duration-200 ${
               open ? "opacity-0" : "opacity-100"
             }`}
           />
@@ -75,7 +75,7 @@ export function SiteHeader({
             className={`absolute left-0 block h-[2px] w-7 transition-all duration-300 ease-out ${
               open
                 ? "top-1/2 -rotate-45 bg-menu-overlay-foreground"
-                : "top-full bg-bordeaux"
+                : "top-full bg-bordeaux burger-bar"
             }`}
           />
         </span>

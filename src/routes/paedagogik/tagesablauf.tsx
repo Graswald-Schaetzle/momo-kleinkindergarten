@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
@@ -173,6 +173,12 @@ function pos(i: number, radius: number) {
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(null);
   const [shake, setShake] = useState(0);
+
+  useEffect(() => {
+    if (open !== null) document.body.setAttribute("data-overlay-open", "true");
+    else document.body.removeAttribute("data-overlay-open");
+    return () => document.body.removeAttribute("data-overlay-open");
+  }, [open]);
 
   const select = (i: number) => {
     setOpen((prev) => (prev === i ? null : i));
