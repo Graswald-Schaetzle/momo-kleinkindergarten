@@ -451,7 +451,7 @@ function TagesablaufPage() {
             >
               <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center text-bordeaux">
-                  <Icon size={isMobile ? 40 : 108} />
+                  <Icon size={isMobile ? 56 : 142} />
                 </span>
                 <span
                   className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
