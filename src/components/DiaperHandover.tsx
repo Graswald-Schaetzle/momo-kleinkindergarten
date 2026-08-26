@@ -1,6 +1,7 @@
-/* Zwei Hände reichen sich von den Seiten eine Windel – gezeichnet im Stil
-   der Werte-Illustrationen. Die Windel wandert von der linken in die rechte
-   Hand, die sie dann mitnimmt. */
+/* Zwei Hände im Wasserfarben-Stil: Die linke Hand kommt mit einer Windel
+   herein, die rechte nimmt sie auf der Mitte entgegen und verschwindet
+   wieder mit der Windel. Stil wie die Werte-Zeichnungen (Wasserfarbe & Tinte
+   auf weißem Papier, per mix-blend-multiply in den Altrosa-Grund geblendet). */
 
 import handLeft from "@/assets/pflege-hand-links.png";
 import handRight from "@/assets/pflege-hand-rechts.png";
@@ -9,65 +10,81 @@ import diaper from "@/assets/pflege-windel.png";
 export function DiaperHandover({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`relative mx-auto w-full max-w-[520px] ${className}`}
+      className={`relative mx-auto w-full max-w-[560px] ${className}`}
       role="img"
-      aria-label="Zwei Hände reichen einander eine Windel"
+      aria-label="Eine Hand reicht eine Windel weiter, die andere nimmt sie auf"
     >
       <div className="relative aspect-[2/1]">
-        {/* linke Hand */}
+        {/* linke Hand – kommt von links herein und verschwindet wieder nach links */}
         <img
           src={handLeft}
           alt=""
           aria-hidden
           loading="lazy"
-          width={1024}
-          height={512}
-          className="absolute left-0 top-1/2 w-[52%] -translate-y-1/2 mix-blend-multiply opacity-90 diaper-hand-left"
+          width={1152}
+          height={576}
+          className="dh-left absolute left-0 top-1/2 w-[52%] -translate-y-1/2 mix-blend-multiply"
         />
-        {/* rechte Hand */}
+        {/* rechte Hand – kommt von rechts herein, nimmt die Windel und verschwindet nach rechts */}
         <img
           src={handRight}
           alt=""
           aria-hidden
           loading="lazy"
-          width={1024}
-          height={512}
-          className="absolute right-0 top-1/2 w-[52%] -translate-y-1/2 mix-blend-multiply opacity-90 diaper-hand-right"
+          width={1152}
+          height={576}
+          className="dh-right absolute right-0 top-1/2 w-[52%] -translate-y-1/2 mix-blend-multiply"
         />
-        {/* Windel */}
+        {/* Windel – wandert von der linken in die rechte Hand und geht mit ihr ab */}
         <img
           src={diaper}
           alt=""
           aria-hidden
           loading="lazy"
-          width={512}
-          height={512}
-          className="absolute left-[22%] top-[26%] w-[20%] mix-blend-multiply diaper-move"
+          width={816}
+          height={816}
+          className="dh-diaper absolute left-[34%] top-[30%] w-[15%] mix-blend-multiply"
         />
       </div>
 
       <style>{`
-        @keyframes diaper-move {
-          0%   { transform: translate(0, 0) rotate(-4deg); opacity: 1; }
-          35%  { transform: translate(140%, -14%) rotate(4deg); opacity: 1; }
-          60%  { transform: translate(230%, 0) rotate(0deg); opacity: 1; }
-          85%  { transform: translate(330%, 6%) rotate(8deg); opacity: 0; }
-          100% { transform: translate(0, 0) rotate(-4deg); opacity: 0; }
+        /* 8s loop:
+           0–15%  linke Hand kommt herein (mit Windel)
+           15–30% rechte Hand kommt von rechts herein
+           30–50% Windel wandert zur rechten Hand
+           50–68% rechte Hand verschwindet mit der Windel nach rechts
+           68–85% linke Hand verschwindet nach links
+           85–100% Pause, dann Reset */
+        @keyframes dh-left {
+          0%   { transform: translateX(-115%) translateY(-50%); }
+          15%  { transform: translateX(0) translateY(-50%); }
+          68%  { transform: translateX(0) translateY(-50%); }
+          85%  { transform: translateX(-115%) translateY(-50%); }
+          100% { transform: translateX(-115%) translateY(-50%); }
         }
-        @keyframes diaper-hand-left {
-          0%, 40%  { transform: translate(0, -50%); }
-          70%,100% { transform: translate(-6%, -50%); }
+        @keyframes dh-right {
+          0%   { transform: translateX(115%) translateY(-50%); }
+          30%  { transform: translateX(0) translateY(-50%); }
+          50%  { transform: translateX(0) translateY(-50%); }
+          68%  { transform: translateX(115%) translateY(-50%); }
+          100% { transform: translateX(115%) translateY(-50%); }
         }
-        @keyframes diaper-hand-right {
-          0%, 30%   { transform: translate(0, -50%); }
-          60%       { transform: translate(-3%, -50%); }
-          85%, 100% { transform: translate(10%, -50%); }
+        @keyframes dh-diaper {
+          0%   { transform: translateX(0) rotate(-4deg); opacity: 0; }
+          15%  { transform: translateX(0) rotate(-4deg); opacity: 1; }
+          30%  { transform: translateX(0) rotate(-2deg); opacity: 1; }
+          50%  { transform: translateX(135%) rotate(3deg); opacity: 1; }
+          68%  { transform: translateX(430%) rotate(8deg); opacity: 0; }
+          100% { transform: translateX(0) rotate(-4deg); opacity: 0; }
         }
-        .diaper-move  { animation: diaper-move 6s ease-in-out infinite; }
-        .diaper-hand-left  { animation: diaper-hand-left 6s ease-in-out infinite; }
-        .diaper-hand-right { animation: diaper-hand-right 6s ease-in-out infinite; }
+        .dh-left   { animation: dh-left 8s ease-in-out infinite; }
+        .dh-right  { animation: dh-right 8s ease-in-out infinite; }
+        .dh-diaper { animation: dh-diaper 8s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) {
-          .diaper-move, .diaper-hand-left, .diaper-hand-right { animation: none; }
+          .dh-left, .dh-right, .dh-diaper { animation: none; }
+          .dh-left  { transform: translateX(0) translateY(-50%); }
+          .dh-right { transform: translateX(0) translateY(-50%); }
+          .dh-diaper { transform: translateX(60%) rotate(0deg); opacity: 1; }
         }
       `}</style>
     </div>
