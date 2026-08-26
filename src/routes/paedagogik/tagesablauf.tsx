@@ -542,15 +542,15 @@ function TagesablaufPage() {
                 </button>
 
                 <div className="flex-1" />
-
-                {/* Footer ganz unten */}
-                <div className="w-full">
-                  <SiteFooter color="text-menu-overlay-foreground" />
-                </div>
               </div>
             );
           })()
         )}
+      </div>
+
+      {/* Einziger Footer – weiter unten, Seite scrollt nur vertikal */}
+      <div className="mt-24 sm:mt-32">
+        <SiteFooter />
       </div>
     </section>
   );
