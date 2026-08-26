@@ -64,6 +64,10 @@ function PaedagogikIndex() {
             ihre individuelle Entwicklung begleitet werden.
           </p>
         </div>
+
+        <div className="mt-10 flex justify-center sm:mt-14">
+          <WaggingDog size={200} />
+        </div>
       </section>
     </>
   );
