@@ -320,7 +320,7 @@ function TagesablaufPage() {
           <g filter="url(#clock-scribble)">
             {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund */}
             <g>
-              <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--background)" />
+              <polygon points={wobbleCircle(CX, CY, rRing)} fill="#E6D7BC" />
               <polygon
                 points={wobbleCircle(CX, CY, rRing)}
                 fill="none"

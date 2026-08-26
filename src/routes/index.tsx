@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideo from "@/assets/momo-hund-senf2.mp4.asset.json";
-import heroVideoWebm from "@/assets/momo-hund-senf2.webm.asset.json";
-import heroPoster from "@/assets/momo-hund-senf2-poster.jpg.asset.json";
+import heroVideoWebm from "@/assets/momo-hund-alpha.webm.asset.json";
+import heroVideoMp4 from "@/assets/momo-hund-senf3.mp4.asset.json";
+import heroPoster from "@/assets/momo-hund-alpha-poster.jpg.asset.json";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
 
 
@@ -94,7 +94,7 @@ function Index() {
             }}
           >
             <source src={heroVideoWebm.url} type="video/webm" />
-            <source src={heroVideo.url} type="video/mp4" />
+            <source src={heroVideoMp4.url} type="video/mp4" />
           </video>
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
 
