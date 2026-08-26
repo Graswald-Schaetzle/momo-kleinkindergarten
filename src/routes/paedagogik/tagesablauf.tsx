@@ -113,17 +113,12 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
-/* unregelmäßiges Vieleck – wirkt wie freihand gekritzelt */
-function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.04) {
+/* unregelmäßiges Vieleck – wirkt wie mit der Schere geschnitten */
+function ngon(cx: number, cy: number, r: number, sides: number, jitter = 0.03) {
   const pts: string[] = [];
   for (let i = 0; i < sides; i++) {
     const a = (-90 + (360 / sides) * i) * (Math.PI / 180);
-    const rr =
-      r *
-      (1 +
-        jitter * Math.sin(i * 5.3) * 0.6 +
-        jitter * Math.cos(i * 2.1) * 0.4 +
-        jitter * Math.sin(i * 11.7) * 0.3);
+    const rr = r * (1 + jitter * Math.sin(i * 2.7) * 0.5 + jitter * Math.cos(i * 1.3) * 0.5);
     pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
   }
   return pts.join(" ");
@@ -176,22 +171,20 @@ function TagesablaufPage() {
         >
           <defs>
             {/* kritzelkratzelige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
-            <filter id="wobble" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves={2} seed={9} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={12} xChannelSelector="R" yChannelSelector="G" result="wob1" />
-              <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves={2} seed={3} result="n2" />
-              <feDisplacementMap in="wob1" in2="n2" scale={6} xChannelSelector="R" yChannelSelector="G" />
+            <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves={3} seed={9} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={7} xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
 
           {/* Ziffernblatt: dünner kritzeliger Strich auf Seiten-Hintergrund */}
           <g filter="url(#wobble)">
-            <polygon points={ngon(CX, CY, rRing, 56, 0.03)} fill="var(--background)" />
+            <polygon points={ngon(CX, CY, rRing, 48, 0.018)} fill="var(--background)" />
             <polygon
-              points={ngon(CX, CY, rRing, 56, 0.03)}
+              points={ngon(CX, CY, rRing, 48, 0.018)}
               fill="none"
               stroke="var(--ink)"
-              strokeWidth={5}
+              strokeWidth={6}
               strokeLinejoin="round"
               strokeLinecap="round"
             />
@@ -212,8 +205,8 @@ function TagesablaufPage() {
                   x2={CX + rInner * Math.cos(a)}
                   y2={CY + rInner * Math.sin(a)}
                   stroke="var(--ink)"
-                  strokeWidth={isSel ? 11 : 8}
-                  strokeOpacity={isSel ? 1 : 0.8}
+                  strokeWidth={isSel ? 10 : 7}
+                  strokeOpacity={isSel ? 1 : 0.85}
                   strokeLinecap="round"
                 />
               );
