@@ -27,7 +27,16 @@ export const Route = createFileRoute("/ueber-uns")({
       { property: "og:url", content: "/ueber-uns" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/ueber-uns" }],
+    links: [
+      { rel: "canonical", href: "/ueber-uns" },
+      // Alle Bilder und das Video sofort laden, damit nichts nacheinander auftaucht
+      { rel: "preload", as: "image", href: naeheImg },
+      { rel: "preload", as: "image", href: ruheImg },
+      { rel: "preload", as: "image", href: ganzheitlichkeitImg },
+      { rel: "preload", as: "image", href: naturImg },
+      { rel: "preload", as: "image", href: eigenstaendigkeitImg },
+      { rel: "preload", as: "video", href: ganzheitlichkeitVideo.url, type: "video/mp4" },
+    ],
   }),
   component: UeberUns,
 });
@@ -125,6 +134,8 @@ function UeberUns() {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    poster={section.image}
                     aria-label={section.alt}
                     width={1200}
                     height={675}
@@ -137,7 +148,9 @@ function UeberUns() {
                   <img
                     src={section.image}
                     alt={section.alt}
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                     width={900}
                     height={900}
                     className={`${
