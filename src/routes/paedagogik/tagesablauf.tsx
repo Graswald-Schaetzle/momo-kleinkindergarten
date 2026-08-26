@@ -28,8 +28,7 @@ function noiseSource(c: AudioContext) {
   return src;
 }
 
-/* Klangschale: lang ausklingender Ton mit Obertönen und sanftem Attack.
-  Mehrere leicht verstimmte Sine-Oszillatoren erzeugen eine warme, schwebende Tiefe. */
+/* Klangschale: Ton mit Obertönen und sanftem Attack, kurz ausklingend. */
 function singingBowl(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
   const harmonics = [1, 2.01, 2.76, 4.02];
   const gains = [1, 0.4, 0.25, 0.12];
@@ -39,7 +38,7 @@ function singingBowl(c: AudioContext, start: number, freq: number, dur: number, 
     o.type = "sine";
     o.frequency.setValueAtTime(freq * h, start);
     env.gain.setValueAtTime(0, start);
-    env.gain.linearRampToValueAtTime(gain * gains[idx]!, start + 0.6);
+    env.gain.linearRampToValueAtTime(gain * gains[idx]!, start + 0.25);
     env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
     o.connect(env).connect(c.destination);
     o.start(start);
@@ -47,7 +46,7 @@ function singingBowl(c: AudioContext, start: number, freq: number, dur: number, 
   });
 }
 
-/* Sanfter Glockenton: kurzer, klarer Sinus mit langsamen Ausklingen (Windspiel) */
+/* Sanfter Glockenton: kurzer, klarer Sinus mit kurzem Ausklingen (Windspiel) */
 function chime(c: AudioContext, start: number, freq: number, dur: number, gain: number) {
   const o1 = c.createOscillator();
   const o2 = c.createOscillator();
@@ -57,7 +56,7 @@ function chime(c: AudioContext, start: number, freq: number, dur: number, gain: 
   o1.frequency.setValueAtTime(freq, start);
   o2.frequency.setValueAtTime(freq * 1.005, start);
   env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.05);
+  env.gain.linearRampToValueAtTime(gain, start + 0.03);
   env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
   o1.connect(env);
   o2.connect(env);
@@ -66,7 +65,7 @@ function chime(c: AudioContext, start: number, freq: number, dur: number, gain: 
   o1.stop(start + dur + 0.05); o2.stop(start + dur + 0.05);
 }
 
-/* Hilfsfunktion: gefiltertes Rauschen mit weicher Ein- und Ausblendung */
+/* Hilfsfunktion: gefiltertes Rauschen mit schneller Ein- und Ausblendung */
 function filteredNoise(c: AudioContext, start: number, dur: number, gain: number, filterType: BiquadFilterType, freq: number, q = 1) {
   const src = noiseSource(c);
   const filt = c.createBiquadFilter();
@@ -75,8 +74,8 @@ function filteredNoise(c: AudioContext, start: number, dur: number, gain: number
   filt.frequency.setValueAtTime(freq, start);
   filt.Q.setValueAtTime(q, start);
   env.gain.setValueAtTime(0, start);
-  env.gain.linearRampToValueAtTime(gain, start + 0.4);
-  env.gain.setValueAtTime(gain, start + dur - 0.6);
+  env.gain.linearRampToValueAtTime(gain, start + 0.15);
+  env.gain.setValueAtTime(gain, start + dur - 0.2);
   env.gain.exponentialRampToValueAtTime(0.0001, start + dur);
   src.connect(filt).connect(env).connect(c.destination);
   src.start(start);
