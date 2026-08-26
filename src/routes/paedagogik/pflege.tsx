@@ -1,5 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WaggingDog } from "@/components/WaggingDog";
+import lillydooAsset from "@/assets/lillydoo.png.asset.json";
+import weledaAsset from "@/assets/weleda.png.asset.json";
+import hauschkaAsset from "@/assets/dr-hauschka.png.asset.json";
+
+const brands = [
+  { src: lillydooAsset.url, alt: "LILLYDOO" },
+  { src: weledaAsset.url, alt: "WELEDA" },
+  { src: hauschkaAsset.url, alt: "Dr. Hauschka" },
+];
 
 export const Route = createFileRoute("/paedagogik/pflege")({
   head: () => ({
