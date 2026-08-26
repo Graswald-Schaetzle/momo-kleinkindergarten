@@ -28,7 +28,7 @@ export const Route = createFileRoute("/paedagogik/")({
 function PaedagogikIndex() {
   return (
     <>
-      <section className="mx-auto max-w-2xl px-6 pt-16 sm:px-10 sm:pt-24 md:px-14">
+      <section className="mx-auto max-w-2xl px-6 pt-8 sm:px-10 sm:pt-12 md:px-14">
         <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
           Pädagogik
         </h2>
