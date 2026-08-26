@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { DiaperHandover } from "@/components/DiaperHandover";
 
 import lillydooAsset from "@/assets/lillydoo.png.asset.json";
 import weledaAsset from "@/assets/weleda.png.asset.json";
@@ -68,10 +67,6 @@ function Pflege() {
             hochwertiger, bewusst ausgewählter Pflege, die eurem Kind guttut.
           </p>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-14 md:px-14">
-        <DiaperHandover />
       </section>
 
       <section className="mx-auto max-w-2xl px-6 pt-12 sm:px-10 sm:pt-16 md:px-14">
