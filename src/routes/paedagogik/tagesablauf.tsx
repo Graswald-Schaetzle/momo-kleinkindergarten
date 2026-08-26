@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   BreakfastIcon,
   PlayIcon,
