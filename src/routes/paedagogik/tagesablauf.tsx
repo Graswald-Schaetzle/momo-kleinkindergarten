@@ -352,7 +352,7 @@ function TagesablaufPage() {
               aria-expanded={isOpen}
             >
               <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
-                <span className="flex justify-center">
+                <span className="flex justify-center text-ink">
                   <Icon size={isMobile ? 30 : 60} />
                 </span>
                 <span
