@@ -50,9 +50,9 @@ function PaedagogikIndex() {
           <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
             Gleichzeitig denken wir modern: Unsere Arbeit orientiert sich an aktuellen Erkenntnissen
             aus Gehirnforschung, Bindungstheorie und Entwicklungspsychologie. Wir verfolgen, was die
-            Forschung heute über die ersten Lebensjahre weiß — wie wichtig sichere Bindungen für die
+            Forschung heute über die ersten Lebensjahre weiß, wie wichtig sichere Bindungen für die
             Gehirnentwicklung sind, wie Geborgenheit das kindliche Nervensystem prägt, wie Kinder
-            durch Beziehung und nicht durch Leistung lernen — und lassen dieses Wissen bewusst in
+            durch Beziehung und nicht durch Leistung lernen, und lassen dieses Wissen bewusst in
             unseren Alltag einfließen. Deshalb bilden wir uns regelmäßig weiter, tauschen uns
             fachlich aus und hinterfragen unsere pädagogische Arbeit immer wieder neu.
           </p>
