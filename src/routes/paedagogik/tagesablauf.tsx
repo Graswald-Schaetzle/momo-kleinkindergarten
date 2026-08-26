@@ -80,7 +80,6 @@ function playNatureSound() {
 }
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
-import { SiteFooter } from "@/components/SiteFooter";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -277,7 +276,7 @@ function TagesablaufPage() {
   const stationRFor = (i: number) => {
     const cardinal = i % 2 === 0;
     return isMobile
-      ? cardinal ? 300 : 280
+      ? cardinal ? 265 : 250
       : cardinal ? 400 : 372;
   };
 
@@ -294,7 +293,7 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-24 aspect-square w-full max-w-[340px] sm:mt-32 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
+      <div className="relative mx-auto mt-24 mb-20 aspect-square w-full max-w-[340px] sm:mt-32 sm:mb-28 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
         <svg
           key={shake}
           viewBox="0 0 600 600"
@@ -546,11 +545,6 @@ function TagesablaufPage() {
             );
           })()
         )}
-      </div>
-
-      {/* Einziger Footer – weiter unten, Seite scrollt nur vertikal */}
-      <div className="mt-24 sm:mt-32">
-        <SiteFooter />
       </div>
     </section>
   );
