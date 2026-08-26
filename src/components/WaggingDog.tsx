@@ -10,7 +10,7 @@ export function WaggingDog({
   className?: string;
   size?: number;
 }) {
-  const height = (size * 728) / 629;
+  const height = (size * 1134) / 928;
   return (
     <div
       className={className}
