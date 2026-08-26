@@ -38,41 +38,34 @@ export function WaggingDog({
           height: "auto",
         }}
       />
-      {/* Hund – Körper steht still */}
+      {/* Hund – wackelt und hechelt */}
       <img
         src={dogImg}
         alt="Sitzender Weimaraner"
         loading="lazy"
+        className="dog-wag"
         style={{
           position: "absolute",
           left: 0,
           top: "1%",
           width: "95.6%",
           height: "auto",
-          clipPath: "polygon(22% 0, 100% 0, 100% 100%, 22% 100%)",
-        }}
-      />
-      {/* Schwanz – wackelt um die Ansatzstelle */}
-      <img
-        src={dogImg}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        style={{
-          position: "absolute",
-          left: 0,
-          top: "1%",
-          width: "95.6%",
-          height: "auto",
-          clipPath: "polygon(0 38%, 30% 38%, 30% 92%, 0 92%)",
-          transformOrigin: "25% 64%",
-          animation: "dog-tail-wag 0.9s ease-in-out infinite alternate",
+          transformOrigin: "50% 92%",
+          animation:
+            "dog-wag 1.6s ease-in-out infinite alternate, dog-pant 0.32s ease-in-out infinite alternate",
         }}
       />
       <style>{`
-        @keyframes dog-tail-wag {
-          0%   { rotate: -7deg; }
-          100% { rotate: 8deg; }
+        @keyframes dog-wag {
+          0%   { rotate: -1.8deg; }
+          100% { rotate: 1.8deg; }
+        }
+        @keyframes dog-pant {
+          0%   { translate: 0 0; }
+          100% { translate: 0 2.5px; }
+        }
+        .dog-wag {
+          filter: drop-shadow(0 2px 6px rgba(43,27,38,0.08));
         }
       `}</style>
     </div>
