@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ComponentType } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -172,6 +173,12 @@ function pos(i: number, radius: number) {
 function TagesablaufPage() {
   const [open, setOpen] = useState<number | null>(null);
   const [shake, setShake] = useState(0);
+
+  useEffect(() => {
+    if (open !== null) document.body.setAttribute("data-overlay-open", "true");
+    else document.body.removeAttribute("data-overlay-open");
+    return () => document.body.removeAttribute("data-overlay-open");
+  }, [open]);
 
   const select = (i: number) => {
     setOpen((prev) => (prev === i ? null : i));
@@ -377,16 +384,18 @@ function TagesablaufPage() {
             const item = schedule[open]!;
             const Icon = item.icon;
             return (
-              <div className="fixed inset-0 z-30 flex flex-col items-center justify-center gap-6 px-5 py-6 sm:gap-10 sm:px-8 sm:py-10">
-                {/* MOMO-Logo oben */}
+              <div className="fixed inset-0 z-30 flex flex-col items-center overflow-y-auto px-5 pb-2 pt-4 sm:px-8 sm:pt-8">
+                {/* MOMO-Logo oben – wie auf den anderen Seiten */}
                 <button
                   type="button"
                   onClick={() => setOpen(null)}
                   className="flex w-full justify-center"
                   aria-label="Zurück zur Uhr"
                 >
-                  <MomoLogo className="h-10 w-auto text-menu-overlay-foreground sm:h-14" />
+                  <MomoLogo className="h-20 w-auto text-menu-overlay-foreground sm:h-32 md:h-40" />
                 </button>
+
+                <div className="flex-1" />
 
                 {/* Detail-Karte mittig */}
                 <div className="w-[88%] max-w-lg animate-scale-in rounded-2xl border border-menu-overlay-foreground/40 bg-background px-5 py-5 text-center shadow-2xl sm:px-8 sm:py-7">
@@ -424,11 +433,18 @@ function TagesablaufPage() {
                 <button
                   type="button"
                   onClick={() => setOpen(null)}
-                  className="flex justify-center"
+                  className="mt-8 flex justify-center sm:mt-10"
                   aria-label="Zurück zur Uhr"
                 >
                   <Icon size={isMobile ? 110 : 170} className="text-menu-overlay-foreground" />
                 </button>
+
+                <div className="flex-1" />
+
+                {/* Footer ganz unten */}
+                <div className="w-full">
+                  <SiteFooter color="text-menu-overlay-foreground" />
+                </div>
               </div>
             );
           })()

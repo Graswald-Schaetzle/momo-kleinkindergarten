@@ -213,3 +213,8 @@
 @media (prefers-reduced-motion: reduce) {
   .momo-hand-spin, .momo-eye-lid, .momo-clock-shake { animation: none; }
 }
+
+
+body[data-overlay-open] .burger-bar {
+  background-color: var(--menu-overlay-foreground);
+}
