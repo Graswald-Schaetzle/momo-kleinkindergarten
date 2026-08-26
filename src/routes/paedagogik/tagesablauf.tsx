@@ -171,20 +171,22 @@ function TagesablaufPage() {
         >
           <defs>
             {/* kritzelkratzelige Handzeichnungs-Unruhe wie Filzstift auf Papier */}
-            <filter id="wobble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves={3} seed={9} result="n" />
-              <feDisplacementMap in="SourceGraphic" in2="n" scale={7} xChannelSelector="R" yChannelSelector="G" />
+            <filter id="wobble" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves={2} seed={9} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={12} xChannelSelector="R" yChannelSelector="G" result="wob1" />
+              <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves={2} seed={3} result="n2" />
+              <feDisplacementMap in="wob1" in2="n2" scale={6} xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
 
           {/* Ziffernblatt: dünner kritzeliger Strich auf Seiten-Hintergrund */}
           <g filter="url(#wobble)">
-            <polygon points={ngon(CX, CY, rRing, 48, 0.018)} fill="var(--background)" />
+            <polygon points={ngon(CX, CY, rRing, 56, 0.03)} fill="var(--background)" />
             <polygon
-              points={ngon(CX, CY, rRing, 48, 0.018)}
+              points={ngon(CX, CY, rRing, 56, 0.03)}
               fill="none"
               stroke="var(--ink)"
-              strokeWidth={6}
+              strokeWidth={5}
               strokeLinejoin="round"
               strokeLinecap="round"
             />
