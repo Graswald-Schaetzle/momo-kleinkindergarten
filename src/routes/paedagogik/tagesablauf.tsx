@@ -377,7 +377,7 @@ function TagesablaufPage() {
             const item = schedule[open]!;
             const Icon = item.icon;
             return (
-              <div className="fixed inset-0 z-30 flex flex-col items-center justify-between px-5 py-6 sm:px-8 sm:py-10">
+              <div className="fixed inset-0 z-30 flex flex-col items-center justify-center gap-6 px-5 py-6 sm:gap-10 sm:px-8 sm:py-10">
                 {/* MOMO-Logo oben */}
                 <button
                   type="button"
