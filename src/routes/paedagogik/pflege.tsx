@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { DiaperHandover } from "@/components/DiaperHandover";
 
 import lillydooAsset from "@/assets/lillydoo.png.asset.json";
 import weledaAsset from "@/assets/weleda.png.asset.json";
