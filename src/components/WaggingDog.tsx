@@ -1,7 +1,9 @@
 /* Sitzender, wacher Weimaraner im Aquarell-Stil der Startseite.
-   Das Bild ist ein generiertes Aquarell; der Schwanz wedelt per CSS. */
+   Kissen und Hund sind getrennte Ebenen: das Kissen steht still,
+   nur der Hund wackelt (wedelt) und hechelt leicht. */
 
-import dogImg from "@/assets/wagging-dog.png";
+import dogImg from "@/assets/wagging-dog-only.png";
+import cushionImg from "@/assets/dog-cushion.png";
 
 export function WaggingDog({
   className = "",
@@ -22,25 +24,45 @@ export function WaggingDog({
       role="img"
       aria-label="Wacher, sitzender Hund mit wedelndem Schwanz"
     >
+      {/* Kissen – statisch */}
+      <img
+        src={cushionImg}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        style={{
+          position: "absolute",
+          left: 0,
+          bottom: 0,
+          width: "100%",
+          height: "auto",
+        }}
+      />
+      {/* Hund – wackelt und hechelt */}
       <img
         src={dogImg}
         alt="Sitzender Weimaraner"
-        width={size}
-        height={height}
         loading="lazy"
         className="dog-wag"
         style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
-          transformOrigin: "80% 90%",
-          animation: "dog-body-sway 1.8s ease-in-out infinite alternate",
+          position: "absolute",
+          left: 0,
+          top: "1%",
+          width: "95.6%",
+          height: "auto",
+          transformOrigin: "50% 92%",
+          animation:
+            "dog-wag 1.6s ease-in-out infinite alternate, dog-pant 0.32s ease-in-out infinite alternate",
         }}
       />
       <style>{`
-        @keyframes dog-body-sway {
-          0%   { transform: rotate(-1.5deg) translateY(0); }
-          100% { transform: rotate(1.5deg) translateY(-2px); }
+        @keyframes dog-wag {
+          0%   { rotate: -1.8deg; }
+          100% { rotate: 1.8deg; }
+        }
+        @keyframes dog-pant {
+          0%   { translate: 0 0; }
+          100% { translate: 0 2.5px; }
         }
         .dog-wag {
           filter: drop-shadow(0 2px 6px rgba(43,27,38,0.08));
