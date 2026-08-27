@@ -47,20 +47,21 @@ function PaedagogikIndex() {
           }
         `}</style>
 
-        {/* Sterne neben der Überschrift */}
+        {/* Weißer Stern oben rechts, neben dem MOMO-Logo */}
+        <img
+          src={sternWeiss}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          width={640}
+          height={640}
+          className="momo-star momo-star-2 pointer-events-none absolute -top-8 right-0 w-32 select-none mix-blend-multiply sm:-right-8 sm:w-44 md:-right-20 md:w-52"
+        />
+
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
           <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
             Pädagogik
           </h2>
-          <img
-            src={sternWeiss}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            width={640}
-            height={640}
-            className="momo-star momo-star-2 pointer-events-none w-40 select-none mix-blend-multiply sm:w-56 md:w-64"
-          />
         </div>
 
 
