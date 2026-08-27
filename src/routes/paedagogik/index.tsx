@@ -80,29 +80,8 @@ function PaedagogikIndex() {
           Pädagogik
         </h2>
 
-        <figure className="mt-8 flex justify-center sm:mt-10">
-          <img
-            src={umarmung}
-            alt="Getuschte Zeichnung: eine Pädagogin hält ein Kind geborgen im Arm, das Kind hält einen kleinen Zweig"
-            loading="lazy"
-            width={912}
-            height={1008}
-            className="momo-breathe w-[62%] max-w-[300px] mix-blend-multiply sm:w-[55%]"
-          />
-        </figure>
-        <style>{`
-          @keyframes momo-breathe {
-            0%   { transform: rotate(-0.8deg) translateY(0) scale(1); }
-            100% { transform: rotate(0.8deg) translateY(-6px) scale(1.015); }
-          }
-          .momo-breathe {
-            animation: momo-breathe 6s ease-in-out infinite alternate;
-            transform-origin: 50% 85%;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .momo-breathe { animation: none; }
-          }
-        `}</style>
+
+
 
 
         <div className="mt-6 space-y-6 sm:mt-8 sm:space-y-8">
