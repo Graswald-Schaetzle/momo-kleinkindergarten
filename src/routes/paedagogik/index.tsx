@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WaggingDog } from "@/components/WaggingDog";
-import umarmung from "@/assets/paedagogik-umarmung.png";
+
 import sternBlau from "@/assets/stern-blau.png";
 import sternGruen from "@/assets/stern-gruen.png";
 import sternWeiss from "@/assets/stern-weiss.png";
