@@ -49,15 +49,6 @@ function PaedagogikIndex() {
 
         {/* Sterne neben der Überschrift */}
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
-          <img
-            src={sternBlau}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            width={640}
-            height={640}
-            className="momo-star momo-star-1 pointer-events-none w-16 select-none mix-blend-multiply sm:w-24 md:w-28"
-          />
           <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
             Pädagogik
           </h2>
@@ -68,7 +59,7 @@ function PaedagogikIndex() {
             loading="lazy"
             width={640}
             height={640}
-            className="momo-star momo-star-2 pointer-events-none w-16 select-none mix-blend-multiply sm:w-24 md:w-28"
+            className="momo-star momo-star-2 pointer-events-none w-40 select-none mix-blend-multiply sm:w-56 md:w-64"
           />
         </div>
 
@@ -108,8 +99,17 @@ function PaedagogikIndex() {
           </p>
         </div>
 
-        {/* Stern unten */}
-        <div className="mt-8 flex justify-center sm:mt-12">
+        {/* Sterne unten: blauer Stern links, grüner Stern mittig */}
+        <div className="relative mt-10 flex min-h-[12rem] items-end justify-center sm:mt-14">
+          <img
+            src={sternBlau}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={640}
+            height={640}
+            className="momo-star momo-star-1 pointer-events-none absolute bottom-0 left-0 w-32 select-none mix-blend-multiply sm:w-44 md:w-52"
+          />
           <img
             src={sternGruen}
             alt=""
@@ -117,7 +117,7 @@ function PaedagogikIndex() {
             loading="lazy"
             width={640}
             height={640}
-            className="momo-star momo-star-3 pointer-events-none w-12 select-none mix-blend-multiply sm:w-16 md:w-20"
+            className="momo-star momo-star-3 pointer-events-none w-32 select-none mix-blend-multiply sm:w-48 md:w-56"
           />
         </div>
       </section>
