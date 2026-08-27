@@ -24,6 +24,15 @@ export const MomoLogo = memo(function MomoLogo({
         <metadata>
           Created by potrace 1.16, written by Peter Selinger 2001-2019
         </metadata>
+        <defs>
+          <filter id="handdrawn-m" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="350" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+            <feMorphology in="displaced" operator="dilate" radius="180" result="thickened" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="2" seed="11" result="noise2" />
+            <feDisplacementMap in="thickened" in2="noise2" scale="280" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
         <g transform="translate(0.000000,952.000000) scale(0.100000,-0.100000)"
         fill="currentColor">
         <path d="M13043 9366 c-533 -102 -1591 -767 -2110 -1328 -611 -661 -1226
@@ -67,6 +76,7 @@ export const MomoLogo = memo(function MomoLogo({
         487 -196 878 -196 1380 1 336 22 595 77 937 175 1092 560 1873 1260 2553 230
         224 405 365 752 609 112 79 231 165 265 193 89 71 120 143 69 163 -30 11 -145
         14 -197 5z"/>
+        <g filter="url(#handdrawn-m)">
         <path d="M8019 9213 c-63 -32 -179 -146 -879 -866 -256 -262 -536 -546 -624
         -629 -325 -311 -970 -988 -1236 -1298 -291 -339 -740 -801 -822 -844 l-37 -20
         -53 36 c-191 127 -759 673 -1053 1013 -76 88 -357 378 -625 645 -271 270 -555
@@ -99,6 +109,7 @@ export const MomoLogo = memo(function MomoLogo({
         363 0 173 -8 450 -18 615 -9 165 -37 644 -61 1065 -63 1087 -72 1260 -95 1770
         -38 875 -64 1613 -95 2785 -45 1671 -72 2120 -132 2215 -24 37 -41 48 -112 70
         -81 26 -135 25 -188 -1z"/>
+        </g>
         </g>
       <text
         x="1720"
