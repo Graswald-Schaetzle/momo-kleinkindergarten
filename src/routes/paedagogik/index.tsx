@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { WaggingDog } from "@/components/WaggingDog";
 
 import sternBlau from "@/assets/stern-blau.png";
 import sternGruen from "@/assets/stern-gruen.png";
@@ -114,12 +113,6 @@ function PaedagogikIndex() {
             Wohl eurer Kinder, die bei uns nicht nur behütet, sondern mit Liebe und Verständnis für
             ihre individuelle Entwicklung begleitet werden.
           </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-14 md:px-14">
-        <div className="flex justify-center">
-          <WaggingDog size={200} />
         </div>
       </section>
     </>
