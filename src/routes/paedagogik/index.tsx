@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WaggingDog } from "@/components/WaggingDog";
 import umarmung from "@/assets/paedagogik-umarmung.png";
+import sternBlau from "@/assets/stern-blau.png";
+import sternGruen from "@/assets/stern-gruen.png";
+import sternWeiss from "@/assets/stern-weiss.png";
 
 export const Route = createFileRoute("/paedagogik/")({
   head: () => ({
@@ -29,7 +32,50 @@ export const Route = createFileRoute("/paedagogik/")({
 function PaedagogikIndex() {
   return (
     <>
-      <section className="mx-auto max-w-2xl px-6 pt-8 sm:px-10 sm:pt-12 md:px-14">
+      <section className="relative mx-auto max-w-2xl px-6 pt-8 sm:px-10 sm:pt-12 md:px-14">
+        {/* Wachsmalstift-Sterne, die um den Text schweben */}
+        <img
+          src={sternBlau}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          width={640}
+          height={640}
+          className="momo-star momo-star-1 pointer-events-none absolute -left-2 top-24 w-14 select-none mix-blend-multiply sm:-left-8 sm:w-20 md:-left-16 md:w-24"
+        />
+        <img
+          src={sternWeiss}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          width={640}
+          height={640}
+          className="momo-star momo-star-2 pointer-events-none absolute -right-1 top-[38%] w-12 select-none mix-blend-multiply sm:-right-7 sm:w-16 md:-right-14 md:w-20"
+        />
+        <img
+          src={sternGruen}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          width={640}
+          height={640}
+          className="momo-star momo-star-3 pointer-events-none absolute -left-3 bottom-6 w-12 select-none mix-blend-multiply sm:-left-9 sm:w-16 md:-left-20 md:w-20"
+        />
+        <style>{`
+          @keyframes momo-star-float {
+            0%   { transform: translateY(0) rotate(-4deg); }
+            100% { transform: translateY(-10px) rotate(5deg); }
+          }
+          .momo-star {
+            animation: momo-star-float 7s ease-in-out infinite alternate;
+          }
+          .momo-star-2 { animation-duration: 9s; animation-delay: -3s; }
+          .momo-star-3 { animation-duration: 8s; animation-delay: -5s; }
+          @media (prefers-reduced-motion: reduce) {
+            .momo-star { animation: none; }
+          }
+        `}</style>
+
         <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
           Pädagogik
         </h2>
