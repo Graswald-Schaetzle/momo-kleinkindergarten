@@ -25,12 +25,10 @@ export const MomoLogo = memo(function MomoLogo({
           Created by potrace 1.16, written by Peter Selinger 2001-2019
         </metadata>
         <defs>
-          <filter id="handdrawn-m" x="-10%" y="-10%" width="120%" height="120%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="350" xChannelSelector="R" yChannelSelector="G" result="displaced" />
-            <feMorphology in="displaced" operator="dilate" radius="180" result="thickened" />
-            <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="2" seed="11" result="noise2" />
-            <feDisplacementMap in="thickened" in2="noise2" scale="280" xChannelSelector="R" yChannelSelector="G" />
+          <filter id="handdrawn-m" x="-50%" y="-50%" width="200%" height="200%">
+            <feMorphology in="SourceGraphic" operator="dilate" radius="320" result="thickened" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" seed="7" result="noise" />
+            <feDisplacementMap in="thickened" in2="noise" scale="400" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </defs>
         <g transform="translate(0.000000,952.000000) scale(0.100000,-0.100000)"
