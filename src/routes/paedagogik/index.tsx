@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import sternBlau from "@/assets/stern-blau.png";
+import sternGelb from "@/assets/stern-gelb.png";
 import sternGruen from "@/assets/stern-gruen.png";
 import sternWeiss from "@/assets/stern-weiss.png";
 
@@ -55,7 +56,7 @@ function PaedagogikIndex() {
           loading="lazy"
           width={640}
           height={640}
-          className="momo-star momo-star-2 pointer-events-none absolute -top-24 -right-2 w-32 select-none mix-blend-multiply sm:-top-28 sm:-right-16 sm:w-44 md:-top-40 md:-right-28 md:w-52"
+          className="momo-star momo-star-2 pointer-events-none absolute -top-24 -right-10 w-32 select-none mix-blend-multiply sm:-top-28 sm:-right-24 sm:w-44 md:-top-40 md:-right-36 md:w-52"
         />
 
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
@@ -100,7 +101,7 @@ function PaedagogikIndex() {
           </p>
         </div>
 
-        {/* Sterne unten: blauer Stern links, grüner Stern rechts mit Abstand */}
+        {/* Sterne unten: blauer Stern links, gelber Stern mittig, grüner Stern rechts */}
         <div className="relative mt-10 flex min-h-[12rem] items-end justify-between sm:mt-14">
           <img
             src={sternBlau}
@@ -110,6 +111,15 @@ function PaedagogikIndex() {
             width={640}
             height={640}
             className="momo-star momo-star-1 pointer-events-none absolute bottom-0 left-0 w-28 select-none mix-blend-multiply sm:w-40 md:w-48"
+          />
+          <img
+            src={sternGelb}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={928}
+            height={1152}
+            className="momo-star momo-star-2 pointer-events-none absolute bottom-0 left-1/2 w-28 -translate-x-1/2 select-none mix-blend-multiply sm:w-40 md:w-48"
           />
           <img
             src={sternGruen}
