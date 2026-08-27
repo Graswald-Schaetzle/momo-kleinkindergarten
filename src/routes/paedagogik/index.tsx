@@ -56,7 +56,7 @@ function PaedagogikIndex() {
             loading="lazy"
             width={640}
             height={640}
-            className="momo-star momo-star-1 pointer-events-none w-10 select-none mix-blend-multiply sm:w-14 md:w-16"
+            className="momo-star momo-star-1 pointer-events-none w-16 select-none mix-blend-multiply sm:w-24 md:w-28"
           />
           <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
             Pädagogik
@@ -68,7 +68,7 @@ function PaedagogikIndex() {
             loading="lazy"
             width={640}
             height={640}
-            className="momo-star momo-star-2 pointer-events-none w-10 select-none mix-blend-multiply sm:w-14 md:w-16"
+            className="momo-star momo-star-2 pointer-events-none w-16 select-none mix-blend-multiply sm:w-24 md:w-28"
           />
         </div>
 
