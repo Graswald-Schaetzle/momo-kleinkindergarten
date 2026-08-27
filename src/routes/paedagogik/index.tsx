@@ -117,7 +117,7 @@ function PaedagogikIndex() {
             loading="lazy"
             width={640}
             height={640}
-            className="momo-star momo-star-3 pointer-events-none w-12 select-none mix-blend-multiply sm:w-16 md:w-20"
+            className="momo-star momo-star-3 pointer-events-none w-32 select-none mix-blend-multiply sm:w-48 md:w-56"
           />
         </div>
       </section>
