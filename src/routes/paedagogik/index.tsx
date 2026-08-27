@@ -56,7 +56,7 @@ function PaedagogikIndex() {
           loading="lazy"
           width={640}
           height={640}
-          className="momo-star momo-star-2 pointer-events-none absolute -top-24 -right-2 w-32 select-none mix-blend-multiply sm:-top-28 sm:-right-16 sm:w-44 md:-top-40 md:-right-28 md:w-52"
+          className="momo-star momo-star-2 pointer-events-none absolute -top-24 -right-10 w-32 select-none mix-blend-multiply sm:-top-28 sm:-right-24 sm:w-44 md:-top-40 md:-right-36 md:w-52"
         />
 
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
