@@ -32,34 +32,6 @@ function PaedagogikIndex() {
   return (
     <>
       <section className="relative mx-auto max-w-2xl px-6 pt-8 sm:px-10 sm:pt-12 md:px-14">
-        {/* Wachsmalstift-Sterne, die um den Text schweben */}
-        <img
-          src={sternBlau}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          width={640}
-          height={640}
-          className="momo-star momo-star-1 pointer-events-none absolute -left-2 top-24 w-14 select-none mix-blend-multiply sm:-left-8 sm:w-20 md:-left-16 md:w-24"
-        />
-        <img
-          src={sternWeiss}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          width={640}
-          height={640}
-          className="momo-star momo-star-2 pointer-events-none absolute -right-1 top-[38%] w-12 select-none mix-blend-multiply sm:-right-7 sm:w-16 md:-right-14 md:w-20"
-        />
-        <img
-          src={sternGruen}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          width={640}
-          height={640}
-          className="momo-star momo-star-3 pointer-events-none absolute -left-3 bottom-6 w-12 select-none mix-blend-multiply sm:-left-9 sm:w-16 md:-left-20 md:w-20"
-        />
         <style>{`
           @keyframes momo-star-float {
             0%   { transform: translateY(0) rotate(-4deg); }
@@ -75,9 +47,30 @@ function PaedagogikIndex() {
           }
         `}</style>
 
-        <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
-          Pädagogik
-        </h2>
+        {/* Sterne neben der Überschrift */}
+        <div className="relative flex items-center justify-center gap-4 sm:gap-6">
+          <img
+            src={sternBlau}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={640}
+            height={640}
+            className="momo-star momo-star-1 pointer-events-none w-10 select-none mix-blend-multiply sm:w-14 md:w-16"
+          />
+          <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
+            Pädagogik
+          </h2>
+          <img
+            src={sternWeiss}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={640}
+            height={640}
+            className="momo-star momo-star-2 pointer-events-none w-10 select-none mix-blend-multiply sm:w-14 md:w-16"
+          />
+        </div>
 
 
 
@@ -113,6 +106,19 @@ function PaedagogikIndex() {
             Wohl eurer Kinder, die bei uns nicht nur behütet, sondern mit Liebe und Verständnis für
             ihre individuelle Entwicklung begleitet werden.
           </p>
+        </div>
+
+        {/* Stern unten */}
+        <div className="mt-8 flex justify-center sm:mt-12">
+          <img
+            src={sternGruen}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={640}
+            height={640}
+            className="momo-star momo-star-3 pointer-events-none w-12 select-none mix-blend-multiply sm:w-16 md:w-20"
+          />
         </div>
       </section>
     </>
