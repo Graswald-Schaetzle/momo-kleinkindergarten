@@ -107,6 +107,19 @@ function PaedagogikIndex() {
             ihre individuelle Entwicklung begleitet werden.
           </p>
         </div>
+
+        {/* Stern unten */}
+        <div className="mt-8 flex justify-center sm:mt-12">
+          <img
+            src={sternGruen}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={640}
+            height={640}
+            className="momo-star momo-star-3 pointer-events-none w-12 select-none mix-blend-multiply sm:w-16 md:w-20"
+          />
+        </div>
       </section>
     </>
   );
