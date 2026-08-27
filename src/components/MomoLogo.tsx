@@ -25,7 +25,7 @@ export const MomoLogo = memo(function MomoLogo({
           Created by potrace 1.16, written by Peter Selinger 2001-2019
         </metadata>
         <g transform="translate(0.000000,952.000000) scale(0.100000,-0.100000)"
-        fill="currentColor" stroke="none">
+        fill="currentColor" stroke="currentColor" strokeWidth="130" strokeLinejoin="round" strokeLinecap="round" paintOrder="stroke">
         <path d="M13043 9366 c-533 -102 -1591 -767 -2110 -1328 -611 -661 -1226
         -1824 -1421 -2688 -221 -977 17 -1858 809 -2990 335 -479 628 -789 1049 -1109
         544 -414 1243 -727 1804 -806 119 -17 386 -19 506 -5 273 34 596 141 911 301
