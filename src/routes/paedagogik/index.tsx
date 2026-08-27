@@ -99,8 +99,17 @@ function PaedagogikIndex() {
           </p>
         </div>
 
-        {/* Stern unten */}
-        <div className="mt-8 flex justify-center sm:mt-12">
+        {/* Sterne unten: blauer Stern links, grüner Stern mittig */}
+        <div className="relative mt-10 flex min-h-[12rem] items-end justify-center sm:mt-14">
+          <img
+            src={sternBlau}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            width={640}
+            height={640}
+            className="momo-star momo-star-1 pointer-events-none absolute bottom-0 left-0 w-32 select-none mix-blend-multiply sm:w-44 md:w-52"
+          />
           <img
             src={sternGruen}
             alt=""
