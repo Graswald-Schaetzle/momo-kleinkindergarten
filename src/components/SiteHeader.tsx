@@ -167,13 +167,13 @@ export function SiteHeader({
       </Link>
 
       {showSlogan && (
-        <p className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-6 sm:text-sm`}>
+        <p className={`mt-4 font-display text-xs font-medium uppercase tracking-[0.35em] ${logoColor} sm:mt-6 sm:text-sm`}>
           1–3&nbsp;Jahre
         </p>
       )}
 
       {showSlogan && !hideTagline && (
-        <p className="mt-16 max-w-lg px-4 font-display text-lg font-medium leading-relaxed text-bordeaux sm:mt-24 sm:text-2xl md:mt-32 md:text-3xl">
+        <p className="mt-16 max-w-lg px-4 font-display text-lg font-medium uppercase leading-relaxed tracking-[0.15em] text-bordeaux sm:mt-24 sm:text-2xl md:mt-32 md:text-3xl">
           Neun Kinder, Drei Pädagoginnen, unendliche Geborgenheit.
         </p>
       )}
