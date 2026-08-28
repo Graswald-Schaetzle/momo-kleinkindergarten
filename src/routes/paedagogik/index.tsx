@@ -48,7 +48,7 @@ function PaedagogikIndex() {
 
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
           <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
-            Pädagogik
+            {"\n"}
           </h2>
         </div>
 
