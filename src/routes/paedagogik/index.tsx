@@ -99,8 +99,8 @@ function PaedagogikIndex() {
           </p>
         </div>
 
-        {/* Sterne unten: blauer Stern links, gelber Stern mittig, grüner Stern rechts */}
-        <div className="relative mt-10 flex min-h-[12rem] items-end justify-between sm:mt-14">
+        {/* Blauer Stern unten links */}
+        <div className="relative mt-10 flex min-h-[12rem] items-end sm:mt-14">
           <img
             src={sternBlau}
             alt=""
@@ -109,24 +109,6 @@ function PaedagogikIndex() {
             width={640}
             height={640}
             className="momo-star momo-star-1 pointer-events-none absolute bottom-0 left-0 w-28 select-none mix-blend-multiply sm:w-40 md:w-48"
-          />
-          <img
-            src={sternGelb}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            width={928}
-            height={1152}
-            className="momo-star momo-star-2 pointer-events-none absolute bottom-0 left-1/2 w-28 -translate-x-1/2 select-none mix-blend-multiply sm:w-40 md:w-48"
-          />
-          <img
-            src={sternGruen}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            width={640}
-            height={640}
-            className="momo-star momo-star-3 pointer-events-none absolute bottom-0 right-0 w-28 select-none mix-blend-multiply sm:w-40 md:w-48"
           />
         </div>
       </section>
