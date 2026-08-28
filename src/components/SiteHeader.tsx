@@ -21,7 +21,6 @@ const navItems: NavItem[] = [
       { to: "/paedagogik/tagesablauf", label: "Tagesablauf" },
       { to: "/paedagogik/pflege", label: "Pflege" },
       { to: "/paedagogik/essen", label: "Essen" },
-      { to: "/paedagogik/angebote", label: "Angebote" },
     ],
   },
   { to: "/raeume", label: "RÄUME" },
