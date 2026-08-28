@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import sternBlau from "@/assets/stern-blau.png";
 import sternWeiss from "@/assets/stern-weiss.png";
 
 export const Route = createFileRoute("/paedagogik/")({
@@ -99,18 +98,6 @@ function PaedagogikIndex() {
           </p>
         </div>
 
-        {/* Blauer Stern unten links */}
-        <div className="relative mt-10 flex min-h-[12rem] items-end sm:mt-14">
-          <img
-            src={sternBlau}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            width={640}
-            height={640}
-            className="momo-star momo-star-1 pointer-events-none absolute bottom-0 left-0 w-28 select-none mix-blend-multiply sm:w-40 md:w-48"
-          />
-        </div>
       </section>
     </>
   );
