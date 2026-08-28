@@ -31,9 +31,11 @@ const navItems: NavItem[] = [
 
 export function SiteHeader({
   showSlogan = false,
+  hideTagline = false,
   logoColor = "text-bordeaux",
 }: {
   showSlogan?: boolean;
+  hideTagline?: boolean;
   logoColor?: string;
 }) {
   const [open, setOpen] = useState(false);
