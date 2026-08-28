@@ -145,7 +145,7 @@ const schedule: {
   {
     time: "10:25–11:30",
     title: "Gemeinsame Aktivitäten",
-    text: "Im Mittelpunkt unseres Alltags steht das Freispiel, hier können die Kinder ihren eigenen Interessen nachgehen, ihre Fantasie entfalten und wichtige Erfahrungen selbstbestimmt sammeln. Ergänzend dazu bieten wir immer wieder, jedoch nicht durchgehend, abwechslungsreiche Angebote an, die einzelne Schwerpunkte setzen und den Kindern zusätzliche Impulse geben. Dazu zählen zum Beispiel:",
+    text: "Im Mittelpunkt unseres Alltags steht das Freispiel, hier können die Kinder ihren eigenen Interessen nachgehen, ihre Fantasie entfalten und wichtige Erfahrungen selbstbestimmt sammeln. Ergänzend dazu bieten wir immer wieder, abwechslungsreiche Angebote an, die einzelne Schwerpunkte setzen und den Kindern zusätzliche Impulse geben. Dazu zählen zum Beispiel:",
     highlights: [
       "Besuche einer Musikpädagogin mit Liedern, Instrumenten und Bewegung",
       "Besuche einer Kunsttherapeutin mit Bastelaktivitäten",
