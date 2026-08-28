@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { BesteckAnimation } from "@/components/BesteckAnimation";
 
 export const Route = createFileRoute("/paedagogik/essen")({
   head: () => ({
@@ -28,6 +29,7 @@ function Essen() {
       <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-3xl md:text-4xl">
         Essen
       </h1>
+      <BesteckAnimation />
       <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-base md:text-lg">
         <p>
           Essen ist bei uns weit mehr als Nahrungsaufnahme, es ist ein sinnliches, gemeinsames Erlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren das gemeinsame Essen bewusst: Der Tisch ist liebevoll jahreszeitlich gedeckt, Blumen schmücken den Tisch, eine Kerze wird angezündet und begleitet die Mahlzeit. Gemeinsam singen wir und bedanken uns fürs Essen.
