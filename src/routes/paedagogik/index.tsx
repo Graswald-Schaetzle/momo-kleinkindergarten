@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import paedagogikBlumen from "@/assets/grafik-18-altrosa.png.asset.json";
+import paedagogikBlumen from "@/assets/grafik-19-altrosa.png.asset.json";
 
 
 export const Route = createFileRoute("/paedagogik/")({
