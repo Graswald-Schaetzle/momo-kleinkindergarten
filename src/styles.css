@@ -232,6 +232,7 @@ body[data-overlay-open] .burger-bar {
 
 /* Besteck-Animation: Gabel, Löffel und Messer kreuzen sich und richten sich wieder gerade aus */
 .besteck {
+  transform: translate(-50%, -50%);
   animation-duration: 9s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;

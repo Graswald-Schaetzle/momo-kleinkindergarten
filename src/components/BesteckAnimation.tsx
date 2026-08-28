@@ -11,17 +11,17 @@ export function BesteckAnimation() {
       <img
         src={loeffel}
         alt=""
-        className="besteck besteck-loeffel absolute left-1/2 top-1/2 w-[52%] -translate-x-1/2 -translate-y-1/2"
+        className="besteck besteck-loeffel absolute left-1/2 top-1/2 w-[52%]"
       />
       <img
         src={messer}
         alt=""
-        className="besteck besteck-messer absolute left-1/2 top-1/2 w-[70%] -translate-x-1/2 -translate-y-1/2"
+        className="besteck besteck-messer absolute left-1/2 top-1/2 w-[70%]"
       />
       <img
         src={gabel}
         alt=""
-        className="besteck besteck-gabel absolute left-1/2 top-1/2 w-[72%] -translate-x-1/2 -translate-y-1/2"
+        className="besteck besteck-gabel absolute left-1/2 top-1/2 w-[72%]"
       />
     </div>
   );
