@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import sternWeiss from "@/assets/stern-weiss.png";
+import paedagogikBlumen from "@/assets/grafik-18.png.asset.json";
+
 
 export const Route = createFileRoute("/paedagogik/")({
   head: () => ({
