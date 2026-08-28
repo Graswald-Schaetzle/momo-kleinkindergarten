@@ -170,7 +170,7 @@ const schedule: {
     icon: MealIcon,
   },
   {
-    time: "12:30–Bedarf",
+    time: "12:15–Bedarf",
     title: "Schlafenszeit",
     text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot.",
     icon: SleepIcon,
