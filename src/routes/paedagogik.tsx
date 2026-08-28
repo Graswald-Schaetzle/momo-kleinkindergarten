@@ -27,7 +27,7 @@ export const Route = createFileRoute("/paedagogik")({
 function PaedagogikLayout() {
   return (
     <main className="pb-4">
-      <SiteHeader showSlogan hideTagline />
+      <SiteHeader hideTagline />
       <div className="text-bordeaux">
         <Outlet />
       </div>
