@@ -31,9 +31,11 @@ const navItems: NavItem[] = [
 
 export function SiteHeader({
   showSlogan = false,
+  hideTagline = false,
   logoColor = "text-bordeaux",
 }: {
   showSlogan?: boolean;
+  hideTagline?: boolean;
   logoColor?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -164,7 +166,7 @@ export function SiteHeader({
         </p>
       )}
 
-      {showSlogan && (
+      {showSlogan && !hideTagline && (
         <p className="mt-16 max-w-lg px-4 font-display text-lg font-medium leading-relaxed text-bordeaux sm:mt-24 sm:text-2xl md:mt-32 md:text-3xl">
           Neun Kinder, Drei Pädagoginnen, unendliche Geborgenheit.
         </p>
