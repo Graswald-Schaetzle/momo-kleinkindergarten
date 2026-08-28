@@ -252,16 +252,16 @@ body[data-overlay-open] .burger-bar {
 }
 
 @keyframes besteck-gabel {
-  0%, 18%, 82%, 100% { transform: translate(-50%, calc(-50% - 2.2rem)) rotate(0deg); }
-  42%, 58%           { transform: translate(-50%, -50%) rotate(7deg); }
+  0%, 22%, 78%, 100% { transform: translate(-50%, calc(-50% - 2.2rem)) rotate(0deg); }
+  44%, 56%           { transform: translate(-50%, -50%) rotate(9deg); }
 }
 @keyframes besteck-loeffel {
-  0%, 18%, 82%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-  42%, 58%           { transform: translate(-50%, -50%) rotate(-5deg); }
+  0%, 22%, 78%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  44%, 56%           { transform: translate(-50%, -50%) rotate(3deg); }
 }
 @keyframes besteck-messer {
-  0%, 18%, 82%, 100% { transform: translate(-50%, calc(-50% + 2.2rem)) rotate(0deg); }
-  42%, 58%           { transform: translate(-50%, -50%) rotate(6deg); }
+  0%, 22%, 78%, 100% { transform: translate(-50%, calc(-50% + 2.2rem)) rotate(0deg); }
+  44%, 56%           { transform: translate(-50%, -50%) rotate(-9deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
