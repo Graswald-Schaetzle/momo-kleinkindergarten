@@ -30,7 +30,7 @@ function Essen() {
       </h1>
       <div className="mt-8 space-y-6 text-center font-display text-sm leading-relaxed sm:text-base md:text-lg">
         <p>
-          Essen ist bei uns weit mehr als Nahrungsaufnahme – es ist ein sinnliches, gemeinsames Erlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren das gemeinsame Essen bewusst: Der Tisch ist liebevoll jahreszeitlich gedeckt, Blumen schmücken den Tisch, eine Kerze wird angezündet und begleitet die Mahlzeit. Gemeinsam singen wir und bedanken uns fürs Essen.
+          Essen ist bei uns weit mehr als Nahrungsaufnahme, es ist ein sinnliches, gemeinsames Erlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren das gemeinsame Essen bewusst: Der Tisch ist liebevoll jahreszeitlich gedeckt, Blumen schmücken den Tisch, eine Kerze wird angezündet und begleitet die Mahlzeit. Gemeinsam singen wir und bedanken uns fürs Essen.
         </p>
         <p>
           Wir legen großen Wert auf regionale, saisonale Zutaten und verwenden bevorzugt Bio- und Demeter-Produkte. So lernen Kinder ganz natürlich, was gerade wächst und reift, und entwickeln ein Gefühl für die Jahreszeiten durch das, was auf dem Teller landet. Auch der zeitliche Rhythmus spielt eine wichtige Rolle: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht ist das ein wertvolles Element der pädagogischen Arbeit – wiederkehrende Rituale geben euren Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
