@@ -81,8 +81,13 @@ function Index() {
       <SiteHeader showSlogan onMenuOpen={stopSnoring} />
 
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
-        <div className="relative mx-auto w-full max-w-5xl overflow-hidden px-6 sm:px-10 md:px-14">
-
+        <div
+          className="relative mx-auto w-full max-w-5xl overflow-hidden px-6 sm:px-10 md:px-14"
+          onClick={toggleSnore}
+          role="button"
+          aria-pressed={!muted}
+          aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
+        >
           <video
             autoPlay
             muted
@@ -90,7 +95,7 @@ function Index() {
             playsInline
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-            className="relative w-full"
+            className="relative w-full cursor-pointer"
             style={{
               WebkitMaskImage:
                 "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
@@ -104,38 +109,6 @@ function Index() {
             <source src={heroVideoMp4.url} type="video/mp4" />
           </video>
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
-
-          <button
-            type="button"
-            onClick={toggleSnore}
-            aria-pressed={!muted}
-            aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
-            className="absolute left-8 top-16 z-20 inline-flex items-center transition-opacity hover:opacity-80 sm:left-12 sm:top-24 md:left-16 md:top-32"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-8 w-8 text-bordeaux sm:h-10 sm:w-10"
-              aria-hidden="true"
-            >
-              <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none" />
-              {muted ? (
-                <>
-                  <line x1="16" y1="9" x2="22" y2="15" />
-                  <line x1="22" y1="9" x2="16" y2="15" />
-                </>
-              ) : (
-                <>
-                  <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-                  <path d="M18.5 5.5a9 9 0 0 1 0 13" />
-                </>
-              )}
-            </svg>
-          </button>
         </div>
 
         <p className="mt-8 px-6 font-display text-xl font-normal leading-tight text-bordeaux sm:mt-12 md:mt-16 sm:text-3xl md:text-4xl">Eröffnung Januar 2027</p>
