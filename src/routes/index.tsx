@@ -69,9 +69,16 @@ function Index() {
     }
   };
 
+  const stopSnoring = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    setMuted(true);
+  };
+
   return (
     <main className="flex flex-1 flex-col items-center pb-2 text-center">
-      <SiteHeader showSlogan />
+      <SiteHeader showSlogan onMenuOpen={stopSnoring} />
 
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div className="relative mx-auto w-full max-w-5xl overflow-hidden px-6 sm:px-10 md:px-14">

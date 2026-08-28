@@ -33,10 +33,12 @@ export function SiteHeader({
   showSlogan = false,
   hideTagline = false,
   logoColor = "text-bordeaux",
+  onMenuOpen,
 }: {
   showSlogan?: boolean;
   hideTagline?: boolean;
   logoColor?: string;
+  onMenuOpen?: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -55,7 +57,12 @@ export function SiteHeader({
     <header className="px-6 pt-4 text-center sm:px-10 sm:pt-8 md:px-14">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() =>
+          setOpen((v) => {
+            if (!v) onMenuOpen?.();
+            return !v;
+          })
+        }
         aria-expanded={open}
         aria-label={open ? "Menü schließen" : "Menü öffnen"}
         className="fixed left-4 top-4 z-[60] flex h-10 w-10 items-center justify-center sm:left-6 sm:top-6"
