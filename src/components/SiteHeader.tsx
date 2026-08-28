@@ -33,10 +33,12 @@ export function SiteHeader({
   showSlogan = false,
   hideTagline = false,
   logoColor = "text-bordeaux",
+  onMenuOpen,
 }: {
   showSlogan?: boolean;
   hideTagline?: boolean;
   logoColor?: string;
+  onMenuOpen?: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
