@@ -5,13 +5,13 @@ import messer from "@/assets/besteck-messer.png";
 export function BesteckAnimation() {
   return (
     <div
-      className="pointer-events-none relative mx-auto mt-6 h-24 w-full max-w-md select-none sm:mt-8 sm:h-28"
+      className="pointer-events-none relative mx-auto mt-6 h-28 w-full max-w-md select-none sm:mt-8 sm:h-32"
       aria-hidden="true"
     >
       <img
         src={loeffel}
         alt=""
-        className="besteck besteck-loeffel absolute left-1/2 top-1/2 w-[86%] -translate-x-1/2 -translate-y-1/2"
+        className="besteck besteck-loeffel absolute left-1/2 top-1/2 w-[72%] -translate-x-1/2 -translate-y-1/2"
       />
       <img
         src={messer}
