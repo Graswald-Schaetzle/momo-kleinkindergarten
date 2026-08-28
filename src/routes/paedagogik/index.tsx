@@ -47,9 +47,9 @@ function PaedagogikIndex() {
         `}</style>
 
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
-          <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] sm:text-3xl">
-            1-3 Jahre
-          </h2>
+          <p className="mt-4 text-center font-display text-xs font-normal tracking-[0.25em] text-bordeaux sm:mt-6 sm:text-sm">
+            1–3&nbsp;Jahre
+          </p>
         </div>
 
         <img
