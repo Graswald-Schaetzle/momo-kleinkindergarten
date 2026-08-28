@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import sternBlau from "@/assets/stern-blau.png";
 import sternWeiss from "@/assets/stern-weiss.png";
 
 export const Route = createFileRoute("/paedagogik/")({
