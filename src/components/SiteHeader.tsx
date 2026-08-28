@@ -161,7 +161,7 @@ export function SiteHeader({
       </Link>
 
       {showSlogan && (
-        <p className="mt-4 font-display text-xs font-normal tracking-[0.25em] text-bordeaux sm:mt-6 sm:text-sm">
+        <p className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-6 sm:text-sm`}>
           1–3&nbsp;Jahre
         </p>
       )}
