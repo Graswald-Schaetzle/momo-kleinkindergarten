@@ -47,7 +47,7 @@ function PaedagogikIndex() {
         `}</style>
 
         <div className="relative flex items-center justify-center gap-4 sm:gap-6">
-          <p className="mt-1 text-center font-display text-xs font-normal tracking-[0.25em] text-bordeaux sm:mt-2 sm:text-sm">
+          <p className="mt-0 text-center font-display text-xs font-normal tracking-[0.25em] text-bordeaux sm:text-sm">
             1–3&nbsp;Jahre
           </p>
         </div>
@@ -59,7 +59,7 @@ function PaedagogikIndex() {
           loading="lazy"
           width={1024}
           height={1024}
-          className="pointer-events-none mx-auto mt-4 w-56 select-none bg-altrosa sm:mt-6 sm:w-72 md:w-80"
+          className="pointer-events-none mx-auto mt-8 w-56 select-none bg-altrosa sm:mt-12 sm:w-72 md:w-80"
         />
 
         <div className="mt-6 space-y-6 sm:mt-8 sm:space-y-8">
