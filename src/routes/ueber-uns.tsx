@@ -94,7 +94,7 @@ const sections: Section[] = [
 function UeberUns() {
   return (
     <main className="min-h-screen pb-12">
-      <SiteHeader logoColor="text-black" showSlogan hideTagline />
+      <SiteHeader logoColor="text-black" burgerColor="bg-black" showSlogan hideTagline />
 
       <div className="relative mx-auto max-w-6xl px-6 pt-4 sm:px-10 md:px-14">
         {sections.map((section, i) => {
