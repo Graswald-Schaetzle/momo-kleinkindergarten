@@ -29,9 +29,10 @@ function Raeume() {
     <main className="min-h-screen pb-32">
       <SiteHeader />
       <section className="mx-auto max-w-2xl px-6 pt-20 sm:px-10 md:px-14">
-        <h2 className="text-center text-base font-bold sm:text-lg">{"\n"}</h2>
+        <h2 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
+          Bei uns wächst gerade ein Zuhause heran
+        </h2>
         <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
-          <p className="text-center font-bold">Bei uns wächst gerade ein Zuhause heran</p>
 
           <p>
             Aktuell befinden sich unsere Räume und unser Garten noch mitten im Bauzustand, es wird
