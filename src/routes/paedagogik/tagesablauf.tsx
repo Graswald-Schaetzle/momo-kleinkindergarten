@@ -279,8 +279,8 @@ function TagesablaufPage() {
   const stationRFor = (i: number) => {
     const cardinal = i % 2 === 0;
     return isMobile
-      ? cardinal ? 265 : 250
-      : cardinal ? 385 : 372;
+      ? cardinal ? 282 : 264
+      : cardinal ? 408 : 392;
   };
 
   return (
@@ -299,7 +299,7 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Wecker-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-24 mb-32 aspect-square w-full max-w-[340px] sm:mt-32 sm:mb-40 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
+      <div className="relative mx-auto mt-32 mb-36 aspect-square w-full max-w-[340px] sm:mt-40 sm:mb-44 sm:max-w-[520px] md:mt-48 md:max-w-[760px]">
         {/* Aquarell-Wecker mit rotierendem Zeiger-Overlay */}
         <div
           key={shake}
