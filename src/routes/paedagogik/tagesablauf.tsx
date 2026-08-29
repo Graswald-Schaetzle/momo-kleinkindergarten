@@ -80,6 +80,7 @@ function playNatureSound() {
 }
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
+import tagesuhr from "@/assets/tagesuhr.png.asset.json";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -191,6 +192,11 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
+/* Zentrum und Radius des Ziffernblatts im Wecker-Bild (viewBox 928x1152) */
+const DIAL_CX = 464;
+const DIAL_CY = 715;
+const DIAL_R = 370;
+
 /* handgezeichneter Kritzel-Kreis: wenige niedrige Sinus-Wellen, genug Stützstellen
    -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen, keine Spitzen) */
 function wobbleCircle(cx: number, cy: number, r: number, sides = 120, amp = 0.02, waves = 6) {
@@ -268,9 +274,6 @@ function TagesablaufPage() {
     }, 450);
   }, [open, pending]);
   const isMobile = useIsMobile();
-  const rRing = isMobile ? 168 : R_TIME;
-  const knobExt = isMobile ? KNOB * 0.3 : KNOB;
-  const footExt = isMobile ? FOOT * 0.3 : FOOT;
   // Cardinal-Stationen (12/3/6/9 Uhr) weiter außen als die diagonalen,
   // damit Schrift und Uhrzeit genug Abstand zur Uhr bekommen.
   const stationRFor = (i: number) => {
@@ -295,136 +298,89 @@ function TagesablaufPage() {
         </span>
       </p>
 
-      {/* ===== Uhr-Illustration (alle Bildschirmgrößen) ===== */}
+      {/* ===== Wecker-Illustration (alle Bildschirmgrößen) ===== */}
       <div className="relative mx-auto mt-24 mb-32 aspect-square w-full max-w-[340px] sm:mt-32 sm:mb-40 sm:max-w-[520px] md:mt-40 md:max-w-[760px]">
-        <svg
+        {/* Aquarell-Wecker mit rotierendem Zeiger-Overlay */}
+        <div
           key={shake}
-          viewBox="0 0 600 600"
-          className={`h-full w-full overflow-visible transition-transform duration-300 ${
+          className={`pointer-events-none absolute inset-0 flex items-center justify-center ${
             stopped ? "momo-clock-shake" : ""
           }`}
-          role="img"
-          aria-label="Tagesablauf als gezeichnete Uhr"
         >
-          <defs>
-            <filter id="clock-scribble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="9" result="noise" />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="6.5" xChannelSelector="R" yChannelSelector="G" result="wob1" />
-              <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="2" seed="3" result="noise2" />
-              <feDisplacementMap in="wob1" in2="noise2" scale="3.5" xChannelSelector="R" yChannelSelector="G" result="wob2" />
-              <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" seed="7" result="noise3" />
-              <feDisplacementMap in="wob2" in2="noise3" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-          </defs>
-
-          <g filter="url(#clock-scribble)">
-            {/* Ziffernblatt: kritzeliger Strich auf Seiten-Hintergrund */}
-            <g>
-              <polygon points={wobbleCircle(CX, CY, rRing)} fill="var(--altrosa)" />
-              <polygon
-                points={wobbleCircle(CX, CY, rRing)}
-                fill="none"
-                stroke="var(--bordeaux)"
-                strokeWidth={5.5}
-                strokeLinejoin="round"
-                strokeLinecap="round"
-              />
-            </g>
-
-            {/* Striche statt Zahlen – an den 8 Stationen */}
-            <g>
-              {schedule.map((_, n) => {
-                const a = (-90 + n * 45) * (Math.PI / 180);
-                const rOuter = rRing - (isMobile ? 10 : 16);
-                const rInner = rRing - (isMobile ? 32 : 48);
-                const isSel = open === n;
-                return (
-                  <polyline
-                    key={n}
-                    points={wobbleSeg(
-                      CX + rOuter * Math.cos(a),
-                      CY + rOuter * Math.sin(a),
-                      CX + rInner * Math.cos(a),
-                      CY + rInner * Math.sin(a),
-                      3,
-                      2,
-                      n * 1.7
-                    )}
-                    fill="none"
-                    stroke="var(--bordeaux)"
-                    strokeWidth={isSel ? 9 : 6.5}
-                    strokeOpacity={isSel ? 1 : 0.85}
-                    strokeLinecap="round"
-                  />
-                );
-              })}
-            </g>
-
-            {/* Zeiger: kräftige kritzelige Tuschestriche mit Pfeilspitzen */}
-            <g
-            className={stopped ? undefined : "momo-hand-spin"}
-              style={
-                stopped
-                  ? {
-                      transformOrigin: "300px 300px",
-                      transform: `rotate(${(pending ?? open ?? 0) * 45}deg)`,
-                      transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
-                    }
-                  : undefined
-              }
-            >
-              {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
-              <polyline
-                points={wobbleSeg(CX, CY + rRing * 0.06, CX, CY - rRing * 0.74, 7, 4.5, 1.3)}
-                fill="none"
-                stroke="var(--bordeaux)"
-                strokeWidth={8}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              {/* Pfeilspitze langer Zeiger */}
-              <polygon
-                points={wobbleTri(
-                  CX - 9,
-                  CY - rRing * 0.66,
-                  CX + 9,
-                  CY - rRing * 0.66,
-                  CX,
-                  CY - rRing * 0.78,
-                  2,
-                  0.4
-                )}
-                fill="var(--bordeaux)"
-              />
-              {/* kurzer Zeiger im festen Winkel */}
-              <g transform={`rotate(125 ${CX} ${CY})`}>
+          <div className="relative" style={{ height: "86%", aspectRatio: "928 / 1152" }}>
+            <img
+              src={tagesuhr.url}
+              alt="Tagesablauf als gezeichneter Wecker"
+              className="absolute inset-0 h-full w-full object-contain"
+              draggable={false}
+            />
+            {/* Zeiger: kritzeliger Tuschestrich mit Pfeilspitze, dreht sich um das Ziffernblatt-Zentrum */}
+            <svg viewBox="0 0 928 1152" className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <g
+                className={stopped ? undefined : "momo-hand-spin"}
+                style={{
+                  transformOrigin: `${DIAL_CX}px ${DIAL_CY}px`,
+                  ...(stopped
+                    ? {
+                        transform: `rotate(${(pending ?? open ?? 0) * 45}deg)`,
+                        transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                      }
+                    : {}),
+                }}
+              >
+                {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
                 <polyline
-                  points={wobbleSeg(CX, CY + rRing * 0.05, CX, CY - rRing * 0.46, 6, 4, 2.1)}
+                  points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.06, DIAL_CX, DIAL_CY - DIAL_R * 0.74, 7, 7, 1.3)}
                   fill="none"
                   stroke="var(--bordeaux)"
-                  strokeWidth={9}
+                  strokeWidth={13}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
+                {/* Pfeilspitze langer Zeiger */}
                 <polygon
                   points={wobbleTri(
-                    CX - 8,
-                    CY - rRing * 0.4,
-                    CX + 8,
-                    CY - rRing * 0.4,
-                    CX,
-                    CY - rRing * 0.5,
-                    2,
-                    0.7
+                    DIAL_CX - 14,
+                    DIAL_CY - DIAL_R * 0.66,
+                    DIAL_CX + 14,
+                    DIAL_CY - DIAL_R * 0.66,
+                    DIAL_CX,
+                    DIAL_CY - DIAL_R * 0.78,
+                    3,
+                    0.4
                   )}
                   fill="var(--bordeaux)"
                 />
+                {/* kurzer Zeiger im festen Winkel */}
+                <g transform={`rotate(125 ${DIAL_CX} ${DIAL_CY})`}>
+                  <polyline
+                    points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.05, DIAL_CX, DIAL_CY - DIAL_R * 0.46, 6, 6, 2.1)}
+                    fill="none"
+                    stroke="var(--bordeaux)"
+                    strokeWidth={14}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <polygon
+                    points={wobbleTri(
+                      DIAL_CX - 12,
+                      DIAL_CY - DIAL_R * 0.4,
+                      DIAL_CX + 12,
+                      DIAL_CY - DIAL_R * 0.4,
+                      DIAL_CX,
+                      DIAL_CY - DIAL_R * 0.5,
+                      3,
+                      0.7
+                    )}
+                    fill="var(--bordeaux)"
+                  />
+                </g>
+                <circle cx={DIAL_CX} cy={DIAL_CY} r={13} fill="var(--bordeaux)" />
               </g>
-              <circle cx={CX} cy={CY} r={8} fill="var(--bordeaux)" />
-            </g>
-          </g>
+            </svg>
+          </div>
+        </div>
 
-        </svg>
 
         {/* Stationen um den Kreis */}
         {schedule.map((item, i) => {
