@@ -268,3 +268,25 @@ body[data-overlay-open] .burger-bar {
 @media (prefers-reduced-motion: reduce) {
   .besteck { animation: none; }
 }
+
+/* Cremetube: Bildsequenz von voll zu leer */
+.tube-frame {
+  opacity: 0;
+  animation: tube-frame 9s ease-in-out infinite;
+}
+.tube-frame-1 { animation-delay: 0s; }
+.tube-frame-2 { animation-delay: 3s; }
+.tube-frame-3 { animation-delay: 6s; }
+
+@keyframes tube-frame {
+  0%   { opacity: 0; }
+  6%   { opacity: 1; }
+  30%  { opacity: 1; }
+  36%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tube-frame { animation: none; }
+  .tube-frame-3 { opacity: 1; }
+}
