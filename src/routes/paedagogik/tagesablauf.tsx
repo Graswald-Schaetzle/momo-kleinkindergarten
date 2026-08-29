@@ -279,7 +279,7 @@ function TagesablaufPage() {
   const stationRFor = (i: number) => {
     const cardinal = i % 2 === 0;
     return isMobile
-      ? cardinal ? 220 : 205
+      ? cardinal ? 240 : 225
       : cardinal ? 315 : 295;
   };
 
