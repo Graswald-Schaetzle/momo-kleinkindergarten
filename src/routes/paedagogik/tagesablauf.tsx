@@ -279,8 +279,8 @@ function TagesablaufPage() {
   const stationRFor = (i: number) => {
     const cardinal = i % 2 === 0;
     return isMobile
-      ? cardinal ? 282 : 264
-      : cardinal ? 408 : 392;
+      ? cardinal ? 275 : 258
+      : cardinal ? 396 : 368;
   };
 
   return (
