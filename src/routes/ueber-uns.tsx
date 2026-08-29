@@ -76,8 +76,8 @@ const sections: Section[] = [
   },
   {
     title: "Natur",
-    image: naturImg,
-    alt: "Aquarell-Zeichnung: Figur mit Ästen als Kopf und versteckten Augen, in Bordeaux und Herbsttönen",
+    image: naturAsset.url,
+    alt: "Aquarell-Zeichnung: Figur mit grünem Blätterkopf und gelber Blüte",
     text: "Unser Garten ist ein echter kleiner Naturraum: klettern auf Baumstämmen, matschen mit Wasser und Erde, Vögel beobachten. Kinder lernen hier mit allen Sinnen und in ihrem eigenen Tempo draußen, wo Entdecken noch echt ist.",
   },
   {
