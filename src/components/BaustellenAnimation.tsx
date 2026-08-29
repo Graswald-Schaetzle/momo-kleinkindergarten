@@ -46,7 +46,7 @@ export function BaustellenAnimation({ className = "" }: { className?: string }) 
         <img
           src={schild.url}
           alt=""
-          className="absolute bottom-0 left-1/2 z-10 w-[58%] -translate-x-1/2"
+          className="absolute bottom-0 left-1/2 z-10 w-[46%] -translate-x-1/2"
         />
       </div>
     </div>

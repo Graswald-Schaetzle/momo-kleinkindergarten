@@ -29,7 +29,7 @@ function Raeume() {
   return (
     <main className="min-h-screen pb-32">
       <SiteHeader />
-      <BaustellenAnimation className="mt-4" />
+      <BaustellenAnimation className="mt-8 sm:mt-10" />
       <section className="mx-auto max-w-2xl px-6 pt-6 sm:px-10 md:px-14">
         <h2 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
           Bei uns wächst gerade ein Zuhause heran
