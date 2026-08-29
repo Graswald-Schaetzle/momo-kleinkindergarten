@@ -129,10 +129,11 @@ function RootComponent() {
   const footerColor = location.pathname === "/ueber-uns" ? "text-black" : "text-bordeaux";
   const isHome = location.pathname === "/";
   const isPaedagogik = location.pathname.startsWith("/paedagogik");
+  const isRaeume = location.pathname === "/raeume";
 
   const bgClass = isHome
     ? "bg-mustard"
-    : isPaedagogik
+    : isPaedagogik || isRaeume
       ? "bg-altrosa"
       : "";
 
