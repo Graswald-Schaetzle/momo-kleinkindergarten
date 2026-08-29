@@ -192,6 +192,11 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
+/* Zentrum und Radius des Ziffernblatts im Wecker-Bild (viewBox 928x1152) */
+const DIAL_CX = 464;
+const DIAL_CY = 715;
+const DIAL_R = 370;
+
 /* handgezeichneter Kritzel-Kreis: wenige niedrige Sinus-Wellen, genug Stützstellen
    -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen, keine Spitzen) */
 function wobbleCircle(cx: number, cy: number, r: number, sides = 120, amp = 0.02, waves = 6) {
