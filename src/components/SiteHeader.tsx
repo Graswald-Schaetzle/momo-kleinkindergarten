@@ -25,7 +25,9 @@ const navItems: NavItem[] = [
   },
   { to: "/raeume", label: "RÄUME" },
   { to: "/preise", label: "PREISE" },
+  { to: "/jobs", label: "JOBS" },
   { to: "/kontakt", label: "KONTAKT" },
+
 ];
 
 export function SiteHeader({
