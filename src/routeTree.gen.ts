@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as PaedagogikRouteImport } from './routes/paedagogik'
 import { Route as PreiseRouteImport } from './routes/preise'
@@ -25,6 +26,11 @@ import { Route as PaedagogikTagesablaufRouteImport } from './routes/paedagogik/t
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontaktRoute = KontaktRouteImport.update({
@@ -85,6 +91,7 @@ const PaedagogikTagesablaufRoute = PaedagogikTagesablaufRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
@@ -113,6 +121,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/jobs'
     | '/kontakt'
     | '/paedagogik'
     | '/preise'
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/jobs'
     | '/kontakt'
     | '/preise'
     | '/raeume'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/jobs'
     | '/kontakt'
     | '/paedagogik'
     | '/preise'
@@ -171,6 +183,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  JobsRoute: typeof JobsRoute
   KontaktRoute: typeof KontaktRoute
   PaedagogikRoute: typeof PaedagogikRouteWithChildren
   PreiseRoute: typeof PreiseRoute
@@ -186,6 +199,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontakt': {
@@ -290,6 +310,7 @@ const PaedagogikRouteWithChildren = PaedagogikRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  JobsRoute: JobsRoute,
   KontaktRoute: KontaktRoute,
   PaedagogikRoute: PaedagogikRouteWithChildren,
   PreiseRoute: PreiseRoute,
