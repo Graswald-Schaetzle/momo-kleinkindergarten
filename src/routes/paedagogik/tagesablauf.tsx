@@ -274,9 +274,6 @@ function TagesablaufPage() {
     }, 450);
   }, [open, pending]);
   const isMobile = useIsMobile();
-  const rRing = isMobile ? 168 : R_TIME;
-  const knobExt = isMobile ? KNOB * 0.3 : KNOB;
-  const footExt = isMobile ? FOOT * 0.3 : FOOT;
   // Cardinal-Stationen (12/3/6/9 Uhr) weiter außen als die diagonalen,
   // damit Schrift und Uhrzeit genug Abstand zur Uhr bekommen.
   const stationRFor = (i: number) => {
