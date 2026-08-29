@@ -80,7 +80,7 @@ function playNatureSound() {
 }
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
-import tagesuhr from "@/assets/tagesuhr.png.asset.json";
+import tagesuhr from "@/assets/tagesuhr-v2.png.asset.json";
 import {
   BreakfastIcon,
   PlayIcon,
@@ -192,10 +192,10 @@ const R_TIME = 168; // Radius der Zeit-Labels (auf der Kreisbahn)
 const KNOB = 74; // Überstand des Knopfs oben
 const FOOT = 92; // Überstand der Füße unten
 
-/* Zentrum und Radius des Ziffernblatts im Wecker-Bild (viewBox 928x1152) */
-const DIAL_CX = 464;
-const DIAL_CY = 715;
-const DIAL_R = 370;
+/* Zentrum und Radius des Ziffernblatts im Wecker-Bild (viewBox 926x926) */
+const DIAL_CX = 463;
+const DIAL_CY = 514;
+const DIAL_R = 345;
 
 /* handgezeichneter Kritzel-Kreis: wenige niedrige Sinus-Wellen, genug Stützstellen
    -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen, keine Spitzen) */
