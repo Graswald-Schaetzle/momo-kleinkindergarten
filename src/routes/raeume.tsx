@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { BaustellenAnimation } from "@/components/BaustellenAnimation";
 
 export const Route = createFileRoute("/raeume")({
   head: () => ({
