@@ -34,10 +34,10 @@ function Raeume() {
           <p className="text-center font-bold">Bei uns wächst gerade ein Zuhause heran</p>
 
           <p>
-            Ein kurzer Hinweis vorab: Aktuell befinden sich unsere Räume und unser Garten noch
-            mitten im Bauzustand, es wird gerade noch gestrichen, verlegt und eingerichtet. Im
-            Oktober gestalten wir unseren Garten, und bereits im November könnt ihr hier die ersten
-            Fotos sehen und mit eigenen Augen entdecken, wie liebevoll alles geworden ist.
+            Aktuell befinden sich unsere Räume und unser Garten noch mitten im Bauzustand, es wird
+            gerade noch gestrichen, verlegt und eingerichtet. Im Oktober gestalten wir unseren
+            Garten, und bereits im November könnt ihr hier die ersten Fotos sehen und mit eigenen
+            Augen entdecken, wie liebevoll alles geworden ist.
           </p>
 
           <p>
