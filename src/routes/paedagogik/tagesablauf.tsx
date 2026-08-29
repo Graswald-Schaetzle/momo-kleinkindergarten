@@ -307,78 +307,51 @@ function TagesablaufPage() {
             stopped ? "momo-clock-shake" : ""
           }`}
         >
-          <div className="relative" style={{ height: "86%", aspectRatio: "928 / 1152" }}>
-            <img
-              src={tagesuhr.url}
-              alt="Tagesablauf als gezeichneter Wecker"
-              className="absolute inset-0 h-full w-full object-contain"
-              draggable={false}
-            />
-            {/* Zeiger: kritzeliger Tuschestrich mit Pfeilspitze, dreht sich um das Ziffernblatt-Zentrum */}
-            <svg viewBox="0 0 928 1152" className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
-              <g
-                className={stopped ? undefined : "momo-hand-spin"}
-                style={{
-                  transformOrigin: `${DIAL_CX}px ${DIAL_CY}px`,
-                  ...(stopped
-                    ? {
-                        transform: `rotate(${(pending ?? open ?? 0) * 45}deg)`,
-                        transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
-                      }
-                    : {}),
-                }}
-              >
-                {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
-                <polyline
-                  points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.06, DIAL_CX, DIAL_CY - DIAL_R * 0.74, 7, 7, 1.3)}
-                  fill="none"
-                  stroke="var(--bordeaux)"
-                  strokeWidth={13}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* Pfeilspitze langer Zeiger */}
-                <polygon
-                  points={wobbleTri(
-                    DIAL_CX - 14,
-                    DIAL_CY - DIAL_R * 0.66,
-                    DIAL_CX + 14,
-                    DIAL_CY - DIAL_R * 0.66,
-                    DIAL_CX,
-                    DIAL_CY - DIAL_R * 0.78,
-                    3,
-                    0.4
-                  )}
-                  fill="var(--bordeaux)"
-                />
-                {/* kurzer Zeiger im festen Winkel */}
-                <g transform={`rotate(125 ${DIAL_CX} ${DIAL_CY})`}>
-                  <polyline
-                    points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.05, DIAL_CX, DIAL_CY - DIAL_R * 0.46, 6, 6, 2.1)}
-                    fill="none"
-                    stroke="var(--bordeaux)"
-                    strokeWidth={14}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <polygon
-                    points={wobbleTri(
-                      DIAL_CX - 12,
-                      DIAL_CY - DIAL_R * 0.4,
-                      DIAL_CX + 12,
-                      DIAL_CY - DIAL_R * 0.4,
-                      DIAL_CX,
-                      DIAL_CY - DIAL_R * 0.5,
-                      3,
-                      0.7
-                    )}
-                    fill="var(--bordeaux)"
-                  />
-                </g>
-                <circle cx={DIAL_CX} cy={DIAL_CY} r={13} fill="var(--bordeaux)" />
-              </g>
-            </svg>
-          </div>
+             <div className="relative" style={{ height: "86%", aspectRatio: "926 / 926" }}>
+               <img
+                 src={tagesuhr.url}
+                 alt="Tagesablauf als gezeichneter Wecker"
+                 className="absolute inset-0 h-full w-full object-contain"
+                 draggable={false}
+               />
+               {/* Zeiger: dünne gemalte Striche wie in der Vorlage, drehen sich um das Ziffernblatt-Zentrum */}
+               <svg viewBox="0 0 926 926" className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+                 <g
+                   className={stopped ? undefined : "momo-hand-spin"}
+                   style={{
+                     transformOrigin: `${DIAL_CX}px ${DIAL_CY}px`,
+                     ...(stopped
+                       ? {
+                           transform: `rotate(${(pending ?? open ?? 0) * 45}deg)`,
+                           transition: "transform 700ms cubic-bezier(.34,1.4,.5,1)",
+                         }
+                       : {}),
+                   }}
+                 >
+                   {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
+                   <polyline
+                     points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.05, DIAL_CX, DIAL_CY - DIAL_R * 0.72, 7, 5, 1.3)}
+                     fill="none"
+                     stroke="var(--bordeaux)"
+                     strokeWidth={9}
+                     strokeLinecap="round"
+                     strokeLinejoin="round"
+                   />
+                   {/* kurzer Zeiger im festen Winkel */}
+                   <g transform={`rotate(125 ${DIAL_CX} ${DIAL_CY})`}>
+                     <polyline
+                       points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.04, DIAL_CX, DIAL_CY - DIAL_R * 0.45, 6, 4, 2.1)}
+                       fill="none"
+                       stroke="var(--bordeaux)"
+                       strokeWidth={9}
+                       strokeLinecap="round"
+                       strokeLinejoin="round"
+                     />
+                   </g>
+                   <circle cx={DIAL_CX} cy={DIAL_CY} r={10} fill="var(--bordeaux)" />
+                 </g>
+               </svg>
+             </div>
         </div>
 
 
