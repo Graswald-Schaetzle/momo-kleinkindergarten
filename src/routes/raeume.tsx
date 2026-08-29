@@ -30,7 +30,7 @@ function Raeume() {
       <SiteHeader />
       <section className="mx-auto max-w-2xl px-6 pt-20 sm:px-10 md:px-14">
         <h2 className="text-center text-base font-bold sm:text-lg">{"\n"}</h2>
-        <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
+        <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
           <p className="text-center font-bold">Bei uns wächst gerade ein Zuhause heran</p>
 
           <p>
@@ -48,7 +48,7 @@ function Raeume() {
             ein zweites Zuhause anfühlt.
           </p>
 
-          <h3 className="text-center text-base font-bold sm:text-lg">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
             Unsere Räume – mit Liebe zum Detail
           </h3>
 
@@ -66,25 +66,18 @@ function Raeume() {
             und kleine Familiengeschichten Platz finden.
           </p>
 
-          <h3 className="text-center text-base font-bold sm:text-lg">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
             Unser Garten – ein kleines Abenteuerreich
           </h3>
 
           <p>
-            Im Oktober gestalten wir unseren Garten komplett neu. Geplant sind unter anderem:
+            Im Oktober gestalten wir unseren Garten komplett neu und freuen uns auf viele kleine
+            Abenteuer: Einen Sandbereich zum Buddeln und Bauen, eine Rutsche für den kleinen
+            Nervenkitzel und Klettermöglichkeiten, an denen sich die Kinder ausprobieren können. Eine
+            Matschecke lädt dazu ein, mit Wasser und Erde zu experimentieren, und ein Barfußweg mit
+            unterschiedlichen Materialien und Ebenen lässt die Kinder verschiedene Untergründe spüren
+            und ihre Sinne auf spielerische Weise schulen.
           </p>
-
-          <ul className="list-disc space-y-1 pl-5 text-left">
-            <li>ein Sandbereich zum Buddeln und Bauen</li>
-            <li>eine Rutsche für den kleinen Nervenkitzel</li>
-            <li>Klettermöglichkeiten, an denen sich die Kinder ausprobieren können</li>
-            <li>eine Matschecke, in der mit Wasser und Erde experimentiert werden darf</li>
-            <li>
-              ein Barfußweg mit unterschiedlichen Materialien und Ebenen – wie eine kleine
-              Fußmassage, bei der die Kinder ganz unterschiedliche Untergründe spüren und ihre
-              Sinne auf spielerische Weise schulen können
-            </li>
-          </ul>
 
           <p>
             Wir freuen uns riesig darauf, euch schon bald mitzunehmen auf diese Verwandlung und im
