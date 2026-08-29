@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import lillydooAsset from "@/assets/lillydoo.png.asset.json";
 import weledaAsset from "@/assets/weleda.png.asset.json";
 import hauschkaAsset from "@/assets/dr-hauschka.png.asset.json";
+import { TubeAnimation } from "@/components/TubeAnimation";
 
 const brands = [
   { src: weledaAsset.url, alt: "WELEDA" },
@@ -39,6 +40,9 @@ function Pflege() {
         <h1 className="font-display text-center text-2xl font-normal tracking-[0.08em] sm:text-3xl">
           Pflege
         </h1>
+
+        <TubeAnimation className="mt-6 sm:mt-8" />
+
 
         <div className="mt-6 space-y-6 sm:mt-8 sm:space-y-8">
           <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
