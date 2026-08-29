@@ -41,7 +41,7 @@ function Pflege() {
           Pflege
         </h1>
 
-        <TubeAnimation className="mt-6 sm:mt-8" />
+        <TubeAnimation className="mt-2 sm:mt-3" />
 
 
         <div className="mt-6 space-y-6 sm:mt-8 sm:space-y-8">
