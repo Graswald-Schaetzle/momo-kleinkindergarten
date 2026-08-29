@@ -279,8 +279,8 @@ function TagesablaufPage() {
   const stationRFor = (i: number) => {
     const cardinal = i % 2 === 0;
     return isMobile
-      ? cardinal ? 268 : 254
-      : cardinal ? 385 : 368;
+      ? cardinal ? 260 : 245
+      : cardinal ? 315 : 295;
   };
 
   return (
@@ -307,7 +307,7 @@ function TagesablaufPage() {
             stopped ? "momo-clock-shake" : ""
           }`}
         >
-             <div className="relative" style={{ height: "86%", aspectRatio: "926 / 926" }}>
+             <div className="relative h-[45%] sm:h-[58%] md:h-[62%]" style={{ aspectRatio: "926 / 926" }}>
                <img
                  src={tagesuhr.url}
                  alt="Tagesablauf als gezeichneter Wecker"
