@@ -10,7 +10,7 @@ const navItems: NavItem[] = [
   {
     label: "ÜBER UNS",
     children: [
-      { to: "/ueber-uns", label: "Unsere Haltung" },
+      { to: "/ueber-uns", label: "Unsere Werte" },
       { to: "/team", label: "Team" },
     ],
   },
