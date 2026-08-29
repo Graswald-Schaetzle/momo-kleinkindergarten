@@ -33,7 +33,7 @@ export const Route = createFileRoute("/ueber-uns")({
       { rel: "preload", as: "image", href: naeheImg },
       { rel: "preload", as: "image", href: ruheImg },
       { rel: "preload", as: "image", href: ganzheitlichkeitImg },
-      { rel: "preload", as: "image", href: naturImg },
+      { rel: "preload", as: "image", href: naturAsset.url },
       { rel: "preload", as: "image", href: eigenstaendigkeitImg },
       { rel: "preload", as: "video", href: ganzheitlichkeitVideo.url, type: "video/mp4" },
     ],
