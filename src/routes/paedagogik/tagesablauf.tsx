@@ -307,7 +307,7 @@ function TagesablaufPage() {
             stopped ? "momo-clock-shake" : ""
           }`}
         >
-             <div className="relative h-[50%] sm:h-[58%] md:h-[62%]" style={{ aspectRatio: "926 / 926" }}>
+             <div className="relative h-[45%] sm:h-[58%] md:h-[62%]" style={{ aspectRatio: "926 / 926" }}>
                <img
                  src={tagesuhr.url}
                  alt="Tagesablauf als gezeichneter Wecker"
