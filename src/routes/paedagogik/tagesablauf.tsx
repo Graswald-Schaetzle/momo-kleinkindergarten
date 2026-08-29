@@ -194,8 +194,8 @@ const FOOT = 92; // Überstand der Füße unten
 
 /* Zentrum und Radius des Ziffernblatts im Wecker-Bild (viewBox 926x926) */
 const DIAL_CX = 463;
-const DIAL_CY = 514;
-const DIAL_R = 345;
+const DIAL_CY = 528;
+const DIAL_R = 360;
 
 /* handgezeichneter Kritzel-Kreis: wenige niedrige Sinus-Wellen, genug Stützstellen
    -> weiche, durchgehend geschlossene wackelige Linie (kein Pixel-Rauschen, keine Spitzen) */
