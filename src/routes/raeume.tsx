@@ -54,8 +54,7 @@ function Raeume() {
 
           <p>
             Unsere Wände bekommen warme, sanfte Farbtöne, die eine ruhige und gemütliche Atmosphäre
-            schaffen, und auch bei der Bodengestaltung setzen wir auf natürliche, wohnliche
-            Materialien, die sich weich und angenehm anfühlen. Unser Spielmaterial besteht fast
+            schaffen, und die sich weich und angenehm anfühlen. Unser Spielmaterial besteht fast
             ausschließlich aus Holz und anderen Naturmaterialien: warm, echt und schön anzufassen.
             Inspiriert von der Montessori- und Waldorfpädagogik haben wir mit viel Herz ausgesucht,
             was die Kinder umgibt, darunter liebevoll gestaltetes Spielzeug von Grimms und Ostheimer.
