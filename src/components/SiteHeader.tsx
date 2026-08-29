@@ -32,11 +32,13 @@ export function SiteHeader({
   showSlogan = false,
   hideTagline = false,
   logoColor = "text-bordeaux",
+  burgerColor = "bg-bordeaux",
   onMenuOpen,
 }: {
   showSlogan?: boolean;
   hideTagline?: boolean;
   logoColor?: string;
+  burgerColor?: string;
   onMenuOpen?: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -71,11 +73,11 @@ export function SiteHeader({
             className={`absolute left-0 block h-[2px] w-7 transition-all duration-300 ease-out ${
               open
                 ? "top-1/2 rotate-45 bg-menu-overlay-foreground"
-                : "top-0 bg-bordeaux burger-bar"
+                : `top-0 ${burgerColor} burger-bar`
             }`}
           />
           <span
-            className={`absolute left-0 top-1/2 block h-[2px] w-7 -translate-y-1/2 bg-bordeaux burger-bar transition-all duration-200 ${
+            className={`absolute left-0 top-1/2 block h-[2px] w-7 -translate-y-1/2 ${burgerColor} burger-bar transition-all duration-200 ${
               open ? "opacity-0" : "opacity-100"
             }`}
           />
@@ -83,7 +85,7 @@ export function SiteHeader({
             className={`absolute left-0 block h-[2px] w-7 transition-all duration-300 ease-out ${
               open
                 ? "top-1/2 -rotate-45 bg-menu-overlay-foreground"
-                : "top-full bg-bordeaux burger-bar"
+                : `top-full ${burgerColor} burger-bar`
             }`}
           />
         </span>
