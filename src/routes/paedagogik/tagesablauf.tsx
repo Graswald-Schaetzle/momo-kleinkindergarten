@@ -299,7 +299,7 @@ function TagesablaufPage() {
       </p>
 
       {/* ===== Wecker-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-32 mb-36 aspect-square w-full max-w-[340px] sm:mt-40 sm:mb-44 sm:max-w-[520px] md:mt-48 md:max-w-[760px]">
+      <div className="relative mx-auto mt-10 mb-14 aspect-square w-full max-w-[340px] sm:mt-14 sm:mb-16 sm:max-w-[520px] md:mt-16 md:mb-20 md:max-w-[760px]">
         {/* Aquarell-Wecker mit rotierendem Zeiger-Overlay */}
         <div
           key={shake}
