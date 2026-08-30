@@ -31,19 +31,19 @@ function Essen() {
       </h1>
       <BesteckAnimation />
       <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-base md:text-lg">
-        <p className="text-center font-bold">Essen als gemeinsames Erlebnis</p>
+        <p className="font-bold">Essen als gemeinsames Erlebnis</p>
         <p>
           Bei uns ist Essen weit mehr als Nahrungsaufnahme, es ist ein sinnliches Gemeinschaftserlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren die gemeinsamen Mahlzeiten bewusst: Der Tisch ist liebevoll und jahreszeitlich gedeckt, Blumen schmücken die Tafel, eine Kerze brennt während des Essens. Gemeinsam singen wir und bedanken uns für das, was wir teilen dürfen.
         </p>
-        <p className="text-center font-bold">Regional, saisonal, bewusst</p>
+        <p className="font-bold">Regional, saisonal, bewusst</p>
         <p>
           Uns liegt viel an regionalen, saisonalen Zutaten, bevorzugt in Bio- und Demeter-Qualität. So erfahren Kinder ganz natürlich, was gerade wächst und reift, und entwickeln über das, was auf ihrem Teller landet, ein Gespür für die Jahreszeiten. Auch der zeitliche Rhythmus hat seinen Platz: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht sind solche wiederkehrenden Rituale ein wertvoller Baustein unserer Arbeit – sie geben Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
         </p>
-        <p className="text-center font-bold">Selbst mit Hand anlegen</p>
+        <p className="font-bold">Selbst mit Hand anlegen</p>
         <p>
           Wo immer möglich, beziehen wir die Kinder ins Kochen mit ein: Sie schneiden Obst, waschen Gemüse und schulen dabei ganz beiläufig ihre Feinmotorik. So erleben sie hautnah, woher ihr Essen kommt, und sind mit Stolz und Freude an der Zubereitung beteiligt.
         </p>
-        <p className="text-center font-bold">Nähe und Aufmerksamkeit</p>
+        <p className="font-bold">Nähe und Aufmerksamkeit</p>
         <p>
           Mit warmen, feuchten Tüchern pflegen wir jedes Kind einzeln und liebevoll während und nach dem Essen, begleitet von einem kleinen Lied. Für uns ist dieser Moment mehr als reine Pflege: Er schenkt jedem Kind bewusste Aufmerksamkeit, echte Nähe und das Gefühl, gesehen zu werden. So bekommt jeder Übergang beim Essen seinen eigenen kleinen Klang.
         </p>
