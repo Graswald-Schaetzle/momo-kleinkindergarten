@@ -111,7 +111,7 @@ function Index() {
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
 
-        <p className="mt-8 px-6 font-display text-xl font-normal leading-tight text-bordeaux sm:mt-12 md:mt-16 sm:text-3xl md:text-4xl">Eröffnung Januar 2027</p>
+        <p className="mt-8 px-6 font-serif text-xl font-normal leading-tight text-bordeaux sm:mt-12 md:mt-16 sm:text-3xl md:text-4xl">Eröffnung Januar 2027</p>
       </div>
 
     </main>
