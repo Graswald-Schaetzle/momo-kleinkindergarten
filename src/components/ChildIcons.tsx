@@ -15,7 +15,7 @@ const scribbleDefs = (
     <filter id={wobbleId} x="-35%" y="-35%" width="170%" height="170%">
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="0.018"
+        baseFrequency="0.012"
         numOctaves="2"
         seed="9"
         result="noise"
@@ -23,22 +23,22 @@ const scribbleDefs = (
       <feDisplacementMap
         in="SourceGraphic"
         in2="noise"
-        scale="6.5"
+        scale="8"
         xChannelSelector="R"
         yChannelSelector="G"
         result="wob1"
       />
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="0.22"
-        numOctaves="2"
+        baseFrequency="0.16"
+        numOctaves="3"
         seed="3"
         result="noise2"
       />
       <feDisplacementMap
         in="wob1"
         in2="noise2"
-        scale="3.5"
+        scale="4.5"
         xChannelSelector="R"
         yChannelSelector="G"
         result="wob2"
@@ -108,7 +108,7 @@ const Face = ({
 );
 
 /* Frühstück: Tasse mit Henkel und Dampf */
-export const BreakfastIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const BreakfastIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -124,7 +124,7 @@ export const BreakfastIcon = ({ size = 40, strokeWidth = 1.6, className }: IconP
   );
 
 /* Freispiel: Bauklötze */
-export const PlayIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const PlayIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -139,7 +139,7 @@ export const PlayIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps)
   );
 
 /* Morgenkreis: Kreis aus Strichfiguren */
-export const CircleIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const CircleIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -155,7 +155,7 @@ export const CircleIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProp
   );
 
 /* Angebot: Pinsel */
-export const BrushIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const BrushIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -170,7 +170,7 @@ export const BrushIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps
   );
 
 /* Händewaschen: Hand mit Wassertropfen */
-export const WashIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const WashIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -185,7 +185,7 @@ export const WashIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps)
   );
 
 /* Mittagessen: Teller mit Gabel und Löffel */
-export const MealIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const MealIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -202,7 +202,7 @@ export const MealIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps)
   );
 
 /* Schlafen: Mond mit Zzz */
-export const SleepIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const SleepIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -217,7 +217,7 @@ export const SleepIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps
   );
 
 /* Abholzeit: Haus */
-export const HomeIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const HomeIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
