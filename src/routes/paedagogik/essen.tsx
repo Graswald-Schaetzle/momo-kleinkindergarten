@@ -31,17 +31,21 @@ function Essen() {
       </h1>
       <BesteckAnimation />
       <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-base md:text-lg">
+        <p className="text-center font-bold">Essen als gemeinsames Erlebnis</p>
         <p>
-          Essen ist bei uns weit mehr als Nahrungsaufnahme, es ist ein sinnliches, gemeinsames Erlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren das gemeinsame Essen bewusst: Der Tisch ist liebevoll jahreszeitlich gedeckt, Blumen schmücken den Tisch, eine Kerze wird angezündet und begleitet die Mahlzeit. Gemeinsam singen wir und bedanken uns fürs Essen.
+          Bei uns ist Essen weit mehr als Nahrungsaufnahme, es ist ein sinnliches Gemeinschaftserlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren die gemeinsamen Mahlzeiten bewusst: Der Tisch ist liebevoll und jahreszeitlich gedeckt, Blumen schmücken die Tafel, eine Kerze brennt während des Essens. Gemeinsam singen wir und bedanken uns für das, was wir teilen dürfen.
         </p>
+        <p className="text-center font-bold">Regional, saisonal, bewusst</p>
         <p>
-          Wir legen großen Wert auf regionale, saisonale Zutaten und verwenden bevorzugt Bio- und Demeter-Produkte. So lernen Kinder ganz natürlich, was gerade wächst und reift, und entwickeln ein Gefühl für die Jahreszeiten durch das, was auf dem Teller landet. Auch der zeitliche Rhythmus spielt eine wichtige Rolle: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht ist das ein wertvolles Element der pädagogischen Arbeit – wiederkehrende Rituale geben euren Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
+          Uns liegt viel an regionalen, saisonalen Zutaten, bevorzugt in Bio- und Demeter-Qualität. So erfahren Kinder ganz natürlich, was gerade wächst und reift, und entwickeln über das, was auf ihrem Teller landet, ein Gespür für die Jahreszeiten. Auch der zeitliche Rhythmus hat seinen Platz: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht sind solche wiederkehrenden Rituale ein wertvoller Baustein unserer Arbeit – sie geben Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
         </p>
+        <p className="text-center font-bold">Selbst mit Hand anlegen</p>
         <p>
-          Soweit es möglich ist, lassen wir die Kinder am Kochen teilhaben: Sie schneiden Obst, waschen Gemüse und üben dabei ganz nebenbei ihre Feinmotorik. So erleben Kinder, woher ihr Essen kommt, und sind mit Stolz und Freude an der Zubereitung beteiligt. Für viele Kinder sind es hier auch die ersten eigenen Erfahrungen mit Besteck, die wir geduldig begleiten.
+          Wo immer möglich, beziehen wir die Kinder ins Kochen mit ein: Sie schneiden Obst, waschen Gemüse und schulen dabei ganz beiläufig ihre Feinmotorik. So erleben sie hautnah, woher ihr Essen kommt, und sind mit Stolz und Freude an der Zubereitung beteiligt.
         </p>
+        <p className="text-center font-bold">Nähe und Aufmerksamkeit</p>
         <p>
-          Mit warmen, feuchten Tüchern pflegen wir jedes Kind einzeln und liebevoll während oder nach dem Essen, wenn mal etwas am Mund klebt, immer begleitet von einem Lied. Dieser Moment ist für uns mehr als reine Pflege: Er schenkt jedem einzelnen Kind bewusste Aufmerksamkeit, echte Nähe und das Gefühl, gesehen und wahrgenommen zu werden. So hat jeder Übergang beim Essen seinen eigenen kleinen Klang.
+          Mit warmen, feuchten Tüchern pflegen wir jedes Kind einzeln und liebevoll während und nach dem Essen, begleitet von einem kleinen Lied. Für uns ist dieser Moment mehr als reine Pflege: Er schenkt jedem Kind bewusste Aufmerksamkeit, echte Nähe und das Gefühl, gesehen zu werden. So bekommt jeder Übergang beim Essen seinen eigenen kleinen Klang.
         </p>
       </div>
     </div>
