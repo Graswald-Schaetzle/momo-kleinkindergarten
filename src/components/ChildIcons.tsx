@@ -108,7 +108,7 @@ const Face = ({
 );
 
 /* Frühstück: Tasse mit Henkel und Dampf */
-export const BreakfastIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const BreakfastIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -124,7 +124,7 @@ export const BreakfastIcon = ({ size = 40, strokeWidth = 1.6, className }: IconP
   );
 
 /* Freispiel: Bauklötze */
-export const PlayIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const PlayIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -139,7 +139,7 @@ export const PlayIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps)
   );
 
 /* Morgenkreis: Kreis aus Strichfiguren */
-export const CircleIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const CircleIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -155,7 +155,7 @@ export const CircleIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProp
   );
 
 /* Angebot: Pinsel */
-export const BrushIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const BrushIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -170,7 +170,7 @@ export const BrushIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps
   );
 
 /* Händewaschen: Hand mit Wassertropfen */
-export const WashIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const WashIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -185,7 +185,7 @@ export const WashIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps)
   );
 
 /* Mittagessen: Teller mit Gabel und Löffel */
-export const MealIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const MealIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -202,7 +202,7 @@ export const MealIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps)
   );
 
 /* Schlafen: Mond mit Zzz */
-export const SleepIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const SleepIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
@@ -217,7 +217,7 @@ export const SleepIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps
   );
 
 /* Abholzeit: Haus */
-export const HomeIcon = ({ size = 40, strokeWidth = 1.6, className }: IconProps) =>
+export const HomeIcon = ({ size = 40, strokeWidth = 2.6, className }: IconProps) =>
   base(
     size,
     strokeWidth,
