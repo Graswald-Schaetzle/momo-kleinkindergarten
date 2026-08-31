@@ -71,26 +71,29 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         </article>
       </div>
 
-      {/* Umschlag */}
+      {/* Realistischer Briefumschlag */}
       <div className="brief-envelope relative mx-auto -mt-20 h-40 w-[85%] max-w-md sm:-mt-24 sm:h-52">
-        {/* Umschlag-Körper */}
-        <div className="absolute inset-0 rounded-[3px] bg-[#E8C6CD] shadow-[0_10px_24px_rgba(43,27,38,0.18)]" />
-        {/* seitliche Faltungen */}
-        <div
-          className="absolute inset-0 rounded-[3px] bg-[#E3BCC4]"
-          style={{ clipPath: "polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%)" }}
+        {/* Rückseite / Innenraum des Umschlags */}
+        <div className="brief-env-back absolute inset-0" />
+        {/* untere Falte (Vorderseite) */}
+        <div className="brief-env-front absolute inset-0" />
+        {/* seitliche Falten */}
+        <div className="brief-env-side brief-env-side-left absolute inset-0" />
+        <div className="brief-env-side brief-env-side-right absolute inset-0" />
+
+        {/* MOMO-Schriftzug wie im Logo */}
+        <MomoLogo
+          showSubtitle={false}
+          className="absolute bottom-[18%] left-1/2 z-[6] w-[38%] -translate-x-1/2 text-ink/85"
         />
-        <span className="absolute bottom-5 left-1/2 -translate-x-1/2 font-display text-sm tracking-[0.28em] text-ink sm:text-base">
-          MOMO
-        </span>
-        {/* Klappe, die sich öffnet */}
+
+        {/* Klappe – zuerst geschlossen, öffnet sich und bleibt offen */}
         <div className="brief-flap absolute inset-x-0 top-0 h-[62%]">
-          <div
-            className="h-full w-full bg-[#EED2D8]"
-            style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)" }}
-          />
+          <div className="brief-flap-face brief-flap-front absolute inset-0" />
+          <div className="brief-flap-face brief-flap-back absolute inset-0" />
         </div>
       </div>
+
     </div>
   );
 }
