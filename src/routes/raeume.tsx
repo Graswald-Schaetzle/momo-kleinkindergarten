@@ -84,7 +84,7 @@ function Raeume() {
           <p>
             Wir freuen uns riesig darauf, euch schon bald mitzunehmen auf diese Verwandlung und im
             November gemeinsam mit euch die ersten fertigen, herzlichen Ecken unseres neuen Zuhauses
-            zu entdecken.
+             zu zeigen.
           </p>
         </div>
       </section>
