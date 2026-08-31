@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { BriefAnimation } from "@/components/BriefAnimation";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
@@ -25,17 +26,17 @@ export const Route = createFileRoute("/team")({
 
 function Team() {
   return (
-    <main className="min-h-screen pb-32">
+    <main className="min-h-screen bg-altrosa pb-24">
       <SiteHeader logoColor="text-black" burgerColor="bg-black" showSlogan hideTagline />
 
-      <div className="mx-auto max-w-3xl px-6 pt-12 sm:px-10 md:px-14">
-        <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-3xl md:text-4xl">
+      <div className="mx-auto max-w-3xl px-6 pt-10 sm:px-10 md:px-14">
+        <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] text-bordeaux sm:text-3xl md:text-4xl">
           Team
         </h1>
-        <p className="mt-6 text-center font-display text-sm leading-relaxed sm:text-base md:text-lg">
-          Hier stellen wir euch in Kürze unser Team vor.
-        </p>
+
+        <BriefAnimation className="mt-8 sm:mt-10" />
       </div>
     </main>
   );
 }
+
