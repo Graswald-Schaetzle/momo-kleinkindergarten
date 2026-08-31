@@ -13,7 +13,7 @@ export function BaustellenAnimation({ className = "" }: { className?: string }) 
       <img
         src={schild.url}
         alt=""
-        className="mx-auto h-[120px] w-auto object-contain sm:h-[160px]"
+        className="mx-auto h-[100px] w-auto object-contain sm:h-[130px]"
       />
     </div>
   );
