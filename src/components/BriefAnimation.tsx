@@ -24,11 +24,14 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         <img src={umschlagOffen} alt="" aria-hidden loading="lazy" className="block w-full" />
       </div>
 
-      {/* Fenster, aus dem der Brief nach oben herausfährt */}
-      <div className="brief-window relative z-10 overflow-hidden pt-6">
+      {/* Fenster, aus dem der Brief nach oben herausfährt.
+          Ragt mit negativem Abstand in den Umschlag hinein, damit das
+          Briefpapier sichtbar IM Umschlag steckt und daraus aufsteigt. */}
+      <div className="brief-window relative z-10 -mb-[18%] overflow-hidden pt-8">
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
-          {/* Briefmarke mit Büroklammer */}
-          <figure className="brief-photo absolute right-1 top-3 z-10 w-36 rotate-[3deg] sm:right-4 sm:top-5 sm:w-52">
+          {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
+              greift über die Kante und ragt seitlich heraus. */}
+          <figure className="brief-photo absolute -top-5 -right-8 z-10 w-36 rotate-[3deg] sm:-top-8 sm:-right-16 sm:w-52">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
@@ -37,11 +40,11 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             />
           </figure>
 
-          <div className="space-y-4 pt-16 text-[13px] leading-relaxed text-bordeaux sm:pt-10 sm:text-base md:text-lg">
+          <div className="space-y-4 pt-20 text-[13px] leading-relaxed text-bordeaux sm:pt-16 sm:text-base md:text-lg">
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
-                className={`text-justify hyphens-auto ${i === 0 ? "pr-32 sm:pr-48" : ""}`}
+                className={`text-justify hyphens-auto ${i === 0 ? "pr-28 sm:pr-44" : ""}`}
                 lang="de"
               >
                 {text}
