@@ -20,15 +20,15 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
       {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
-          Nach oben verschoben, damit die aufgeklappte Klappe sichtbar
-          hinter dem Brief herausragt. */}
+          Die seitlichen Spitzen sind im Bild entfernt, damit der Brief
+          realistisch IM Umschlag steckt. */}
       <div className="brief-env-open absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
         <img
           src={umschlagOffen}
           alt=""
           aria-hidden
           loading="lazy"
-          className="absolute bottom-[9%] left-0 w-full"
+          className="absolute bottom-0 left-0 w-full"
         />
       </div>
 
