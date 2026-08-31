@@ -3,6 +3,7 @@
    Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
 
 import portrait from "@/assets/olivia-portrait.png.asset.json";
+import { MomoLogo } from "@/components/MomoLogo";
 
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
