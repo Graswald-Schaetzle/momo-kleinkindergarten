@@ -19,26 +19,16 @@ const paragraphs = [
 export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
-      {/* Umschlag-Inneres + aufgeklappte Klappe (hinter dem Brief).
-          Die Klappe steht geöffnet nach oben, das dunkle Innere verbindet
-          sie mit der Vorderseite – ohne seitliche Spitzen, damit der
-          Brief realistisch IM Umschlag steckt. */}
+      {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
+          Nach oben verschoben, damit die aufgeklappte Klappe sichtbar
+          hinter dem Brief herausragt. */}
       <div className="brief-env-open absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
-        {/* Dunkles Innenleben zwischen Klappe und Vorderseite */}
-        <div
-          className="absolute inset-x-0 top-[15%] h-[30%]"
-          style={{
-            background:
-              "linear-gradient(to bottom, #8a5a56 0%, #6f4543 55%, #5d3837 100%)",
-          }}
-        />
-        {/* Geöffnete Klappe, ragt oben über den Umschlag hinaus */}
         <img
-          src={umschlagKlappe}
+          src={umschlagOffen}
           alt=""
           aria-hidden
           loading="lazy"
-          className="absolute bottom-[78%] left-0 w-full"
+          className="absolute bottom-[9%] left-0 w-full"
         />
       </div>
 
