@@ -19,9 +19,17 @@ const paragraphs = [
 export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
-      {/* Umschlag-Rückseite mit aufgeklappter Lasche (hinter dem Brief) */}
-      <div className="brief-env-open absolute bottom-0 left-1/2 z-0 w-[104%] -translate-x-1/2">
-        <img src={umschlagOffen} alt="" aria-hidden loading="lazy" className="block w-full" />
+      {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
+          Die seitlichen Spitzen sind im Bild entfernt, damit der Brief
+          realistisch IM Umschlag steckt. */}
+      <div className="brief-env-open absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
+        <img
+          src={umschlagOffen}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute bottom-0 left-0 w-full"
+        />
       </div>
 
       {/* Fenster, aus dem der Brief nach oben herausfährt.
@@ -31,7 +39,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
-          <figure className="brief-photo absolute -top-5 -right-8 z-10 w-36 rotate-[3deg] sm:-top-8 sm:-right-16 sm:w-52">
+          <figure className="brief-photo absolute -top-5 -right-3 z-10 w-32 rotate-[3deg] sm:-top-8 sm:-right-16 sm:w-52">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
