@@ -27,7 +27,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       {/* Fenster, aus dem der Brief nach oben herausfährt.
           Ragt mit negativem Abstand in den Umschlag hinein, damit das
           Briefpapier sichtbar IM Umschlag steckt und daraus aufsteigt. */}
-      <div className="brief-window relative z-10 -mb-[18%] overflow-hidden pt-8">
+      <div className="brief-window relative z-10 -mb-36 overflow-hidden pt-8 sm:-mb-44">
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
