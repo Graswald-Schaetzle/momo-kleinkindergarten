@@ -2,10 +2,11 @@
    der Brief fährt daraus nach oben und bleibt dann oben stehen.
    Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
 
-import portrait from "@/assets/olivia-portrait.png.asset.json";
+import briefmarke from "@/assets/briefmarke-klammer.png";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
 import umschlagOffen from "@/assets/umschlag-offen.png";
+import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
 
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
@@ -17,50 +18,30 @@ const paragraphs = [
 
 export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
-    <div className={`mx-auto w-full max-w-2xl ${className}`}>
+    <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
+      {/* Umschlag-Rückseite mit aufgeklappter Lasche (hinter dem Brief) */}
+      <div className="brief-env-open absolute bottom-0 left-1/2 z-0 w-[104%] -translate-x-1/2">
+        <img src={umschlagOffen} alt="" aria-hidden loading="lazy" className="block w-full" />
+      </div>
+
       {/* Fenster, aus dem der Brief nach oben herausfährt */}
-      <div className="brief-window relative overflow-hidden pt-6">
+      <div className="brief-window relative z-10 overflow-hidden pt-6">
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
-          {/* Foto mit Büroklammer */}
-          <figure className="brief-photo absolute -top-6 right-3 w-20 rotate-[5deg] sm:right-6 sm:w-28">
-            <div className="bg-white p-1.5 shadow-[0_4px_10px_rgba(43,27,38,0.25)] sm:p-2">
-              <img
-                src={portrait.url}
-                alt="Olivia, Gründerin von MOMO"
-                width={400}
-                height={720}
-                loading="lazy"
-                className="block h-auto w-full grayscale"
-              />
-            </div>
-            {/* Büroklammer */}
-            <svg
-              viewBox="0 0 40 90"
-              aria-hidden="true"
-              className="absolute -top-5 left-1/2 h-16 w-8 -translate-x-1/2 sm:h-20 sm:w-10"
-            >
-              <path
-                d="M13 78 L13 20 A9 9 0 0 1 31 20 L31 66 A13 13 0 0 1 5 66 L5 26"
-                fill="none"
-                stroke="#9a9a9a"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M13 78 L13 20 A9 9 0 0 1 31 20 L31 66 A13 13 0 0 1 5 66 L5 26"
-                fill="none"
-                stroke="#e6e6e6"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-              />
-            </svg>
+          {/* Briefmarke mit Büroklammer */}
+          <figure className="brief-photo absolute right-1 top-3 z-10 w-36 rotate-[3deg] sm:right-4 sm:top-5 sm:w-52">
+            <img
+              src={briefmarke}
+              alt="Olivia, Gründerin von MOMO"
+              loading="lazy"
+              className="block h-auto w-full drop-shadow-[0_6px_10px_rgba(43,27,38,0.28)]"
+            />
           </figure>
 
           <div className="space-y-4 pt-16 text-[13px] leading-relaxed text-bordeaux sm:pt-10 sm:text-base md:text-lg">
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
-                className={`text-justify hyphens-auto ${i === 0 ? "pr-24 sm:pr-40" : ""}`}
+                className={`text-justify hyphens-auto ${i === 0 ? "pr-32 sm:pr-48" : ""}`}
                 lang="de"
               >
                 {text}
@@ -74,31 +55,33 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         </article>
       </div>
 
-      {/* Fotorealistischer Briefumschlag: erst geschlossen, dann offen */}
-      <div className="brief-envelope relative mx-auto -mt-36 aspect-[996/633] w-[104%] max-w-none -translate-x-[2%] sm:-mt-44">
+      {/* Umschlag-Vorderseite (vor dem Brief) + geschlossener Umschlag */}
+      <div className="absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
+        <img
+          src={umschlagOffenFront}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="block w-full"
+        />
+        <MomoLogo
+          showSubtitle={false}
+          className="absolute bottom-[28%] left-1/2 w-[34%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
+        />
+      </div>
+      <div className="brief-env-closed absolute bottom-0 left-1/2 z-30 w-[104%] -translate-x-1/2">
         <img
           src={umschlagZu}
           alt="Geschlossener Briefumschlag"
-          
           loading="lazy"
-          className="brief-env-closed absolute inset-0 h-full w-full object-contain object-bottom"
+          className="block w-full"
         />
-        <img
-          src={umschlagOffen}
-          alt=""
-          aria-hidden
-          
-          loading="lazy"
-          className="brief-env-open absolute inset-0 h-full w-full object-contain object-bottom"
-        />
-        {/* MOMO-Schriftzug wie im Logo */}
         <MomoLogo
           showSubtitle={false}
-          className="absolute bottom-[16%] left-1/2 z-[6] w-[34%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
+          className="absolute bottom-[16%] left-1/2 w-[34%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
         />
       </div>
-
-
     </div>
+
   );
 }
