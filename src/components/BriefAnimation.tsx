@@ -17,7 +17,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
     <div className={`mx-auto w-full max-w-2xl ${className}`}>
       {/* Fenster, aus dem der Brief nach oben herausfährt */}
       <div className="brief-window relative overflow-hidden pt-6">
-        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-44 pt-10 text-left sm:px-10 sm:pb-56 sm:pt-14">
+        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-40 pt-10 text-left sm:px-10 sm:pb-48 sm:pt-14">
           {/* Foto mit Büroklammer */}
           <figure className="brief-photo absolute -top-6 right-3 w-20 rotate-[5deg] sm:right-6 sm:w-28">
             <div className="bg-white p-1.5 shadow-[0_4px_10px_rgba(43,27,38,0.25)] sm:p-2">
@@ -54,8 +54,12 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           </figure>
 
           <div className="space-y-4 pt-16 text-[13px] leading-relaxed text-bordeaux sm:pt-10 sm:text-base md:text-lg">
-            {paragraphs.map((text) => (
-              <p key={text.slice(0, 24)} className="text-justify hyphens-auto" lang="de">
+            {paragraphs.map((text, i) => (
+              <p
+                key={text.slice(0, 24)}
+                className={`text-justify hyphens-auto ${i === 0 ? "pr-20 sm:pr-28" : ""}`}
+                lang="de"
+              >
                 {text}
               </p>
             ))}
@@ -68,7 +72,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Umschlag */}
-      <div className="brief-envelope relative mx-auto -mt-16 h-40 w-[85%] max-w-md sm:-mt-20 sm:h-52">
+      <div className="brief-envelope relative mx-auto -mt-20 h-40 w-[85%] max-w-md sm:-mt-24 sm:h-52">
         {/* Umschlag-Körper */}
         <div className="absolute inset-0 rounded-[3px] bg-[#E8C6CD] shadow-[0_10px_24px_rgba(43,27,38,0.18)]" />
         {/* seitliche Faltungen */}
