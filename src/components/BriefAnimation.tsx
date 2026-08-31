@@ -5,7 +5,7 @@
 import briefmarke from "@/assets/briefmarke-klammer.png";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
-import umschlagKlappe from "@/assets/umschlag-klappe.png";
+import umschlagOffen from "@/assets/umschlag-offen.png";
 import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
 
 const paragraphs = [
