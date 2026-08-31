@@ -1,4 +1,4 @@
 # Roadmap
 
-- [x] Team-Seite: MOMO-Logo schwarz, „1–3 Jahre“ ergänzen, Hamburger schwarz (wie Werte)
-- [x] Pflege-Video: Tube ohne sichtbaren Rahmen (Hintergrund = Seiten-Altrosa), Tube bleibt auf der Stelle und wird nur zerquetscht
+- [ ] Brief-Animation: Seitliche Umschlag-Spitzen hinter dem Brief verstecken; geöffnete Klappe oben hinten sichtbar
+- [ ] Büroklammer am Handy komplett sichtbar (nicht am Bildschirmrand abgeschnitten)
