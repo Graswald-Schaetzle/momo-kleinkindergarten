@@ -20,7 +20,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
     <div className={`mx-auto w-full max-w-2xl ${className}`}>
       {/* Fenster, aus dem der Brief nach oben herausfährt */}
       <div className="brief-window relative overflow-hidden pt-6">
-        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-40 pt-10 text-left sm:px-10 sm:pb-48 sm:pt-14">
+        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
           {/* Foto mit Büroklammer */}
           <figure className="brief-photo absolute -top-6 right-3 w-20 rotate-[5deg] sm:right-6 sm:w-28">
             <div className="bg-white p-1.5 shadow-[0_4px_10px_rgba(43,27,38,0.25)] sm:p-2">
@@ -75,7 +75,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Fotorealistischer Briefumschlag: erst geschlossen, dann offen */}
-      <div className="brief-envelope relative mx-auto -mt-20 aspect-[1280/896] w-[85%] max-w-md sm:-mt-24">
+      <div className="brief-envelope relative mx-auto -mt-36 aspect-[1280/896] w-full max-w-[660px] sm:-mt-44">
         <img
           src={umschlagZu}
           alt="Geschlossener Briefumschlag"
