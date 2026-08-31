@@ -5,7 +5,7 @@
 import briefmarke from "@/assets/briefmarke-klammer.png";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
-import umschlagOffen from "@/assets/umschlag-offen.png";
+import umschlagKlappe from "@/assets/umschlag-klappe.png";
 import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
 
 const paragraphs = [
@@ -19,9 +19,27 @@ const paragraphs = [
 export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
-      {/* Umschlag-Rückseite mit aufgeklappter Lasche (hinter dem Brief) */}
-      <div className="brief-env-open absolute bottom-0 left-1/2 z-0 w-[104%] -translate-x-1/2">
-        <img src={umschlagOffen} alt="" aria-hidden loading="lazy" className="block w-full" />
+      {/* Umschlag-Inneres + aufgeklappte Klappe (hinter dem Brief).
+          Die Klappe steht geöffnet nach oben, das dunkle Innere verbindet
+          sie mit der Vorderseite – ohne seitliche Spitzen, damit der
+          Brief realistisch IM Umschlag steckt. */}
+      <div className="brief-env-open absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
+        {/* Dunkles Innenleben zwischen Klappe und Vorderseite */}
+        <div
+          className="absolute inset-x-0 top-[15%] h-[30%]"
+          style={{
+            background:
+              "linear-gradient(to bottom, #8a5a56 0%, #6f4543 55%, #5d3837 100%)",
+          }}
+        />
+        {/* Geöffnete Klappe, ragt oben über den Umschlag hinaus */}
+        <img
+          src={umschlagKlappe}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute bottom-[78%] left-0 w-full"
+        />
       </div>
 
       {/* Fenster, aus dem der Brief nach oben herausfährt.
@@ -31,7 +49,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
-          <figure className="brief-photo absolute -top-5 -right-8 z-10 w-36 rotate-[3deg] sm:-top-8 sm:-right-16 sm:w-52">
+          <figure className="brief-photo absolute -top-5 -right-3 z-10 w-32 rotate-[3deg] sm:-top-8 sm:-right-16 sm:w-52">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
