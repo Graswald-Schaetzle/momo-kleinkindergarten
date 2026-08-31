@@ -26,7 +26,7 @@ export const Route = createFileRoute("/team")({
 
 function Team() {
   return (
-    <main className="min-h-screen bg-altrosa pb-24">
+    <main className="min-h-screen bg-background pb-24">
       <SiteHeader logoColor="text-black" burgerColor="bg-black" showSlogan hideTagline />
 
       <div className="mx-auto max-w-3xl px-6 pt-10 sm:px-10 md:px-14">
