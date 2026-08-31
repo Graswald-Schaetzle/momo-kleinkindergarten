@@ -268,3 +268,39 @@ body[data-overlay-open] .burger-bar {
 @media (prefers-reduced-motion: reduce) {
   .besteck { animation: none; }
 }
+
+/* ===== Brief-Animation (Team) ===== */
+.brief-window {
+  perspective: 1400px;
+}
+.brief-paper {
+  background:
+    linear-gradient(180deg, #F7F0DE 0%, #F2E9D2 100%);
+  box-shadow: 0 10px 26px rgba(43, 27, 38, 0.16);
+  transform: translateY(100%);
+  opacity: 0;
+  animation: brief-rise 1.7s cubic-bezier(0.22, 0.9, 0.24, 1) 1.05s forwards;
+}
+@keyframes brief-rise {
+  0% { transform: translateY(100%); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.brief-envelope {
+  perspective: 900px;
+}
+.brief-flap {
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  animation: brief-flap-open 0.9s ease-in-out 0.25s forwards;
+  z-index: 5;
+}
+@keyframes brief-flap-open {
+  0% { transform: rotateX(0deg); z-index: 5; }
+  50% { z-index: 5; }
+  100% { transform: rotateX(-172deg); z-index: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brief-paper { animation: none; transform: none; opacity: 1; }
+  .brief-flap { animation: none; transform: rotateX(-172deg); }
+}
