@@ -57,7 +57,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
-                className={`text-justify hyphens-auto ${i === 0 ? "pr-20 sm:pr-28" : ""}`}
+                className={`text-justify hyphens-auto ${i === 0 ? "pr-24 sm:pr-40" : ""}`}
                 lang="de"
               >
                 {text}
