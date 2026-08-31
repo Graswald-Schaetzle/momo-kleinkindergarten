@@ -72,28 +72,32 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         </article>
       </div>
 
-      {/* Realistischer Briefumschlag */}
-      <div className="brief-envelope relative mx-auto -mt-20 h-40 w-[85%] max-w-md sm:-mt-24 sm:h-52">
-        {/* Rückseite / Innenraum des Umschlags */}
-        <div className="brief-env-back absolute inset-0" />
-        {/* untere Falte (Vorderseite) */}
-        <div className="brief-env-front absolute inset-0" />
-        {/* seitliche Falten */}
-        <div className="brief-env-side brief-env-side-left absolute inset-0" />
-        <div className="brief-env-side brief-env-side-right absolute inset-0" />
-
+      {/* Fotorealistischer Briefumschlag: erst geschlossen, dann offen */}
+      <div className="brief-envelope relative mx-auto -mt-20 aspect-[1280/896] w-[85%] max-w-md sm:-mt-24">
+        <img
+          src={umschlagZu}
+          alt="Geschlossener Briefumschlag"
+          width={1280}
+          height={896}
+          loading="lazy"
+          className="brief-env-closed absolute inset-0 h-full w-full object-contain"
+        />
+        <img
+          src={umschlagOffen}
+          alt=""
+          aria-hidden
+          width={1280}
+          height={896}
+          loading="lazy"
+          className="brief-env-open absolute inset-0 h-full w-full object-contain"
+        />
         {/* MOMO-Schriftzug wie im Logo */}
         <MomoLogo
           showSubtitle={false}
-          className="absolute bottom-[18%] left-1/2 z-[6] w-[38%] -translate-x-1/2 text-ink/85"
+          className="absolute bottom-[16%] left-1/2 z-[6] w-[34%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
         />
-
-        {/* Klappe – zuerst geschlossen, öffnet sich und bleibt offen */}
-        <div className="brief-flap absolute inset-x-0 top-0 h-[62%]">
-          <div className="brief-flap-face brief-flap-front absolute inset-0" />
-          <div className="brief-flap-face brief-flap-back absolute inset-0" />
-        </div>
       </div>
+
 
     </div>
   );
