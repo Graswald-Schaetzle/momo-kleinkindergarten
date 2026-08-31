@@ -300,77 +300,26 @@ body[data-overlay-open] .burger-bar {
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* Umschlag aus echtem Papier: Falten mit eigenen Schattierungen und Kanten */
+/* Umschlag: Überblendung von geschlossen zu offen, bleibt offen */
 .brief-envelope {
-  perspective: 1200px;
-  filter: drop-shadow(0 14px 22px rgba(43, 27, 38, 0.22));
+  filter: drop-shadow(0 14px 22px rgba(43, 27, 38, 0.18));
 }
-.brief-env-back {
-  border-radius: 3px;
-  background:
-    radial-gradient(120% 100% at 50% 0%, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 55%),
-    linear-gradient(180deg, #D9BAC0 0%, #E3C7CC 100%);
+.brief-env-closed {
+  animation: brief-env-hide 0.5s ease-in-out 0.9s forwards;
 }
-.brief-env-front {
-  border-radius: 3px;
-  clip-path: polygon(0 46%, 50% 100%, 100% 46%, 100% 100%, 0 100%);
-  background:
-    linear-gradient(180deg, #F0DCDD 0%, #E7CDD1 60%, #E1C4C9 100%);
-  background-color: #EBD4D7;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  z-index: 3;
+.brief-env-open {
+  opacity: 0;
+  animation: brief-env-show 0.5s ease-in-out 0.9s forwards;
 }
-.brief-env-side {
-  z-index: 2;
-  background-color: #E6CBD0;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(120, 84, 92, 0.12) 100%);
+@keyframes brief-env-hide {
+  to { opacity: 0; }
 }
-.brief-env-side-left {
-  clip-path: polygon(0 0, 52% 52%, 0 100%);
-}
-.brief-env-side-right {
-  clip-path: polygon(100% 0, 48% 52%, 100% 100%);
-}
-/* feine Papierstruktur über dem gesamten Umschlag */
-.brief-envelope::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 3px;
-  pointer-events: none;
-  z-index: 7;
-  background-image:
-    repeating-linear-gradient(96deg, rgba(120, 90, 80, 0.05) 0 1px, rgba(255, 255, 255, 0) 1px 4px),
-    repeating-linear-gradient(6deg, rgba(120, 90, 80, 0.04) 0 1px, rgba(255, 255, 255, 0) 1px 5px);
-  mix-blend-mode: multiply;
+@keyframes brief-env-show {
+  to { opacity: 1; }
 }
 
-.brief-flap {
-  transform-origin: top center;
-  transform-style: preserve-3d;
-  animation: brief-flap-open 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
-  z-index: 5;
-}
-.brief-flap-face {
-  backface-visibility: hidden;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
-/* Außenseite der Klappe (geschlossen sichtbar) */
-.brief-flap-front {
-  background: linear-gradient(180deg, #F3E1E2 0%, #E9D0D4 70%, #E1C4C9 100%);
-  filter: drop-shadow(0 2px 2px rgba(90, 60, 66, 0.18));
-}
-/* Innenseite der Klappe (nach dem Öffnen sichtbar) */
-.brief-flap-back {
-  transform: rotateX(180deg);
-  background: linear-gradient(0deg, #D7B6BC 0%, #E0C3C8 100%);
-}
-@keyframes brief-flap-open {
-  0% { transform: rotateX(0deg); z-index: 5; }
-  55% { z-index: 5; }
-  100% { transform: rotateX(-168deg); z-index: 0; }
-}
 @media (prefers-reduced-motion: reduce) {
   .brief-paper { animation: none; transform: none; opacity: 1; }
-  .brief-flap { animation: none; transform: rotateX(-168deg); }
+  .brief-env-closed { animation: none; opacity: 0; }
+  .brief-env-open { animation: none; opacity: 1; }
 }

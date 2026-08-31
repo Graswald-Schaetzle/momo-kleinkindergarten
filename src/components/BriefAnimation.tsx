@@ -4,6 +4,8 @@
 
 import portrait from "@/assets/olivia-portrait.png.asset.json";
 import { MomoLogo } from "@/components/MomoLogo";
+import umschlagZu from "@/assets/umschlag-zu.png";
+import umschlagOffen from "@/assets/umschlag-offen.png";
 
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
