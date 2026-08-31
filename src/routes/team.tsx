@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { BriefAnimation } from "@/components/BriefAnimation";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
