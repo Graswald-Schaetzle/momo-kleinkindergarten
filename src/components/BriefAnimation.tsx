@@ -75,7 +75,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Fotorealistischer Briefumschlag: erst geschlossen, dann offen */}
-      <div className="brief-envelope relative mx-auto -mt-36 aspect-[996/633] w-full max-w-[660px] sm:-mt-44">
+      <div className="brief-envelope relative mx-auto -mt-36 aspect-[996/633] w-[104%] max-w-none -translate-x-[2%] sm:-mt-44">
         <img
           src={umschlagZu}
           alt="Geschlossener Briefumschlag"
