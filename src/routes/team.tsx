@@ -31,7 +31,7 @@ function Team() {
 
       <div className="mx-auto max-w-3xl px-6 pt-10 sm:px-10 md:px-14">
         <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] text-ink sm:text-3xl md:text-4xl">
-          Team
+          {"\n"}
         </h1>
 
         <BriefAnimation className="mt-8 sm:mt-10" />
