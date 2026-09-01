@@ -61,11 +61,11 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
       {!open && (
-        <div className="relative z-40 mb-1 text-center sm:mb-2">
+        <div className="relative z-40 mb-0 text-center">
           <p className="font-display text-base italic text-ink sm:text-lg">
             Ein Brief für dich ist angekommen.
           </p>
-          <p className="mt-1 font-sans text-xs text-ink/70 sm:text-sm">
+          <p className="font-sans text-xs text-ink/70 sm:text-sm">
             Drücke auf den Umschlag, um mehr zu erfahren.
           </p>
         </div>
