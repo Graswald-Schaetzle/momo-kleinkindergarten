@@ -2,6 +2,7 @@
    der Brief fährt daraus nach oben und bleibt dann oben stehen.
    Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
 
+import { useState } from "react";
 import briefmarke from "@/assets/briefmarke-klammer.png";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
