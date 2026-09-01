@@ -72,10 +72,11 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           loading="lazy"
           className="block w-full"
         />
-        <MomoLogo
-          showSubtitle
-          className="absolute bottom-[24%] left-1/2 w-[38%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
-        />
+        <div className="brief-stamp absolute bottom-[18%] left-1/2 w-[44%] text-ink">
+          <div className="brief-stamp-ring">
+            <MomoLogo showSubtitle className="w-full" />
+          </div>
+        </div>
       </div>
       <div className="brief-env-closed absolute bottom-0 left-1/2 z-30 w-[104%] -translate-x-1/2">
         <img
@@ -84,10 +85,11 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           loading="lazy"
           className="block w-full"
         />
-        <MomoLogo
-          showSubtitle
-          className="absolute bottom-[12%] left-1/2 w-[38%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
-        />
+        <div className="brief-stamp absolute bottom-[7%] left-1/2 w-[44%] text-ink">
+          <div className="brief-stamp-ring">
+            <MomoLogo showSubtitle className="w-full" />
+          </div>
+        </div>
       </div>
     </div>
 
