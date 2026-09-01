@@ -161,4 +161,3 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
 
   );
 }
-}
