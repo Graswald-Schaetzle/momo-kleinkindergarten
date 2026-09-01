@@ -2,6 +2,7 @@
    der Brief fährt daraus nach oben und bleibt dann oben stehen.
    Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
 
+import { useState } from "react";
 import briefmarke from "@/assets/briefmarke-klammer.png";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
@@ -56,8 +57,21 @@ function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
 }
 
 export function BriefAnimation({ className = "" }: { className?: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
+    <div
+      className={`relative mx-auto w-full max-w-2xl pb-[46%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"} ${className}`}
+      role={open ? undefined : "button"}
+      tabIndex={open ? undefined : 0}
+      aria-label={open ? undefined : "Briefumschlag öffnen"}
+      onClick={() => setOpen(true)}
+      onKeyDown={(e) => {
+        if (!open && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          setOpen(true);
+        }
+      }}
+    >
       {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
           Die seitlichen Spitzen sind im Bild entfernt, damit der Brief
           realistisch IM Umschlag steckt. */}
@@ -104,7 +118,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Umschlag-Vorderseite (vor dem Brief) + geschlossener Umschlag */}
-      <div className="absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
+      <div className="brief-env-open absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
         <img
           src={umschlagOffenFront}
           alt=""
