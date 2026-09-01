@@ -68,6 +68,7 @@
   --color-menu-overlay-foreground: var(--menu-overlay-foreground);
   --color-mustard: var(--mustard);
   --color-bordeaux: var(--bordeaux);
+  --color-beige-dark: var(--beige-dark);
   --color-altrosa: var(--altrosa);
   --color-clock: var(--clock);
   --color-clock-face: var(--clock-face);
@@ -81,6 +82,7 @@
   --radius: 0.625rem;
   --background: #F3EFE3;
   --bordeaux: #8c2531;
+  --beige-dark: #C9B98C;
   --clock: #EE3B44;
   --clock-face: #ECE79E;
   --clock-eye: #2E7FB2;
