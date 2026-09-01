@@ -327,8 +327,8 @@ body[data-overlay-open] .burger-bar {
 }
 /* Einladendes Schweben des geschlossenen Umschlags */
 @keyframes brief-env-wiggle {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-1.5%); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.5%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
