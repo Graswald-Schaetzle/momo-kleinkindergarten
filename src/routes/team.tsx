@@ -34,7 +34,7 @@ function Team() {
           {"\n"}
         </h1>
 
-        <BriefAnimation className="-mt-16 sm:-mt-24" />
+        <BriefAnimation className="-mt-4 sm:-mt-6" />
       </div>
     </main>
   );
