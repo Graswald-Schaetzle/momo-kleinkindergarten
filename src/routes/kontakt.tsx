@@ -114,7 +114,7 @@ function Kontakt() {
             </div>
             <button
               type="submit"
-              className="mt-1 self-center rounded-md bg-bordeaux px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-white transition-colors hover:bg-bordeaux/90 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
+              className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-ink transition-colors hover:bg-beige-dark/90 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
             >
               Absenden
             </button>
