@@ -29,12 +29,12 @@ function Team() {
     <main className="min-h-screen bg-background pb-24">
       <SiteHeader logoColor="text-black" burgerColor="bg-black" showSlogan hideTagline />
 
-      <div className="mx-auto max-w-3xl px-6 pt-10 sm:px-10 md:px-14">
+      <div className="mx-auto max-w-3xl px-6 pt-2 sm:px-10 md:px-14">
         <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] text-ink sm:text-3xl md:text-4xl">
           {"\n"}
         </h1>
 
-        <BriefAnimation className="mt-8 sm:mt-10" />
+        <BriefAnimation className="mt-2 sm:mt-3" />
       </div>
     </main>
   );
