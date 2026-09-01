@@ -290,15 +290,15 @@ body[data-overlay-open] .burger-bar {
   background-blend-mode: soft-light, multiply;
   border: 1px solid rgba(150, 128, 100, 0.18);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transform: translateY(100%);
+  transform: translateY(24px);
   opacity: 0;
 }
 /* Der Brief fährt erst nach dem Klick auf den geschlossenen Umschlag hoch. */
 .brief-open .brief-paper {
-  animation: brief-rise 1.7s cubic-bezier(0.22, 0.9, 0.24, 1) 0.55s forwards;
+  animation: brief-rise 1.2s cubic-bezier(0.22, 0.9, 0.24, 1) 0.55s forwards;
 }
 @keyframes brief-rise {
-  0% { transform: translateY(100%); opacity: 0; }
+  0% { transform: translateY(24px); opacity: 0; }
   12% { opacity: 1; }
   100% { transform: translateY(0); opacity: 1; }
 }

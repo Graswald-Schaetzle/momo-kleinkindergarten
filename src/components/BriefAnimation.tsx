@@ -59,19 +59,31 @@ function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
 export function BriefAnimation({ className = "" }: { className?: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div
-      className={`relative mx-auto w-full max-w-2xl pb-[46%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"} ${className}`}
-      role={open ? undefined : "button"}
-      tabIndex={open ? undefined : 0}
-      aria-label={open ? undefined : "Briefumschlag öffnen"}
-      onClick={() => setOpen(true)}
-      onKeyDown={(e) => {
-        if (!open && (e.key === "Enter" || e.key === " ")) {
-          e.preventDefault();
-          setOpen(true);
-        }
-      }}
-    >
+    <div className={className}>
+      {!open && (
+        <div className="relative z-40 mb-0 text-center">
+          <p className="font-display text-base italic text-ink sm:text-lg">
+            Ein Brief für dich ist angekommen.
+          </p>
+          <p className="font-sans text-xs text-ink/70 sm:text-sm">
+            Drücke auf den Umschlag, um mehr zu erfahren.
+          </p>
+        </div>
+      )}
+
+      <div
+        className={`relative mx-auto w-full max-w-2xl pb-[46%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"}`}
+        role={open ? undefined : "button"}
+        tabIndex={open ? undefined : 0}
+        aria-label={open ? undefined : "Briefumschlag öffnen"}
+        onClick={() => setOpen(true)}
+        onKeyDown={(e) => {
+          if (!open && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            setOpen(true);
+          }
+        }}
+      >
       {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
           Die seitlichen Spitzen sind im Bild entfernt, damit der Brief
           realistisch IM Umschlag steckt. */}
@@ -86,9 +98,10 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Fenster, aus dem der Brief nach oben herausfährt.
-          Ragt mit negativem Abstand in den Umschlag hinein, damit das
-          Briefpapier sichtbar IM Umschlag steckt und daraus aufsteigt. */}
-      <div className="brief-window relative z-10 -mb-36 overflow-hidden pt-8 sm:-mb-44">
+          Geschlossen liegt das Papier unterhalb des Umschlags;
+          geöffnet nimmt es den normalen Fluss ein und schiebt
+          den Footer nach unten. */}
+      <div className={`brief-window left-0 w-full overflow-hidden ${open ? "relative z-40" : "absolute bottom-0 z-10"}`}>
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-6 text-left sm:px-10 sm:pb-36 sm:pt-8">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
@@ -145,6 +158,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           </div>
         </div>
       </div>
+    </div>
     </div>
 
   );
