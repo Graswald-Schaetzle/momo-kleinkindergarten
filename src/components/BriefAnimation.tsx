@@ -87,14 +87,14 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             />
           </figure>
 
-          <div className="space-y-4 pt-2 font-handwritten text-[15px] leading-relaxed text-pen sm:pt-4 sm:text-lg md:text-xl">
+          <div className="pen-ink space-y-4 pt-2 font-handwritten text-[15px] leading-relaxed text-pen sm:pt-4 sm:text-lg md:text-xl">
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
-                className={`text-justify hyphens-auto ${i === 0 ? "pr-28 sm:pr-44" : ""}`}
+                className={`text-left ${i === 0 ? "pr-28 sm:pr-44" : ""}`}
                 lang="de"
               >
-                {text}
+                <Handwritten text={text} seedBase={i * 1000} />
               </p>
             ))}
           </div>
