@@ -60,9 +60,6 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             ))}
           </div>
 
-          <p className="mt-6 text-right font-display text-base tracking-[0.18em] text-bordeaux sm:text-lg">
-            MOMO
-          </p>
         </article>
       </div>
 
