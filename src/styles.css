@@ -74,6 +74,7 @@
   --color-clock-eye: var(--clock-eye);
   --color-clock-foot: var(--clock-foot);
   --color-ink: var(--ink);
+  --color-pen: var(--pen);
 }
 
 :root {
@@ -85,6 +86,7 @@
   --clock-eye: #2E7FB2;
   --clock-foot: #E5482A;
   --ink: #2B1B26;
+  --pen: #3B4A5C;
   --menu-overlay: #4C6379;
   --menu-overlay-foreground: #C8912F;
   --mustard: #C8912F;
