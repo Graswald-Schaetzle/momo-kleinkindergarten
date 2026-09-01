@@ -98,10 +98,10 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Fenster, aus dem der Brief nach oben herausfährt.
-          Im geschlossenen Zustand liegt das Papier unterhalb des
-          Umschlags (translateY(100%)). Beim Öffnen fährt es nach
-          oben und endet direkt unter dem Header (top-0). */}
-      <div className={`brief-window absolute left-0 w-full overflow-hidden ${open ? "top-0 z-40" : "bottom-0 z-10"}`}>
+          Geschlossen liegt das Papier unterhalb des Umschlags;
+          geöffnet nimmt es den normalen Fluss ein und schiebt
+          den Footer nach unten. */}
+      <div className={`brief-window left-0 w-full overflow-hidden ${open ? "relative z-40" : "absolute bottom-0 z-10"}`}>
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-6 text-left sm:px-10 sm:pb-36 sm:pt-8">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
