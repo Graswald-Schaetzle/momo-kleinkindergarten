@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -24,7 +25,17 @@ export const Route = createFileRoute("/kontakt")({
   component: Kontakt,
 });
 
+const fieldClasses =
+  "mt-2 w-full rounded-xl border border-[#ddd0b6] bg-[#fbf8f1] px-4 py-3 text-base text-[#2b2320] placeholder:text-[#b3a488] focus:outline-none focus:ring-2 focus:ring-[#7a2e2e]/40";
+
 function Kontakt() {
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSent(true);
+  };
+
   return (
     <main className="min-h-screen pb-32 text-center">
       <SiteHeader />
@@ -42,6 +53,68 @@ function Kontakt() {
             Mozartstraße 4, 71686 Remseck am Neckar
           </a>
         </p>
+
+        <form onSubmit={handleSubmit} className="mx-auto mt-12 max-w-xl text-left">
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-base font-bold text-[#7a2e2e] sm:text-lg">
+              Name *
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              className={fieldClasses}
+              placeholder="Ihr Name"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-base font-bold text-[#7a2e2e] sm:text-lg">
+              E-Mail *
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              className={fieldClasses}
+              placeholder="ihre@email.de"
+            />
+          </div>
+
+          <div className="mb-8">
+            <label
+              htmlFor="nachricht"
+              className="block text-base font-bold text-[#7a2e2e] sm:text-lg"
+            >
+              Nachricht *
+            </label>
+            <textarea
+              id="nachricht"
+              name="nachricht"
+              required
+              rows={5}
+              className={fieldClasses}
+              placeholder="Ihre Nachricht an uns"
+            />
+          </div>
+
+          <div className="text-center">
+            <button
+              type="submit"
+              className="rounded-full bg-[#b9ac87] px-10 py-3 text-base font-bold text-[#3f2e1e] transition-colors hover:bg-[#afa179]"
+            >
+              ABSENDEN
+            </button>
+          </div>
+
+          {sent ? (
+            <p className="mt-6 text-center text-sm font-bold text-[#7a2e2e]" role="status">
+              Danke für Ihre Nachricht! Wir melden uns bald bei Ihnen.
+            </p>
+          ) : null}
+        </form>
       </section>
     </main>
   );
