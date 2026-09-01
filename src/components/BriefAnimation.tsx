@@ -36,10 +36,10 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           Ragt mit negativem Abstand in den Umschlag hinein, damit das
           Briefpapier sichtbar IM Umschlag steckt und daraus aufsteigt. */}
       <div className="brief-window relative z-10 -mb-36 overflow-hidden pt-8 sm:-mb-44">
-        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
+        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-6 text-left sm:px-10 sm:pb-36 sm:pt-8">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
-          <figure className="brief-photo absolute top-8 -right-2 z-10 w-32 rotate-[3deg] sm:top-12 sm:-right-12 sm:w-52">
+          <figure className="brief-photo absolute top-4 -right-2 z-10 w-32 rotate-[3deg] sm:top-6 sm:-right-12 sm:w-52">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
@@ -48,7 +48,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             />
           </figure>
 
-          <div className="space-y-4 pt-20 text-[13px] leading-relaxed text-bordeaux sm:pt-16 sm:text-base md:text-lg">
+          <div className="space-y-4 pt-2 text-[13px] leading-relaxed text-bordeaux sm:pt-4 sm:text-base md:text-lg">
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
