@@ -22,6 +22,8 @@
   --font-sans: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --font-handwritten: "Schoolbell", "Comic Sans MS", cursive;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
