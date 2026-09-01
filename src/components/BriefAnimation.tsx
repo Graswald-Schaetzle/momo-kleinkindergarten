@@ -118,7 +118,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       {/* Umschlag-Vorderseite (vor dem Brief) + geschlossener Umschlag */}
-      <div className="absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
+      <div className="brief-env-open absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
         <img
           src={umschlagOffenFront}
           alt=""
