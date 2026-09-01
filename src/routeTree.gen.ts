@@ -10,13 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as PaedagogikRouteImport } from './routes/paedagogik'
 import { Route as PreiseRouteImport } from './routes/preise'
+import { Route as RaeumeRouteImport } from './routes/raeume'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as PaedagogikIndexRouteImport } from './routes/paedagogik/index'
+import { Route as PaedagogikAngeboteRouteImport } from './routes/paedagogik/angebote'
+import { Route as PaedagogikEssenRouteImport } from './routes/paedagogik/essen'
+import { Route as PaedagogikPflegeRouteImport } from './routes/paedagogik/pflege'
+import { Route as PaedagogikTagesablaufRouteImport } from './routes/paedagogik/tagesablauf'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontaktRoute = KontaktRouteImport.update({
@@ -24,9 +38,24 @@ const KontaktRoute = KontaktRouteImport.update({
   path: '/kontakt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaedagogikRoute = PaedagogikRouteImport.update({
+  id: '/paedagogik',
+  path: '/paedagogik',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PreiseRoute = PreiseRouteImport.update({
   id: '/preise',
   path: '/preise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RaeumeRoute = RaeumeRouteImport.update({
+  id: '/raeume',
+  path: '/raeume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UeberUnsRoute = UeberUnsRouteImport.update({
@@ -34,38 +63,132 @@ const UeberUnsRoute = UeberUnsRouteImport.update({
   path: '/ueber-uns',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaedagogikIndexRoute = PaedagogikIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PaedagogikRoute,
+} as any)
+const PaedagogikAngeboteRoute = PaedagogikAngeboteRouteImport.update({
+  id: '/angebote',
+  path: '/angebote',
+  getParentRoute: () => PaedagogikRoute,
+} as any)
+const PaedagogikEssenRoute = PaedagogikEssenRouteImport.update({
+  id: '/essen',
+  path: '/essen',
+  getParentRoute: () => PaedagogikRoute,
+} as any)
+const PaedagogikPflegeRoute = PaedagogikPflegeRouteImport.update({
+  id: '/pflege',
+  path: '/pflege',
+  getParentRoute: () => PaedagogikRoute,
+} as any)
+const PaedagogikTagesablaufRoute = PaedagogikTagesablaufRouteImport.update({
+  id: '/tagesablauf',
+  path: '/tagesablauf',
+  getParentRoute: () => PaedagogikRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
+  '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
+  '/raeume': typeof RaeumeRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
+  '/paedagogik/essen': typeof PaedagogikEssenRoute
+  '/paedagogik/pflege': typeof PaedagogikPflegeRoute
+  '/paedagogik/tagesablauf': typeof PaedagogikTagesablaufRoute
+  '/paedagogik/': typeof PaedagogikIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/preise': typeof PreiseRoute
+  '/raeume': typeof RaeumeRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
+  '/paedagogik/essen': typeof PaedagogikEssenRoute
+  '/paedagogik/pflege': typeof PaedagogikPflegeRoute
+  '/paedagogik/tagesablauf': typeof PaedagogikTagesablaufRoute
+  '/paedagogik': typeof PaedagogikIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
+  '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
+  '/raeume': typeof RaeumeRoute
+  '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
+  '/paedagogik/essen': typeof PaedagogikEssenRoute
+  '/paedagogik/pflege': typeof PaedagogikPflegeRoute
+  '/paedagogik/tagesablauf': typeof PaedagogikTagesablaufRoute
+  '/paedagogik/': typeof PaedagogikIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontakt' | '/preise' | '/ueber-uns'
+  fullPaths:
+    | '/'
+    | '/jobs'
+    | '/kontakt'
+    | '/paedagogik'
+    | '/preise'
+    | '/raeume'
+    | '/team'
+    | '/ueber-uns'
+    | '/paedagogik/angebote'
+    | '/paedagogik/essen'
+    | '/paedagogik/pflege'
+    | '/paedagogik/tagesablauf'
+    | '/paedagogik/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontakt' | '/preise' | '/ueber-uns'
-  id: '__root__' | '/' | '/kontakt' | '/preise' | '/ueber-uns'
+  to:
+    | '/'
+    | '/jobs'
+    | '/kontakt'
+    | '/preise'
+    | '/raeume'
+    | '/team'
+    | '/ueber-uns'
+    | '/paedagogik/angebote'
+    | '/paedagogik/essen'
+    | '/paedagogik/pflege'
+    | '/paedagogik/tagesablauf'
+    | '/paedagogik'
+  id:
+    | '__root__'
+    | '/'
+    | '/jobs'
+    | '/kontakt'
+    | '/paedagogik'
+    | '/preise'
+    | '/raeume'
+    | '/team'
+    | '/ueber-uns'
+    | '/paedagogik/angebote'
+    | '/paedagogik/essen'
+    | '/paedagogik/pflege'
+    | '/paedagogik/tagesablauf'
+    | '/paedagogik/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  JobsRoute: typeof JobsRoute
   KontaktRoute: typeof KontaktRoute
+  PaedagogikRoute: typeof PaedagogikRouteWithChildren
   PreiseRoute: typeof PreiseRoute
+  RaeumeRoute: typeof RaeumeRoute
+  TeamRoute: typeof TeamRoute
   UeberUnsRoute: typeof UeberUnsRoute
 }
 
@@ -78,11 +201,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kontakt': {
       id: '/kontakt'
       path: '/kontakt'
       fullPath: '/kontakt'
       preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paedagogik': {
+      id: '/paedagogik'
+      path: '/paedagogik'
+      fullPath: '/paedagogik'
+      preLoaderRoute: typeof PaedagogikRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/preise': {
@@ -92,6 +229,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreiseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/raeume': {
+      id: '/raeume'
+      path: '/raeume'
+      fullPath: '/raeume'
+      preLoaderRoute: typeof RaeumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ueber-uns': {
       id: '/ueber-uns'
       path: '/ueber-uns'
@@ -99,13 +250,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UeberUnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/paedagogik/': {
+      id: '/paedagogik/'
+      path: '/'
+      fullPath: '/paedagogik/'
+      preLoaderRoute: typeof PaedagogikIndexRouteImport
+      parentRoute: typeof PaedagogikRoute
+    }
+    '/paedagogik/angebote': {
+      id: '/paedagogik/angebote'
+      path: '/angebote'
+      fullPath: '/paedagogik/angebote'
+      preLoaderRoute: typeof PaedagogikAngeboteRouteImport
+      parentRoute: typeof PaedagogikRoute
+    }
+    '/paedagogik/essen': {
+      id: '/paedagogik/essen'
+      path: '/essen'
+      fullPath: '/paedagogik/essen'
+      preLoaderRoute: typeof PaedagogikEssenRouteImport
+      parentRoute: typeof PaedagogikRoute
+    }
+    '/paedagogik/pflege': {
+      id: '/paedagogik/pflege'
+      path: '/pflege'
+      fullPath: '/paedagogik/pflege'
+      preLoaderRoute: typeof PaedagogikPflegeRouteImport
+      parentRoute: typeof PaedagogikRoute
+    }
+    '/paedagogik/tagesablauf': {
+      id: '/paedagogik/tagesablauf'
+      path: '/tagesablauf'
+      fullPath: '/paedagogik/tagesablauf'
+      preLoaderRoute: typeof PaedagogikTagesablaufRouteImport
+      parentRoute: typeof PaedagogikRoute
+    }
   }
 }
 
+interface PaedagogikRouteChildren {
+  PaedagogikAngeboteRoute: typeof PaedagogikAngeboteRoute
+  PaedagogikEssenRoute: typeof PaedagogikEssenRoute
+  PaedagogikPflegeRoute: typeof PaedagogikPflegeRoute
+  PaedagogikTagesablaufRoute: typeof PaedagogikTagesablaufRoute
+  PaedagogikIndexRoute: typeof PaedagogikIndexRoute
+}
+
+const PaedagogikRouteChildren: PaedagogikRouteChildren = {
+  PaedagogikAngeboteRoute: PaedagogikAngeboteRoute,
+  PaedagogikEssenRoute: PaedagogikEssenRoute,
+  PaedagogikPflegeRoute: PaedagogikPflegeRoute,
+  PaedagogikTagesablaufRoute: PaedagogikTagesablaufRoute,
+  PaedagogikIndexRoute: PaedagogikIndexRoute,
+}
+
+const PaedagogikRouteWithChildren = PaedagogikRoute._addFileChildren(
+  PaedagogikRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  JobsRoute: JobsRoute,
   KontaktRoute: KontaktRoute,
+  PaedagogikRoute: PaedagogikRouteWithChildren,
   PreiseRoute: PreiseRoute,
+  RaeumeRoute: RaeumeRoute,
+  TeamRoute: TeamRoute,
   UeberUnsRoute: UeberUnsRoute,
 }
 export const routeTree = rootRouteImport

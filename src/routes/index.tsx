@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideo from "@/assets/momo-hund3.mp4.asset.json";
-import heroVideoWebm from "@/assets/momo-hund3.webm.asset.json";
-import heroPoster from "@/assets/momo-hund3-poster.jpg.asset.json";
-import snoreAudio from "@/assets/momo-schnarchen.mp3.asset.json";
+import heroVideoWebm from "@/assets/momo-hund-alpha.webm.asset.json";
+import heroVideoMp4 from "@/assets/momo-hund-senf3.mp4.asset.json";
+import heroPoster from "@/assets/momo-hund-alpha-poster.jpg.asset.json";
+import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,31 +32,61 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [snoring, setSnoring] = useState(false);
+  // Persisted muted state: once the user turns the snoring off, it stays off
+  // across page navigations until they explicitly turn it back on.
+  const [muted, setMuted] = useState(false);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.6;
+
+    // Try to autoplay; if the browser blocks it, the user can start it
+    // with a single click on the sound toggle.
+    void audio.play().then(() => setMuted(false)).catch(() => {
+      setMuted(true);
+    });
+
+    // Stop the snoring reliably when leaving the homepage — some browsers
+    // keep playing a removed audio element unless it is paused explicitly.
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
 
   const toggleSnore = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (snoring) {
+    if (!muted) {
+      // Turn OFF.
       audio.pause();
-      setSnoring(false);
+      setMuted(true);
     } else {
+      // Turn ON with a single click.
       audio.volume = 0.6;
-      void audio.play().then(() => setSnoring(true)).catch(() => setSnoring(false));
+      void audio.play().then(() => setMuted(false)).catch(() => {});
     }
   };
 
-  return (
-    <main className="min-h-screen pb-40 text-center">
-      <SiteHeader />
+  const stopSnoring = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    setMuted(true);
+  };
 
-      <div className="mx-auto mt-20 w-full max-w-5xl overflow-hidden px-6 sm:px-10 md:px-14">
-        <button
-          type="button"
+  return (
+    <main className="flex flex-1 flex-col items-center pb-2 text-center">
+      <SiteHeader showSlogan onMenuOpen={stopSnoring} />
+
+      <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
+        <div
+          className="relative mx-auto w-full max-w-5xl overflow-hidden px-6 sm:px-10 md:px-14"
           onClick={toggleSnore}
-          aria-pressed={snoring}
-          aria-label={snoring ? "Schnarchen ausschalten" : "Schnarchen einschalten"}
-          className="block w-full cursor-pointer"
+          role="button"
+          aria-pressed={!muted}
+          aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
         >
           <video
             autoPlay
@@ -64,27 +95,24 @@ function Index() {
             playsInline
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-            className="w-full scale-[1.06]"
+            className="relative w-full cursor-pointer"
             style={{
               WebkitMaskImage:
-                "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%)",
+                "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
               maskImage:
-                "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%)",
+                "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
               WebkitMaskComposite: "source-in",
               maskComposite: "intersect",
             }}
           >
             <source src={heroVideoWebm.url} type="video/webm" />
-            <source src={heroVideo.url} type="video/mp4" />
+            <source src={heroVideoMp4.url} type="video/mp4" />
           </video>
-        </button>
-        <audio ref={audioRef} src={snoreAudio.url} loop preload="none" />
-        <p className="mt-2 text-sm opacity-70">
-          {snoring ? "Psst … er schnarcht (Klick zum Ausschalten)" : "Klick auf den Hund für Schnarchgeräusche"}
-        </p>
-      </div>
+          <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
+        </div>
 
-      <p className="mt-8 px-6 text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">START JAN. 2027</p>
+        <p className="mt-8 px-6 font-serif text-xl font-normal leading-tight text-bordeaux sm:mt-12 md:mt-16 sm:text-3xl md:text-4xl">Eröffnung Januar 2027</p>
+      </div>
 
     </main>
   );

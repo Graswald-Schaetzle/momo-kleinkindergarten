@@ -21,6 +21,9 @@
 @theme inline {
   --font-sans: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --font-handwritten: "Schoolbell", "Comic Sans MS", cursive;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -61,12 +64,35 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-menu-overlay: var(--menu-overlay);
+  --color-menu-overlay-foreground: var(--menu-overlay-foreground);
+  --color-mustard: var(--mustard);
+  --color-bordeaux: var(--bordeaux);
+  --color-altrosa: var(--altrosa);
+  --color-clock: var(--clock);
+  --color-clock-face: var(--clock-face);
+  --color-clock-eye: var(--clock-eye);
+  --color-clock-foot: var(--clock-foot);
+  --color-ink: var(--ink);
+  --color-pen: var(--pen);
 }
 
 :root {
   --radius: 0.625rem;
   --background: #F3EFE3;
+  --bordeaux: #8c2531;
+  --clock: #EE3B44;
+  --clock-face: #ECE79E;
+  --clock-eye: #2E7FB2;
+  --clock-foot: #E5482A;
+  --ink: #2B1B26;
+  --pen: #3B4A5C;
+  --menu-overlay: #4C6379;
+  --menu-overlay-foreground: #C8912F;
+  --mustard: #C8912F;
+  --altrosa: #E8D3CE;
   --foreground: oklch(0.129 0.042 264.695);
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -139,6 +165,13 @@
     border-color: var(--color-border);
   }
 
+  html,
+  body {
+    /* kein horizontales Scrollen – nur vertikal */
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: var(--color-background);
@@ -148,4 +181,193 @@
 
 
 
+  /* SVG textPath font-size: matches Start Januar 2027 (text-xl/3xl/4xl) across breakpoints */
+  .age-arc-text {
+    font-size: 61px;
+  }
+  @media (min-width: 640px) {
+    .age-arc-text {
+      font-size: 63px;
+    }
+  }
+  @media (min-width: 768px) {
+    .age-arc-text {
+      font-size: 74px;
+    }
+  }
+}
+
+/* ===== Tagesablauf-Uhr ===== */
+@keyframes momo-clock-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes momo-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%, 97% { transform: scaleY(0.08); }
+}
+@keyframes momo-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-3px, 1px) rotate(-1.1deg); }
+  30% { transform: translate(3px, -2px) rotate(1.2deg); }
+  45% { transform: translate(-2px, -1px) rotate(-0.8deg); }
+  60% { transform: translate(2px, 2px) rotate(0.9deg); }
+  80% { transform: translate(-1px, 0) rotate(-0.4deg); }
+}
+.momo-hand-spin {
+  transform-origin: 300px 300px;
+  animation: momo-clock-spin 24s linear infinite;
+}
+.momo-eye-lid {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: momo-blink 5.5s ease-in-out infinite;
+}
+.momo-eye-lid-2 { animation-delay: 0.12s; }
+.momo-clock-shake { animation: momo-shake 620ms ease-in-out; }
+@media (prefers-reduced-motion: reduce) {
+  .momo-hand-spin, .momo-eye-lid, .momo-clock-shake { animation: none; }
+}
+
+
+body[data-overlay-open] .burger-bar {
+  background-color: var(--menu-overlay-foreground);
+}
+
+/* Besteck-Animation: Gabel, Löffel und Messer kreuzen sich und richten sich wieder gerade aus */
+.besteck {
+  transform: translate(-50%, -50%);
+  animation-duration: 9s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.besteck-gabel {
+  z-index: 3;
+  animation-name: besteck-gabel;
+}
+.besteck-loeffel {
+  z-index: 2;
+  animation-name: besteck-loeffel;
+}
+.besteck-messer {
+  z-index: 1;
+  animation-name: besteck-messer;
+}
+
+@keyframes besteck-gabel {
+  0%, 22%, 78%, 100% { transform: translate(-50%, calc(-50% - 2.2rem)) rotate(0deg); }
+  44%, 56%           { transform: translate(-50%, -50%) rotate(9deg); }
+}
+@keyframes besteck-loeffel {
+  0%, 22%, 78%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  44%, 56%           { transform: translate(-50%, -50%) rotate(3deg); }
+}
+@keyframes besteck-messer {
+  0%, 22%, 78%, 100% { transform: translate(-50%, calc(-50% + 2.2rem)) rotate(0deg); }
+  44%, 56%           { transform: translate(-50%, -50%) rotate(-9deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .besteck { animation: none; }
+}
+
+/* ===== Brief-Animation (Team) ===== */
+.brief-window {
+  perspective: 1600px;
+}
+
+/* Realistisches Briefpapier: warmer Cremeton, feine Faserstruktur,
+   leichte Prägung am Rand – ohne graue Seitenschatten. */
+.brief-paper {
+  background-color: #F6F1E4;
+  background-image:
+    radial-gradient(120% 90% at 50% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 55%),
+    url("/__l5e/assets-v1/568d5d66-171d-48ba-851d-d2a531d2414b/papier-textur.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: soft-light, multiply;
+  border: 1px solid rgba(150, 128, 100, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(24px);
+  opacity: 0;
+}
+/* Der Brief fährt erst nach dem Klick auf den geschlossenen Umschlag hoch. */
+.brief-open .brief-paper {
+  animation: brief-rise 1.2s cubic-bezier(0.22, 0.9, 0.24, 1) 0.55s forwards;
+}
+@keyframes brief-rise {
+  0% { transform: translateY(24px); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Umschlag: startet geschlossen; nach Klick Überblendung zu offen */
+.brief-envelope {
+  filter: drop-shadow(0 14px 22px rgba(43, 27, 38, 0.18));
+}
+.brief-env-closed {
+  animation: brief-env-wiggle 2.6s ease-in-out infinite;
+}
+.brief-open .brief-env-closed {
+  animation: brief-env-hide 0.5s ease-in-out forwards;
+}
+.brief-env-open {
+  opacity: 0;
+}
+.brief-open .brief-env-open {
+  animation: brief-env-show 0.5s ease-in-out forwards;
+}
+@keyframes brief-env-hide {
+  to { opacity: 0; }
+}
+@keyframes brief-env-show {
+  to { opacity: 1; }
+}
+/* Einladendes Schweben des geschlossenen Umschlags */
+@keyframes brief-env-wiggle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.5%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brief-env-closed { animation: none; }
+  .brief-open .brief-paper { animation: none; transform: none; opacity: 1; }
+  .brief-open .brief-env-closed { animation: none; opacity: 0; }
+  .brief-open .brief-env-open { animation: none; opacity: 1; }
+}
+
+/* Stempel-Optik für das MOMO-Logo auf dem Umschlag:
+   leicht schräg aufgedrückt, ovale Doppelkontur, ausgefranste,
+   ungleichmäßige Farbdeckung wie ein echter Stempelabdruck. */
+/* Kulli-Tinte: feine Körnung, damit die Schrift wirkt, als wäre sie
+   mit leicht wechselndem Druck per Hand geschrieben. */
+.pen-ink {
+  transform: rotate(-0.35deg);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.7' intercept='-0.35'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  mask-size: 180px 180px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.7' intercept='-0.35'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 180px 180px;
+}
+
+.brief-stamp {
+  transform: translateX(-50%) rotate(-4deg);
+  opacity: 0.95;
+  mix-blend-mode: multiply;
+  filter: blur(0.25px) contrast(1.2) saturate(0.7);
+  color: #3a2129;
+}
+.brief-stamp-ring {
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  padding: 9% 11%;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+.brief-stamp,
+.brief-stamp-ring {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='3.4' intercept='-1.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size: 240px 240px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='3.4' intercept='-1.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 240px 240px;
 }

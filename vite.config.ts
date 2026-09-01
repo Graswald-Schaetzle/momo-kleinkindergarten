@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // This app deploys to Netlify, so build with nitro's netlify preset instead of the
+    // cloudflare default. It emits static assets to `dist/` (see netlify.toml `publish`)
+    // and the SSR handler to `.netlify/functions-internal/`, which Netlify picks up
+    // automatically. Inside the Lovable sandbox this is overridden back to cloudflare.
+    preset: "netlify",
+  },
 });

@@ -1,0 +1,5 @@
+[build]
+  command = "bun run build"
+  # nitro's netlify preset writes prerendered pages and client assets here; the SSR
+  # handler goes to .netlify/functions-internal/ and is picked up automatically.
+  publish = "dist"
