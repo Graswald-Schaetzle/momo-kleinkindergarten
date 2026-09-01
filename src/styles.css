@@ -327,6 +327,16 @@ body[data-overlay-open] .burger-bar {
 /* Stempel-Optik für das MOMO-Logo auf dem Umschlag:
    leicht schräg aufgedrückt, ovale Doppelkontur, ausgefranste,
    ungleichmäßige Farbdeckung wie ein echter Stempelabdruck. */
+/* Kulli-Tinte: feine Körnung, damit die Schrift wirkt, als wäre sie
+   mit leicht wechselndem Druck per Hand geschrieben. */
+.pen-ink {
+  transform: rotate(-0.35deg);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.7' intercept='-0.35'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  mask-size: 180px 180px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.7' intercept='-0.35'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 180px 180px;
+}
+
 .brief-stamp {
   transform: translateX(-50%) rotate(-4deg);
   opacity: 0.95;
