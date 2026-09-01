@@ -39,7 +39,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-10 text-left sm:px-10 sm:pb-36 sm:pt-14">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
-          <figure className="brief-photo absolute -top-5 -right-3 z-10 w-32 rotate-[3deg] sm:-top-8 sm:-right-16 sm:w-52">
+          <figure className="brief-photo absolute top-8 -right-2 z-10 w-32 rotate-[3deg] sm:top-12 sm:-right-12 sm:w-52">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
