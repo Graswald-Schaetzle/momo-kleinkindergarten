@@ -73,8 +73,8 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           className="block w-full"
         />
         <MomoLogo
-          showSubtitle={false}
-          className="absolute bottom-[28%] left-1/2 w-[34%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
+          showSubtitle
+          className="absolute bottom-[24%] left-1/2 w-[38%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
         />
       </div>
       <div className="brief-env-closed absolute bottom-0 left-1/2 z-30 w-[104%] -translate-x-1/2">
@@ -85,8 +85,8 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           className="block w-full"
         />
         <MomoLogo
-          showSubtitle={false}
-          className="absolute bottom-[16%] left-1/2 w-[34%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
+          showSubtitle
+          className="absolute bottom-[12%] left-1/2 w-[38%] -translate-x-1/2 text-ink/80 mix-blend-multiply"
         />
       </div>
     </div>
