@@ -158,6 +158,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         </div>
       </div>
     </div>
+    </div>
 
   );
 }
