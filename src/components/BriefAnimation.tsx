@@ -72,7 +72,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       )}
 
       <div
-        className={`relative mx-auto w-full max-w-2xl pb-[46%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"}`}
+        className={`relative mx-auto w-full max-w-2xl pb-[67%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"}`}
         role={open ? undefined : "button"}
         tabIndex={open ? undefined : 0}
         aria-label={open ? undefined : "Briefumschlag öffnen"}
