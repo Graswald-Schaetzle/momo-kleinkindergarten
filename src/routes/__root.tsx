@@ -127,7 +127,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
-  const footerColor = location.pathname === "/ueber-uns" ? "text-black" : "text-bordeaux";
+  const footerColor = location.pathname === "/ueber-uns" || location.pathname === "/team" ? "text-black" : "text-bordeaux";
   const isHome = location.pathname === "/";
   const isPaedagogik = location.pathname.startsWith("/paedagogik");
   const isRaeume = location.pathname === "/raeume";
