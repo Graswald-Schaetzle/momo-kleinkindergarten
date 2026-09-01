@@ -56,8 +56,21 @@ function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
 }
 
 export function BriefAnimation({ className = "" }: { className?: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
+    <div
+      className={`relative mx-auto w-full max-w-2xl pb-[46%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"} ${className}`}
+      role={open ? undefined : "button"}
+      tabIndex={open ? undefined : 0}
+      aria-label={open ? undefined : "Briefumschlag öffnen"}
+      onClick={() => setOpen(true)}
+      onKeyDown={(e) => {
+        if (!open && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          setOpen(true);
+        }
+      }}
+    >
       {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
           Die seitlichen Spitzen sind im Bild entfernt, damit der Brief
           realistisch IM Umschlag steckt. */}
