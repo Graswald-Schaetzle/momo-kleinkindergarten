@@ -16,6 +16,45 @@ const paragraphs = [
   "Ich freue mich euch und eure Kinder kennenzulernen!",
 ];
 
+/* Deterministischer Pseudo-Zufall pro Zeichen, damit die Handschrift
+   bei jedem Render identisch bleibt (kein Hydration-Mismatch). */
+function seeded(seed: number) {
+  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+/* Rendert Text wortweise mit leichten Schwankungen in Neigung, Höhe,
+   Größe und Tintendeckung – wie echte Handschrift mit Kugelschreiber. */
+function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
+  const words = text.split(" ");
+  return (
+    <>
+      {words.map((word, wi) => {
+        const r1 = seeded(seedBase + wi * 3 + 1);
+        const r2 = seeded(seedBase + wi * 3 + 2);
+        const r3 = seeded(seedBase + wi * 3 + 3);
+        const rotate = (r1 - 0.5) * 2.4; // ±1.2°
+        const lift = (r2 - 0.5) * 0.09; // ±0.045em
+        const scale = 0.97 + r3 * 0.06; // 0.97–1.03
+        const ink = 0.82 + r2 * 0.18; // wechselnder Druck des Stifts
+        return (
+          <span
+            key={`${wi}-${word.slice(0, 6)}`}
+            className="inline-block will-change-transform"
+            style={{
+              transform: `rotate(${rotate}deg) translateY(${lift}em) scale(${scale})`,
+              opacity: ink,
+              marginRight: "0.24em",
+            }}
+          >
+            {word}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={`relative mx-auto w-full max-w-2xl pb-[46%] ${className}`}>
