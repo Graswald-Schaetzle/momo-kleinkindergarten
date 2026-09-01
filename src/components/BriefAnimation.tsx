@@ -48,7 +48,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             />
           </figure>
 
-          <div className="space-y-4 pt-2 font-handwritten text-[15px] leading-relaxed text-ink sm:pt-4 sm:text-lg md:text-xl">
+          <div className="space-y-4 pt-2 font-handwritten text-[15px] leading-relaxed text-pen sm:pt-4 sm:text-lg md:text-xl">
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
