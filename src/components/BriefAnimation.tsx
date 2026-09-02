@@ -61,7 +61,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
       {!open && (
-        <div className="relative z-40 mb-0 text-center">
+        <div className="relative z-40 mb-4 text-center sm:mb-6">
           <p className="font-display text-base italic text-ink sm:text-lg">
             {"\n"}
           </p>
