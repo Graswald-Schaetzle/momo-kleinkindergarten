@@ -89,7 +89,7 @@ import iconBesteck from "@/assets/icon-besteck.png.asset.json";
 import iconMond from "@/assets/icon-mond.png.asset.json";
 import iconHaus from "@/assets/icon-haus.png.asset.json";
 
-type ChildIcon = { url: string; alt: string };
+type ChildIcon = { url: string; alt: string; tint?: boolean };
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
   head: () => ({
@@ -126,7 +126,7 @@ const schedule: {
     time: "07:45–09:15",
     title: "Ankommen & Frühstück",
     text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet, jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
-    icon: { url: iconTasse.url, alt: "Aquarell-Tasse" },
+    icon: { url: iconTasse.url, alt: "Aquarell-Tasse", tint: true },
   },
   {
     time: "09:15–10:15",
@@ -171,7 +171,7 @@ const schedule: {
     time: "12:15–Bedarf",
     title: "Schlafenszeit",
     text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot.",
-    icon: { url: iconMond.url, alt: "Schlafender Aquarellmond" },
+    icon: { url: iconMond.url, alt: "Schlafender Aquarellmond", tint: true },
   },
   {
     time: "Bis 13:45",
@@ -228,6 +228,26 @@ function wobbleSeg(x1: number, y1: number, x2: number, y2: number, segs = 6, amp
     }
     pts.push(`${(x1 + dx * t + nx * off).toFixed(1)},${(y1 + dy * t + ny * off).toFixed(1)}`);
   }
+  return pts.join(" ");
+}
+
+/* Realistische Zeigerform: schmales Gegengewicht hinter dem Zentrum, Schulter
+   kurz danach, spitz zulaufende Klinge zur Spitze hin - statt eines
+   gleichmäßig dicken Strichs. Zeigt nach oben (negative y), Ursprung bei (0,0).
+   Leichter handgezeichneter Jitter an den Konturpunkten. */
+function handShape(len: number, baseW: number, shoulderW: number, tipW: number, tail: number, seed = 0) {
+  const j = (x: number, y: number, s: number, amp = 1.6) =>
+    `${(x + amp * Math.sin(s * 2.3 + seed)).toFixed(1)},${(y + amp * Math.cos(s * 1.9 + seed * 1.4)).toFixed(1)}`;
+  const pts = [
+    j(0, tail, 0, 1),
+    j(baseW * 0.4, tail * 0.25, 1),
+    j(shoulderW / 2, -len * 0.12, 2),
+    j(tipW / 2, -len * 0.82, 3),
+    j(0, -len, 4, 0.8),
+    j(-tipW / 2, -len * 0.82, 5),
+    j(-shoulderW / 2, -len * 0.12, 6),
+    j(-baseW * 0.4, tail * 0.25, 7),
+  ];
   return pts.join(" ");
 }
 
@@ -293,7 +313,7 @@ function TagesablaufPage() {
       </p>
 
       <p className="mx-auto mt-6 flex justify-center sm:mt-8">
-        <span className="inline-block rounded-full bg-bordeaux/10 px-4 py-1.5 text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-base">
+        <span className="inline-block text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-base">
           Tippe auf eine Station, um mehr zu erfahren.
         </span>
       </p>
@@ -328,27 +348,30 @@ function TagesablaufPage() {
                        : {}),
                    }}
                  >
-                   {/* langer Zeiger nach oben (zeigt auf die gewählte Station) */}
-                   <polyline
-                     points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.05, DIAL_CX, DIAL_CY - DIAL_R * 0.72, 7, 5, 1.3)}
-                     fill="none"
-                     stroke="var(--bordeaux)"
-                     strokeWidth={9}
-                     strokeLinecap="round"
-                     strokeLinejoin="round"
-                   />
-                   {/* kurzer Zeiger im festen Winkel */}
-                   <g transform={`rotate(125 ${DIAL_CX} ${DIAL_CY})`}>
-                     <polyline
-                       points={wobbleSeg(DIAL_CX, DIAL_CY + DIAL_R * 0.04, DIAL_CX, DIAL_CY - DIAL_R * 0.45, 6, 4, 2.1)}
-                       fill="none"
+                   {/* langer Zeiger nach oben (zeigt auf die gewählte Station):
+                       tailliert zulaufende Klinge mit kurzem Gegengewicht,
+                       statt eines gleichmäßig dicken Strichs */}
+                   <g transform={`translate(${DIAL_CX} ${DIAL_CY})`}>
+                     <polygon
+                       points={handShape(DIAL_R * 0.72, 16, 21, 4, DIAL_R * 0.09, 1.3)}
+                       fill="var(--bordeaux)"
                        stroke="var(--bordeaux)"
-                       strokeWidth={9}
-                       strokeLinecap="round"
+                       strokeWidth={1.5}
                        strokeLinejoin="round"
                      />
                    </g>
-                   <circle cx={DIAL_CX} cy={DIAL_CY} r={10} fill="var(--bordeaux)" />
+                   {/* kurzer Zeiger im festen Winkel */}
+                   <g transform={`rotate(125 ${DIAL_CX} ${DIAL_CY}) translate(${DIAL_CX} ${DIAL_CY})`}>
+                     <polygon
+                       points={handShape(DIAL_R * 0.45, 15, 19, 5, DIAL_R * 0.07, 2.1)}
+                       fill="var(--bordeaux)"
+                       stroke="var(--bordeaux)"
+                       strokeWidth={1.5}
+                       strokeLinejoin="round"
+                     />
+                   </g>
+                   <circle cx={DIAL_CX} cy={DIAL_CY} r={11} fill="var(--bordeaux)" />
+                   <circle cx={DIAL_CX} cy={DIAL_CY} r={4.5} fill="var(--background)" />
                  </g>
                </svg>
              </div>
@@ -390,7 +413,7 @@ function TagesablaufPage() {
                   <img
                     src={Icon.url}
                     alt={Icon.alt}
-                    className="station-icon-tint h-auto w-[56px] object-contain sm:w-[142px]"
+                    className={`h-[56px] w-[56px] object-contain sm:h-[142px] sm:w-[142px] ${Icon.tint ? "station-icon-tint" : ""}`}
                     draggable={false}
                   />
                 </span>
@@ -477,7 +500,7 @@ function TagesablaufPage() {
                   <img
                     src={Icon.url}
                     alt={Icon.alt}
-                    className="station-icon-tint h-auto w-[110px] object-contain sm:w-[170px]"
+                    className={`h-[110px] w-[110px] object-contain sm:h-[170px] sm:w-[170px] ${Icon.tint ? "station-icon-tint" : ""}`}
                     draggable={false}
                   />
                 </button>
