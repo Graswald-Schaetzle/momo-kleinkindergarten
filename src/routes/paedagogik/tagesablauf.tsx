@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { ComponentType } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
@@ -81,18 +80,16 @@ function playNatureSound() {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
 import tagesuhr from "@/assets/tagesuhr-v2.png.asset.json";
-import {
-  BreakfastIcon,
-  PlayIcon,
-  CircleIcon,
-  BrushIcon,
-  WashIcon,
-  MealIcon,
-  SleepIcon,
-  HomeIcon,
-} from "@/components/ChildIcons";
+import iconTasse from "@/assets/icon-tasse.png.asset.json";
+import iconKloetze from "@/assets/icon-kloetze.png.asset.json";
+import iconKreis from "@/assets/icon-kreis.png.asset.json";
+import iconPinsel from "@/assets/icon-pinsel.png.asset.json";
+import iconSteine from "@/assets/icon-steine.png.asset.json";
+import iconBesteck from "@/assets/icon-besteck.png.asset.json";
+import iconMond from "@/assets/icon-mond.png.asset.json";
+import iconHaus from "@/assets/icon-haus.png.asset.json";
 
-type ChildIcon = ComponentType<{ size?: number; className?: string }>;
+type ChildIcon = { url: string; alt: string };
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
   head: () => ({
@@ -129,19 +126,19 @@ const schedule: {
     time: "07:45–09:15",
     title: "Ankommen & Frühstück",
     text: "In ruhiger Atmosphäre werden die Kinder empfangen. Das Frühstück ist offen gestaltet, jedes Kind entscheidet selbst, ob es erst essen oder direkt ins Spiel finden möchte. Um 9:15 Uhr endet die Bringzeit, die Gruppe schließt sich.",
-    icon: BreakfastIcon,
+    icon: { url: iconTasse.url, alt: "Aquarell-Tasse" },
   },
   {
     time: "09:15–10:15",
     title: "Freispiel innen & außen",
     text: "Die Kinder spielen nach Interesse drinnen oder im Garten. Kreative Angebote wie Kneten, Malen oder das Gestalten mit Naturmaterialien stehen bereit.",
-    icon: PlayIcon,
+    icon: { url: iconKloetze.url, alt: "Aquarell-Bauklötze" },
   },
   {
     time: "10:15",
     title: "Morgenkreis",
     text: "Lieder, Fingerspiele und Rituale im gemeinsamen Kreis markieren den Übergang in die nächste Aktivität.",
-    icon: CircleIcon,
+    icon: { url: iconKreis.url, alt: "Kinder im Kreis als Aquarellzeichnung" },
   },
   {
     time: "10:25–11:30",
@@ -156,31 +153,31 @@ const schedule: {
       "Malen, Basteln und kleine handwerkliche Projekte mit Naturmaterialien",
       "Backen und Kochen",
     ],
-    icon: BrushIcon,
+    icon: { url: iconPinsel.url, alt: "Aquarellglas mit Pinseln" },
   },
   {
     time: "11:30",
     title: "Übergangsrituale",
     text: "Die Kinder ziehen sich in Ruhe um. Eine Fuß- und Handwäsche schafft Bewusstsein und Entspannung.",
-    icon: WashIcon,
+    icon: { url: iconSteine.url, alt: "Gestapelte Aquarellsteine" },
   },
   {
     time: "11:45–12:15",
     title: "Mittagessen",
     text: "Unser Tisch wird mit Blumendekoration geschmückt, und feste Rituale wie das gemeinsame Anzünden einer Kerze und ein Lied vor dem Essen schaffen einen vertrauten Rahmen. Statt Wegwerfprodukten verwenden wir Stoffservietten und Lätzchen für Nachhaltigkeit und Geborgenheit zugleich.",
-    icon: MealIcon,
+    icon: { url: iconBesteck.url, alt: "Aquarell-Besteck" },
   },
   {
     time: "12:15–Bedarf",
     title: "Schlafenszeit",
     text: "Der Schlafraum ist durch Vorhänge gedämpft, sanfte Düfte und Lieder begleiten das Einschlafen. Jedes Kind wird liebevoll begleitet durch Wiegen, Massage oder die Nähe einer vertrauten Person. Kinder, die nicht einschlafen, erhalten ein ruhiges alternatives Angebot.",
-    icon: SleepIcon,
+    icon: { url: iconMond.url, alt: "Schlafender Aquarellmond" },
   },
   {
     time: "Bis 13:45",
     title: "Abholzeit",
     text: "Der Tag klingt in ruhiger Atmosphäre aus. Jedes Kind wird einzeln verabschiedet, ganz natürlich entstehen hier wertvolle Tür- und Angelgespräche mit den Eltern.",
-    icon: HomeIcon,
+    icon: { url: iconHaus.url, alt: "Aquarell-Haus" },
   },
 ];
 
@@ -390,7 +387,12 @@ function TagesablaufPage() {
             >
               <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
                 <span className="flex justify-center text-bordeaux">
-                  <Icon size={isMobile ? 56 : 142} />
+                  <img
+                    src={Icon.url}
+                    alt={Icon.alt}
+                    className="h-auto w-[56px] object-contain sm:w-[142px]"
+                    draggable={false}
+                  />
                 </span>
                 <span
                   className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
@@ -472,7 +474,12 @@ function TagesablaufPage() {
                   className="mt-8 flex justify-center sm:mt-10"
                   aria-label="Zurück zur Uhr"
                 >
-                  <Icon size={isMobile ? 110 : 170} className="text-menu-overlay-foreground" />
+                  <img
+                    src={Icon.url}
+                    alt={Icon.alt}
+                    className="h-auto w-[110px] object-contain sm:w-[170px]"
+                    draggable={false}
+                  />
                 </button>
 
                 <div className="flex-1" />
