@@ -127,7 +127,12 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
-  const footerColor = location.pathname === "/ueber-uns" || location.pathname === "/team" ? "text-black" : "text-bordeaux";
+  const isPreise = location.pathname === "/preise";
+  const footerColor = isPreise
+    ? "text-menu-overlay-foreground"
+    : location.pathname === "/ueber-uns" || location.pathname === "/team"
+      ? "text-black"
+      : "text-bordeaux";
   const isKontakt = location.pathname === "/kontakt";
   const isHome = location.pathname === "/";
   const isPaedagogik = location.pathname.startsWith("/paedagogik");
@@ -137,7 +142,9 @@ function RootComponent() {
     ? "bg-mustard"
     : isPaedagogik || isRaeume
       ? "bg-altrosa"
-      : "";
+      : isPreise
+        ? "bg-menu-overlay"
+        : "";
 
   return (
     <QueryClientProvider client={queryClient}>
