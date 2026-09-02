@@ -1,6 +1,7 @@
 /* Brief-Animation: Ein geschlossener Umschlag öffnet seine Klappe,
-   der Brief fährt daraus nach oben und bleibt dann oben stehen.
-   Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
+   der Brief fährt ein Stück hoch und bleibt sichtbar IM Umschlag stehen
+   (zwischen Klappe und Vordertasche), mit eigenem Scrollbereich für den
+   Text. Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
 
 import { useState } from "react";
 import briefmarke from "@/assets/briefmarke-klammer.png";
@@ -84,9 +85,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           }
         }}
       >
-      {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief).
-          Die seitlichen Spitzen sind im Bild entfernt, damit der Brief
-          realistisch IM Umschlag steckt. */}
+      {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief). */}
       <div className="brief-env-open absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
         <img
           src={umschlagOffen}
@@ -97,36 +96,37 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         />
       </div>
 
-      {/* Fenster, aus dem der Brief nach oben herausfährt.
-          Geschlossen liegt das Papier unterhalb des Umschlags;
-          geöffnet nimmt es den normalen Fluss ein und schiebt
-          den Footer nach unten. */}
-      <div className={`brief-window left-0 w-full overflow-hidden ${open ? "relative z-40" : "absolute bottom-0 z-10"}`}>
-        <article className="brief-paper relative mx-auto w-[94%] px-5 pb-28 pt-6 text-left sm:px-10 sm:pb-36 sm:pt-8">
+      {/* Fenster, in dem der Brief steckt: sitzt zwischen der Klappenkante
+          oben und dem unteren Taschenrand, damit ein Stück Vordertasche
+          samt Stempel sichtbar bleibt. Eigener Scrollbereich, weil der
+          Umschlag nicht wächst, der Text aber länger ist. */}
+      <div
+        className="brief-window absolute left-1/2 z-[25] w-[62%] -translate-x-1/2 overflow-y-auto overflow-x-hidden"
+        style={{ top: "26%", bottom: "13%" }}
+      >
+        <article className="brief-paper relative min-h-full px-3 py-3 text-left sm:px-5 sm:py-4">
           {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
               greift über die Kante und ragt seitlich heraus. */}
-          <figure className="brief-photo absolute top-4 -right-2 z-10 w-32 rotate-[3deg] sm:top-6 sm:-right-12 sm:w-52">
+          <figure className="brief-photo absolute top-1 -right-1 z-10 w-14 rotate-[3deg] sm:top-2 sm:-right-3 sm:w-20">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
               loading="lazy"
-              className="block h-auto w-full drop-shadow-[0_6px_10px_rgba(43,27,38,0.28)]"
+              className="block h-auto w-full drop-shadow-[0_4px_6px_rgba(43,27,38,0.28)]"
             />
           </figure>
 
-          <div className="pen-ink space-y-4 pt-2 font-handwritten text-[15px] leading-relaxed text-pen sm:pt-4 sm:text-lg md:text-xl">
+          <div className="pen-ink space-y-1.5 pt-1 font-handwritten text-[10px] leading-snug text-pen sm:text-xs md:text-sm">
             {paragraphs.map((text, i) => (
               <p
                 key={text.slice(0, 24)}
-                className={`text-left ${i === 0 ? "pr-28 sm:pr-44" : ""}`}
+                className={`text-left ${i === 0 ? "pr-12 sm:pr-16" : ""}`}
                 lang="de"
               >
                 <Handwritten text={text} seedBase={i * 1000} />
               </p>
             ))}
           </div>
-
-
         </article>
       </div>
 
