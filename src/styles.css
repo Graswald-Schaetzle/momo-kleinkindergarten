@@ -353,6 +353,17 @@ body[data-overlay-open] .burger-bar {
   -webkit-mask-size: 180px 180px;
 }
 
+/* ===== Tagesablauf-Icons (Wasserfarben-Grafiken) ===== */
+/* Die einzeln hochgeladenen Aquarell-Icons kommen in unterschiedlichsten
+   Farben (blau, grün, lila ...). Damit sie zur bordeauxfarbenen Uhr passen
+   und als eine Farbfamilie wirken, werden sie auf Bordeaux/Terrakotta
+   umgefärbt: erst entsättigen, dann warm eintönen und in Richtung Bordeaux
+   drehen. Etwas Resteigenfarbe bleibt bewusst erhalten (kein reines
+   Duoton), damit die Aquarell-Textur sichtbar bleibt. */
+.station-icon-tint {
+  filter: saturate(0.4) sepia(0.75) hue-rotate(320deg) saturate(2.8) brightness(0.72) contrast(1.2);
+}
+
 .brief-stamp {
   transform: translateX(-50%) rotate(-4deg);
   opacity: 0.95;

@@ -292,14 +292,14 @@ function TagesablaufPage() {
         einzugehen.
       </p>
 
-      <p className="mx-auto mt-3 flex justify-center sm:mt-4">
+      <p className="mx-auto mt-6 flex justify-center sm:mt-8">
         <span className="inline-block rounded-full bg-bordeaux/10 px-4 py-1.5 text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-base">
           Tippe auf eine Station, um mehr zu erfahren.
         </span>
       </p>
 
       {/* ===== Wecker-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-10 mb-14 aspect-square w-full max-w-[340px] sm:mt-14 sm:mb-16 sm:max-w-[520px] md:mt-16 md:mb-20 md:max-w-[760px]">
+      <div className="relative mx-auto mt-14 mb-14 aspect-square w-full max-w-[340px] sm:mt-20 sm:mb-16 sm:max-w-[520px] md:mt-24 md:mb-20 md:max-w-[760px]">
         {/* Aquarell-Wecker mit rotierendem Zeiger-Overlay */}
         <div
           key={shake}
@@ -390,7 +390,7 @@ function TagesablaufPage() {
                   <img
                     src={Icon.url}
                     alt={Icon.alt}
-                    className="h-auto w-[56px] object-contain sm:w-[142px]"
+                    className="station-icon-tint h-auto w-[56px] object-contain sm:w-[142px]"
                     draggable={false}
                   />
                 </span>
@@ -477,7 +477,7 @@ function TagesablaufPage() {
                   <img
                     src={Icon.url}
                     alt={Icon.alt}
-                    className="h-auto w-[110px] object-contain sm:w-[170px]"
+                    className="station-icon-tint h-auto w-[110px] object-contain sm:w-[170px]"
                     draggable={false}
                   />
                 </button>
