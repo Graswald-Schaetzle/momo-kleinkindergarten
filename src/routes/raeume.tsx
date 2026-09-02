@@ -67,7 +67,7 @@ function Raeume() {
 
           <p>
             Im Oktober entsteht hier ein Ort zum Buddeln, Rutschen und Klettern, mit einer
-            Matschecke zum Experimentieren und einem Barfußweg, der die Sinne der Kinder auf
+             Matschküche zum Experimentieren und einem Barfußweg, der die Sinne der Kinder auf
             spielerische Weise weckt.
           </p>
         </div>
