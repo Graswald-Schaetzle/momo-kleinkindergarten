@@ -80,18 +80,16 @@ function playNatureSound() {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MomoLogo } from "@/components/MomoLogo";
 import tagesuhr from "@/assets/tagesuhr-v2.png.asset.json";
-import {
-  BreakfastIcon,
-  PlayIcon,
-  CircleIcon,
-  BrushIcon,
-  WashIcon,
-  MealIcon,
-  SleepIcon,
-  HomeIcon,
-} from "@/components/ChildIcons";
+import iconTasse from "@/assets/icon-tasse.png.asset.json";
+import iconKloetze from "@/assets/icon-kloetze.png.asset.json";
+import iconKreis from "@/assets/icon-kreis.png.asset.json";
+import iconPinsel from "@/assets/icon-pinsel.png.asset.json";
+import iconSteine from "@/assets/icon-steine.png.asset.json";
+import iconBesteck from "@/assets/icon-besteck.png.asset.json";
+import iconMond from "@/assets/icon-mond.png.asset.json";
+import iconHaus from "@/assets/icon-haus.png.asset.json";
 
-type ChildIcon = ComponentType<{ size?: number; className?: string }>;
+type ChildIcon = { url: string };
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
   head: () => ({
