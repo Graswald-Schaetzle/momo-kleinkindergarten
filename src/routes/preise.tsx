@@ -35,7 +35,7 @@ const features: { icon: typeof Clock; text: string }[] = [
 
 function Preise() {
   return (
-    <main className="min-h-screen bg-menu-overlay pb-10 text-center">
+    <main className="bg-menu-overlay pb-6 text-center">
       <SiteHeader
         logoColor="text-menu-overlay-foreground"
         burgerColor="bg-menu-overlay-foreground"
