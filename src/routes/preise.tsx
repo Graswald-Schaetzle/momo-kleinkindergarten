@@ -35,53 +35,49 @@ const features: { icon: typeof Clock; text: string }[] = [
 
 function Preise() {
   return (
-    <main className="min-h-screen pb-16 text-center">
+    <main className="min-h-screen pb-10 text-center">
       <SiteHeader />
-      <section className="px-6 pt-10 sm:px-10 sm:pt-12 md:px-14">
-        <h2 className="font-display text-base font-bold tracking-[0.04em] text-bordeaux sm:text-lg">
-          Preise
-        </h2>
-
-        <div className="mx-auto mt-5 max-w-md rounded-2xl border border-bordeaux/15 bg-white/60 px-5 py-5 shadow-sm sm:px-8 sm:py-6">
-          <p className="font-display text-base font-normal leading-snug text-ink sm:text-lg">
+      <section className="px-6 pt-8 sm:px-10 sm:pt-10 md:px-14">
+        <div className="mx-auto max-w-md rounded-2xl border border-bordeaux/15 bg-white/60 px-4 py-4 shadow-sm sm:px-6 sm:py-5">
+          <p className="font-display text-sm font-normal leading-snug text-ink sm:text-base">
             Geborgene, familiäre
             <br />
             Vormittagsbetreuung
           </p>
 
-          <p className="mt-3 font-display text-4xl font-bold text-bordeaux sm:text-5xl">
+          <p className="mt-2 font-display text-3xl font-bold text-bordeaux sm:text-4xl">
             495&nbsp;€
           </p>
-          <p className="text-xs text-ink/60 sm:text-sm">pro Monat</p>
+          <p className="text-xs text-ink/60">pro Monat</p>
 
-          <ul className="mt-4 divide-y divide-bordeaux/10 text-left">
+          <ul className="mt-3 divide-y divide-bordeaux/10 text-left">
             {features.map(({ icon: Icon, text }) => (
-              <li key={text} className="flex items-center gap-3 py-2.5">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-bordeaux/30 text-bordeaux">
-                  <Icon size={16} strokeWidth={1.75} />
+              <li key={text} className="flex items-center gap-2.5 py-2">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bordeaux/30 text-bordeaux">
+                  <Icon size={14} strokeWidth={1.75} />
                 </span>
-                <span className="text-xs leading-snug text-ink sm:text-sm">{text}</span>
+                <span className="text-xs leading-snug text-ink">{text}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-4 flex items-center gap-3 rounded-xl bg-mustard/15 px-3 py-3 text-left">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mustard/25 text-bordeaux">
-              <Gift size={16} strokeWidth={1.75} />
+          <div className="mt-3 flex items-center gap-2.5 rounded-xl bg-mustard/15 px-3 py-2.5 text-left">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-mustard/25 text-bordeaux">
+              <Gift size={14} strokeWidth={1.75} />
             </span>
-            <span className="text-xs font-bold leading-snug text-bordeaux sm:text-sm">
+            <span className="text-xs font-bold leading-snug text-bordeaux">
               Ein ganzer Monat geschenkt: im August zahlt ihr nichts
             </span>
           </div>
 
           <Link
             to="/kontakt"
-            className="mt-4 block rounded-full bg-bordeaux px-8 py-3 font-display text-sm font-bold tracking-[0.04em] text-background transition-colors hover:bg-bordeaux/90 sm:text-base"
+            className="mt-3 block rounded-full bg-bordeaux px-8 py-2.5 font-display text-sm font-bold tracking-[0.04em] text-background transition-colors hover:bg-bordeaux/90"
           >
             Jetzt kennenlernen
           </Link>
 
-          <p className="mt-3 text-xs text-ink/50">Für Geschwister gibt es einen Rabatt.</p>
+          <p className="mt-2 text-xs text-ink/50">Für Geschwister gibt es einen Rabatt.</p>
         </div>
       </section>
     </main>
