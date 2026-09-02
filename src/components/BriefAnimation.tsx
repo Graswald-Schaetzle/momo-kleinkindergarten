@@ -59,7 +59,7 @@ function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
 export function BriefAnimation({ className = "" }: { className?: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className={className}>
+    <div className={`pt-20 sm:pt-32 ${className}`}>
       {!open && (
         <div className="relative z-40 mb-4 text-center sm:mb-6">
           <p className="font-display text-base italic text-ink sm:text-lg">

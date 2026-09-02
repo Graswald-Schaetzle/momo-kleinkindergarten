@@ -1,4 +1,4 @@
-# Roadmap
+# MOMO Kinderhaus — offene Aufgaben
 
-- [ ] Brief-Animation: Seitliche Umschlag-Spitzen hinter dem Brief verstecken; geöffnete Klappe oben hinten sichtbar
-- [ ] Büroklammer am Handy komplett sichtbar (nicht am Bildschirmrand abgeschnitten)
+- [x] Brief auf Team-Seite weiter nach unten setzen, Umschlag zentriert, Hinweis darüber
+- [x] Zwei markierte Textabschnitte auf der Essen-Seite entfernen
