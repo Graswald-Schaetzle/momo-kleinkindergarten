@@ -293,7 +293,10 @@ function TagesablaufPage() {
         Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
         einzugehen.
-        <span className="mt-1 block text-[10px] italic sm:text-xs md:text-sm">
+      </p>
+
+      <p className="mx-auto mt-3 flex justify-center sm:mt-4">
+        <span className="inline-block rounded-full bg-bordeaux/10 px-4 py-1.5 text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-base">
           Tippe auf eine Station, um mehr zu erfahren.
         </span>
       </p>
