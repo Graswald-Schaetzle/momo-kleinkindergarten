@@ -31,11 +31,11 @@ function Essen() {
       </h1>
       <BesteckAnimation />
       <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-base md:text-lg">
-        <p className="text-center font-bold">Essen als gemeinsames Erlebnis</p>
+        <p className="font-bold">Essen als gemeinsames Erlebnis</p>
         <p>
           Bei uns ist Essen weit mehr als Nahrungsaufnahme, es ist ein sinnliches Gemeinschaftserlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren die gemeinsamen Mahlzeiten bewusst: Der Tisch ist liebevoll und jahreszeitlich gedeckt, Blumen schmücken die Tafel, eine Kerze brennt während des Essens. Gemeinsam singen wir und bedanken uns für das, was wir teilen dürfen.
         </p>
-        <p className="text-center font-bold">Regional, saisonal, bewusst</p>
+        <p className="font-bold">Regional, saisonal, bewusst</p>
         <p>
           Uns liegt viel an regionalen, saisonalen Zutaten, bevorzugt in Bio- und Demeter-Qualität. So erfahren Kinder ganz natürlich, was gerade wächst und reift, und entwickeln über das, was auf ihrem Teller landet, ein Gespür für die Jahreszeiten. Auch der zeitliche Rhythmus hat seinen Platz: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht sind solche wiederkehrenden Rituale ein wertvoller Baustein unserer Arbeit – sie geben Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
         </p>
