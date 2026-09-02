@@ -39,14 +39,6 @@ function Essen() {
         <p>
           Uns liegt viel an regionalen, saisonalen Zutaten, bevorzugt in Bio- und Demeter-Qualität. So erfahren Kinder ganz natürlich, was gerade wächst und reift, und entwickeln über das, was auf ihrem Teller landet, ein Gespür für die Jahreszeiten. Auch der zeitliche Rhythmus hat seinen Platz: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht sind solche wiederkehrenden Rituale ein wertvoller Baustein unserer Arbeit – sie geben Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
         </p>
-        <p className="text-center font-bold">Selbst mit Hand anlegen</p>
-        <p>
-          Wo immer möglich, beziehen wir die Kinder ins Kochen mit ein: Sie schneiden Obst, waschen Gemüse und schulen dabei ganz beiläufig ihre Feinmotorik. So erleben sie hautnah, woher ihr Essen kommt, und sind mit Stolz und Freude an der Zubereitung beteiligt.
-        </p>
-        <p className="text-center font-bold">Nähe und Aufmerksamkeit</p>
-        <p>
-          Mit warmen, feuchten Tüchern pflegen wir jedes Kind einzeln und liebevoll während und nach dem Essen, begleitet von einem kleinen Lied. Für uns ist dieser Moment mehr als reine Pflege: Er schenkt jedem Kind bewusste Aufmerksamkeit, echte Nähe und das Gefühl, gesehen zu werden. So bekommt jeder Übergang beim Essen seinen eigenen kleinen Klang.
-        </p>
       </div>
     </div>
   );
