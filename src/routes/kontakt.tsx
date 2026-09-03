@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import umschlagKontakt from "@/assets/umschlag-kontakt.png.asset.json";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
