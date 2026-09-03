@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BesteckAnimation } from "@/components/BesteckAnimation";
+import schuesselAsset from "@/assets/schuessel.png.asset.json";
 
 export const Route = createFileRoute("/paedagogik/essen")({
   head: () => ({
@@ -40,6 +41,11 @@ function Essen() {
           Uns liegt viel an regionalen, saisonalen Zutaten, bevorzugt in Bio- und Demeter-Qualität. So erfahren Kinder ganz natürlich, was gerade wächst und reift, und entwickeln über das, was auf ihrem Teller landet, ein Gespür für die Jahreszeiten. Auch der zeitliche Rhythmus hat seinen Platz: Bestimmte Gerichte kehren an festen Wochentagen wieder. Aus entwicklungspsychologischer Sicht sind solche wiederkehrenden Rituale ein wertvoller Baustein unserer Arbeit – sie geben Kindern Orientierung, Sicherheit und einen verlässlichen Rhythmus im Alltag.
         </p>
       </div>
+      <img
+        src={schuesselAsset.url}
+        alt="Aquarellzeichnung eines Stapels bunter Schüsseln"
+        className="mx-auto mt-12 w-40 sm:w-52 md:w-64"
+      />
     </div>
   );
 }
