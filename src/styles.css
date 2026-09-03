@@ -384,3 +384,36 @@ body[data-overlay-open] .burger-bar {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='3.4' intercept='-1.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   -webkit-mask-size: 240px 240px;
 }
+
+/* ===== Betonmischer-Trommel (Räume-Seite) ===== */
+/* Die Trommel-Silhouette (Maske aus dem Originalaquarell) bleibt stehen,
+   während weiche Aquarell-Streifen in Creme/Beige endlos seitlich
+   durchlaufen – wie eine sich drehende Mischtrommel. Dazu eine leichte
+   Radial-Schattierung für Rundung. */
+.mischer-trommel {
+  background-color: #e9e2d6;
+  background-image:
+    radial-gradient(ellipse 90% 80% at 50% 38%, rgba(255, 255, 255, 0.35), rgba(120, 100, 85, 0.18) 78%),
+    repeating-linear-gradient(
+      100deg,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 34px,
+      #c6ad9c 40px,
+      #c6ad9c 50px,
+      rgba(0, 0, 0, 0) 56px,
+      rgba(0, 0, 0, 0) 90px
+    );
+  background-size:
+    100% 100%,
+    90px 100%;
+  animation: mischer-trommel-drehen 2.8s linear infinite;
+}
+
+@keyframes mischer-trommel-drehen {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 0, -90px 0;
+  }
+}
