@@ -44,6 +44,13 @@ function Kontakt() {
           Kontakt
         </h2>
 
+        <img
+          src={umschlagKontakt.url}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="kontakt-umschlag pointer-events-none mx-auto mt-4 w-32 select-none sm:mt-6 sm:w-40"
+        />
 
         {submitted ? (
           <div className="mx-auto mt-10 max-w-xl rounded-lg bg-bordeaux/10 px-8 py-10">
@@ -154,18 +161,11 @@ function Kontakt() {
               type="submit"
               className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
             >
-            Absenden
-          </button>
-        </form>
-      )}
-      <img
-        src={umschlagKontakt.url}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="pointer-events-none mx-auto mt-6 w-20 select-none sm:mt-8 sm:w-24"
-      />
-    </section>
+              Absenden
+            </button>
+          </form>
+        )}
+      </section>
     </main>
   );
 }
