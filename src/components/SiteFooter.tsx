@@ -32,7 +32,7 @@ export function SiteFooter({
       )}
 
       <p
-        className={`${color} ${showInstagram ? "mt-1" : ""} text-sm font-bold leading-relaxed sm:text-lg`}
+        className={`${color} ${showInstagram ? "mt-16 sm:mt-20" : ""} text-sm font-bold leading-relaxed sm:text-lg`}
       >
         Mo-Fr. 07.45 - 13.45 Uhr
         <br />
