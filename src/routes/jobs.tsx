@@ -102,7 +102,7 @@ function Jobs() {
             <li>Eine ausgebildete Erzieherin (m/w/d), die Freude an der Arbeit mit Kindern hat</li>
             <li>Lust, sich mit Herz in ein kleines Team einzubringen</li>
             <li>Freude daran, ein neues Konzept von Beginn an mitzugestalten</li>
-            <li>Interesse an Waldorfpädagogik oder Montessori</li>
+            <li>Interesse an Waldorfpädagogik und Montessori</li>
             <li>Offenheit für einen familiären, unkomplizierten Umgang miteinander</li>
           </ul>
 
