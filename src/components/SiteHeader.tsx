@@ -108,6 +108,9 @@ export function SiteHeader({
             }`}
           >
             <MomoLogo className="h-16 text-menu-overlay-foreground sm:h-20 md:h-24" />
+            <p className="mt-2 font-display text-xs font-normal tracking-[0.25em] text-menu-overlay-foreground sm:mt-3 sm:text-sm">
+              1–3&nbsp;Jahre
+            </p>
           </Link>
           <nav
             aria-label="Hauptnavigation"
