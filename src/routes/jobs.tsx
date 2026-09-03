@@ -31,6 +31,13 @@ function Jobs() {
       <SiteHeader showSlogan hideTagline />
 
       <section className="mx-auto max-w-2xl px-6 pt-12 text-bordeaux sm:px-10 md:px-14">
+        <img
+          src={zeichnungJobs.url}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="pointer-events-none mx-auto mb-4 w-40 select-none sm:mb-6 sm:w-48"
+        />
         <h1 className="text-center font-display text-xl font-normal leading-snug tracking-[0.04em] sm:text-2xl md:text-3xl">
           Erzieher*in (m/w/d) mit 33 Wochenstunden ab Januar 2027 gesucht
         </h1>
