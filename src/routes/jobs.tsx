@@ -106,8 +106,6 @@ function Jobs() {
             aufeinander achtgibt und an dem deine Erholung genauso wichtig genommen wird wie deine
             Arbeit, dann freuen wir uns, dich kennenzulernen.
           </p>
-
-          <p className="text-center font-bold">Bewirb dich jetzt</p>
         </div>
 
         <div className="mt-6 text-center">
@@ -115,7 +113,7 @@ function Jobs() {
             to="/kontakt"
             className="inline-block rounded-full bg-bordeaux px-10 py-3 font-display text-base font-bold tracking-[0.04em] text-background transition-colors hover:bg-bordeaux/90"
           >
-            Hier
+            Bewirb dich jetzt
           </Link>
         </div>
       </section>
