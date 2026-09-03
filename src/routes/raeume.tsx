@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { BaustellenAnimation } from "@/components/BaustellenAnimation";
+import schubkarre from "@/assets/schubkarre.png.asset.json";
 
 export const Route = createFileRoute("/raeume")({
   head: () => ({
@@ -71,6 +72,12 @@ function Raeume() {
             spielerische Weise weckt.
           </p>
         </div>
+        <img
+          src={schubkarre.url}
+          alt="Aquarellzeichnung einer Schubkarre mit Spaten"
+          className="mx-auto mt-10 w-56 sm:mt-14 sm:w-72 md:w-80"
+          loading="lazy"
+        />
       </section>
     </main>
   );
