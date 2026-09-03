@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import zeichnungJobs from "@/assets/zeichnung-jobs.png.asset.json";
+import zeichnungJobs from "@/assets/zeichnung-jobs-weit.png.asset.json";
 
 export const Route = createFileRoute("/jobs")({
   head: () => ({
@@ -40,7 +40,7 @@ function Jobs() {
           alt=""
           aria-hidden
           loading="lazy"
-          className="pointer-events-none -ml-6 -mt-2 w-40 select-none sm:-ml-10 sm:w-48 md:-ml-14"
+          className="pointer-events-none relative left-1/2 -mt-2 w-screen max-w-none -translate-x-1/2 select-none"
         />
 
         <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
