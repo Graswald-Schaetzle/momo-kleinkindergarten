@@ -333,18 +333,7 @@ body[data-overlay-open] .burger-bar {
   50% { transform: translateY(-1.5%); }
 }
 
-/* Sanftes Schaukeln des Umschlags auf der Kontaktseite */
-.kontakt-umschlag {
-  transform-origin: 50% 0%;
-  animation: kontakt-umschlag-schaukeln 3.4s ease-in-out infinite;
-}
-@keyframes kontakt-umschlag-schaukeln {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .kontakt-umschlag { animation: none; }
   .brief-env-closed { animation: none; }
   .brief-open .brief-paper { animation: none; transform: none; opacity: 1; }
   .brief-open .brief-env-closed { animation: none; opacity: 0; }
