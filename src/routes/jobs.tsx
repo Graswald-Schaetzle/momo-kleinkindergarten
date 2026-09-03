@@ -40,7 +40,7 @@ function Jobs() {
           alt=""
           aria-hidden
           loading="lazy"
-          className="pointer-events-none mt-4 w-40 select-none sm:mt-6 sm:w-48"
+          className="pointer-events-none -mt-2 w-40 select-none sm:w-48"
         />
 
         <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
