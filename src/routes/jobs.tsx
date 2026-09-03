@@ -27,7 +27,7 @@ export const Route = createFileRoute("/jobs")({
 function Jobs() {
   return (
     <main className="min-h-screen pb-32">
-      <SiteHeader />
+      <SiteHeader showSlogan hideTagline />
 
       <section className="mx-auto max-w-2xl px-6 pt-12 text-bordeaux sm:px-10 md:px-14">
         <h1 className="text-center font-display text-xl font-normal leading-snug tracking-[0.04em] sm:text-2xl md:text-3xl">

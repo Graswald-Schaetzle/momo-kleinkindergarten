@@ -30,9 +30,6 @@ function Essen() {
       <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-3xl md:text-4xl">
         Essen
       </h1>
-      <p className="mt-2 text-center font-display text-sm font-normal tracking-[0.12em] text-bordeaux">
-        1–3 JAHRE
-      </p>
       <BesteckAnimation />
       <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-base md:text-lg">
         <p className="text-center font-bold">Essen als gemeinsames Erlebnis</p>
