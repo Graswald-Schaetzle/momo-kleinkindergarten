@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import { BaustellenAnimation } from "@/components/BaustellenAnimation";
+import { MischerAnimation } from "@/components/MischerAnimation";
 import schubkarre from "@/assets/schubkarre.png.asset.json";
 
 export const Route = createFileRoute("/raeume")({
@@ -30,7 +30,7 @@ function Raeume() {
   return (
     <main className="min-h-screen pb-6">
       <SiteHeader />
-      <BaustellenAnimation className="mt-8 sm:mt-10" />
+      <MischerAnimation className="mt-8 sm:mt-10" />
       <section className="mx-auto max-w-2xl px-6 pt-6 text-bordeaux sm:px-10 md:px-14">
         <h2 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
           Bei uns wächst gerade ein Zuhause heran
