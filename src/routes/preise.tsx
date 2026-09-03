@@ -39,12 +39,10 @@ function Preise() {
       <SiteHeader
         logoColor="text-menu-overlay-foreground"
         burgerColor="bg-menu-overlay-foreground"
+        showSlogan
+        hideTagline
       />
-      <section className="px-6 pt-14 sm:px-10 sm:pt-20 md:px-14">
-        <p className="mb-3 font-display text-sm font-normal tracking-[0.12em] text-[#4a3320]">
-          1–3 JAHRE
-        </p>
-
+      <section className="px-6 pt-8 sm:px-10 sm:pt-12 md:px-14">
         <div className="mx-auto max-w-md rounded-2xl border border-[#4a3320]/20 bg-[#e9dcc3] px-4 py-4 shadow-sm sm:px-6 sm:py-5">
           <p className="font-display text-sm font-normal leading-snug text-[#4a3320] sm:text-base">
             Geborgene, familiäre
