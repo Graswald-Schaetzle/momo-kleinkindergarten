@@ -28,6 +28,7 @@ export const Route = createFileRoute("/kontakt")({
 function Kontakt() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [files, setFiles] = useState<File[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,6 +112,24 @@ function Kontakt() {
                 className="resize-none rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base"
                 placeholder="Ihre Nachricht an uns"
               />
+            </div>
+            <div className="flex flex-col gap-1 sm:gap-2">
+              <label htmlFor="attachments" className="text-xs font-bold sm:text-base">
+                Dateien (optional)
+              </label>
+              <input
+                id="attachments"
+                type="file"
+                multiple
+                onChange={(e) => setFiles(Array.from(e.target.files ?? []))}
+                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux file:mr-3 file:rounded file:border-0 file:bg-bordeaux file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-background file:transition-colors hover:file:bg-bordeaux/90 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base file:sm:text-sm"
+              />
+              {files.length > 0 && (
+                <p className="text-xs text-bordeaux/70 sm:text-sm">
+                  {files.length} {files.length === 1 ? "Datei" : "Dateien"} ausgewählt:{" "}
+                  {files.map((f) => f.name).join(", ")}
+                </p>
+              )}
             </div>
             <button
               type="submit"
