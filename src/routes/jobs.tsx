@@ -31,16 +31,19 @@ function Jobs() {
       <SiteHeader showSlogan hideTagline />
 
       <section className="mx-auto max-w-2xl px-6 pt-12 text-bordeaux sm:px-10 md:px-14">
-        <img
-          src={zeichnungJobs.url}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="pointer-events-none mx-auto mb-4 w-40 select-none sm:mb-6 sm:w-48"
-        />
         <h1 className="text-center font-display text-xl font-normal leading-snug tracking-[0.04em] sm:text-2xl md:text-3xl">
           Erzieher*in (m/w/d) mit 33 Wochenstunden ab Januar 2027 gesucht
         </h1>
+
+        <div className="relative -mx-6 mt-4 h-40 overflow-visible sm:-mx-10 sm:mt-6 sm:h-52 md:-mx-14 md:h-64">
+          <img
+            src={zeichnungJobs.url}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="pointer-events-none absolute -left-6 top-0 h-full w-auto max-w-none select-none object-contain object-left sm:-left-8 md:-left-10"
+          />
+        </div>
 
         <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
           <p>Werde Teil unseres Teams und komm gerne zur Arbeit.</p>
