@@ -10,7 +10,7 @@ export function SiteFooter({
   return (
     <footer className="mt-16 px-6 pb-4 pt-1 text-center sm:mt-20 sm:px-10 sm:pb-10 sm:pt-3 md:px-14">
       {showInstagram && (
-        <div className="flex flex-col items-center gap-1">
+        <div className="-mt-8 flex flex-col items-center gap-1 sm:-mt-10">
           <p className={`${color} text-xs font-bold sm:text-sm`}>Folgt uns auf Instagram</p>
           <a
             href="https://instagram.com/momo.kleinkindergarten"
