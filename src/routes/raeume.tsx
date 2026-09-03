@@ -29,15 +29,12 @@ export const Route = createFileRoute("/raeume")({
 function Raeume() {
   return (
     <main className="min-h-screen pb-6">
-      <SiteHeader />
+      <SiteHeader showSlogan hideTagline />
       <MischerAnimation className="mt-8 sm:mt-10" />
       <section className="mx-auto max-w-2xl px-6 pt-6 text-bordeaux sm:px-10 md:px-14">
         <h2 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
           Bei uns wächst gerade ein Zuhause heran
         </h2>
-        <p className="mt-2 text-center font-display text-sm font-normal tracking-[0.12em] text-bordeaux">
-          1–3 JAHRE
-        </p>
         <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
           <p>
             Gerade verwandeln sich unsere Räume und unser Garten Stück für Stück in ein liebevolles
