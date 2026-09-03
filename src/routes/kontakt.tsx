@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import umschlagKontakt from "@/assets/umschlag-kontakt.png.asset.json";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
@@ -153,11 +154,18 @@ function Kontakt() {
               type="submit"
               className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
             >
-              Absenden
-            </button>
-          </form>
-        )}
-      </section>
+            Absenden
+          </button>
+        </form>
+      )}
+      <img
+        src={umschlagKontakt.url}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none mx-auto mt-6 w-20 select-none sm:mt-8 sm:w-24"
+      />
+    </section>
     </main>
   );
 }
