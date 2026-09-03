@@ -31,7 +31,7 @@ function Jobs() {
 
       <section className="mx-auto max-w-2xl px-6 pt-12 text-bordeaux sm:px-10 md:px-14">
         <h1 className="text-center font-display text-xl font-normal leading-snug tracking-[0.04em] sm:text-2xl md:text-3xl">
-          Erzieher*in (m/w/d) mit 33 Wochenstunden ab Januar gesucht
+          Erzieher*in (m/w/d) mit 33 Wochenstunden ab Januar 2027 gesucht
         </h1>
 
         <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
