@@ -126,7 +126,7 @@ function Kontakt() {
               />
               <label
                 htmlFor="attachments"
-                className="inline-flex w-fit cursor-pointer items-center gap-2 rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm font-bold text-bordeaux transition-colors hover:bg-white/80 sm:px-4 sm:py-3 sm:text-base"
+                className="flex w-full cursor-pointer items-center gap-2 rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm font-bold text-bordeaux transition-colors hover:bg-white/80 sm:px-4 sm:py-3 sm:text-base"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
