@@ -35,13 +35,13 @@ function Jobs() {
           Erzieher*in (m/w/d) mit 33 Wochenstunden ab Januar 2027 gesucht
         </h1>
 
-        <div className="relative -mx-6 mt-4 h-40 overflow-visible sm:-mx-10 sm:mt-6 sm:h-52 md:-mx-14 md:h-64">
+        <div className="relative -mx-6 mt-4 overflow-visible sm:-mx-10 md:-mx-14">
           <img
             src={zeichnungJobs.url}
             alt=""
             aria-hidden
             loading="lazy"
-            className="pointer-events-none absolute -left-6 top-0 h-full w-auto max-w-none select-none object-contain object-left sm:-left-8 md:-left-10"
+            className="pointer-events-none -ml-20 w-80 select-none sm:-ml-24 sm:w-96 md:-ml-28 md:w-[28rem]"
           />
         </div>
 
