@@ -122,8 +122,26 @@ function Kontakt() {
                 type="file"
                 multiple
                 onChange={(e) => setFiles(Array.from(e.target.files ?? []))}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux file:mr-3 file:rounded file:border-0 file:bg-bordeaux file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-background file:transition-colors hover:file:bg-bordeaux/90 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base file:sm:text-sm"
+                className="hidden"
               />
+              <label
+                htmlFor="attachments"
+                className="inline-flex w-fit cursor-pointer items-center gap-2 rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm font-bold text-bordeaux transition-colors hover:bg-white/80 sm:px-4 sm:py-3 sm:text-base"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 sm:h-5 sm:w-5"
+                >
+                  <path d="M21.44 11.05 12.25 20.24a5.5 5.5 0 0 1-7.78-7.78l9.19-9.19a3.5 3.5 0 0 1 4.95 4.95L9.42 17.4a1.5 1.5 0 0 1-2.12-2.12l8.49-8.49" />
+                </svg>
+                Datei anhängen
+              </label>
               {files.length > 0 && (
                 <p className="text-xs text-bordeaux/70 sm:text-sm">
                   {files.length} {files.length === 1 ? "Datei" : "Dateien"} ausgewählt:{" "}
