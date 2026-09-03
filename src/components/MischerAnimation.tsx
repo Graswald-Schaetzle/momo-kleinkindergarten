@@ -8,7 +8,7 @@ import trommel from "@/assets/mischer-trommel.png.asset.json";
 export function MischerAnimation({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`mx-auto w-full max-w-[420px] ${className}`}
+      className={`mx-auto w-full max-w-[220px] sm:max-w-[280px] md:max-w-[320px] ${className}`}
       role="img"
       aria-label="Aquarellzeichnung eines Betonmischers mit sich drehender Trommel"
     >

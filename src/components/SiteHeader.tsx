@@ -180,7 +180,7 @@ export function SiteHeader({
       )}
 
       {showSlogan && !hideTagline && (
-        <p className="mt-8 max-w-lg px-4 font-display text-sm font-bold leading-relaxed tracking-[0.2em] text-bordeaux sm:mt-10 sm:text-base md:mt-12 md:text-lg">
+        <p className="mt-8 max-w-lg px-4 font-display text-base font-bold leading-relaxed tracking-[0.2em] text-bordeaux sm:mt-10 sm:text-lg md:mt-12 md:text-xl">
           Neun Kinder, drei Pädagoginnen, unendliche Geborgenheit.
         </p>
       )}
