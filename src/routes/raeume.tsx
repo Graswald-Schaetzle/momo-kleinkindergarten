@@ -28,7 +28,7 @@ export const Route = createFileRoute("/raeume")({
 
 function Raeume() {
   return (
-    <main className="min-h-screen pb-32">
+    <main className="min-h-screen pb-6">
       <SiteHeader />
       <BaustellenAnimation className="mt-8 sm:mt-10" />
       <section className="mx-auto max-w-2xl px-6 pt-6 text-bordeaux sm:px-10 md:px-14">
@@ -75,7 +75,7 @@ function Raeume() {
         <img
           src={schubkarre.url}
           alt="Aquarellzeichnung einer Schubkarre mit Spaten"
-          className="mx-auto mt-10 w-56 sm:mt-14 sm:w-72 md:w-80"
+          className="mx-auto mt-4 w-56 sm:mt-6 sm:w-72 md:w-80"
           loading="lazy"
         />
       </section>
