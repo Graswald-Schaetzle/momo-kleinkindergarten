@@ -46,12 +46,6 @@ function PaedagogikIndex() {
           }
         `}</style>
 
-        <div className="relative flex items-center justify-center gap-4 sm:gap-6">
-          <p className="mt-0 text-center font-display text-xs font-normal tracking-[0.25em] text-bordeaux sm:text-sm">
-            1–3&nbsp;Jahre
-          </p>
-        </div>
-
         <img
           src={paedagogikBlumen.url}
           alt=""
