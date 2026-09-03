@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import zeichnungJobs from "@/assets/zeichnung-jobs.png.asset.json";
 
 export const Route = createFileRoute("/jobs")({
   head: () => ({
