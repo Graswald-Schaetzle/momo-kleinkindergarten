@@ -44,14 +44,6 @@ function Kontakt() {
           Kontakt
         </h2>
 
-        <img
-          src={umschlagKontakt.url}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="kontakt-umschlag pointer-events-none mx-auto mt-4 w-32 select-none sm:mt-6 sm:w-40"
-        />
-
         {submitted ? (
           <div className="mx-auto mt-10 max-w-xl rounded-lg bg-bordeaux/10 px-8 py-10">
             <p className="font-display text-lg font-normal leading-relaxed">
@@ -165,6 +157,14 @@ function Kontakt() {
             </button>
           </form>
         )}
+
+        <img
+          src={umschlagKontakt.url}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="kontakt-umschlag pointer-events-none mx-auto mt-6 w-32 select-none sm:mt-8 sm:w-40"
+        />
       </section>
     </main>
   );
