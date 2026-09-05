@@ -85,9 +85,9 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           {/* Textbereich auf dem Papier, bei Bedarf scrollbar. */}
           <div
             className="absolute left-[10%] right-[10%] z-[5] overflow-y-auto overflow-x-hidden"
-            style={{ top: "22%", bottom: "7%" }}
+            style={{ top: "32%", bottom: "7%" }}
           >
-            <div className="pen-ink space-y-2 font-handwritten text-left text-[10px] leading-snug text-pen sm:text-xs md:text-sm">
+            <div className="pen-ink space-y-2 font-handwritten text-left text-xs leading-snug text-[#26303c] sm:text-sm md:text-base">
               {paragraphs.map((text, i) => (
                 <p key={text.slice(0, 24)} className="text-left" lang="de">
                   <Handwritten text={text} seedBase={i * 1000} />
