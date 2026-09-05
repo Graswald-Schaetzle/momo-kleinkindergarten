@@ -9,7 +9,7 @@ import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
 import umschlagOffen from "@/assets/umschlag-offen.png";
 import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
-import briefpapier from "@/assets/briefpapier.png.asset.json";
+import briefpapier from "@/assets/briefpapier-gefaltet.jpg.asset.json";
 
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
