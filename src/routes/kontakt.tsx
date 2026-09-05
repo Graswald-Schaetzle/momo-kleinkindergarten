@@ -32,7 +32,6 @@ function Kontakt() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [files, setFiles] = useState<File[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +44,6 @@ function Kontakt() {
     data.append("email", form.email);
     data.append("subject", form.subject);
     data.append("message", form.message);
-    files.forEach((file) => data.append("attachment", file));
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -147,42 +145,6 @@ function Kontakt() {
                 className="resize-none rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base"
                 placeholder="Ihre Nachricht an uns"
               />
-            </div>
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="attachments" className="text-xs font-bold sm:text-base">
-                Dateien (optional)
-              </label>
-              <input
-                id="attachments"
-                type="file"
-                multiple
-                onChange={(e) => setFiles(Array.from(e.target.files ?? []))}
-                className="hidden"
-              />
-              <label
-                htmlFor="attachments"
-                className="flex w-full cursor-pointer items-center gap-2 rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm font-normal text-bordeaux/50 transition-colors hover:bg-white/80 sm:px-4 sm:py-3 sm:text-base"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-4 w-4 sm:h-5 sm:w-5"
-                >
-                  <path d="M21.44 11.05 12.25 20.24a5.5 5.5 0 0 1-7.78-7.78l9.19-9.19a3.5 3.5 0 0 1 4.95 4.95L9.42 17.4a1.5 1.5 0 0 1-2.12-2.12l8.49-8.49" />
-                </svg>
-                Datei anhängen
-              </label>
-              {files.length > 0 && (
-                <p className="text-xs text-bordeaux/70 sm:text-sm">
-                  {files.length} {files.length === 1 ? "Datei" : "Dateien"} ausgewählt:{" "}
-                  {files.map((f) => f.name).join(", ")}
-                </p>
-              )}
             </div>
             {error && <p className="text-xs text-red-700 sm:text-sm">{error}</p>}
 
