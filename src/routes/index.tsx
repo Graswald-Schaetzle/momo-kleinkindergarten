@@ -88,31 +88,18 @@ function Index() {
           aria-pressed={!muted}
           aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
         >
-          {/* Das Video hat einen cremefarbenen Kartenhintergrund statt echter
-              Transparenz. Ein mask-image auf <video> wird von iOS Safari oft
-              ignoriert, daher liegt "mix-blend-mode: multiply" hier auf einem
-              umschließenden <div> (nicht direkt auf dem <video>) – Weiß/Creme
-              verschwindet dadurch pixelgenau im Seitenhintergrund, unabhängig
-              von der genauen Form der Karte. Weißer Div-Hintergrund sorgt
-              dafür, dass auch während des Ladens (bevor das Video sichtbar
-              ist) schon korrekt mit der Seitenfarbe verschmolzen wird. */}
-          <div
-            className="relative"
-            style={{ backgroundColor: "#fff", mixBlendMode: "multiply" }}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroPoster.url}
+            aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
+            className="relative block w-full cursor-pointer"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={heroPoster.url}
-              aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-              className="relative block w-full cursor-pointer"
-            >
-              <source src={heroVideoWebm.url} type="video/webm" />
-              <source src={heroVideoMp4.url} type="video/mp4" />
-            </video>
-          </div>
+            <source src={heroVideoWebm.url} type="video/webm" />
+            <source src={heroVideoMp4.url} type="video/mp4" />
+          </video>
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
 
