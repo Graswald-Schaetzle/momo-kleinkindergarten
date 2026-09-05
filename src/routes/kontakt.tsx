@@ -80,9 +80,12 @@ function Kontakt() {
         {submitted ? (
           <div className="mx-auto mt-10 max-w-xl rounded-lg bg-bordeaux/10 px-8 py-10">
             <p className="font-display text-lg font-normal leading-relaxed">
-              Vielen Dank! Ihre Nachricht wurde versendet.
+              Herzlichen Dank für deine Nachricht!
               <br />
-              Wir melden uns in aller Schnelle bei Ihnen.
+              Wir freuen uns über dein Interesse und melden uns so schnell wie möglich bei dir zurück.
+              <br />
+              <br />
+              Bis dahin, herzliche Grüße vom MOMO-Team!
             </p>
           </div>
         ) : (
