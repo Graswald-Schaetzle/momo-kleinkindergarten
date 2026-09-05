@@ -118,6 +118,13 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
               ))}
             </div>
           </div>
+
+          {/* Derselbe Stempel wie auf dem Umschlag, unten auf dem Papier. */}
+          <div className="brief-stamp absolute bottom-[2%] left-1/2 z-10 w-16 text-ink sm:w-20">
+            <div className="brief-stamp-ring">
+              <MomoLogo showSubtitle className="w-full" />
+            </div>
+          </div>
         </div>
       </div>
     );
