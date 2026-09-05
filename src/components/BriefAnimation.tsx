@@ -64,7 +64,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   /* Geöffneter Zustand: nur der Brief auf dem Papier, Umschlag ist weg. */
   if (open) {
     return (
-      <div className={`pt-10 sm:pt-16 ${className}`}>
+      <div className={`pt-2 sm:pt-3 ${className}`}>
         <div className="mx-auto mb-2 w-full max-w-md sm:mb-3">
           <button
             type="button"
