@@ -96,6 +96,7 @@ function Index() {
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
             className="relative w-full cursor-pointer"
+            style={{ backgroundColor: "var(--mustard)" }}
           >
             <source src={heroVideoWebm.url} type="video/webm" />
             <source src={heroVideoMp4.url} type="video/mp4" />
