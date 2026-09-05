@@ -65,13 +65,26 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   if (open) {
     return (
       <div className={`pt-10 sm:pt-16 ${className}`}>
-        <div className="mb-4 text-center sm:mb-6">
+        <div className="mx-auto mb-2 w-full max-w-md sm:mb-3">
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="font-sans text-xs text-ink/70 underline underline-offset-4 transition-colors hover:text-ink sm:text-sm"
+            aria-label="Zurück zum Umschlag"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-ink/70 transition-colors hover:text-ink"
           >
-            ← Zurück zum Umschlag
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6"
+            >
+              <path d="M19 12H5" />
+              <path d="m12 19-7-7 7-7" />
+            </svg>
           </button>
         </div>
 
