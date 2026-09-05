@@ -231,6 +231,19 @@
   .momo-hand-spin, .momo-eye-lid, .momo-clock-shake { animation: none; }
 }
 
+/* Sanftes Atmen des schlafenden Hundes auf der Startseite. */
+.breathing-dog {
+  transform-origin: 50% 65%;
+  animation: dog-breathe 3.6s ease-in-out infinite;
+}
+@keyframes dog-breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.015, 0.985); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .breathing-dog { animation: none; }
+}
+
 
 body[data-overlay-open] .burger-bar {
   background-color: var(--menu-overlay-foreground);

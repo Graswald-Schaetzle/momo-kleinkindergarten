@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideoWebm from "@/assets/momo-hund-alpha.webm.asset.json";
-import heroVideoMp4 from "@/assets/momo-hund-senf3.mp4.asset.json";
-import heroPoster from "@/assets/momo-hund-alpha-poster.jpg.asset.json";
+import { SleepingDogIllustration } from "@/components/SleepingDogIllustration";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
 
 
@@ -82,24 +80,13 @@ function Index() {
 
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div
-          className="relative mx-auto mt-20 w-full max-w-5xl overflow-hidden px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
+          className="relative mx-auto mt-20 w-full max-w-md cursor-pointer px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
           onClick={toggleSnore}
           role="button"
           aria-pressed={!muted}
           aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={heroPoster.url}
-            aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-            className="relative block w-full cursor-pointer"
-          >
-            <source src={heroVideoWebm.url} type="video/webm" />
-            <source src={heroVideoMp4.url} type="video/mp4" />
-          </video>
+          <SleepingDogIllustration className="block w-full" />
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
 
