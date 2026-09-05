@@ -96,18 +96,22 @@ function Index() {
             poster={heroPoster.url}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
             className="relative w-full cursor-pointer"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
-              maskImage:
-                "linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 5%, #000 92%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-              maskComposite: "intersect",
-            }}
           >
             <source src={heroVideoWebm.url} type="video/webm" />
             <source src={heroVideoMp4.url} type="video/mp4" />
           </video>
+          {/* Deckt die Videokanten mit der Seitenfarbe ab, damit der Hund
+              freigestellt auf dem Hintergrund wirkt. Ein CSS-Mask auf dem
+              <video> selbst wird von iOS Safari oft ignoriert, daher hier
+              ein normaler Verlaufs-Overlay statt mask-image. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, var(--mustard) 0, transparent 8%, transparent 92%, var(--mustard) 100%), linear-gradient(to bottom, var(--mustard) 0, transparent 5%, transparent 92%, var(--mustard) 100%)",
+            }}
+          />
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
 
