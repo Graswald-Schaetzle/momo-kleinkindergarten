@@ -82,7 +82,7 @@ function Index() {
 
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div
-          className="relative mx-auto mt-10 w-full max-w-5xl overflow-hidden px-6 sm:mt-16 sm:px-10 md:mt-20 md:px-14"
+          className="relative mx-auto mt-20 w-full max-w-5xl overflow-hidden px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
           onClick={toggleSnore}
           role="button"
           aria-pressed={!muted}
