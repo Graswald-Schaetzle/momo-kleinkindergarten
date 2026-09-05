@@ -159,6 +159,7 @@ function Kontakt() {
               {sending ? "Wird gesendet…" : "Absenden"}
             </button>
           </form>
+          </>
         )}
       </section>
     </main>
