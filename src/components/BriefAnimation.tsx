@@ -4,7 +4,7 @@
    Klammer hängt ein Foto von Olivia. */
 
 import { useState } from "react";
-import briefmarke from "@/assets/briefmarke-klammer.png";
+import briefmarke from "@/assets/olivia-portrait.png.asset.json";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
 import umschlagOffen from "@/assets/umschlag-offen.png";
@@ -73,9 +73,9 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           />
 
           {/* Foto hängt wie an einer Klammer oben auf dem Papier. */}
-          <figure className="absolute left-1/2 top-[4%] z-10 w-16 -translate-x-1/2 rotate-[2deg] sm:w-20">
+          <figure className="absolute left-1/2 top-[3%] z-10 w-20 -translate-x-1/2 rotate-[2deg] sm:w-24">
             <img
-              src={briefmarke}
+              src={briefmarke.url}
               alt="Olivia, Gründerin von MOMO"
               loading="lazy"
               className="block h-auto w-full drop-shadow-[0_4px_6px_rgba(43,27,38,0.28)]"
