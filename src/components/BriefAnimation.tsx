@@ -1,7 +1,7 @@
-/* Brief-Animation: Ein geschlossener Umschlag öffnet seine Klappe,
-   der Brief fährt ein Stück hoch und bleibt sichtbar IM Umschlag stehen
-   (zwischen Klappe und Vordertasche), mit eigenem Scrollbereich für den
-   Text. Am Brief hängt mit einer Büroklammer ein Foto von Olivia. */
+/* Brief-Animation: Ein geschlossener Umschlag öffnet sich beim Klick,
+   verschwindet dann komplett und macht Platz für den Brief auf
+   zerknittertem Papier mit Sternen, Klebeband und Büroklammer – an der
+   Klammer hängt ein Foto von Olivia. */
 
 import { useState } from "react";
 import briefmarke from "@/assets/briefmarke-klammer.png";
@@ -9,6 +9,7 @@ import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
 import umschlagOffen from "@/assets/umschlag-offen.png";
 import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
+import briefpapier from "@/assets/briefpapier.png.asset.json";
 
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
@@ -59,55 +60,20 @@ function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
 
 export function BriefAnimation({ className = "" }: { className?: string }) {
   const [open, setOpen] = useState(false);
-  return (
-    <div className={`pt-20 sm:pt-32 ${className}`}>
-      {!open && (
-        <div className="relative z-40 mb-4 text-center sm:mb-6">
-          <p className="font-display text-base italic text-ink sm:text-lg">
-            {"\n"}
-          </p>
-          <p className="font-sans text-xs text-ink/70 sm:text-sm">
-            Drücke auf den Umschlag, um mehr zu erfahren.
-          </p>
-        </div>
-      )}
 
-      <div
-        className={`relative mx-auto w-full max-w-2xl pb-[67%] ${open ? "brief-open" : ""} ${open ? "" : "cursor-pointer"}`}
-        role={open ? undefined : "button"}
-        tabIndex={open ? undefined : 0}
-        aria-label={open ? undefined : "Briefumschlag öffnen"}
-        onClick={() => setOpen(true)}
-        onKeyDown={(e) => {
-          if (!open && (e.key === "Enter" || e.key === " ")) {
-            e.preventDefault();
-            setOpen(true);
-          }
-        }}
-      >
-      {/* Umschlag-Rückseite mit geöffneter Klappe (hinter dem Brief). */}
-      <div className="brief-env-open absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
-        <img
-          src={umschlagOffen}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="absolute bottom-0 left-0 w-full"
-        />
-      </div>
+  /* Geöffneter Zustand: nur der Brief auf dem Papier, Umschlag ist weg. */
+  if (open) {
+    return (
+      <div className={`pt-10 sm:pt-16 ${className}`}>
+        <div className="brief-letter relative mx-auto w-full max-w-xl">
+          <img
+            src={briefpapier.url}
+            alt="Zerknitterter Briefbogen mit Sternen und Büroklammer"
+            className="block w-full"
+          />
 
-      {/* Fenster, in dem der Brief steckt: sitzt zwischen der Klappenkante
-          oben und dem unteren Taschenrand, damit ein Stück Vordertasche
-          samt Stempel sichtbar bleibt. Eigener Scrollbereich, weil der
-          Umschlag nicht wächst, der Text aber länger ist. */}
-      <div
-        className="brief-window absolute left-1/2 z-[25] w-[62%] -translate-x-1/2 overflow-y-auto overflow-x-hidden"
-        style={{ top: "26%", bottom: "13%" }}
-      >
-        <article className="brief-paper relative min-h-full px-3 py-3 text-left sm:px-5 sm:py-4">
-          {/* Foto sitzt dicht am oberen Papierrand; die Büroklammer
-              greift über die Kante und ragt seitlich heraus. */}
-          <figure className="brief-photo absolute top-1 -right-1 z-10 w-14 rotate-[3deg] sm:top-2 sm:-right-3 sm:w-20">
+          {/* Foto hängt direkt unter der gezeichneten Büroklammer oben. */}
+          <figure className="absolute left-1/2 top-[7%] z-10 w-16 -translate-x-1/2 rotate-[2deg] sm:w-20">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
@@ -116,50 +82,87 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             />
           </figure>
 
-          <div className="pen-ink space-y-1.5 pt-1 font-handwritten text-[10px] leading-snug text-pen sm:text-xs md:text-sm">
-            {paragraphs.map((text, i) => (
-              <p
-                key={text.slice(0, 24)}
-                className={`text-left ${i === 0 ? "pr-12 sm:pr-16" : ""}`}
-                lang="de"
-              >
-                <Handwritten text={text} seedBase={i * 1000} />
-              </p>
-            ))}
-          </div>
-        </article>
-      </div>
-
-      {/* Umschlag-Vorderseite (vor dem Brief) + geschlossener Umschlag */}
-      <div className="brief-env-open absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
-        <img
-          src={umschlagOffenFront}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="block w-full"
-        />
-        <div className="brief-stamp absolute bottom-[18%] left-1/2 w-[44%] text-ink">
-          <div className="brief-stamp-ring">
-            <MomoLogo showSubtitle className="w-full" />
+          {/* Textbereich auf dem Papier, bei Bedarf scrollbar. */}
+          <div
+            className="absolute left-[12%] right-[12%] z-[5] overflow-y-auto overflow-x-hidden"
+            style={{ top: "24%", bottom: "9%" }}
+          >
+            <div className="pen-ink space-y-2 font-handwritten text-left text-[10px] leading-snug text-pen sm:text-xs md:text-sm">
+              {paragraphs.map((text, i) => (
+                <p key={text.slice(0, 24)} className="text-left" lang="de">
+                  <Handwritten text={text} seedBase={i * 1000} />
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-      <div className="brief-env-closed absolute bottom-0 left-1/2 z-30 w-[104%] -translate-x-1/2">
-        <img
-          src={umschlagZu}
-          alt="Geschlossener Briefumschlag"
-          loading="lazy"
-          className="block w-full"
-        />
-        <div className="brief-stamp absolute bottom-[7%] left-1/2 w-[44%] text-ink">
-          <div className="brief-stamp-ring">
-            <MomoLogo showSubtitle className="w-full" />
+    );
+  }
+
+  /* Geschlossener Umschlag mit Spitze und Stempel. */
+  return (
+    <div className={`pt-20 sm:pt-32 ${className}`}>
+      <div className="relative z-40 mb-4 text-center sm:mb-6">
+        <p className="font-display text-base italic text-ink sm:text-lg">
+          {"\n"}
+        </p>
+        <p className="font-sans text-xs text-ink/70 sm:text-sm">
+          Drücke auf den Umschlag, um mehr zu erfahren.
+        </p>
+      </div>
+
+      <div
+        className="relative mx-auto w-full max-w-2xl cursor-pointer pb-[67%]"
+        role="button"
+        tabIndex={0}
+        aria-label="Briefumschlag öffnen"
+        onClick={() => setOpen(true)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen(true);
+          }
+        }}
+      >
+        <div className="absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
+          <img
+            src={umschlagOffen}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute bottom-0 left-0 w-full"
+          />
+        </div>
+
+        <div className="absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
+          <img
+            src={umschlagOffenFront}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="block w-full"
+          />
+          <div className="brief-stamp absolute bottom-[18%] left-1/2 w-[44%] text-ink">
+            <div className="brief-stamp-ring">
+              <MomoLogo showSubtitle className="w-full" />
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-1/2 z-30 w-[104%] -translate-x-1/2">
+          <img
+            src={umschlagZu}
+            alt="Geschlossener Briefumschlag"
+            loading="lazy"
+            className="block w-full"
+          />
+          <div className="brief-stamp absolute bottom-[7%] left-1/2 w-[44%] text-ink">
+            <div className="brief-stamp-ring">
+              <MomoLogo showSubtitle className="w-full" />
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-
   );
 }
