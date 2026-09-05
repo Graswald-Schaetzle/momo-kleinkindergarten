@@ -25,14 +25,45 @@ export const Route = createFileRoute("/kontakt")({
   component: Kontakt,
 });
 
+const WEB3FORMS_ACCESS_KEY = "3b9891c1-6b78-4d52-a206-0740f795c35e";
+
 function Kontakt() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [files, setFiles] = useState<File[]>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setError(false);
+
+    const data = new FormData();
+    data.append("access_key", WEB3FORMS_ACCESS_KEY);
+    data.append("name", form.name);
+    data.append("email", form.email);
+    data.append("subject", form.subject);
+    data.append("message", form.message);
+    files.forEach((file) => data.append("attachment", file));
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -148,11 +179,18 @@ function Kontakt() {
                 </p>
               )}
             </div>
+            {error && (
+              <p className="text-xs text-red-700 sm:text-sm">
+                Beim Versenden ist etwas schiefgelaufen. Bitte versuchen Sie es erneut.
+              </p>
+            )}
+
             <button
               type="submit"
-              className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
+              disabled={sending}
+              className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 disabled:cursor-not-allowed disabled:opacity-60 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
             >
-              Absenden
+              {sending ? "Wird gesendet…" : "Absenden"}
             </button>
           </form>
         )}
