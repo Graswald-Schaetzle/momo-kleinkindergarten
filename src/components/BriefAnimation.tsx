@@ -4,7 +4,7 @@
    Klammer hängt ein Foto von Olivia. */
 
 import { useState } from "react";
-import briefmarke from "@/assets/briefmarke-klammer.png";
+import briefmarke from "@/assets/olivia-portrait.png.asset.json";
 import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
 import umschlagOffen from "@/assets/umschlag-offen.png";
