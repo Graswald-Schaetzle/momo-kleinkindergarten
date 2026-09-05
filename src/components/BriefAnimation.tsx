@@ -65,6 +65,16 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   if (open) {
     return (
       <div className={`pt-10 sm:pt-16 ${className}`}>
+        <div className="mb-4 text-center sm:mb-6">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="font-sans text-xs text-ink/70 underline underline-offset-4 transition-colors hover:text-ink sm:text-sm"
+          >
+            ← Zurück zum Umschlag
+          </button>
+        </div>
+
         <div className="brief-letter relative mx-auto w-full max-w-md">
           <img
             src={briefpapier.url}
@@ -85,7 +95,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           {/* Textbereich auf dem Papier, bei Bedarf scrollbar. */}
           <div
             className="absolute left-[10%] right-[10%] z-[5] overflow-y-auto overflow-x-hidden"
-            style={{ top: "32%", bottom: "7%" }}
+            style={{ top: "25%", bottom: "7%" }}
           >
             <div className="pen-ink space-y-2 font-handwritten text-left text-xs leading-snug text-[#26303c] sm:text-sm md:text-base">
               {paragraphs.map((text, i) => (
