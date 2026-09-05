@@ -73,10 +73,6 @@ function Kontakt() {
     <main className="flex flex-1 flex-col pb-2 text-center text-bordeaux">
       <SiteHeader showSlogan hideTagline />
       <section className="flex flex-1 flex-col items-center justify-center px-4 pb-10 sm:px-10 md:px-14">
-        <h2 className="mt-8 font-display text-xl font-normal tracking-[0.08em] sm:mt-12 sm:text-3xl md:mt-16">
-          Kontakt
-        </h2>
-
         {submitted ? (
           <div className="mx-auto mt-10 max-w-xl rounded-lg bg-bordeaux/10 px-8 py-10">
             <p className="font-display text-lg font-normal leading-relaxed">
@@ -89,6 +85,10 @@ function Kontakt() {
             </p>
           </div>
         ) : (
+          <>
+            <h2 className="mt-8 font-display text-xl font-normal tracking-[0.08em] sm:mt-12 sm:text-3xl md:mt-16">
+              Kontakt
+            </h2>
           <form
             onSubmit={handleSubmit}
             className="mx-auto mt-4 flex w-full max-w-xl flex-col gap-3 text-left sm:mt-10 sm:gap-5"
@@ -159,6 +159,7 @@ function Kontakt() {
               {sending ? "Wird gesendet…" : "Absenden"}
             </button>
           </form>
+          </>
         )}
       </section>
     </main>
