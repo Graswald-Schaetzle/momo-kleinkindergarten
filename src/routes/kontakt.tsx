@@ -30,14 +30,14 @@ const WEB3FORMS_ACCESS_KEY = "3b9891c1-6b78-4d52-a206-0740f795c35e";
 function Kontakt() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [files, setFiles] = useState<File[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    setError(false);
+    setError(null);
 
     const data = new FormData();
     data.append("access_key", WEB3FORMS_ACCESS_KEY);
@@ -57,10 +57,15 @@ function Kontakt() {
       if (result.success) {
         setSubmitted(true);
       } else {
-        setError(true);
+        setError(
+          result.message ||
+            "Beim Versenden ist etwas schiefgelaufen. Bitte versuchen Sie es erneut.",
+        );
       }
     } catch {
-      setError(true);
+      setError(
+        "Beim Versenden ist etwas schiefgelaufen. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+      );
     } finally {
       setSending(false);
     }
@@ -179,11 +184,7 @@ function Kontakt() {
                 </p>
               )}
             </div>
-            {error && (
-              <p className="text-xs text-red-700 sm:text-sm">
-                Beim Versenden ist etwas schiefgelaufen. Bitte versuchen Sie es erneut.
-              </p>
-            )}
+            {error && <p className="text-xs text-red-700 sm:text-sm">{error}</p>}
 
             <button
               type="submit"
