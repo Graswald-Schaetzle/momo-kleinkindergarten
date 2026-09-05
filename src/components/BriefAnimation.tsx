@@ -9,7 +9,7 @@ import { MomoLogo } from "@/components/MomoLogo";
 import umschlagZu from "@/assets/umschlag-zu.png";
 import umschlagOffen from "@/assets/umschlag-offen.png";
 import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
-import briefpapier from "@/assets/briefpapier.png.asset.json";
+import briefpapier from "@/assets/briefpapier-gefaltet.jpg.asset.json";
 
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
@@ -65,15 +65,15 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   if (open) {
     return (
       <div className={`pt-10 sm:pt-16 ${className}`}>
-        <div className="brief-letter relative mx-auto w-full max-w-xl">
+        <div className="brief-letter relative mx-auto w-full max-w-md">
           <img
             src={briefpapier.url}
-            alt="Zerknitterter Briefbogen mit Sternen und Büroklammer"
+            alt="Gefalteter Briefbogen"
             className="block w-full"
           />
 
-          {/* Foto hängt direkt unter der gezeichneten Büroklammer oben. */}
-          <figure className="absolute left-1/2 top-[7%] z-10 w-16 -translate-x-1/2 rotate-[2deg] sm:w-20">
+          {/* Foto hängt wie an einer Klammer oben auf dem Papier. */}
+          <figure className="absolute left-1/2 top-[4%] z-10 w-16 -translate-x-1/2 rotate-[2deg] sm:w-20">
             <img
               src={briefmarke}
               alt="Olivia, Gründerin von MOMO"
@@ -84,8 +84,8 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
 
           {/* Textbereich auf dem Papier, bei Bedarf scrollbar. */}
           <div
-            className="absolute left-[12%] right-[12%] z-[5] overflow-y-auto overflow-x-hidden"
-            style={{ top: "24%", bottom: "9%" }}
+            className="absolute left-[10%] right-[10%] z-[5] overflow-y-auto overflow-x-hidden"
+            style={{ top: "22%", bottom: "7%" }}
           >
             <div className="pen-ink space-y-2 font-handwritten text-left text-[10px] leading-snug text-pen sm:text-xs md:text-sm">
               {paragraphs.map((text, i) => (
