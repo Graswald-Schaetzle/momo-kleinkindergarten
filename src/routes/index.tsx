@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import heroVideoWebm from "@/assets/momo-hund-alpha.webm.asset.json";
-import heroVideoMp4 from "@/assets/momo-hund-senf3.mp4.asset.json";
-import heroPoster from "@/assets/momo-hund-alpha-poster.jpg.asset.json";
 import snoreAudio from "@/assets/momo-schnarchen-2.mp3.asset.json";
+
+// Selbst freigestellte Versionen des Hund-Videos (siehe public/hund/README.md):
+// WebM mit echtem Alpha-Kanal für Chrome/Firefox/Android, MP4 mit dem Hund
+// direkt auf den Senfton der Seite gerechnet als Fallback für Safari/iOS
+// (dort wird Video-Transparenz nicht zuverlässig unterstützt).
+const heroVideoWebmUrl = "/hund/momo-hund-alpha.webm";
+const heroVideoMp4Url = "/hund/momo-hund-mustard.mp4";
+const heroPosterUrl = "/hund/momo-hund-poster.jpg";
 
 
 export const Route = createFileRoute("/")({
@@ -82,7 +87,7 @@ function Index() {
 
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div
-          className="relative mx-auto mt-20 w-full max-w-5xl overflow-hidden px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
+          className="relative mx-auto mt-20 w-full max-w-5xl px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
           onClick={toggleSnore}
           role="button"
           aria-pressed={!muted}
@@ -93,12 +98,12 @@ function Index() {
             muted
             loop
             playsInline
-            poster={heroPoster.url}
+            poster={heroPosterUrl}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
             className="relative block w-full cursor-pointer"
           >
-            <source src={heroVideoWebm.url} type="video/webm" />
-            <source src={heroVideoMp4.url} type="video/mp4" />
+            <source src={heroVideoWebmUrl} type="video/webm" />
+            <source src={heroVideoMp4Url} type="video/mp4" />
           </video>
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
