@@ -37,9 +37,28 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   // Persisted muted state: once the user turns the snoring off, it stays off
   // across page navigations until they explicitly turn it back on.
   const [muted, setMuted] = useState(false);
+
+  useEffect(() => {
+    // iOS (egal ob Safari, Chrome oder Firefox — dort läuft überall Apples
+    // WebKit-Engine) meldet sich fälschlich als fähig, das transparente
+    // WebM abzuspielen, verwirft dabei aber den Alpha-Kanal und zeigt den
+    // Hund in einem sichtbaren Kasten statt auf dem Senfton der Seite.
+    // Deshalb hier gezielt auf die vorgerechnete Senfton-MP4 umschalten.
+    const video = videoRef.current;
+    if (!video) return;
+    const ua = navigator.userAgent;
+    const isIOS =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      video.src = heroVideoMp4Url;
+      video.load();
+    }
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -94,6 +113,7 @@ function Index() {
           aria-label={muted ? "Schnarchen einschalten" : "Schnarchen ausschalten"}
         >
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
