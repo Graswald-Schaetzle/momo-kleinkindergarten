@@ -82,12 +82,12 @@ function Index() {
   };
 
   return (
-    <main className="flex min-h-0 flex-1 flex-col items-center overflow-hidden text-center">
-      <SiteHeader showSlogan compact onMenuOpen={stopSnoring} />
+    <main className="flex flex-1 flex-col items-center pb-2 text-center">
+      <SiteHeader showSlogan onMenuOpen={stopSnoring} />
 
-      <div className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-2 overflow-hidden px-6 py-1 sm:px-10 md:px-14">
+      <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div
-          className="relative min-h-0 flex-1 cursor-pointer"
+          className="relative mx-auto mt-20 w-full max-w-5xl px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
           onClick={toggleSnore}
           role="button"
           aria-pressed={!muted}
@@ -100,7 +100,7 @@ function Index() {
             playsInline
             poster={heroPosterUrl}
             aria-label="Animierte Aquarell-Illustration: schlummernder Weimaraner"
-            className="mx-auto block h-full w-auto max-w-full cursor-pointer object-contain"
+            className="relative block w-full cursor-pointer"
           >
             <source src={heroVideoWebmUrl} type="video/webm" />
             <source src={heroVideoMp4Url} type="video/mp4" />
@@ -108,10 +108,9 @@ function Index() {
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
 
-        <p className="shrink-0 font-display text-sm font-normal leading-tight tracking-[0.2em] text-bordeaux sm:text-base md:text-lg">
-          Eröffnung Januar 2027
-        </p>
+        <p className="mt-8 px-6 font-display text-sm font-normal leading-tight tracking-[0.2em] text-bordeaux sm:mt-12 sm:text-base md:mt-16 md:text-lg">Eröffnung Januar 2027</p>
       </div>
+
     </main>
   );
 }
