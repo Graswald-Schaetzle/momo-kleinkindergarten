@@ -65,7 +65,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   if (open) {
     return (
       <div className={`pt-2 sm:pt-3 ${className}`}>
-        <div className="mx-auto mb-2 w-full max-w-2xl sm:mb-3">
+        <div className="mx-auto mb-2 w-full max-w-3xl sm:mb-3">
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -88,7 +88,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           </button>
         </div>
 
-        <div className="brief-letter relative mx-auto w-full max-w-2xl">
+        <div className="brief-letter relative mx-auto w-full max-w-3xl">
           <img
             src={briefpapier.url}
             alt="Gefalteter Briefbogen"
@@ -107,8 +107,8 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
 
           {/* Textbereich auf dem Papier, bei Bedarf scrollbar. */}
           <div
-            className="absolute left-[10%] right-[10%] z-[5] overflow-y-auto overflow-x-hidden"
-            style={{ top: "25%", bottom: "7%" }}
+            className="absolute left-[6%] right-[6%] z-[5] overflow-y-auto overflow-x-hidden"
+            style={{ top: "21%", bottom: "5%" }}
           >
             <div className="pen-ink space-y-2 font-handwritten text-left text-sm leading-snug text-[#26303c] sm:text-base md:text-lg">
               {paragraphs.map((text, i) => (
