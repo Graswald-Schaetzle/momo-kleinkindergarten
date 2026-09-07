@@ -35,14 +35,12 @@ export function SiteHeader({
   hideTagline = false,
   logoColor = "text-bordeaux",
   burgerColor = "bg-bordeaux",
-  compact = false,
   onMenuOpen,
 }: {
   showSlogan?: boolean;
   hideTagline?: boolean;
   logoColor?: string;
   burgerColor?: string;
-  compact?: boolean;
   onMenuOpen?: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -59,9 +57,7 @@ export function SiteHeader({
   }, [open]);
 
   return (
-    <header
-      className={`shrink-0 px-6 text-center sm:px-10 md:px-14 ${compact ? "pt-3 sm:pt-4" : "pt-4 sm:pt-8"}`}
-    >
+    <header className="px-6 pt-4 text-center sm:px-10 sm:pt-8 md:px-14">
       <button
         type="button"
         onClick={() =>
@@ -175,19 +171,13 @@ export function SiteHeader({
       </Link>
 
       {showSlogan && (
-        <p
-          className={`font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:text-sm ${compact ? "mt-1 sm:mt-2" : "mt-4 sm:mt-6"}`}
-        >
+        <p className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-6 sm:text-sm`}>
           1–3&nbsp;Jahre
         </p>
       )}
 
       {showSlogan && !hideTagline && (
-        <p
-          className={`max-w-4xl px-4 text-2xl font-normal leading-tight text-bordeaux sm:text-4xl md:text-5xl ${
-            compact ? "mt-4 sm:mt-6 md:mt-8" : "mt-24 sm:mt-32 md:mt-40"
-          }`}
-        >
+        <p className="mt-24 max-w-4xl px-4 text-2xl font-normal leading-tight text-bordeaux sm:mt-32 sm:text-4xl md:mt-40 md:text-5xl">
           Neun Kinder, drei Pädagoginnen, unendliche Geborgenheit.
         </p>
       )}
