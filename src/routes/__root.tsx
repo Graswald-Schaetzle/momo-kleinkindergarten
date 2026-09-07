@@ -148,10 +148,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`flex min-h-screen flex-col ${bgClass}`}>
+      <div
+        className={`flex flex-col ${bgClass} ${isHome ? "h-dvh overflow-hidden" : "min-h-screen"}`}
+      >
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
-        <SiteFooter color={footerColor} showInstagram={isKontakt} />
+        <SiteFooter color={footerColor} showInstagram={isKontakt} compact={isHome} />
       </div>
     </QueryClientProvider>
 
