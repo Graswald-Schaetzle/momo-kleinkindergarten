@@ -143,7 +143,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       </div>
 
       <div
-        className="relative mx-auto w-full max-w-2xl cursor-pointer pb-[67%]"
+        className="relative mx-auto aspect-[100/67] w-[78%] max-w-2xl cursor-pointer sm:w-full"
         role="button"
         tabIndex={0}
         aria-label="Briefumschlag öffnen"
