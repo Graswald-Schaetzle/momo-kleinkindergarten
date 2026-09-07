@@ -65,7 +65,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   if (open) {
     return (
       <div className={`pt-2 sm:pt-3 ${className}`}>
-        <div className="mx-auto mb-2 w-full max-w-md sm:mb-3">
+        <div className="mx-auto mb-2 w-full max-w-2xl sm:mb-3">
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -88,7 +88,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           </button>
         </div>
 
-        <div className="brief-letter relative mx-auto w-full max-w-md">
+        <div className="brief-letter relative mx-auto w-full max-w-2xl">
           <img
             src={briefpapier.url}
             alt="Gefalteter Briefbogen"

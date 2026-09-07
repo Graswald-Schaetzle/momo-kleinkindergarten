@@ -171,7 +171,7 @@ export function SiteHeader({
 
 
       <Link to="/" className={`no-underline flex flex-col items-center ${logoColor}`}>
-        <MomoLogo className={compact ? "h-14 sm:h-20 md:h-24" : "h-20 sm:h-32 md:h-40"} />
+        <MomoLogo className="h-20 sm:h-32 md:h-40" />
       </Link>
 
       {showSlogan && (
@@ -184,10 +184,8 @@ export function SiteHeader({
 
       {showSlogan && !hideTagline && (
         <p
-          className={`max-w-4xl px-4 font-normal leading-tight text-bordeaux ${
-            compact
-              ? "mt-3 text-lg sm:mt-4 sm:text-2xl md:mt-6 md:text-3xl"
-              : "mt-24 text-2xl sm:mt-32 sm:text-4xl md:mt-40 md:text-5xl"
+          className={`max-w-4xl px-4 text-2xl font-normal leading-tight text-bordeaux sm:text-4xl md:text-5xl ${
+            compact ? "mt-4 sm:mt-6 md:mt-8" : "mt-24 sm:mt-32 md:mt-40"
           }`}
         >
           Neun Kinder, drei Pädagoginnen, unendliche Geborgenheit.
