@@ -14,7 +14,7 @@ import briefpapier from "@/assets/briefpapier-gefaltet.jpg.asset.json";
 const paragraphs = [
   "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
   "Ich bin staatlich anerkannte Erzieherin (B.A. Sozialwesen) und ausgebildete Waldorfpädagogin. Meine mehrjährige Erfahrungen im Kindergarten-Alltag habe ich unter anderem in Frankreich und Berlin gesammelt. Die Waldorf Pädagogik liegt mir sehr am Herzen gleichzeitig ist es mir wichtig, sie modern zu denken und zu leben, im Einklang mit dem, was wir heute über kindliche Entwicklung wissen.",
-  "Der Wunsch, irgendwann eine eigene kleine Krippe zu gründen, hat mich lange begleitet. Jetzt wird er wahr und das an einem ganz besonderen Ort: im Haus meines Großvaters, das ich liebevoll für Momo herrichte. Für mich ist Momo deshalb mehr als ein Projekt, es ist ein echtes Familienprojekt, in das viele persönliche Erinnerungen und viel Herzblut fließen.",
+  "Der Wunsch, irgendwann eine eigene kleine Krippe zu gründen, hat mich lange begleitet. Jetzt wird er wahr und das an einem ganz besonderen Ort: im Haus meiner Großeltern, das ich liebevoll für Momo herrichte. Für mich ist Momo deshalb mehr als ein Projekt, es ist ein echtes Familienprojekt, in das viele persönliche Erinnerungen und viel Herzblut fließen.",
   "Mir ist es ein Anliegen, dass kleine Kinder behutsam aufwachsen dürfen, in einer kleinen Gruppe, und in ihrem eigenen Tempo.",
   "Ich freue mich euch und eure Kinder kennenzulernen!",
 ];
@@ -110,7 +110,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             className="absolute left-[10%] right-[10%] z-[5] overflow-y-auto overflow-x-hidden"
             style={{ top: "25%", bottom: "7%" }}
           >
-            <div className="pen-ink space-y-2 font-handwritten text-left text-xs leading-snug text-[#26303c] sm:text-sm md:text-base">
+            <div className="pen-ink space-y-2 font-handwritten text-left text-sm leading-snug text-[#26303c] sm:text-base md:text-lg">
               {paragraphs.map((text, i) => (
                 <p key={text.slice(0, 24)} className="text-left" lang="de">
                   <Handwritten text={text} seedBase={i * 1000} />

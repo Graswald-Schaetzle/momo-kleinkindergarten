@@ -3,12 +3,18 @@ import { Link } from "@tanstack/react-router";
 export function SiteFooter({
   color = "text-bordeaux",
   showInstagram = false,
+  compact = false,
 }: {
   color?: string;
   showInstagram?: boolean;
+  compact?: boolean;
 }) {
   return (
-    <footer className="mt-16 px-6 pb-4 pt-1 text-center sm:mt-20 sm:px-10 sm:pb-10 sm:pt-3 md:px-14">
+    <footer
+      className={`shrink-0 px-6 pb-4 text-center sm:px-10 md:px-14 ${
+        compact ? "mt-1 pt-1" : "mt-16 pt-1 sm:mt-20 sm:pb-10 sm:pt-3"
+      }`}
+    >
       {showInstagram && (
         <div className="-mt-16 flex flex-col items-center gap-1 sm:-mt-20">
           <p className={`${color} text-xs font-bold sm:text-sm`}>Folgt uns auf Instagram</p>
