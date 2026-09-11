@@ -89,13 +89,28 @@ function Datenschutz() {
               kommen; wir achten darauf, mit unseren Dienstleistern die nach Art. 44 ff. DSGVO
               erforderlichen Garantien (z. B. EU-Standardvertragsklauseln) zu vereinbaren. Soweit
               erforderlich, schließen wir mit unseren Dienstleistern Vereinbarungen zur
-              Auftragsverarbeitung nach Art. 28 DSGVO.
+              Auftragsverarbeitung nach Art. 28 DSGVO. Die Server-Logfiles werden automatisiert
+              verarbeitet und nach einer kurzen, für die genannten Zwecke erforderlichen Frist
+              automatisch gelöscht.
             </p>
           </div>
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              4. Kontaktformular
+              4. Instagram und Google Maps (externe Links)
+            </h2>
+            <p className="mt-2">
+              Auf dieser Website verweisen wir mit einfachen Links auf unser Instagram-Profil und
+              auf einen Standort bei Google Maps. Diese Links sind nicht eingebettet: Es werden beim
+              Aufruf unserer Seiten keine Daten an Instagram (Meta Platforms Ireland Ltd.) oder
+              Google übertragen. Erst wenn du aktiv auf einen dieser Links klickst, verlässt du
+              unsere Website und die Datenschutzbestimmungen des jeweiligen Anbieters gelten.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display text-base font-normal tracking-[0.04em]">
+              5. Kontaktformular
             </h2>
             <p className="mt-2">
               Für unser Kontaktformular nutzen wir den Formularverarbeitungsdienst Web3Forms. Wenn
@@ -115,7 +130,7 @@ function Datenschutz() {
           </div>
 
           <div>
-            <h2 className="font-display text-base font-normal tracking-[0.04em]">5. Bewerbungen</h2>
+            <h2 className="font-display text-base font-normal tracking-[0.04em]">6. Bewerbungen</h2>
             <p className="mt-2">
               Wenn du dich über unser Kontaktformular bei uns bewirbst, verarbeiten wir die von dir
               übermittelten Angaben und Unterlagen ausschließlich zur Prüfung und Bearbeitung deiner
@@ -130,7 +145,7 @@ function Datenschutz() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              6. Schriftarten
+              7. Schriftarten
             </h2>
             <p className="mt-2">
               Die auf dieser Website verwendeten Schriftarten sind lokal auf unserem eigenen Server
@@ -141,7 +156,7 @@ function Datenschutz() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              7. Keine Analyse-, Tracking-Tools und Cookies
+              8. Keine Analyse-, Tracking-Tools und Cookies
             </h2>
             <p className="mt-2">
               Wir setzen auf dieser Website keine Analyse-, Tracking- oder Werbetools ein. Es werden
@@ -151,7 +166,7 @@ function Datenschutz() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              8. Deine Rechte
+              9. Deine Rechte
             </h2>
             <p className="mt-2">
               Du hast im Rahmen der geltenden gesetzlichen Bestimmungen das Recht auf:
@@ -178,7 +193,7 @@ function Datenschutz() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              9. Beschwerderecht bei der Aufsichtsbehörde
+              10. Beschwerderecht bei der Aufsichtsbehörde
             </h2>
             <p className="mt-2">
               Dir steht zudem ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu, z. B.
@@ -192,7 +207,7 @@ function Datenschutz() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              10. Aktualität dieser Datenschutzerklärung
+              11. Aktualität dieser Datenschutzerklärung
             </h2>
             <p className="mt-2">
               Diese Datenschutzerklärung ist aktuell gültig (Stand: September 2026). Wir werden sie
