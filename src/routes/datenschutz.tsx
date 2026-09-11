@@ -108,6 +108,9 @@ function Datenschutz() {
               gelöscht, sobald sie zur Bearbeitung deiner Anfrage nicht mehr benötigt werden, soweit
               keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Mit Web3Forms besteht,
               soweit erforderlich, eine Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO.
+              Die Verarbeitung kann dabei auch auf Servern außerhalb der EU/des EWR erfolgen; auch
+              hierfür achten wir auf die nach Art. 44 ff. DSGVO erforderlichen Garantien (z. B.
+              EU-Standardvertragsklauseln).
             </p>
           </div>
 
