@@ -68,7 +68,7 @@ const sections: Section[] = [
     imgMax: "max-w-[170px] sm:max-w-[280px] md:max-w-[340px]",
   },
   {
-    title: "Ganzheitlickeit",
+    title: "Ganzheitlichkeit",
     image: ganzheitlichkeitImg,
     video: ganzheitlichkeitVideo.url,
     alt: "Filmaufnahme: barfüßige Kinderfüße laufen über einen Holzboden",
