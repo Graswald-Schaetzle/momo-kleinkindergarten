@@ -57,7 +57,7 @@ export function SiteHeader({
   }, [open]);
 
   return (
-    <header className="px-6 pt-4 text-center sm:px-10 sm:pt-8 md:px-14">
+    <header className="px-6 pt-4 text-center sm:px-10 sm:pt-6 md:px-14">
       <button
         type="button"
         onClick={() =>
@@ -167,17 +167,17 @@ export function SiteHeader({
 
 
       <Link to="/" className={`no-underline flex flex-col items-center ${logoColor}`}>
-        <MomoLogo className="h-20 sm:h-32 md:h-40" />
+        <MomoLogo className="h-20 sm:h-24 md:h-28" />
       </Link>
 
       {showSlogan && (
-        <p className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-6 sm:text-sm`}>
+        <p className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-4 sm:text-sm`}>
           1–3&nbsp;Jahre
         </p>
       )}
 
       {showSlogan && !hideTagline && (
-        <p className="mt-24 max-w-4xl px-4 text-2xl font-normal leading-tight text-bordeaux sm:mt-32 sm:text-4xl md:mt-40 md:text-5xl">
+        <p className="mt-24 max-w-4xl px-4 text-2xl font-normal leading-tight text-bordeaux sm:mt-24 sm:text-2xl md:mt-24 md:text-2xl">
           Neun Kinder, drei Pädagoginnen, unendliche Geborgenheit.
         </p>
       )}

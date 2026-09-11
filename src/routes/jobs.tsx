@@ -31,7 +31,7 @@ function Jobs() {
       <SiteHeader showSlogan hideTagline />
 
       <section className="mx-auto max-w-2xl px-6 pt-12 text-bordeaux sm:px-10 md:px-14">
-        <h1 className="text-center font-display text-xl font-normal leading-snug tracking-[0.04em] sm:text-2xl md:text-3xl">
+        <h1 className="text-center font-display text-xl font-normal leading-snug tracking-[0.04em] sm:text-2xl md:text-2xl">
           Erzieher*in (m/w/d) mit 33 Wochenstunden ab Januar 2027 gesucht
         </h1>
 
@@ -43,7 +43,7 @@ function Jobs() {
           className="pointer-events-none relative -mt-2 left-1/2 w-[50vw] -translate-x-full select-none"
         />
 
-        <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-8 sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
+        <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-6 sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
           <p>Werde Teil unseres Teams und komm gerne zur Arbeit.</p>
 
           <p>
@@ -63,7 +63,7 @@ function Jobs() {
             uns steht an erster Stelle, dass sich unser Team wirklich gut versteht.
           </p>
 
-          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-lg">
             Was du bei uns findest
           </h3>
 
@@ -94,7 +94,7 @@ function Jobs() {
             </li>
           </ul>
 
-          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-lg">
             Was wir uns von dir wünschen
           </h3>
 
@@ -106,7 +106,7 @@ function Jobs() {
             <li>Offenheit für einen familiären, unkomplizierten Umgang miteinander</li>
           </ul>
 
-          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-xl">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-lg">
             Klingt das nach dir?
           </h3>
 
