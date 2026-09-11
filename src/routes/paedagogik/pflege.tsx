@@ -83,9 +83,8 @@ function Pflege() {
             />
           ))}
         </div>
-        <p className="mx-auto mt-4 max-w-sm text-center text-xs leading-relaxed text-black/60">
-          Wir verwenden Produkte der genannten Marken, stehen mit ihnen jedoch in keiner Kooperation
-          oder Partnerschaft.
+        <p className="mx-auto mt-3 text-center text-[10px] leading-relaxed text-black/40">
+          Verwendete Produkte, keine Markenkooperation.
         </p>
       </section>
     </>
