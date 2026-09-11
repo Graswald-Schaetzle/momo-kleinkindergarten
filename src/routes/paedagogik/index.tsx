@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import paedagogikBlumen from "@/assets/grafik-19-altrosa.png.asset.json";
 
-
 export const Route = createFileRoute("/paedagogik/")({
   head: () => ({
     meta: [
@@ -67,8 +66,8 @@ function PaedagogikIndex() {
           <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
             Für uns steht an erster Stelle, dass jedes Kind mit Liebe, Geduld und ganzem Herzen
             begleitet wird. Kein Kind soll sich bei uns jemals klein oder übersehen fühlen, jedes
-            Kind wird gesehen, gehört und so angenommen, wie es ist. Diese liebevolle Haltung ist für
-            uns kein Zusatz, sondern das Fundament unserer gesamten Arbeit.
+            Kind wird gesehen, gehört und so angenommen, wie es ist. Diese liebevolle Haltung ist
+            für uns kein Zusatz, sondern das Fundament unserer gesamten Arbeit.
           </p>
 
           <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
@@ -88,6 +87,31 @@ function PaedagogikIndex() {
           </p>
         </div>
 
+        <div className="mt-10 space-y-2 border-t border-bordeaux/20 pt-6 sm:mt-8 sm:pt-6">
+          <p className="text-sm font-bold sm:text-sm">Zum Nachlesen</p>
+          <ul className="space-y-1 text-sm sm:text-sm">
+            <li>
+              <a
+                href="/dokumente/konzeption.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                Unsere Konzeption (PDF)
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dokumente/gewaltschutzkonzept.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                Unser Gewaltschutzkonzept (PDF)
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
     </>
   );
