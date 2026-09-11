@@ -62,7 +62,8 @@ function Impressum() {
               <Link to="/kontakt" className="underline underline-offset-4">
                 Kontaktformular
               </Link>
-              . Anfragen werden zeitnah beantwortet.
+              . Anfragen per E-Mail oder Kontaktformular beantworten wir in der Regel innerhalb
+              eines Werktages.
             </p>
           </div>
 
