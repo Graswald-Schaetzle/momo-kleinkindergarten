@@ -81,7 +81,7 @@ const sections: Section[] = [
     text: "Unser Garten ist ein echter kleiner Naturraum: klettern auf Baumstämmen, matschen mit Wasser und Erde, Vögel beobachten. Kinder lernen hier mit allen Sinnen und in ihrem eigenen Tempo draußen, wo Entdecken noch echt ist.",
   },
   {
-    title: "Eigenständikeit",
+    title: "Eigenständigkeit",
     image: eigenstaendigkeitImg,
     alt: "Aquarell-Zeichnung: Kind stapelt selbstständig Bauklötze zu einem kleinen Turm",
     text: "Bei uns gibt es feste Rituale und klare Regeln, die dem Alltag Halt geben. Innerhalb dieses verlässlichen Rahmens soll euer Kind aber mitbestimmen. So erlebt es von Anfang an: Meine Meinung zählt, in einem Rahmen der mich sicher fühlen lässt.",
