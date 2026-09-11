@@ -110,10 +110,12 @@ function UeberUns() {
                 } ${imageFirst ? "pl-2 sm:pl-6" : "pr-2 sm:pr-6"} text-left`}
               >
                 <h2
-                  className={`font-display font-normal leading-tight tracking-[0.04em] hyphens-auto break-words ${
-                    section.title.length > 12
-                      ? "text-base sm:text-2xl md:text-3xl"
-                      : "text-xl sm:text-3xl md:text-4xl"
+                  className={`font-display font-normal leading-tight hyphens-auto break-words ${
+                    section.title.length > 14
+                      ? "tracking-normal text-sm sm:tracking-[0.04em] sm:text-2xl md:text-3xl"
+                      : section.title.length > 12
+                        ? "tracking-[0.04em] text-base sm:text-2xl md:text-3xl"
+                        : "tracking-[0.04em] text-xl sm:text-3xl md:text-4xl"
                   }`}
                   lang="de"
                 >
