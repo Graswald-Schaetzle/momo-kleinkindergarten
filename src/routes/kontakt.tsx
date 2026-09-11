@@ -91,10 +91,10 @@ function Kontakt() {
             </h2>
           <form
             onSubmit={handleSubmit}
-            className="mx-auto mt-4 flex w-full max-w-xl flex-col gap-3 text-left sm:mt-6 sm:gap-4"
+            className="mx-auto mt-4 flex w-full max-w-md flex-col gap-3 text-left sm:mt-4 sm:gap-3"
           >
             <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="name" className="text-xs font-bold sm:text-base">
+              <label htmlFor="name" className="text-xs font-bold sm:text-sm">
                 Name *
               </label>
               <input
@@ -103,12 +103,12 @@ function Kontakt() {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base"
+                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
                 placeholder="Ihr Name"
               />
             </div>
             <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="email" className="text-xs font-bold sm:text-base">
+              <label htmlFor="email" className="text-xs font-bold sm:text-sm">
                 E-Mail *
               </label>
               <input
@@ -117,12 +117,12 @@ function Kontakt() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base"
+                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
                 placeholder="ihre@email.de"
               />
             </div>
             <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="subject" className="text-xs font-bold sm:text-base">
+              <label htmlFor="subject" className="text-xs font-bold sm:text-sm">
                 Betreff *
               </label>
               <input
@@ -131,12 +131,12 @@ function Kontakt() {
                 required
                 value={form.subject}
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base"
+                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
                 placeholder="Betreff Ihrer Nachricht"
               />
             </div>
             <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="message" className="text-xs font-bold sm:text-base">
+              <label htmlFor="message" className="text-xs font-bold sm:text-sm">
                 Nachricht *
               </label>
               <textarea
@@ -145,7 +145,7 @@ function Kontakt() {
                 rows={3}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="resize-none rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-4 sm:py-3 sm:text-base"
+                className="resize-none rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
                 placeholder="Ihre Nachricht an uns"
               />
             </div>
@@ -154,7 +154,7 @@ function Kontakt() {
             <button
               type="submit"
               disabled={sending}
-              className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 disabled:cursor-not-allowed disabled:opacity-60 sm:mt-2 sm:px-10 sm:py-3 sm:text-base"
+              className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 disabled:cursor-not-allowed disabled:opacity-60 sm:mt-1 sm:px-8 sm:py-2 sm:text-sm"
             >
               {sending ? "Wird gesendet…" : "Absenden"}
             </button>

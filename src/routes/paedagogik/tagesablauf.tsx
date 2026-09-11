@@ -301,25 +301,25 @@ function TagesablaufPage() {
   };
 
   return (
-    <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-3xl md:px-14 md:pt-12">
-      <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-2xl md:text-2xl">
+    <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-2xl md:px-14 md:pt-12">
+      <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-xl md:text-xl">
         Unser Tagesablauf
       </h2>
 
-      <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-3 sm:text-sm md:text-sm">
+      <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-3 sm:text-xs md:text-xs">
         Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
         einzugehen.
       </p>
 
-      <p className="mx-auto mt-6 flex justify-center sm:mt-6">
-        <span className="inline-block text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-sm">
+      <p className="mx-auto mt-6 flex justify-center sm:mt-4">
+        <span className="inline-block text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-xs md:text-xs">
           Tippe auf eine Station, um mehr zu erfahren.
         </span>
       </p>
 
       {/* ===== Wecker-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-14 mb-14 aspect-square w-full max-w-[340px] sm:mt-14 sm:mb-14 sm:max-w-[380px] md:mt-14 md:mb-14 md:max-w-[420px]">
+      <div className="relative mx-auto mt-14 mb-14 aspect-square w-full max-w-[340px] sm:mt-[52px] sm:mb-[52px] sm:max-w-[260px] md:mt-[52px] md:mb-[52px] md:max-w-[280px]">
         {/* Aquarell-Wecker mit rotierendem Zeiger-Overlay */}
         <div
           key={shake}
@@ -408,23 +408,23 @@ function TagesablaufPage() {
               }}
               aria-expanded={isOpen}
             >
-              <span className={`flex max-w-[74px] flex-col sm:max-w-none ${align}`}>
+              <span className={`flex max-w-[74px] flex-col sm:max-w-[64px] ${align}`}>
                 <span className="flex justify-center text-bordeaux">
                   <img
                     src={Icon.url}
                     alt={Icon.alt}
-                    className={`h-[56px] w-[56px] object-contain sm:h-[142px] sm:w-[142px] ${Icon.tint ? "station-icon-tint" : ""}`}
+                    className={`h-[56px] w-[56px] object-contain sm:h-[30px] sm:w-[30px] md:h-[34px] md:w-[34px] ${Icon.tint ? "station-icon-tint" : ""}`}
                     draggable={false}
                   />
                 </span>
                 <span
-                  className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[12px] md:text-sm ${
+                  className={`mt-1 font-display text-[9px] font-normal leading-tight tracking-[0.03em] text-bordeaux sm:text-[9px] md:text-[10px] ${
                     isOpen ? "underline decoration-bordeaux/50 underline-offset-2" : ""
                   }`}
                 >
                   {item.title}
                 </span>
-                <span className="mt-0.5 font-display text-[8px] font-light leading-tight text-bordeaux/60 sm:text-[10px] md:text-xs">
+                <span className="mt-0.5 font-display text-[8px] font-light leading-tight text-bordeaux/60 sm:text-[8px] md:text-[8px]">
                   {item.time}
                 </span>
               </span>

@@ -65,7 +65,7 @@ const sections: Section[] = [
     image: ruheImg,
     alt: "Tuschezeichnung: ein ruhendes Kind mit geschlossenen Augen",
     text: "Bei uns hat der Tag einen ruhigen Klang. Verlässliche Rituale und feste Bezugspersonen geben Halt statt Hektik und schenken eurem Kind: innere Ruhe statt Reizüberflutung. Und natürlich darf dabei gelacht, getobt und laut gespielt werden.",
-    imgMax: "max-w-[170px] sm:max-w-[200px] md:max-w-[220px]",
+    imgMax: "max-w-[170px] sm:max-w-[140px] md:max-w-[150px]",
   },
   {
     title: "Ganzheitlichkeit",
@@ -85,7 +85,7 @@ const sections: Section[] = [
     image: eigenstaendigkeitImg,
     alt: "Aquarell-Zeichnung: Kind stapelt selbstständig Bauklötze zu einem kleinen Turm",
     text: "Bei uns gibt es feste Rituale und klare Regeln, die dem Alltag Halt geben. Innerhalb dieses verlässlichen Rahmens soll euer Kind aber mitbestimmen. So erlebt es von Anfang an: Meine Meinung zählt, in einem Rahmen der mich sicher fühlen lässt.",
-    imgMax: "max-w-[170px] sm:max-w-[200px] md:max-w-[220px]",
+    imgMax: "max-w-[170px] sm:max-w-[140px] md:max-w-[150px]",
     imgPosition: "w-full object-contain",
     imgAlign: "items-start",
   },
@@ -96,13 +96,13 @@ function UeberUns() {
     <main className="min-h-screen pb-12">
       <SiteHeader logoColor="text-black" burgerColor="bg-black" showSlogan hideTagline />
 
-      <div className="relative mx-auto max-w-6xl px-6 pt-4 sm:px-10 md:px-14">
+      <div className="relative mx-auto max-w-4xl px-6 pt-4 sm:px-10 md:px-14">
         {sections.map((section, i) => {
           const imageFirst = i % 2 === 1;
           return (
             <section
               key={section.title}
-              className="grid grid-cols-2 items-stretch gap-4 py-8 sm:gap-6 sm:py-8"
+              className="grid grid-cols-2 items-stretch gap-4 py-8 sm:gap-4 sm:py-6"
             >
               <div
                 className={`${
@@ -112,17 +112,17 @@ function UeberUns() {
                 <h2
                   className={`font-display font-normal leading-tight hyphens-auto break-words ${
                     section.title.length > 14
-                      ? "tracking-normal text-sm sm:tracking-[0.04em] sm:text-xl md:text-xl"
+                      ? "tracking-normal text-sm sm:tracking-[0.04em] sm:text-base md:text-base"
                       : section.title.length > 12
-                        ? "tracking-[0.04em] text-base sm:text-xl md:text-xl"
-                        : "tracking-[0.04em] text-xl sm:text-2xl md:text-2xl"
+                        ? "tracking-[0.04em] text-base sm:text-lg md:text-lg"
+                        : "tracking-[0.04em] text-xl sm:text-xl md:text-xl"
                   }`}
                   lang="de"
                 >
                   {section.title}
                 </h2>
 
-                <p className="mt-2 text-justify text-[11px] leading-snug sm:mt-4 sm:text-sm sm:leading-relaxed md:text-base">
+                <p className="mt-2 text-justify text-[11px] leading-snug sm:mt-2 sm:text-xs sm:leading-relaxed md:text-sm">
                   {section.text}
                 </p>
               </div>
@@ -141,7 +141,7 @@ function UeberUns() {
                     aria-label={section.alt}
                     width={1200}
                     height={675}
-                    className="w-full max-w-[140px] rounded-none object-cover sm:max-w-[180px] md:max-w-[200px]"
+                    className="w-full max-w-[140px] rounded-none object-cover sm:max-w-[120px] md:max-w-[130px]"
                   >
                     <source src={section.video} type="video/mp4" />
                   </video>
@@ -162,7 +162,7 @@ function UeberUns() {
                           ? section.imgPosition
                           : "w-full object-contain"
                     } ${
-                      section.imgMax ?? "max-w-[140px] sm:max-w-[180px] md:max-w-[200px]"
+                      section.imgMax ?? "max-w-[140px] sm:max-w-[120px] md:max-w-[130px]"
                     }`}
                   />
                 )}
