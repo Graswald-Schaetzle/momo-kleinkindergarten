@@ -71,7 +71,8 @@ function Preise() {
               <Gift size={14} strokeWidth={1.75} />
             </span>
             <span className="text-xs font-bold leading-snug text-[#4a3320]">
-              Ein ganzer Monat geschenkt: im August zahlt ihr nichts
+              11 Monatsbeiträge pro Jahr: Im August, in dem wir mehrere Schließtage haben, fällt
+              kein Beitrag an
             </span>
           </div>
 

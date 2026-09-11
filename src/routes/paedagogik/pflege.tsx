@@ -43,22 +43,20 @@ function Pflege() {
 
         <TubeAnimation className="mt-2 sm:mt-2" />
 
-
         <div className="mt-6 space-y-6 sm:mt-6 sm:space-y-4">
           <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
-            Pflege ist für uns eine Handlung im Tagesablauf, die zu einem besonders zarten,
-            intimen Moment der Begegnung wird. Jedes Kind wird von uns mit Respekt und
-            Achtsamkeit begleitet, sein Körper wird liebevoll wahrgenommen. Wir wickeln nach
-            Bedarf des Kindes, nicht nach starrem Zeitplan so nehmen wir jedes Kind in seinem
-            eigenen Rhythmus ernst.
+            Pflege ist für uns eine Handlung im Tagesablauf, die zu einem besonders zarten, intimen
+            Moment der Begegnung wird. Jedes Kind wird von uns mit Respekt und Achtsamkeit
+            begleitet, sein Körper wird liebevoll wahrgenommen. Wir wickeln nach Bedarf des Kindes,
+            nicht nach starrem Zeitplan so nehmen wir jedes Kind in seinem eigenen Rhythmus ernst.
           </p>
 
           <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
             Vor dem Schlafengehen gestalten wir kleine, wiederkehrende Rituale, die Ruhe und
-            Geborgenheit schenken: Wir salben sanft die Füßchen mit hochwertigem Öl, begleiten
-            das Kind mit ruhigen Bewegungen und schaffen so einen bewussten Übergang vom Tag in
-            die Ruhe. Der sanfte Klang einer Klangschale und Gesang begleiten das Einschlafen
-            und geben jedem Kind ein vertrautes, beruhigendes Signal: Zeit fürs Loslassen.
+            Geborgenheit schenken: Wir salben sanft die Füßchen mit hochwertigem Öl, begleiten das
+            Kind mit ruhigen Bewegungen und schaffen so einen bewussten Übergang vom Tag in die
+            Ruhe. Der sanfte Klang einer Klangschale und Gesang begleiten das Einschlafen und geben
+            jedem Kind ein vertrautes, beruhigendes Signal: Zeit fürs Loslassen.
           </p>
 
           <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
@@ -85,8 +83,11 @@ function Pflege() {
             />
           ))}
         </div>
+        <p className="mx-auto mt-4 max-w-sm text-center text-xs leading-relaxed text-black/60">
+          Wir verwenden Produkte der genannten Marken, stehen mit ihnen jedoch in keiner Kooperation
+          oder Partnerschaft.
+        </p>
       </section>
-
     </>
   );
 }
