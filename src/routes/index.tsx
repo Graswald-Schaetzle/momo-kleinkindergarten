@@ -110,7 +110,7 @@ function Index() {
 
       <div className="relative mx-auto flex flex-1 w-full max-w-5xl flex-col items-center justify-center py-2">
         <div
-          className="relative mx-auto mt-20 w-full max-w-5xl px-6 sm:mt-28 sm:px-10 md:mt-36 md:px-14"
+          className="relative mx-auto mt-20 w-full max-w-5xl px-6 sm:mt-20 sm:px-10 md:mt-24 md:px-14"
           onClick={toggleSnore}
           role="button"
           aria-pressed={!muted}
@@ -132,7 +132,7 @@ function Index() {
           <audio ref={audioRef} src={snoreAudio.url} loop autoPlay preload="auto" />
         </div>
 
-        <p className="mt-8 px-6 font-display text-sm font-normal leading-tight tracking-[0.2em] text-bordeaux sm:mt-12 sm:text-base md:mt-16 md:text-lg">Eröffnung Januar 2027</p>
+        <p className="mt-8 px-6 font-display text-sm font-normal leading-tight tracking-[0.2em] text-bordeaux sm:mt-8 sm:text-base md:mt-8 md:text-base">Eröffnung Januar 2027</p>
       </div>
 
     </main>

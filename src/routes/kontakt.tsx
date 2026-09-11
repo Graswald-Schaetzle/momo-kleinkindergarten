@@ -86,12 +86,12 @@ function Kontakt() {
           </div>
         ) : (
           <>
-            <h2 className="mt-8 font-display text-xl font-normal tracking-[0.08em] sm:mt-12 sm:text-3xl md:mt-16">
+            <h2 className="mt-8 font-display text-xl font-normal tracking-[0.08em] sm:mt-8 sm:text-2xl md:mt-8">
               Kontakt
             </h2>
           <form
             onSubmit={handleSubmit}
-            className="mx-auto mt-4 flex w-full max-w-xl flex-col gap-3 text-left sm:mt-10 sm:gap-5"
+            className="mx-auto mt-4 flex w-full max-w-xl flex-col gap-3 text-left sm:mt-6 sm:gap-4"
           >
             <div className="flex flex-col gap-1 sm:gap-2">
               <label htmlFor="name" className="text-xs font-bold sm:text-base">

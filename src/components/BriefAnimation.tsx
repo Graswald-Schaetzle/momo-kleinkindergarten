@@ -132,7 +132,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
 
   /* Geschlossener Umschlag mit Spitze und Stempel. */
   return (
-    <div className={`pt-20 sm:pt-32 ${className}`}>
+    <div className={`pt-20 sm:pt-20 ${className}`}>
       <div className="relative z-40 mb-4 text-center sm:mb-6">
         <p className="font-display text-base italic text-ink sm:text-lg">
           {"\n"}

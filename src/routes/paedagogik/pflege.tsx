@@ -36,16 +36,16 @@ export const Route = createFileRoute("/paedagogik/pflege")({
 function Pflege() {
   return (
     <>
-      <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-14 md:px-14">
-        <h1 className="font-display text-center text-2xl font-normal tracking-[0.08em] sm:text-3xl">
+      <section className="mx-auto max-w-2xl px-6 pt-10 sm:px-10 sm:pt-10 md:px-14">
+        <h1 className="font-display text-center text-2xl font-normal tracking-[0.08em] sm:text-2xl">
           Pflege
         </h1>
 
-        <TubeAnimation className="mt-2 sm:mt-3" />
+        <TubeAnimation className="mt-2 sm:mt-2" />
 
 
         <div className="mt-6 space-y-6 sm:mt-8 sm:space-y-8">
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
             Pflege ist für uns eine Handlung im Tagesablauf, die zu einem besonders zarten,
             intimen Moment der Begegnung wird. Jedes Kind wird von uns mit Respekt und
             Achtsamkeit begleitet, sein Körper wird liebevoll wahrgenommen. Wir wickeln nach
@@ -53,7 +53,7 @@ function Pflege() {
             eigenen Rhythmus ernst.
           </p>
 
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
             Vor dem Schlafengehen gestalten wir kleine, wiederkehrende Rituale, die Ruhe und
             Geborgenheit schenken: Wir salben sanft die Füßchen mit hochwertigem Öl, begleiten
             das Kind mit ruhigen Bewegungen und schaffen so einen bewussten Übergang vom Tag in
@@ -61,7 +61,7 @@ function Pflege() {
             und geben jedem Kind ein vertrautes, beruhigendes Signal: Zeit fürs Loslassen.
           </p>
 
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-lg md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
             Bei der Wahl unserer Pflegeprodukte legen wir größten Wert auf Qualität und
             Verträglichkeit. Wir verwenden ausschließlich Windeln von{" "}
             <span className="font-medium">LILLYDOO</span> sowie Pflegetücher, Öle und Cremes von{" "}
@@ -73,7 +73,7 @@ function Pflege() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-2xl px-6 pt-20 pb-24 sm:px-10 sm:pt-28 sm:pb-32 md:px-14">
+      <section className="mx-auto max-w-2xl px-6 pt-20 pb-24 sm:px-10 sm:pt-20 sm:pb-24 md:px-14">
         <div className="flex flex-nowrap items-center justify-center gap-x-8 sm:gap-x-14">
           {brands.map((b) => (
             <img

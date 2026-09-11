@@ -301,25 +301,25 @@ function TagesablaufPage() {
   };
 
   return (
-    <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-5xl md:px-14 md:pt-16">
-      <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-3xl md:text-4xl">
+    <section className="mx-auto max-w-3xl px-3 pt-12 sm:px-10 md:max-w-3xl md:px-14 md:pt-12">
+      <h2 className="text-center font-display text-xl font-normal tracking-[0.08em] text-bordeaux sm:text-2xl md:text-2xl">
         Unser Tagesablauf
       </h2>
 
-      <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-4 sm:text-sm md:text-base">
+      <p className="mx-auto mt-3 max-w-xl text-center text-xs font-light leading-relaxed text-foreground/70 sm:mt-3 sm:text-sm md:text-sm">
         Unser Tagesrhythmus gibt den Kindern Sicherheit und Orientierung,
         gleichzeitig bleibt er flexibel, um auf individuelle Bedürfnisse
         einzugehen.
       </p>
 
-      <p className="mx-auto mt-6 flex justify-center sm:mt-8">
-        <span className="inline-block text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-base">
+      <p className="mx-auto mt-6 flex justify-center sm:mt-6">
+        <span className="inline-block text-xs font-bold tracking-[0.02em] text-bordeaux sm:text-sm md:text-sm">
           Tippe auf eine Station, um mehr zu erfahren.
         </span>
       </p>
 
       {/* ===== Wecker-Illustration (alle Bildschirmgrößen) ===== */}
-      <div className="relative mx-auto mt-14 mb-14 aspect-square w-full max-w-[340px] sm:mt-20 sm:mb-16 sm:max-w-[520px] md:mt-24 md:mb-20 md:max-w-[760px]">
+      <div className="relative mx-auto mt-14 mb-14 aspect-square w-full max-w-[340px] sm:mt-14 sm:mb-14 sm:max-w-[380px] md:mt-14 md:mb-14 md:max-w-[420px]">
         {/* Aquarell-Wecker mit rotierendem Zeiger-Overlay */}
         <div
           key={shake}
@@ -453,7 +453,7 @@ function TagesablaufPage() {
                   className="flex w-full justify-center"
                   aria-label="Zur Startseite"
                 >
-                  <MomoLogo className="h-20 w-auto text-menu-overlay-foreground sm:h-32 md:h-40" />
+                  <MomoLogo className="h-20 w-auto text-menu-overlay-foreground sm:h-24 md:h-24" />
                 </Link>
 
                 <div className="flex-1" />
