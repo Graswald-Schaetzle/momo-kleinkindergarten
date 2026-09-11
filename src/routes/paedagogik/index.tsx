@@ -30,7 +30,7 @@ export const Route = createFileRoute("/paedagogik/")({
 function PaedagogikIndex() {
   return (
     <>
-      <section className="relative mx-auto max-w-2xl px-6 pt-8 sm:px-10 sm:pt-8 md:px-14">
+      <section className="relative mx-auto max-w-xl px-6 pt-8 sm:px-10 sm:pt-8 md:px-14">
         <style>{`
           @keyframes momo-star-float {
             0%   { transform: translateY(0) rotate(-4deg); }
@@ -53,25 +53,25 @@ function PaedagogikIndex() {
           loading="lazy"
           width={1024}
           height={1024}
-          className="pointer-events-none mx-auto mt-8 w-56 select-none bg-altrosa sm:mt-8 sm:w-60 md:w-64"
+          className="pointer-events-none mx-auto mt-8 w-56 select-none bg-altrosa sm:mt-8 sm:w-44 md:w-44"
         />
 
         <div className="mt-6 space-y-6 sm:mt-6 sm:space-y-6">
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
             Unsere Pädagogik ist waldorforientiert geprägt von wiederkehrenden Ritualen, einem
             achtsamen Umgang mit der Natur und dem tiefen Vertrauen in die eigene Entwicklung eures
             Kindes. Wir glauben daran, dass Kinder in ihrem eigenen Tempo wachsen dürfen, begleitet
             von einem Alltag, der Struktur und Geborgenheit zugleich schenkt.
           </p>
 
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
             Für uns steht an erster Stelle, dass jedes Kind mit Liebe, Geduld und ganzem Herzen
             begleitet wird. Kein Kind soll sich bei uns jemals klein oder übersehen fühlen, jedes
             Kind wird gesehen, gehört und so angenommen, wie es ist. Diese liebevolle Haltung ist für
             uns kein Zusatz, sondern das Fundament unserer gesamten Arbeit.
           </p>
 
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
             Gleichzeitig denken wir modern: Unsere Arbeit orientiert sich an aktuellen Erkenntnissen
             aus Gehirnforschung, Bindungstheorie und Entwicklungspsychologie. Wir verfolgen, was die
             Forschung heute über die ersten Lebensjahre weiß, wie wichtig sichere Bindungen für die
@@ -81,7 +81,7 @@ function PaedagogikIndex() {
             fachlich aus und hinterfragen unsere pädagogische Arbeit immer wieder neu.
           </p>
 
-          <p className="text-justify text-sm leading-relaxed sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
             So verbinden wir Herzlichkeit mit fundiertem, wissenschaftlich begleitetem Wissen zum
             Wohl eurer Kinder, die bei uns nicht nur behütet, sondern mit Liebe und Verständnis für
             ihre individuelle Entwicklung begleitet werden.

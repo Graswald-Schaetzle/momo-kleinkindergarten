@@ -26,12 +26,12 @@ export const Route = createFileRoute("/paedagogik/essen")({
 
 function Essen() {
   return (
-    <div className="mx-auto max-w-3xl px-6 pt-12 sm:px-10 md:px-14">
-      <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-2xl md:text-2xl">
+    <div className="mx-auto max-w-xl px-6 pt-12 sm:px-10 md:px-14">
+      <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-xl md:text-xl">
         Essen
       </h1>
       <BesteckAnimation />
-      <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-base md:text-base">
+      <div className="mt-8 space-y-6 text-justify text-sm leading-relaxed sm:text-sm md:text-sm">
         <p className="text-center font-bold">Essen als gemeinsames Erlebnis</p>
         <p>
           Bei uns ist Essen weit mehr als Nahrungsaufnahme, es ist ein sinnliches Gemeinschaftserlebnis und fester Bestandteil unseres pädagogischen Alltags. Wir zelebrieren die gemeinsamen Mahlzeiten bewusst: Der Tisch ist liebevoll und jahreszeitlich gedeckt, Blumen schmücken die Tafel, eine Kerze brennt während des Essens. Gemeinsam singen wir und bedanken uns für das, was wir teilen dürfen.
@@ -44,7 +44,7 @@ function Essen() {
       <img
         src={schuesselAsset.url}
         alt="Aquarellzeichnung eines Stapels bunter Schüsseln"
-        className="mx-auto mt-12 w-40 sm:w-44 md:w-48"
+        className="mx-auto mt-12 w-40 sm:w-32 md:w-32"
       />
     </div>
   );

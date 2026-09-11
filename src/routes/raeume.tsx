@@ -31,11 +31,11 @@ function Raeume() {
     <main className="min-h-screen pb-6">
       <SiteHeader showSlogan hideTagline />
       <MischerAnimation className="mt-8 sm:mt-8" />
-      <section className="mx-auto max-w-2xl px-6 pt-6 text-bordeaux sm:px-10 md:px-14">
-        <h2 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-lg">
+      <section className="mx-auto max-w-xl px-6 pt-6 text-bordeaux sm:px-10 md:px-14">
+        <h2 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-base md:text-base">
           Bei uns wächst gerade ein Zuhause heran
         </h2>
-        <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-6 sm:text-base sm:leading-relaxed md:text-base md:leading-relaxed">
+        <div className="mt-6 space-y-6 text-justify text-sm leading-relaxed sm:space-y-4 sm:text-sm sm:leading-relaxed md:text-sm md:leading-relaxed">
           <p>
             Gerade verwandeln sich unsere Räume und unser Garten Stück für Stück in ein liebevolles
             Zuhause: Es wird gestrichen, verlegt und mit Herz eingerichtet. Im Oktober gestalten wir
@@ -48,7 +48,7 @@ function Raeume() {
             So wächst nach und nach ein Ort, der sich wirklich wie ein zweites Zuhause anfühlt.
           </p>
 
-          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-lg">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-base md:text-base">
             Unsere Räume, mit ganz viel Herz
           </h3>
 
@@ -62,7 +62,7 @@ function Raeume() {
             Entdecken sowie eine Puppenküche voller kleiner Familiengeschichten.
           </p>
 
-          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-lg md:text-lg">
+          <h3 className="text-center font-display text-base font-normal tracking-[0.04em] sm:text-base md:text-base">
             Unser Garten, ein kleines Abenteuerreich
           </h3>
 
@@ -75,7 +75,7 @@ function Raeume() {
         <img
           src={schubkarre.url}
           alt="Aquarellzeichnung einer Schubkarre mit Spaten"
-          className="mx-auto mt-4 w-56 sm:mt-4 sm:w-64 md:w-64"
+          className="mx-auto mt-4 w-56 sm:mt-4 sm:w-44 md:w-44"
           loading="lazy"
         />
       </section>

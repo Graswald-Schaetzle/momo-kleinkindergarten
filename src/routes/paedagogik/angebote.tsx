@@ -24,11 +24,11 @@ export const Route = createFileRoute("/paedagogik/angebote")({
 
 function Angebote() {
   return (
-    <div className="mx-auto max-w-3xl px-6 pt-12 sm:px-10 md:px-14">
-      <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-2xl md:text-2xl">
+    <div className="mx-auto max-w-xl px-6 pt-12 sm:px-10 md:px-14">
+      <h1 className="font-display text-center text-2xl font-normal tracking-[0.04em] sm:text-xl md:text-xl">
         Angebote
       </h1>
-      <p className="mt-6 text-center font-display text-sm leading-relaxed sm:text-base md:text-base">
+      <p className="mt-6 text-center font-display text-sm leading-relaxed sm:text-sm md:text-sm">
         Inhalt folgt.
       </p>
     </div>

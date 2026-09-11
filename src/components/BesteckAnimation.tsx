@@ -5,7 +5,7 @@ import messer from "@/assets/besteck-messer.png";
 export function BesteckAnimation() {
   return (
     <div
-      className="pointer-events-none relative mx-auto mt-6 h-36 w-full max-w-sm select-none overflow-hidden sm:mt-8 sm:h-40"
+      className="pointer-events-none relative mx-auto mt-6 h-36 w-full max-w-sm select-none overflow-hidden sm:mt-6 sm:h-36"
       aria-hidden="true"
     >
       <img
