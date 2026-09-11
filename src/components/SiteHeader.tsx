@@ -3,8 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { MomoLogo } from "@/components/MomoLogo";
 
 type NavItem =
-  | { to: string; label: string }
-  | { label: string; children: { to: string; label: string }[] };
+  { to: string; label: string } | { label: string; children: { to: string; label: string }[] };
 
 const navItems: NavItem[] = [
   {
@@ -27,7 +26,6 @@ const navItems: NavItem[] = [
   { to: "/preise", label: "PREISE" },
   { to: "/jobs", label: "JOBS" },
   { to: "/kontakt", label: "KONTAKT" },
-
 ];
 
 export function SiteHeader({
@@ -136,7 +134,7 @@ export function SiteHeader({
                 >
                   {item.label}
                 </Link>
-              )
+              ),
             )}
           </nav>
           <footer className="pb-8 pt-4 text-center sm:pb-12">
@@ -161,17 +159,37 @@ export function SiteHeader({
                 Kontakt
               </Link>
             </p>
+            <p className="mt-3 font-display text-xs font-normal leading-relaxed text-menu-overlay-foreground/80 sm:text-sm">
+              <Link
+                to="/impressum"
+                onClick={() => setOpen(false)}
+                tabIndex={open ? 0 : -1}
+                className="no-underline hover:opacity-70"
+              >
+                Impressum
+              </Link>
+              {" · "}
+              <Link
+                to="/datenschutz"
+                onClick={() => setOpen(false)}
+                tabIndex={open ? 0 : -1}
+                className="no-underline hover:opacity-70"
+              >
+                Datenschutz
+              </Link>
+            </p>
           </footer>
         </div>
       </div>
-
 
       <Link to="/" className={`no-underline flex flex-col items-center ${logoColor}`}>
         <MomoLogo className="h-20 sm:h-20 md:h-20" />
       </Link>
 
       {showSlogan && (
-        <p className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-4 sm:text-sm`}>
+        <p
+          className={`mt-4 font-display text-xs font-normal tracking-[0.25em] ${logoColor} sm:mt-4 sm:text-sm`}
+        >
           1–3&nbsp;Jahre
         </p>
       )}
@@ -182,7 +200,6 @@ export function SiteHeader({
         </p>
       )}
     </header>
-
   );
 }
 

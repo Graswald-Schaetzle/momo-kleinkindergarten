@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
+import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as PaedagogikRouteImport } from './routes/paedagogik'
@@ -26,6 +28,16 @@ import { Route as PaedagogikTagesablaufRouteImport } from './routes/paedagogik/t
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JobsRoute = JobsRouteImport.update({
@@ -91,6 +103,8 @@ const PaedagogikTagesablaufRoute = PaedagogikTagesablaufRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/impressum': typeof ImpressumRoute
   '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/paedagogik': typeof PaedagogikRouteWithChildren
@@ -106,6 +120,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/impressum': typeof ImpressumRoute
   '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/preise': typeof PreiseRoute
@@ -121,6 +137,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/impressum': typeof ImpressumRoute
   '/jobs': typeof JobsRoute
   '/kontakt': typeof KontaktRoute
   '/paedagogik': typeof PaedagogikRouteWithChildren
@@ -138,6 +156,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/datenschutz'
+    | '/impressum'
     | '/jobs'
     | '/kontakt'
     | '/paedagogik'
@@ -153,6 +173,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/datenschutz'
+    | '/impressum'
     | '/jobs'
     | '/kontakt'
     | '/preise'
@@ -167,6 +189,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/datenschutz'
+    | '/impressum'
     | '/jobs'
     | '/kontakt'
     | '/paedagogik'
@@ -183,6 +207,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DatenschutzRoute: typeof DatenschutzRoute
+  ImpressumRoute: typeof ImpressumRoute
   JobsRoute: typeof JobsRoute
   KontaktRoute: typeof KontaktRoute
   PaedagogikRoute: typeof PaedagogikRouteWithChildren
@@ -199,6 +225,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jobs': {
@@ -310,6 +350,8 @@ const PaedagogikRouteWithChildren = PaedagogikRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DatenschutzRoute: DatenschutzRoute,
+  ImpressumRoute: ImpressumRoute,
   JobsRoute: JobsRoute,
   KontaktRoute: KontaktRoute,
   PaedagogikRoute: PaedagogikRouteWithChildren,

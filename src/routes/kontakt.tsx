@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/kontakt")({
@@ -78,7 +78,8 @@ function Kontakt() {
             <p className="font-display text-lg font-normal leading-relaxed">
               Herzlichen Dank für deine Nachricht!
               <br />
-              Wir freuen uns über dein Interesse und melden uns so schnell wie möglich bei dir zurück.
+              Wir freuen uns über dein Interesse und melden uns so schnell wie möglich bei dir
+              zurück.
               <br />
               <br />
               Bis dahin, herzliche Grüße vom MOMO-Team!
@@ -89,76 +90,85 @@ function Kontakt() {
             <h2 className="mt-8 font-display text-xl font-normal tracking-[0.08em] sm:mt-8 sm:text-2xl md:mt-8">
               Kontakt
             </h2>
-          <form
-            onSubmit={handleSubmit}
-            className="mx-auto mt-4 flex w-full max-w-md flex-col gap-3 text-left sm:mt-4 sm:gap-3"
-          >
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="name" className="text-xs font-bold sm:text-sm">
-                Name *
-              </label>
-              <input
-                id="name"
-                type="text"
-                required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
-                placeholder="Ihr Name"
-              />
-            </div>
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="email" className="text-xs font-bold sm:text-sm">
-                E-Mail *
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
-                placeholder="ihre@email.de"
-              />
-            </div>
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="subject" className="text-xs font-bold sm:text-sm">
-                Betreff *
-              </label>
-              <input
-                id="subject"
-                type="text"
-                required
-                value={form.subject}
-                onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
-                placeholder="Betreff Ihrer Nachricht"
-              />
-            </div>
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <label htmlFor="message" className="text-xs font-bold sm:text-sm">
-                Nachricht *
-              </label>
-              <textarea
-                id="message"
-                required
-                rows={3}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="resize-none rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
-                placeholder="Ihre Nachricht an uns"
-              />
-            </div>
-            {error && <p className="text-xs text-red-700 sm:text-sm">{error}</p>}
-
-            <button
-              type="submit"
-              disabled={sending}
-              className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 disabled:cursor-not-allowed disabled:opacity-60 sm:mt-1 sm:px-8 sm:py-2 sm:text-sm"
+            <form
+              onSubmit={handleSubmit}
+              className="mx-auto mt-4 flex w-full max-w-md flex-col gap-3 text-left sm:mt-4 sm:gap-3"
             >
-              {sending ? "Wird gesendet…" : "Absenden"}
-            </button>
-          </form>
+              <div className="flex flex-col gap-1 sm:gap-2">
+                <label htmlFor="name" className="text-xs font-bold sm:text-sm">
+                  Name *
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
+                  placeholder="Ihr Name"
+                />
+              </div>
+              <div className="flex flex-col gap-1 sm:gap-2">
+                <label htmlFor="email" className="text-xs font-bold sm:text-sm">
+                  E-Mail *
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
+                  placeholder="ihre@email.de"
+                />
+              </div>
+              <div className="flex flex-col gap-1 sm:gap-2">
+                <label htmlFor="subject" className="text-xs font-bold sm:text-sm">
+                  Betreff *
+                </label>
+                <input
+                  id="subject"
+                  type="text"
+                  required
+                  value={form.subject}
+                  onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                  className="rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
+                  placeholder="Betreff Ihrer Nachricht"
+                />
+              </div>
+              <div className="flex flex-col gap-1 sm:gap-2">
+                <label htmlFor="message" className="text-xs font-bold sm:text-sm">
+                  Nachricht *
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={3}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="resize-none rounded-md border border-bordeaux/30 bg-white/50 px-3 py-2 text-sm text-bordeaux placeholder:text-bordeaux/50 focus:border-bordeaux focus:outline-none sm:px-3 sm:py-2 sm:text-sm"
+                  placeholder="Ihre Nachricht an uns"
+                />
+              </div>
+              {error && <p className="text-xs text-red-700 sm:text-sm">{error}</p>}
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="mt-1 self-center rounded-md bg-beige-dark px-8 py-2 font-display text-sm font-bold tracking-[0.08em] text-bordeaux transition-colors hover:bg-beige-dark/90 disabled:cursor-not-allowed disabled:opacity-60 sm:mt-1 sm:px-8 sm:py-2 sm:text-sm"
+              >
+                {sending ? "Wird gesendet…" : "Absenden"}
+              </button>
+
+              <p className="mx-auto max-w-md text-center text-xs leading-relaxed text-bordeaux/70">
+                Wir verarbeiten deine Angaben zur Bearbeitung deiner Anfrage. Informationen zur
+                Datenverarbeitung und zu deinen Rechten findest du in unserer{" "}
+                <Link to="/datenschutz" className="underline underline-offset-4">
+                  Datenschutzerklärung
+                </Link>
+                .
+              </p>
+            </form>
           </>
         )}
       </section>
