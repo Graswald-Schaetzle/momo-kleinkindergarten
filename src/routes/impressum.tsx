@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/impressum")({
@@ -57,6 +57,12 @@ function Impressum() {
               >
                 leitung@momo-kleinkindergarten.com
               </a>
+              <br />
+              Für eine schnelle Kontaktaufnahme nutze gerne auch unser{" "}
+              <Link to="/kontakt" className="underline underline-offset-4">
+                Kontaktformular
+              </Link>
+              . Anfragen werden zeitnah beantwortet.
             </p>
           </div>
 
