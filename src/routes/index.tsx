@@ -43,18 +43,22 @@ function Index() {
   const [muted, setMuted] = useState(false);
 
   useEffect(() => {
-    // iOS (egal ob Safari, Chrome oder Firefox — dort läuft überall Apples
-    // WebKit-Engine) meldet sich fälschlich als fähig, das transparente
+    // WebKit (Safari) meldet sich fälschlich als fähig, das transparente
     // WebM abzuspielen, verwirft dabei aber den Alpha-Kanal und zeigt den
-    // Hund in einem sichtbaren Kasten statt auf dem Senfton der Seite.
-    // Deshalb hier gezielt auf die vorgerechnete Senfton-MP4 umschalten.
+    // Hund in einem sichtbaren weißen Kasten statt auf dem Senfton der
+    // Seite. Das betrifft nicht nur iOS (wo wegen Apples Vorgaben jeder
+    // Browser WebKit nutzt), sondern auch Safari auf dem Mac. Deshalb hier
+    // gezielt für jedes Safari (mobil und Desktop) auf die vorgerechnete
+    // Senfton-MP4 umschalten; Chrome/Firefox/Edge bleiben unverändert bei
+    // der transparenten WebM.
     const video = videoRef.current;
     if (!video) return;
     const ua = navigator.userAgent;
     const isIOS =
       /iPad|iPhone|iPod/.test(ua) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-    if (isIOS) {
+    const isSafari = /^((?!chrome|crios|fxios|edgios|android).)*safari/i.test(ua);
+    if (isIOS || isSafari) {
       video.src = heroVideoMp4Url;
       video.load();
     }
