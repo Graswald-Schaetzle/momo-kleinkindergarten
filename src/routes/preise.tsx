@@ -83,6 +83,10 @@ function Preise() {
           </Link>
 
           <p className="mt-2 text-xs text-[#4a3320]/60">Für Geschwister gibt es einen Rabatt.</p>
+          <p className="mt-1 text-xs text-[#4a3320]/60">
+            Der Betreuungsbetrieb steht unter dem Vorbehalt der Betriebserlaubnis nach § 45 SGB
+            VIII.
+          </p>
         </div>
       </section>
     </main>

@@ -87,7 +87,9 @@ function Datenschutz() {
               (Art. 6 Abs. 1 lit. f DSGVO). Da Netlify seinen Sitz in den USA hat, kann es dabei zu
               einer Übermittlung personenbezogener Daten in ein Land außerhalb der EU/des EWR
               kommen; wir achten darauf, mit unseren Dienstleistern die nach Art. 44 ff. DSGVO
-              erforderlichen Garantien (z. B. EU-Standardvertragsklauseln) zu vereinbaren.
+              erforderlichen Garantien (z. B. EU-Standardvertragsklauseln) zu vereinbaren. Soweit
+              erforderlich, schließen wir mit unseren Dienstleistern Vereinbarungen zur
+              Auftragsverarbeitung nach Art. 28 DSGVO.
             </p>
           </div>
 
@@ -104,7 +106,8 @@ function Datenschutz() {
               deiner Anfrage bzw. Anbahnung eines Vertrags) sowie Art. 6 Abs. 1 lit. f DSGVO (unser
               Interesse an einer zuverlässigen technischen Abwicklung). Deine Angaben werden
               gelöscht, sobald sie zur Bearbeitung deiner Anfrage nicht mehr benötigt werden, soweit
-              keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+              keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Mit Web3Forms besteht,
+              soweit erforderlich, eine Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO.
             </p>
           </div>
 
@@ -124,25 +127,22 @@ function Datenschutz() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              6. Google Fonts
+              6. Schriftarten
             </h2>
             <p className="mt-2">
-              Diese Website nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Google
-              Fonts. Beim Aufruf einer Seite lädt dein Browser die benötigten Schriftarten direkt
-              von den Servern von Google, wodurch eine Verbindung zu Servern von Google hergestellt
-              und dabei deine IP-Adresse an Google übertragen wird. Rechtsgrundlage ist unser
-              berechtigtes Interesse an einer technisch sicheren und einheitlichen Darstellung
-              unserer Website (Art. 6 Abs. 1 lit. f DSGVO).
+              Die auf dieser Website verwendeten Schriftarten sind lokal auf unserem eigenen Server
+              eingebunden. Es findet dabei keine Verbindung zu Servern Dritter (z. B. Google) statt
+              und es werden keine Daten an Dritte übertragen.
             </p>
           </div>
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              7. Keine Analyse- und Trackingtools
+              7. Keine Analyse-, Tracking-Tools und Cookies
             </h2>
             <p className="mt-2">
-              Wir setzen auf dieser Website keine Analyse-, Tracking- oder Werbetools und keine
-              Cookies zu Analysezwecken ein.
+              Wir setzen auf dieser Website keine Analyse-, Tracking- oder Werbetools ein. Es werden
+              keine Cookies gesetzt.
             </p>
           </div>
 
