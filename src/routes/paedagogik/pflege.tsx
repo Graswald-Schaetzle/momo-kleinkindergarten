@@ -12,6 +12,7 @@ const brands = [
 ];
 
 export const Route = createFileRoute("/paedagogik/pflege")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Pflege — MOMO Kleinkindergarten Remseck" },
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/paedagogik/pflege")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/paedagogik/pflege" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/paedagogik/pflege" }],
   }),
   component: Pflege,
 });

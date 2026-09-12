@@ -92,6 +92,7 @@ import iconHaus from "@/assets/icon-haus.png.asset.json";
 type ChildIcon = { url: string; alt: string; tint?: boolean };
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Tagesablauf — MOMO Kleinkindergarten Remseck" },
@@ -107,10 +108,10 @@ export const Route = createFileRoute("/paedagogik/tagesablauf")({
           "Ein strukturierter, flexibler Tagesrhythmus, der den Kindern Sicherheit und Geborgenheit gibt.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/paedagogik/tagesablauf" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/paedagogik/tagesablauf" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/paedagogik/tagesablauf" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/paedagogik/tagesablauf" }],
   }),
   component: TagesablaufPage,
 });

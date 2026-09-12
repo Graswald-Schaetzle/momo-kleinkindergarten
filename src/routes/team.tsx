@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { BriefAnimation } from "@/components/BriefAnimation";
 
 export const Route = createFileRoute("/team")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Team — MOMO Kleinkindergarten Remseck" },
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/team")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/team" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/team" }],
   }),
   component: Team,
 });

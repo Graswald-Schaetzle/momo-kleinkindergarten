@@ -2,6 +2,7 @@ import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/paedagogik")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Pädagogik — MOMO Kleinkindergarten Remseck" },
@@ -16,10 +17,8 @@ export const Route = createFileRoute("/paedagogik")({
         content: "Pädagogischer Ansatz im MOMO Kleinkindergarten, Mozartstraße 4, Remseck am Neckar.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/paedagogik" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/paedagogik" }],
   }),
   component: PaedagogikLayout,
 });

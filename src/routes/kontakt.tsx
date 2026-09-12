@@ -3,24 +3,25 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/kontakt")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Kontakt — MOMO Kinderhaus Remseck" },
+      { title: "Kontakt — MOMO Kleinkindergarten Remseck" },
       {
         name: "description",
         content:
-          "Kontakt zum MOMO Kinderhaus, Mozartstraße 4, 71686 Remseck am Neckar. Eröffnung Januar 2027.",
+          "Kontakt zum MOMO Kleinkindergarten, Mozartstraße 4, 71686 Remseck am Neckar. Eröffnung Januar 2027.",
       },
-      { property: "og:title", content: "Kontakt — MOMO Kinderhaus Remseck" },
+      { property: "og:title", content: "Kontakt — MOMO Kleinkindergarten Remseck" },
       {
         property: "og:description",
         content: "Mozartstraße 4, 71686 Remseck am Neckar. Eröffnung Januar 2027.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/kontakt" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/kontakt" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/kontakt" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/kontakt" }],
   }),
   component: Kontakt,
 });
