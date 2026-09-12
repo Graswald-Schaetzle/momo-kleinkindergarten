@@ -80,14 +80,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "MOMO Kleinkindergarten — Kinderbetreuung 1-3 Jahre in Remseck" },
+      {
+        name: "description",
+        content:
+          "MOMO Kleinkindergarten in Remseck am Neckar: bewusst familiär mit 9 Kindern und 3 Pädagoginnen. Mo-Fr. 07.45-13.45 Uhr. Eröffnung Januar 2027.",
+      },
+      { name: "author", content: "MOMO Kleinkindergarten" },
+      { property: "og:title", content: "MOMO Kleinkindergarten — Kinderbetreuung 1-3 Jahre in Remseck" },
+      {
+        property: "og:description",
+        content: "Bewusst familiär gestaltet: 9 Kinder, 3 Pädagoginnen, viel Geborgenheit.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "MOMO Kleinkindergarten" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

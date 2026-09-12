@@ -17,10 +17,8 @@ export const Route = createFileRoute("/paedagogik")({
         content: "Pädagogischer Ansatz im MOMO Kleinkindergarten, Mozartstraße 4, Remseck am Neckar.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/paedagogik" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/paedagogik" }],
   }),
   component: PaedagogikLayout,
 });
