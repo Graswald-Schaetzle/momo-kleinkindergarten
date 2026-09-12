@@ -16,10 +16,10 @@ export const Route = createFileRoute("/impressum")({
         content: "Impressum und Anbieterkennzeichnung des MOMO Kleinkindergarten Remseck.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/impressum" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/impressum" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "/impressum" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/impressum" }],
   }),
   component: Impressum,
 });

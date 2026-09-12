@@ -16,10 +16,10 @@ export const Route = createFileRoute("/datenschutz")({
         content: "Datenschutzerklärung des MOMO Kleinkindergarten Remseck.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/datenschutz" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/datenschutz" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "/datenschutz" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/datenschutz" }],
   }),
   component: Datenschutz,
 });

@@ -19,10 +19,10 @@ export const Route = createFileRoute("/raeume")({
         content: "Räume im MOMO Kleinkindergarten, Mozartstraße 4, Remseck am Neckar.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/raeume" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/raeume" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/raeume" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/raeume" }],
   }),
   component: Raeume,
 });

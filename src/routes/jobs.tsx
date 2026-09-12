@@ -18,10 +18,10 @@ export const Route = createFileRoute("/jobs")({
         content: "Karriere beim MOMO Kleinkindergarten in Remseck am Neckar.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/jobs" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/jobs" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/jobs" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/jobs" }],
   }),
   component: Jobs,
 });

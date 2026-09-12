@@ -16,22 +16,22 @@ export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "MOMO Kinderhaus — Kinderbetreuung 1-3 Jahre in Remseck" },
+      { title: "MOMO Kleinkindergarten — Kinderbetreuung 1-3 Jahre in Remseck" },
       {
         name: "description",
         content:
-          "MOMO Kinderhaus in Remseck am Neckar: bewusst familiär mit 9 Kindern und 3 Pädagoginnen. Mo-Fr. 07.45-13.45 Uhr. Eröffnung Januar 2027.",
+          "MOMO Kleinkindergarten in Remseck am Neckar: bewusst familiär mit 9 Kindern und 3 Pädagoginnen. Mo-Fr. 07.45-13.45 Uhr. Eröffnung Januar 2027.",
       },
-      { property: "og:title", content: "MOMO Kinderhaus — Kinderbetreuung 1-3 Jahre in Remseck" },
+      { property: "og:title", content: "MOMO Kleinkindergarten — Kinderbetreuung 1-3 Jahre in Remseck" },
       {
         property: "og:description",
         content: "Bewusst familiär gestaltet: 9 Kinder, 3 Pädagoginnen, viel Geborgenheit.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/" }],
   }),
   component: Index,
 });

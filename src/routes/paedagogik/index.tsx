@@ -19,10 +19,10 @@ export const Route = createFileRoute("/paedagogik/")({
           "Waldorforientiert und wissenschaftlich begleitet: sichere Bindungen, Geborgenheit und Lernen durch Beziehung für Kinder von 1-3 Jahren.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/paedagogik" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/paedagogik" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/paedagogik" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/paedagogik" }],
   }),
   component: PaedagogikIndex,
 });

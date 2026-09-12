@@ -20,7 +20,7 @@ export const Route = createFileRoute("/paedagogik/essen")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/paedagogik/essen" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/paedagogik/essen" }],
   }),
   component: Essen,
 });

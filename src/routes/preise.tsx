@@ -6,22 +6,22 @@ export const Route = createFileRoute("/preise")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Preise — MOMO Kinderhaus Remseck" },
+      { title: "Preise — MOMO Kleinkindergarten Remseck" },
       {
         name: "description",
         content:
-          "Betreuungspreise im MOMO Kinderhaus in Remseck am Neckar für Kinder von 1-3 Jahren.",
+          "Betreuungspreise im MOMO Kleinkindergarten in Remseck am Neckar für Kinder von 1-3 Jahren.",
       },
-      { property: "og:title", content: "Preise — MOMO Kinderhaus Remseck" },
+      { property: "og:title", content: "Preise — MOMO Kleinkindergarten Remseck" },
       {
         property: "og:description",
-        content: "Betreuungspreise im MOMO Kinderhaus, Mozartstraße 4, Remseck am Neckar.",
+        content: "Betreuungspreise im MOMO Kleinkindergarten, Mozartstraße 4, Remseck am Neckar.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/preise" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/preise" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/preise" }],
+    links: [{ rel: "canonical", href: "https://www.momo-kleinkindergarten.com/preise" }],
   }),
   component: Preise,
 });

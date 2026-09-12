@@ -25,11 +25,11 @@ export const Route = createFileRoute("/ueber-uns")({
         content: "Bewusst familiär: 9 Kinder, 3 Pädagoginnen, viel Geborgenheit.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/ueber-uns" },
+      { property: "og:url", content: "https://www.momo-kleinkindergarten.com/ueber-uns" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "/ueber-uns" },
+      { rel: "canonical", href: "https://www.momo-kleinkindergarten.com/ueber-uns" },
       // Alle Bilder und das Video sofort laden, damit nichts nacheinander auftaucht
       { rel: "preload", as: "image", href: naeheImg },
       { rel: "preload", as: "image", href: ruheImg },
