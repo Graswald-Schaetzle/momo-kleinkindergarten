@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/datenschutz")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Datenschutzerklärung — MOMO Kleinkindergarten Remseck" },

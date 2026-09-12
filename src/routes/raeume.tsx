@@ -4,6 +4,7 @@ import { MischerAnimation } from "@/components/MischerAnimation";
 import schubkarre from "@/assets/schubkarre.png.asset.json";
 
 export const Route = createFileRoute("/raeume")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Räume — MOMO Kleinkindergarten Remseck" },

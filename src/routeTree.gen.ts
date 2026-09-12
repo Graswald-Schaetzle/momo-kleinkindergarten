@@ -17,6 +17,7 @@ import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as PaedagogikRouteImport } from './routes/paedagogik'
 import { Route as PreiseRouteImport } from './routes/preise'
 import { Route as RaeumeRouteImport } from './routes/raeume'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
 import { Route as PaedagogikIndexRouteImport } from './routes/paedagogik/index'
@@ -65,6 +66,11 @@ const RaeumeRoute = RaeumeRouteImport.update({
   path: '/raeume',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/paedagogik': typeof PaedagogikRouteWithChildren
   '/preise': typeof PreiseRoute
   '/raeume': typeof RaeumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/ueber-uns': typeof UeberUnsRoute
   '/paedagogik/angebote': typeof PaedagogikAngeboteRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/paedagogik'
     | '/preise'
     | '/raeume'
+    | '/sitemap.xml'
     | '/team'
     | '/ueber-uns'
     | '/paedagogik/angebote'
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/preise'
     | '/raeume'
+    | '/sitemap.xml'
     | '/team'
     | '/ueber-uns'
     | '/paedagogik/angebote'
@@ -196,6 +207,7 @@ export interface FileRouteTypes {
     | '/paedagogik'
     | '/preise'
     | '/raeume'
+    | '/sitemap.xml'
     | '/team'
     | '/ueber-uns'
     | '/paedagogik/angebote'
@@ -214,6 +226,7 @@ export interface RootRouteChildren {
   PaedagogikRoute: typeof PaedagogikRouteWithChildren
   PreiseRoute: typeof PreiseRoute
   RaeumeRoute: typeof RaeumeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TeamRoute: typeof TeamRoute
   UeberUnsRoute: typeof UeberUnsRoute
 }
@@ -274,6 +287,13 @@ declare module '@tanstack/react-router' {
       path: '/raeume'
       fullPath: '/raeume'
       preLoaderRoute: typeof RaeumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/team': {
@@ -357,6 +377,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaedagogikRoute: PaedagogikRouteWithChildren,
   PreiseRoute: PreiseRoute,
   RaeumeRoute: RaeumeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TeamRoute: TeamRoute,
   UeberUnsRoute: UeberUnsRoute,
 }

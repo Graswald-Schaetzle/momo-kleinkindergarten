@@ -3,6 +3,7 @@ import { Clock, Users, UtensilsCrossed, Blocks, Droplet, Gift } from "lucide-rea
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/preise")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Preise — MOMO Kinderhaus Remseck" },

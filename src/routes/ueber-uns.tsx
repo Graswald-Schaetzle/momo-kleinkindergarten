@@ -10,6 +10,7 @@ import naturAsset from "@/assets/grafik-20.png.asset.json";
 import eigenstaendigkeitImg from "@/assets/ueberuns-eigenstaendigkeit-portrait.png";
 
 export const Route = createFileRoute("/ueber-uns")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Über uns — MOMO Kleinkindergarten Remseck" },

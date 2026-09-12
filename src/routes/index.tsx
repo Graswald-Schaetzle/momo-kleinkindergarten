@@ -13,6 +13,7 @@ const heroPosterUrl = "/hund/momo-hund-poster.jpg";
 
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "MOMO Kinderhaus — Kinderbetreuung 1-3 Jahre in Remseck" },

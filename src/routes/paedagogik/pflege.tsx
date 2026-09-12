@@ -12,6 +12,7 @@ const brands = [
 ];
 
 export const Route = createFileRoute("/paedagogik/pflege")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Pflege — MOMO Kleinkindergarten Remseck" },

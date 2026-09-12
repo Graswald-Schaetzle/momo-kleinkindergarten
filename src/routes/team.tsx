@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { BriefAnimation } from "@/components/BriefAnimation";
 
 export const Route = createFileRoute("/team")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Team — MOMO Kleinkindergarten Remseck" },

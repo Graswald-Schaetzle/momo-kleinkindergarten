@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import zeichnungJobs from "@/assets/zeichnung-jobs-weit.png.asset.json";
 
 export const Route = createFileRoute("/jobs")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Jobs — MOMO Kleinkindergarten Remseck" },

@@ -3,6 +3,7 @@ import { BesteckAnimation } from "@/components/BesteckAnimation";
 import schuesselAsset from "@/assets/schuessel.png.asset.json";
 
 export const Route = createFileRoute("/paedagogik/essen")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Essen — MOMO Kleinkindergarten Remseck" },

@@ -92,6 +92,7 @@ import iconHaus from "@/assets/icon-haus.png.asset.json";
 type ChildIcon = { url: string; alt: string; tint?: boolean };
 
 export const Route = createFileRoute("/paedagogik/tagesablauf")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Tagesablauf — MOMO Kleinkindergarten Remseck" },

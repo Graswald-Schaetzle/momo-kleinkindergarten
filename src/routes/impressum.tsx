@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/impressum")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Impressum — MOMO Kleinkindergarten Remseck" },
