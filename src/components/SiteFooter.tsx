@@ -45,11 +45,18 @@ export function SiteFooter({
           Mozartstraße 4, 71686 Remseck am Neckar
         </a>
         <br />
-        <Link
-          to="/kontakt"
-          className="underline underline-offset-4"
-        >
+        <Link to="/kontakt" className="underline underline-offset-4">
           Kontakt
+        </Link>
+      </p>
+
+      <p className={`${color} mt-3 text-xs font-normal opacity-70 sm:text-xs`}>
+        <Link to="/impressum" className="underline underline-offset-4">
+          Impressum
+        </Link>
+        {" · "}
+        <Link to="/datenschutz" className="underline underline-offset-4">
+          Datenschutz
         </Link>
       </p>
     </footer>
