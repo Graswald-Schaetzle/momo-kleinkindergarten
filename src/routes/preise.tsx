@@ -89,6 +89,17 @@ function Preise() {
             VIII.
           </p>
         </div>
+
+        <p className="mt-6 text-sm text-menu-overlay-foreground">
+          <a
+            href="/dokumente/anmeldebogen.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4"
+          >
+            Anmeldebogen (PDF)
+          </a>
+        </p>
       </section>
     </main>
   );
