@@ -103,6 +103,16 @@ function PaedagogikIndex() {
             </li>
             <li>
               <a
+                href="/dokumente/eingewoehnung.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                Unser Eingewöhnungskonzept (PDF)
+              </a>
+            </li>
+            <li>
+              <a
                 href="/dokumente/gewaltschutzkonzept.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
