@@ -103,12 +103,12 @@ export function BriefAnimation({
           <img src={briefpapier.url} alt="Gefalteter Briefbogen" className="block w-full" />
 
           {/* Foto hängt wie an einer Klammer oben auf dem Papier. */}
-          <figure className="absolute left-1/2 top-[3%] z-10 w-20 -translate-x-1/2 rotate-[2deg] sm:w-24">
+          <figure className="absolute left-1/2 top-[3%] z-10 aspect-square w-20 -translate-x-1/2 overflow-hidden rotate-[2deg] drop-shadow-[0_4px_6px_rgba(43,27,38,0.28)] sm:w-24">
             <img
               src={photoSrc}
               alt={photoAlt}
               loading="lazy"
-              className="block h-auto w-full drop-shadow-[0_4px_6px_rgba(43,27,38,0.28)]"
+              className="block h-full w-full object-cover"
             />
           </figure>
 
