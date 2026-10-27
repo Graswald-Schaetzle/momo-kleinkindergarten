@@ -167,7 +167,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             loading="lazy"
             className="block w-full"
           />
-          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink text-sm sm:text-base">
+          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink/70 text-sm sm:text-base">
             Olivia
             <br />
             Gründerin und Leitung
@@ -185,7 +185,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             loading="lazy"
             className="block w-full"
           />
-          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink text-sm sm:text-base">
+          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink/70 text-sm sm:text-base">
             Olivia
             <br />
             Gründerin und Leitung
