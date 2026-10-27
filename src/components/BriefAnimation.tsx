@@ -89,11 +89,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         </div>
 
         <div className="brief-letter relative mx-auto w-full max-w-3xl">
-          <img
-            src={briefpapier.url}
-            alt="Gefalteter Briefbogen"
-            className="block w-full"
-          />
+          <img src={briefpapier.url} alt="Gefalteter Briefbogen" className="block w-full" />
 
           {/* Foto hängt wie an einer Klammer oben auf dem Papier. */}
           <figure className="absolute left-1/2 top-[3%] z-10 w-20 -translate-x-1/2 rotate-[2deg] sm:w-24">
@@ -134,9 +130,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
   return (
     <div className={`pt-20 sm:pt-20 ${className}`}>
       <div className="relative z-40 mb-4 text-center sm:mb-6">
-        <p className="font-display text-base italic text-ink sm:text-lg">
-          {"\n"}
-        </p>
+        <p className="font-display text-base italic text-ink sm:text-lg">{"\n"}</p>
         <p className="font-sans text-xs text-ink/70 sm:text-sm">
           Drücke auf den Umschlag, um mehr zu erfahren.
         </p>
@@ -173,6 +167,9 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             loading="lazy"
             className="block w-full"
           />
+          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-handwritten text-sm text-ink sm:text-base">
+            Olivia, Gründerin und Leitung
+          </p>
           <div className="brief-stamp absolute bottom-[18%] left-1/2 w-[44%] text-ink">
             <div className="brief-stamp-ring">
               <MomoLogo showSubtitle className="w-full" />
@@ -186,6 +183,9 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             loading="lazy"
             className="block w-full"
           />
+          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-handwritten text-sm text-ink sm:text-base">
+            Olivia, Gründerin und Leitung
+          </p>
           <div className="brief-stamp absolute bottom-[7%] left-1/2 w-[44%] text-ink">
             <div className="brief-stamp-ring">
               <MomoLogo showSubtitle className="w-full" />
