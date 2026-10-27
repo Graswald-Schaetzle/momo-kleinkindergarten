@@ -1,23 +1,12 @@
 /* Brief-Animation: Ein geschlossener Umschlag öffnet sich beim Klick,
    verschwindet dann komplett und macht Platz für den Brief auf
    zerknittertem Papier mit Sternen, Klebeband und Büroklammer – an der
-   Klammer hängt ein Foto von Olivia. */
+   Klammer hängt ein Foto der jeweiligen Person. Wiederverwendbar für
+   jedes Teammitglied, nur Umschlagfarbe, Foto und Text unterscheiden sich. */
 
 import { useState } from "react";
-import briefmarke from "@/assets/olivia-portrait.png.asset.json";
 import { MomoLogo } from "@/components/MomoLogo";
-import umschlagZu from "@/assets/umschlag-zu.png";
-import umschlagOffen from "@/assets/umschlag-offen.png";
-import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
 import briefpapier from "@/assets/briefpapier-gefaltet.jpg.asset.json";
-
-const paragraphs = [
-  "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
-  "Ich bin staatlich anerkannte Erzieherin (B.A. Sozialwesen) und ausgebildete Waldorfpädagogin. Meine mehrjährige Erfahrungen im Kindergarten-Alltag habe ich unter anderem in Frankreich und Berlin gesammelt. Die Waldorf Pädagogik liegt mir sehr am Herzen gleichzeitig ist es mir wichtig, sie modern zu denken und zu leben, im Einklang mit dem, was wir heute über kindliche Entwicklung wissen.",
-  "Der Wunsch, irgendwann eine eigene kleine Krippe zu gründen, hat mich lange begleitet. Jetzt wird er wahr und das an einem ganz besonderen Ort: im Haus meiner Großeltern, das ich liebevoll für Momo herrichte. Für mich ist Momo deshalb mehr als ein Projekt, es ist ein echtes Familienprojekt, in das viele persönliche Erinnerungen und viel Herzblut fließen.",
-  "Mir ist es ein Anliegen, dass kleine Kinder behutsam aufwachsen dürfen, in einer kleinen Gruppe, und in ihrem eigenen Tempo.",
-  "Ich freue mich euch und eure Kinder kennenzulernen!",
-];
 
 /* Deterministischer Pseudo-Zufall pro Zeichen, damit die Handschrift
    bei jedem Render identisch bleibt (kein Hydration-Mismatch). */
@@ -58,7 +47,29 @@ function Handwritten({ text, seedBase }: { text: string; seedBase: number }) {
   );
 }
 
-export function BriefAnimation({ className = "" }: { className?: string }) {
+export interface BriefAnimationProps {
+  className?: string;
+  name: string;
+  role: string;
+  photoSrc: string;
+  photoAlt: string;
+  paragraphs: string[];
+  envelopeClosedSrc: string;
+  envelopeOpenSrc: string;
+  envelopeOpenFrontSrc: string;
+}
+
+export function BriefAnimation({
+  className = "",
+  name,
+  role,
+  photoSrc,
+  photoAlt,
+  paragraphs,
+  envelopeClosedSrc,
+  envelopeOpenSrc,
+  envelopeOpenFrontSrc,
+}: BriefAnimationProps) {
   const [open, setOpen] = useState(false);
 
   /* Geöffneter Zustand: nur der Brief auf dem Papier, Umschlag ist weg. */
@@ -94,8 +105,8 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
           {/* Foto hängt wie an einer Klammer oben auf dem Papier. */}
           <figure className="absolute left-1/2 top-[3%] z-10 w-20 -translate-x-1/2 rotate-[2deg] sm:w-24">
             <img
-              src={briefmarke.url}
-              alt="Olivia, Gründerin von MOMO"
+              src={photoSrc}
+              alt={photoAlt}
               loading="lazy"
               className="block h-auto w-full drop-shadow-[0_4px_6px_rgba(43,27,38,0.28)]"
             />
@@ -151,7 +162,7 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
       >
         <div className="absolute bottom-0 left-1/2 z-0 aspect-[995/627] w-[104%] -translate-x-1/2">
           <img
-            src={umschlagOffen}
+            src={envelopeOpenSrc}
             alt=""
             aria-hidden
             loading="lazy"
@@ -161,16 +172,16 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
 
         <div className="absolute bottom-0 left-1/2 z-20 w-[104%] -translate-x-1/2">
           <img
-            src={umschlagOffenFront}
+            src={envelopeOpenFrontSrc}
             alt=""
             aria-hidden
             loading="lazy"
             className="block w-full"
           />
           <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink/70 text-sm sm:text-base">
-            Olivia
+            {name}
             <br />
-            Gründerin und Leitung
+            {role}
           </p>
           <div className="brief-stamp absolute bottom-[18%] left-1/2 w-[44%] text-ink">
             <div className="brief-stamp-ring">
@@ -180,15 +191,15 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
         </div>
         <div className="absolute bottom-0 left-1/2 z-30 w-[104%] -translate-x-1/2">
           <img
-            src={umschlagZu}
+            src={envelopeClosedSrc}
             alt="Geschlossener Briefumschlag"
             loading="lazy"
             className="block w-full"
           />
           <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink/70 text-sm sm:text-base">
-            Olivia
+            {name}
             <br />
-            Gründerin und Leitung
+            {role}
           </p>
           <div className="brief-stamp absolute bottom-[7%] left-1/2 w-[44%] text-ink">
             <div className="brief-stamp-ring">

@@ -1,6 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { BriefAnimation } from "@/components/BriefAnimation";
+import oliviaPortrait from "@/assets/olivia-portrait.png.asset.json";
+import umschlagZu from "@/assets/umschlag-zu.png";
+import umschlagOffen from "@/assets/umschlag-offen.png";
+import umschlagOffenFront from "@/assets/umschlag-offen-front.png";
+
+const oliviaParagraphs = [
+  "Ich bin Olivia. Gründerin von Momo und ab Januar 2027 mit ganzem Herzen für eure Kinder da.",
+  "Ich bin staatlich anerkannte Erzieherin (B.A. Sozialwesen) und ausgebildete Waldorfpädagogin. Meine mehrjährige Erfahrungen im Kindergarten-Alltag habe ich unter anderem in Frankreich und Berlin gesammelt. Die Waldorf Pädagogik liegt mir sehr am Herzen gleichzeitig ist es mir wichtig, sie modern zu denken und zu leben, im Einklang mit dem, was wir heute über kindliche Entwicklung wissen.",
+  "Der Wunsch, irgendwann eine eigene kleine Krippe zu gründen, hat mich lange begleitet. Jetzt wird er wahr und das an einem ganz besonderen Ort: im Haus meiner Großeltern, das ich liebevoll für Momo herrichte. Für mich ist Momo deshalb mehr als ein Projekt, es ist ein echtes Familienprojekt, in das viele persönliche Erinnerungen und viel Herzblut fließen.",
+  "Mir ist es ein Anliegen, dass kleine Kinder behutsam aufwachsen dürfen, in einer kleinen Gruppe, und in ihrem eigenen Tempo.",
+  "Ich freue mich euch und eure Kinder kennenzulernen!",
+];
 
 export const Route = createFileRoute("/team")({
   staticData: { sitemap: true },
@@ -35,9 +47,18 @@ function Team() {
           {"\n"}
         </h1>
 
-        <BriefAnimation className="mt-8 sm:mt-8" />
+        <BriefAnimation
+          className="mt-8 sm:mt-8"
+          name="Olivia"
+          role="Gründerin und Leitung"
+          photoSrc={oliviaPortrait.url}
+          photoAlt="Olivia, Gründerin von MOMO"
+          paragraphs={oliviaParagraphs}
+          envelopeClosedSrc={umschlagZu}
+          envelopeOpenSrc={umschlagOffen}
+          envelopeOpenFrontSrc={umschlagOffenFront}
+        />
       </div>
     </main>
   );
 }
-
