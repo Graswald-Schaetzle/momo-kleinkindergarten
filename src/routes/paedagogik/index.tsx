@@ -121,6 +121,16 @@ function PaedagogikIndex() {
                 Unser Gewaltschutzkonzept (PDF)
               </a>
             </li>
+            <li>
+              <a
+                href="/dokumente/schliesstage-2027.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                Schließtage 2027 (PDF)
+              </a>
+            </li>
           </ul>
         </div>
       </section>
