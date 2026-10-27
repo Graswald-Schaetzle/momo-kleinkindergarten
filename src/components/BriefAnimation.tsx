@@ -167,8 +167,10 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             loading="lazy"
             className="block w-full"
           />
-          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-handwritten text-sm text-ink sm:text-base">
-            Olivia, Gründerin und Leitung
+          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink text-sm sm:text-base">
+            Olivia
+            <br />
+            Gründerin und Leitung
           </p>
           <div className="brief-stamp absolute bottom-[18%] left-1/2 w-[44%] text-ink">
             <div className="brief-stamp-ring">
@@ -183,8 +185,10 @@ export function BriefAnimation({ className = "" }: { className?: string }) {
             loading="lazy"
             className="block w-full"
           />
-          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-handwritten text-sm text-ink sm:text-base">
-            Olivia, Gründerin und Leitung
+          <p className="absolute bottom-[58%] left-1/2 w-full -translate-x-1/2 text-center font-display font-medium leading-snug tracking-[0.12em] text-ink text-sm sm:text-base">
+            Olivia
+            <br />
+            Gründerin und Leitung
           </p>
           <div className="brief-stamp absolute bottom-[7%] left-1/2 w-[44%] text-ink">
             <div className="brief-stamp-ring">
