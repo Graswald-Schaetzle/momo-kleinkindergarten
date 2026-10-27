@@ -77,6 +77,7 @@ function Team() {
           role="Pädagogin"
           photoSrc={annabellePortrait}
           photoAlt="Annabelle, Pädagogin bei MOMO"
+          photoWidthClassName="w-28 sm:w-36"
           paragraphs={annabelleParagraphs}
           envelopeClosedSrc={umschlagZuMustard}
           envelopeOpenSrc={umschlagOffenMustard}
