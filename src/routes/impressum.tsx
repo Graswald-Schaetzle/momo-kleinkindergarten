@@ -40,11 +40,19 @@ function Impressum() {
               Angaben gemäß § 5 DDG
             </h2>
             <p className="mt-2">
-              Olivia Seiberth
+              Momo Kleinkindergarten GmbH
               <br />
               Mozartstraße 4
               <br />
               71686 Remseck am Neckar
+            </p>
+            <p className="mt-2">
+              Vertreten durch die Geschäftsführerin: Olivia Florentine Seiberth
+            </p>
+            <p className="mt-2">
+              Handelsregister: Amtsgericht Stuttgart
+              <br />
+              Registernummer: HRB 808096
             </p>
           </div>
 
@@ -70,20 +78,6 @@ function Impressum() {
 
           <div>
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
-              Hinweis zur Unternehmensgründung
-            </h2>
-            <p className="mt-2">
-              Der MOMO Kleinkindergarten wird derzeit im Rahmen der Gründung der Gesellschaft „MOMO
-              Kleinkindergarten GmbH" aufgebaut. Der notarielle Gründungstermin ist für den 28.
-              September 2026 vorgesehen. Bis zur notariellen Gründung tritt diese Website in Person
-              von Olivia Seiberth als Verantwortlicher auf. Nach erfolgter Gründung und Eintragung
-              wird dieses Impressum um Handelsregisternummer und weitere gesellschaftsrechtliche
-              Angaben ergänzt.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-display text-base font-normal tracking-[0.04em]">
               Hinweis zur Betriebserlaubnis
             </h2>
             <p className="mt-2">
@@ -99,7 +93,7 @@ function Impressum() {
             <h2 className="font-display text-base font-normal tracking-[0.04em]">
               Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
             </h2>
-            <p className="mt-2">Olivia Seiberth, Anschrift wie oben.</p>
+            <p className="mt-2">Olivia Florentine Seiberth, Anschrift wie oben.</p>
           </div>
 
           <div>

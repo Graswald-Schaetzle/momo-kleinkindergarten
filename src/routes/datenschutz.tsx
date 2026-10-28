@@ -42,9 +42,13 @@ function Datenschutz() {
             <p className="mt-2">
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:
               <br />
-              Olivia Seiberth
+              Momo Kleinkindergarten GmbH
               <br />
               Mozartstraße 4, 71686 Remseck am Neckar
+              <br />
+              vertreten durch die Geschäftsführerin Olivia Florentine Seiberth
+              <br />
+              Handelsregister: Amtsgericht Stuttgart, HRB 808096
               <br />
               E-Mail:{" "}
               <a
@@ -53,12 +57,6 @@ function Datenschutz() {
               >
                 leitung@momo-kleinkindergarten.com
               </a>
-            </p>
-            <p className="mt-2">
-              Der MOMO Kleinkindergarten wird derzeit im Rahmen der Gründung der Gesellschaft „MOMO
-              Kleinkindergarten GmbH" aufgebaut (notarieller Gründungstermin voraussichtlich 28.
-              September 2026). Bis dahin ist Olivia Seiberth persönlich Verantwortliche im Sinne der
-              DSGVO.
             </p>
           </div>
 
@@ -211,9 +209,8 @@ function Datenschutz() {
               11. Aktualität dieser Datenschutzerklärung
             </h2>
             <p className="mt-2">
-              Diese Datenschutzerklärung ist aktuell gültig (Stand: September 2026). Wir werden sie
-              anpassen, sobald Änderungen der Datenverarbeitung dies erforderlich machen, etwa im
-              Zuge der Gründung der MOMO Kleinkindergarten GmbH.
+              Diese Datenschutzerklärung ist aktuell gültig (Stand: Oktober 2026). Wir werden sie
+              anpassen, sobald Änderungen der Datenverarbeitung dies erforderlich machen.
             </p>
           </div>
         </div>
