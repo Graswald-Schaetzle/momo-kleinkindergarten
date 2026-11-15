@@ -131,6 +131,16 @@ function PaedagogikIndex() {
                 Schließtage 2027 (PDF)
               </a>
             </li>
+            <li>
+              <a
+                href="/dokumente/anmeldebogen.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                Anmeldebogen (PDF)
+              </a>
+            </li>
           </ul>
         </div>
       </section>

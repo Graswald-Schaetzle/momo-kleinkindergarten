@@ -81,11 +81,9 @@ function Impressum() {
               Hinweis zur Betriebserlaubnis
             </h2>
             <p className="mt-2">
-              Der geplante Betrieb einer Kindertageseinrichtung bedarf einer Betriebserlaubnis nach
-              § 45 SGB VIII. Wir stehen hierzu bereits im Austausch mit der zuständigen
-              Aufsichtsbehörde, dem KVJS-Landesjugendamt Baden-Württemberg. Eine Betriebserlaubnis
-              liegt derzeit noch nicht vor; der Betreuungsbetrieb wird erst nach deren Erteilung
-              aufgenommen.
+              Für den Betrieb einer Kindertageseinrichtung liegt eine Betriebserlaubnis nach § 45
+              SGB VIII vor, erteilt durch die zuständige Aufsichtsbehörde, das KVJS-Landesjugendamt
+              Baden-Württemberg.
             </p>
           </div>
 
